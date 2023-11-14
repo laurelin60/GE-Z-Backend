@@ -26,4 +26,4 @@ def merge_pdf_pages(input_pdf_path, output_pdf_path):
     print('PDF pages merged successfully.')
 
 
-merge_pdf_pages('input/base.pdf', 'output.pdf')
+merge_pdf_pages('./base.pdf', 'output.pdf')

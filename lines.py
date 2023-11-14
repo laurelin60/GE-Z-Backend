@@ -7,11 +7,8 @@ def detect_horizontal_lines(image_path):
     image = cv2.imread(image_path)
     image_width = image.shape[1]
 
-    # Apply GaussianBlur to reduce noise and help edge detection
-    blurred = cv2.GaussianBlur(image, (1, 1), 0)
-
     # Use Canny edge detector to find edges with stricter parameters
-    edges = cv2.Canny(blurred, 20, 40)  # Adjust these thresholds
+    edges = cv2.Canny(image, 20, 40)  # Adjust these thresholds
 
     # Use HoughLinesP to detect lines with stricter parameters
     lines = cv2.HoughLinesP(edges, 1, np.pi / 180, threshold=100, minLineLength=image_width * 0.89, maxLineGap=0)
@@ -41,5 +38,5 @@ def detect_horizontal_lines(image_path):
         cv2.imwrite(f'sections/section_{i + 1}.png', section)
 
 
-image_path = 'output/output.png'
+image_path = 'output.png'
 detect_horizontal_lines(image_path)
