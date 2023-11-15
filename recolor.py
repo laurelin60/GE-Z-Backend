@@ -1,18 +1,15 @@
 from PIL import Image
-from pdf2image import convert_from_path
+from pdf2image import convert_from_bytes
 import numpy as np
+import cv2
 
-def recolor(in_path, out_path, alpha):
-    # Store Pdf with convert_from_path function
-    images = convert_from_path(in_path, dpi=600)
-    img_array = np.array(images[0].convert("L"))
-
-    # Apply NumPy operations to the entire image array
+def recolor(merged_pdf_data: bytes, alpha: int) -> np.ndarray:
+    Image.MAX_IMAGE_PIXELS = 500000000  
+    images = convert_from_bytes(merged_pdf_data, dpi=900)
+    img_array = np.array(images[0].convert("L")) 
     new_img_array = np.where(img_array > alpha, 255, 0).astype(np.uint8)
 
-    # Convert NumPy array back to PIL Image
-    new_image = Image.fromarray(new_img_array)
+    return new_img_array
 
-    new_image.save(out_path, "PNG", resolution=100.0)
-
-recolor('output.pdf', 'output.png', 230)
+if (__name__ == "__main__"):
+    print("This module isn't meant to be run as main")

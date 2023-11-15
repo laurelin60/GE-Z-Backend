@@ -1,10 +1,10 @@
 import os.path
-
 import cv2
 import numpy as np
 import pytesseract
 import time
 import threading
+from typing import List
 
 # Set the path to the Tesseract executable (change this path to match your installation)
 pytesseract.pytesseract.tesseract_cmd = r'/opt/homebrew/bin/tesseract' if os.name == "posix" else r'C:\Program Files\Tesseract-OCR\tesseract.exe'
@@ -89,8 +89,7 @@ def get_sections_text(img):
 
     return res
 
-def extract_thread(images_path, f):
-    image = cv2.imread(os.path.join(images_path, f))
+def extract_thread(image):
 
     left, mid, right = split_img(image)
 
@@ -112,18 +111,16 @@ def extract_thread(images_path, f):
         print(text_r)
         print()
 
-def extract_text_from_sections(images_path):
-    files = os.listdir(images_path)
-    files.sort()
+def extract_text_from_image_data(images: List[np.ndarray], multithread: bool = False):
     threads = []
-    for f in files:
-        threads.append(threading.Thread(target = extract_thread, args = (images_path, f)))
-        threads[-1].start()
+    for image in images:
+        if (multithread):
+            threads.append(threading.Thread(target = extract_thread, args = (image,)))
+            threads[-1].start()
+        else:
+            extract_thread(image)
     for t in threads:
         t.join()
 
-
-stt = time.time()
-# Call the function to extract text from sections
-extract_text_from_sections('sections')
-print("Elapsed: " + str((time.time() - stt)) + " seconds")
+if (__name__ == "__main__"):
+    print("This module isn't meant to be run as main")
