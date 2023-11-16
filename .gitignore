@@ -163,3 +163,7 @@ cython_debug/
 .idea
 input_pdfs
 debug
+
+# input stuff 
+input/
+Anaconda Prompt for DegreeEZ thingy.lnk
