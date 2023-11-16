@@ -237,10 +237,10 @@ def _get_lines_formatted(section, min_length_multiplier, max_gap):
     horizontal_lines = [line for line in horizontal_lines if
                         line[1] > 5 and abs(line[1] - section.shape[0]) > 5]  # Remove lines at top and bottom
 
-    if not any([True for line in horizontal_lines if line[1] < 50]):
+    if not any([True for line in horizontal_lines if line[1] < 45]):
         horizontal_lines.append(np.array([0, 0, section.shape[1], 0]))
 
-    if not any([True for line in horizontal_lines if abs(line[1] - section.shape[0]) < 50]):
+    if not any([True for line in horizontal_lines if abs(line[1] - section.shape[0]) < 45]):
         horizontal_lines.append(np.array([0, section.shape[0], section.shape[1], section.shape[0]]))
 
     if len(horizontal_lines) < 2:
@@ -619,27 +619,29 @@ class AssistParser:
     def text_to_json(self):
         text = self.text_formatted
 
-        total_json = []
+        pdf_id = self.base_pdf_path.stem.split('---')[-1]
+
+        total_json = {"ID": pdf_id, "Articulations": []}
 
         for f in text:
             transfer_from = f[1][0]
             transfer_to = f[0][0]
 
             if isinstance(transfer_from, Course) and isinstance(transfer_to, Course):
-                total_json.append(_transfer_to_dict(transfer_from, transfer_to))
+                total_json["Articulations"].append(_transfer_to_dict(transfer_from, transfer_to))
 
             elif isinstance(transfer_from, Course) and isinstance(transfer_to, And):
                 for t_course in transfer_to.elements:
-                    total_json.append(_transfer_to_dict(transfer_from, t_course))
+                    total_json["Articulations"].append(_transfer_to_dict(transfer_from, t_course))
 
             elif isinstance(transfer_from, Or) and isinstance(transfer_to, Course):
                 for t_course in transfer_from.elements:
-                    total_json.append(_transfer_to_dict(t_course, transfer_to))
+                    total_json["Articulations"].append(_transfer_to_dict(t_course, transfer_to))
 
             elif isinstance(transfer_from, Or) and isinstance(transfer_to, And):
                 for from_course in transfer_from.elements:
                     for to_course in transfer_to.elements:
-                        total_json.append(_transfer_to_dict(from_course, to_course))
+                        total_json["Articulations"].append(_transfer_to_dict(from_course, to_course))
 
             else:
                 raise ValueError
@@ -654,11 +656,13 @@ class AssistParser:
             f.write(self.text_json)
 
 def main():
-    for path in Path(r'C:\Users\awang\Downloads\uci-transfer-courses\output').rglob('*.pdf'):
+    for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new').rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
 
         AssistParser(path, debug=False)
+
+        exit()
 
 
 if __name__ == '__main__':
