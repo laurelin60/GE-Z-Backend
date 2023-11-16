@@ -218,6 +218,8 @@ def _get_lines(image, min_length_multiplier, max_gap) -> np.ndarray:
 
 
 def _get_horizontal_lines(lines):
+    if lines is None:
+        return []
     return [line[0] for line in lines if abs(line[0][1] - line[0][3]) < 5]
 
 
@@ -437,6 +439,7 @@ class AssistParser:
 
     def recolor_image(self, alpha, debug=False) -> np.ndarray:
         # print('RECOLORING')
+        Image.MAX_IMAGE_PIXELS = 1000000000  # Prevent decompression bomb exception thingy
         img_array = np.array(self.merged_pdf_image.convert("L"))
         contrast_img_array = np.where(img_array > alpha, 255, 0).astype(np.uint8)
 
@@ -655,8 +658,9 @@ class AssistParser:
         with open(write_path, "w") as f:
             f.write(self.text_json)
 
+
 def main():
-    for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new').rglob('*.pdf'):
+    for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new-half').rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
 

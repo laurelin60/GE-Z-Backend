@@ -15,8 +15,10 @@ class AssistParserThreaded(AssistParser):
 
 def process_pdf(pdf_path, debug=False):
     global activeThreads
-    AssistParserThreaded(pdf_path, debug)
-
+    try:
+        AssistParserThreaded(pdf_path, debug)
+    except Exception as e:
+        print(f"Error while processing {pdf_path}, skipping. Exception: {e}")
     activeThreads -= 1
     if activeThreads < 0:
         print("idk how this happened")
@@ -25,7 +27,7 @@ def process_pdf(pdf_path, debug=False):
 def main():
     threads = []
     global activeThreads
-    for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new').rglob('*.pdf'):
+    for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new-half').rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
 
@@ -42,3 +44,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    print("Done!")
