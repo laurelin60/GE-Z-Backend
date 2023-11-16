@@ -42,3 +42,4 @@ class ChildCourse(db.Model):
 
     college_name = db.Column(db.String(100), nullable=False)
     course_code = db.Column(db.String(20), nullable=False)
+    pdf_id = db.Column(db.Integer(), nullable=False)

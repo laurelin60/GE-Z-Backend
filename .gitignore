@@ -163,3 +163,4 @@ cython_debug/
 .idea
 utils/input_pdfs
 utils/debug
+utils/test.py

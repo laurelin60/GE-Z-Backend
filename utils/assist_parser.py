@@ -96,7 +96,7 @@ def _string_to_courses(string) -> list[Course]:
     if '- Or -' in string:
         return [Course('OR', '', '')]
 
-    matches = re.findall(' *([0-9A-Z &-]+) - (.*?)[ \n]\(([0-9]+\.[0-9]+)\)', string, re.DOTALL)
+    matches = re.findall(' *([0-9A-Z .&\-]+) - (.*?)[ \n]\(([0-9]+\.[0-9]+)\)', string, re.DOTALL)
 
     for m in matches:
         courses.append(Course(m[0], m[1], m[2]))
@@ -105,7 +105,7 @@ def _string_to_courses(string) -> list[Course]:
 
 
 def _is_course(string):
-    matches = re.search(' *([0-9A-Z &-]+) - (.*?)[ \n]\(([0-9]+\.[0-9]+)\)', string, re.DOTALL)
+    matches = re.search(' *([0-9A-Z .&\-]+) - (.*?)[ \n]\(([0-9]+\.[0-9]+)\)', string, re.DOTALL)
     return bool(matches)
 
 
@@ -318,9 +318,19 @@ def _format_course_to(lis: list[Course | str]) -> list[And | Course]:
     return [my_or]
 
 
+fixes = {
+    '§8': '8',
+    '@5': '5',
+    '!': 'I',
+    '€C': 'C',
+}
 def _course_from_string(string) -> list[Course]:
     string = string.replace('\n', ' ')
-    match = re.findall(' *([0-9A-Z &-]+) - (.*?)[ \n]\(([0-9]+\.[0-9]+)\)', string)
+
+    for find, replace in fixes.items():
+        string = string.replace(find, replace)
+
+    match = re.findall(' *([0-9A-Z .&\-]+) - (.*?)[ \n]\(([0-9]+\.[0-9]+)\)', string)
 
     if match:
         return [Course(m[0], m[1], m[2]) for m in match]
@@ -660,11 +670,11 @@ class AssistParser:
 
 
 def main():
-    for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new-half').rglob('*.pdf'):
+    for path in Path(r'C:\Users\awang\PycharmProjects\DegreasyBackend\utils\input_pdfs').rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
 
-        AssistParser(path, debug=False)
+        AssistParser(path, debug=True)
 
         exit()
 

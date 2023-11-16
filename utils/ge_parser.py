@@ -32,17 +32,13 @@ def get_ge_json():
     data = '{"query":"query ExampleQuery {\n  allCourses {\n    department\n    courseNumber\n    geList\n  }\n}"}'
 
     response = requests.post(url, headers=headers, data=data)
-
     res = response.text
-
     data = json.loads(res)
 
     courses = data['data']['allCourses']
-
     gen_eds = [course for course in courses if course['geList'] != []]
 
     result = {}
-
     for c in gen_eds:
         course_code = f'{c['department']} {c['courseNumber']}'
         result[course_code] = ge_list_to_ints(c['geList'])
