@@ -25,7 +25,7 @@ def process_pdf(pdf_path, debug=False):
 def main():
     threads = []
     global activeThreads
-    for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new').rglob('*.pdf'):
+    for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new-half').rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
 

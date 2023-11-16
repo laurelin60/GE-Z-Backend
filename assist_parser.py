@@ -218,6 +218,8 @@ def _get_lines(image, min_length_multiplier, max_gap) -> np.ndarray:
 
 
 def _get_horizontal_lines(lines):
+    if lines is None:
+        return []
     return [line[0] for line in lines if abs(line[0][1] - line[0][3]) < 5]
 
 
@@ -656,7 +658,7 @@ class AssistParser:
             f.write(self.text_json)
 
 def main():
-    for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new').rglob('*.pdf'):
+    for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new-half').rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
 
