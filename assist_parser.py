@@ -237,10 +237,10 @@ def _get_lines_formatted(section, min_length_multiplier, max_gap):
     horizontal_lines = [line for line in horizontal_lines if
                         line[1] > 5 and abs(line[1] - section.shape[0]) > 5]  # Remove lines at top and bottom
 
-    if not any([True for line in horizontal_lines if line[1] < 60]):
+    if not any([True for line in horizontal_lines if line[1] < 50]):
         horizontal_lines.append(np.array([0, 0, section.shape[1], 0]))
 
-    if not any([True for line in horizontal_lines if abs(line[1] - section.shape[0]) < 60]):
+    if not any([True for line in horizontal_lines if abs(line[1] - section.shape[0]) < 50]):
         horizontal_lines.append(np.array([0, section.shape[0], section.shape[1], section.shape[0]]))
 
     if len(horizontal_lines) < 2:
@@ -653,7 +653,9 @@ class AssistParser:
 
 def main():
     for path in Path(r'C:\Users\awang\Downloads\uci-transfer-courses\output').rglob('*.pdf'):
-        AssistParser(path, debug=True)
+        if os.path.isfile(path.with_suffix('.json')):
+            continue
+        AssistParser(path, debug=False)
 
 
 if __name__ == '__main__':
