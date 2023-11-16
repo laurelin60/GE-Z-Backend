@@ -48,7 +48,7 @@ def get_ge_json():
         result[course_code] = ge_list_to_ints(c['geList'])
 
     result_json = json.dumps(result, indent=2)
-    with open('GEs_formatted.json', 'w') as f:
+    with open('data/GEs_formatted.json', 'w') as f:
         f.write(result_json)
 
     return result_json
