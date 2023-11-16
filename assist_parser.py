@@ -439,7 +439,7 @@ class AssistParser:
 
     def recolor_image(self, alpha, debug=False) -> np.ndarray:
         # print('RECOLORING')
-        Image.MAX_IMAGE_PIXELS = 1000000000 # Prevent deccompression bomb exception thingy 
+        Image.MAX_IMAGE_PIXELS = 1000000000  # Prevent decompression bomb exception thingy
         img_array = np.array(self.merged_pdf_image.convert("L"))
         contrast_img_array = np.where(img_array > alpha, 255, 0).astype(np.uint8)
 
@@ -657,6 +657,7 @@ class AssistParser:
 
         with open(write_path, "w") as f:
             f.write(self.text_json)
+
 
 def main():
     for path in Path(r'C:\Users\awang\Downloads\transfer-courses-new-half').rglob('*.pdf'):

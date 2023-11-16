@@ -1,0 +1,2835 @@
+{
+  "AC ENG 139W": [
+    1
+  ],
+  "AFAM 162W": [
+    1
+  ],
+  "AFAM 40A": [
+    3,
+    4,
+    7
+  ],
+  "AFAM 40B": [
+    3,
+    4,
+    7
+  ],
+  "AFAM 40C": [
+    3,
+    4,
+    7
+  ],
+  "ANTHRO 10A": [
+    5
+  ],
+  "ANTHRO 10B": [
+    5
+  ],
+  "ANTHRO 10C": [
+    5
+  ],
+  "ANTHRO 121AW": [
+    1
+  ],
+  "ANTHRO 121D": [
+    7
+  ],
+  "ANTHRO 125C": [
+    3
+  ],
+  "ANTHRO 125X": [
+    8
+  ],
+  "ANTHRO 127": [
+    3
+  ],
+  "ANTHRO 128B": [
+    7
+  ],
+  "ANTHRO 134A": [
+    8
+  ],
+  "ANTHRO 134G": [
+    8
+  ],
+  "ANTHRO 136A": [
+    8
+  ],
+  "ANTHRO 136D": [
+    8
+  ],
+  "ANTHRO 136K": [
+    7
+  ],
+  "ANTHRO 162A": [
+    8
+  ],
+  "ANTHRO 162B": [
+    7
+  ],
+  "ANTHRO 163A": [
+    8
+  ],
+  "ANTHRO 164A": [
+    1
+  ],
+  "ANTHRO 164P": [
+    8
+  ],
+  "ANTHRO 180AW": [
+    1
+  ],
+  "ANTHRO 20A": [
+    8
+  ],
+  "ANTHRO 25A": [
+    3,
+    7
+  ],
+  "ANTHRO 2A": [
+    3,
+    8
+  ],
+  "ANTHRO 2B": [
+    3
+  ],
+  "ANTHRO 2C": [
+    3
+  ],
+  "ANTHRO 2D": [
+    3
+  ],
+  "ANTHRO 30A": [
+    8
+  ],
+  "ANTHRO 41A": [
+    3,
+    8
+  ],
+  "ANTHRO 45A": [
+    3
+  ],
+  "ANTHRO 48": [
+    3,
+    8
+  ],
+  "ANTHRO 60": [
+    3,
+    7,
+    8
+  ],
+  "ANTHRO H190W": [
+    1
+  ],
+  "ARABIC 1C": [
+    6
+  ],
+  "ARABIC 2A": [
+    8
+  ],
+  "ARABIC 2B": [
+    8
+  ],
+  "ARABIC 2C": [
+    8
+  ],
+  "ARABIC 51": [
+    4,
+    8
+  ],
+  "ARMN 1C": [
+    6
+  ],
+  "ARMN 2A": [
+    8
+  ],
+  "ARMN 2B": [
+    8
+  ],
+  "ARMN 2C": [
+    8
+  ],
+  "ART 101W": [
+    1
+  ],
+  "ART 115W": [
+    1
+  ],
+  "ART 12A": [
+    4
+  ],
+  "ART 12B": [
+    4
+  ],
+  "ART 12C": [
+    3
+  ],
+  "ART 1A": [
+    4
+  ],
+  "ART 1B": [
+    4
+  ],
+  "ART 1C": [
+    4
+  ],
+  "ART 8": [
+    4
+  ],
+  "ART 9A": [
+    4
+  ],
+  "ART 9B": [
+    4
+  ],
+  "ART 9C": [
+    4
+  ],
+  "ART HIS 190W": [
+    1
+  ],
+  "ART HIS 30": [
+    4,
+    8
+  ],
+  "ART HIS 40A": [
+    4,
+    8
+  ],
+  "ART HIS 40B": [
+    4,
+    8
+  ],
+  "ART HIS 40C": [
+    4,
+    8
+  ],
+  "ART HIS 42A": [
+    4,
+    8
+  ],
+  "ART HIS 42B": [
+    4,
+    8
+  ],
+  "ART HIS 42C": [
+    4,
+    8
+  ],
+  "ART HIS 42D": [
+    4,
+    8
+  ],
+  "ART HIS 42E": [
+    4,
+    8
+  ],
+  "ART HIS 42F": [
+    4,
+    8
+  ],
+  "ART HIS 44": [
+    4,
+    7
+  ],
+  "ART HIS 55": [
+    2,
+    4
+  ],
+  "ARTS 1": [
+    4
+  ],
+  "ARTS H81": [
+    4
+  ],
+  "ASIANAM 100W": [
+    1
+  ],
+  "ASIANAM 130": [
+    3,
+    7
+  ],
+  "ASIANAM 144": [
+    7
+  ],
+  "ASIANAM 50": [
+    3,
+    4,
+    7
+  ],
+  "ASIANAM 51": [
+    3,
+    4,
+    8
+  ],
+  "ASIANAM 52": [
+    3,
+    7
+  ],
+  "ASIANAM 53": [
+    3,
+    7
+  ],
+  "ASIANAM 54": [
+    4,
+    7
+  ],
+  "ASIANAM 55": [
+    4,
+    7
+  ],
+  "BIO SCI 10": [
+    2
+  ],
+  "BIO SCI 12": [
+    2
+  ],
+  "BIO SCI 17": [
+    2
+  ],
+  "BIO SCI 191CW": [
+    1
+  ],
+  "BIO SCI 199W": [
+    1
+  ],
+  "BIO SCI 1A": [
+    2
+  ],
+  "BIO SCI 23": [
+    2
+  ],
+  "BIO SCI 35": [
+    2
+  ],
+  "BIO SCI 36": [
+    2
+  ],
+  "BIO SCI 37": [
+    2
+  ],
+  "BIO SCI 38": [
+    2
+  ],
+  "BIO SCI 41": [
+    2
+  ],
+  "BIO SCI 43": [
+    2
+  ],
+  "BIO SCI 44": [
+    2
+  ],
+  "BIO SCI 45": [
+    2
+  ],
+  "BIO SCI 47": [
+    2
+  ],
+  "BIO SCI 48": [
+    2,
+    3
+  ],
+  "BIO SCI 55": [
+    2
+  ],
+  "BIO SCI 56": [
+    2
+  ],
+  "BIO SCI 6": [
+    2
+  ],
+  "BIO SCI 70": [
+    2
+  ],
+  "BIO SCI 75": [
+    2
+  ],
+  "BIO SCI 8": [
+    2
+  ],
+  "BIO SCI 93": [
+    2
+  ],
+  "BIO SCI 93L": [
+    2
+  ],
+  "BIO SCI 94": [
+    2
+  ],
+  "BIO SCI 94L": [
+    2
+  ],
+  "BIO SCI 9A": [
+    2
+  ],
+  "BIO SCI 9B": [
+    2
+  ],
+  "BIO SCI 9D": [
+    2
+  ],
+  "BIO SCI 9E": [
+    2
+  ],
+  "BIO SCI 9G": [
+    2
+  ],
+  "BIO SCI 9J": [
+    2
+  ],
+  "BIO SCI 9K": [
+    2
+  ],
+  "BIO SCI D111L": [
+    1
+  ],
+  "BIO SCI E106L": [
+    1
+  ],
+  "BIO SCI E112L": [
+    1
+  ],
+  "BIO SCI E115L": [
+    1
+  ],
+  "BIO SCI E131L": [
+    1
+  ],
+  "BIO SCI E140L": [
+    1
+  ],
+  "BIO SCI E142W": [
+    1
+  ],
+  "BIO SCI E160L": [
+    1
+  ],
+  "BIO SCI E166L": [
+    1
+  ],
+  "BIO SCI E179L": [
+    1
+  ],
+  "BIO SCI E186L": [
+    1
+  ],
+  "BIO SCI H90": [
+    2
+  ],
+  "BIO SCI H93": [
+    2
+  ],
+  "BIO SCI H94": [
+    2
+  ],
+  "BIO SCI M114L": [
+    1
+  ],
+  "BIO SCI M116L": [
+    1
+  ],
+  "BIO SCI M118L": [
+    1
+  ],
+  "BIO SCI M121L": [
+    1
+  ],
+  "BIO SCI M130L": [
+    1
+  ],
+  "BIO SCI N113L": [
+    1
+  ],
+  "BIO SCI N118": [
+    2
+  ],
+  "BIO SCI N123L": [
+    1
+  ],
+  "BME 3": [
+    2,
+    5
+  ],
+  "CHC/LAT 102W": [
+    1
+  ],
+  "CHC/LAT 120": [
+    8
+  ],
+  "CHC/LAT 124W": [
+    1
+  ],
+  "CHC/LAT 148W": [
+    1
+  ],
+  "CHC/LAT 151": [
+    7
+  ],
+  "CHC/LAT 153": [
+    7
+  ],
+  "CHC/LAT 154": [
+    7
+  ],
+  "CHC/LAT 156W": [
+    1
+  ],
+  "CHC/LAT 158B": [
+    7
+  ],
+  "CHC/LAT 161": [
+    8
+  ],
+  "CHC/LAT 163": [
+    7
+  ],
+  "CHC/LAT 164A": [
+    3,
+    7
+  ],
+  "CHC/LAT 167": [
+    7
+  ],
+  "CHC/LAT 168": [
+    7
+  ],
+  "CHC/LAT 176": [
+    7
+  ],
+  "CHC/LAT 178": [
+    7
+  ],
+  "CHC/LAT 178A": [
+    8
+  ],
+  "CHC/LAT 183": [
+    7
+  ],
+  "CHC/LAT 61": [
+    3,
+    7
+  ],
+  "CHC/LAT 62": [
+    3,
+    7
+  ],
+  "CHC/LAT 63": [
+    3,
+    7
+  ],
+  "CHC/LAT 64": [
+    3,
+    7
+  ],
+  "CHC/LAT 65": [
+    7
+  ],
+  "CHC/LAT H190W": [
+    1
+  ],
+  "CHC/LAT H80": [
+    3
+  ],
+  "CHEM 101W": [
+    1
+  ],
+  "CHEM 12": [
+    2,
+    5
+  ],
+  "CHEM 14": [
+    2,
+    5
+  ],
+  "CHEM 177L": [
+    1
+  ],
+  "CHEM 180W": [
+    1
+  ],
+  "CHEM 1A": [
+    2,
+    5
+  ],
+  "CHEM 1B": [
+    2,
+    5
+  ],
+  "CHEM 1C": [
+    2,
+    5
+  ],
+  "CHEM H181W": [
+    1
+  ],
+  "CHEM H2A": [
+    2,
+    5
+  ],
+  "CHEM H2B": [
+    2,
+    5
+  ],
+  "CHEM H2C": [
+    2,
+    5
+  ],
+  "CHEM H30A": [
+    2,
+    5
+  ],
+  "CHEM H90": [
+    2,
+    5
+  ],
+  "CHEM M2A": [
+    2,
+    5
+  ],
+  "CHEM M2B": [
+    2,
+    5
+  ],
+  "CHEM M2C": [
+    2,
+    5
+  ],
+  "CHEM M3C": [
+    2,
+    5
+  ],
+  "CHINESE 1C": [
+    6
+  ],
+  "CHINESE 1MC": [
+    6
+  ],
+  "CHINESE 2A": [
+    8
+  ],
+  "CHINESE 2B": [
+    8
+  ],
+  "CHINESE 2C": [
+    8
+  ],
+  "CHINESE 2MA": [
+    8
+  ],
+  "CHINESE 2MB": [
+    8
+  ],
+  "CHINESE 2MC": [
+    8
+  ],
+  "CHINESE 3A": [
+    8
+  ],
+  "CHINESE 3B": [
+    8
+  ],
+  "CHINESE 3C": [
+    8
+  ],
+  "CHINESE 40": [
+    8
+  ],
+  "CHINESE S1BC": [
+    6
+  ],
+  "CLASSIC 160W": [
+    1
+  ],
+  "CLASSIC 36A": [
+    4
+  ],
+  "CLASSIC 36B": [
+    4
+  ],
+  "CLASSIC 36C": [
+    4
+  ],
+  "CLASSIC 37A": [
+    4
+  ],
+  "CLASSIC 37B": [
+    4
+  ],
+  "CLASSIC 37C": [
+    4
+  ],
+  "CLASSIC 45A": [
+    4
+  ],
+  "CLASSIC 45B": [
+    4
+  ],
+  "CLASSIC 45C": [
+    4
+  ],
+  "COGS 10A": [
+    5
+  ],
+  "COGS 10B": [
+    5
+  ],
+  "COGS 10C": [
+    5
+  ],
+  "COGS 112BW": [
+    1
+  ],
+  "COM LIT 10": [
+    4,
+    8
+  ],
+  "COM LIT 101W": [
+    1
+  ],
+  "COM LIT 102W": [
+    1
+  ],
+  "COM LIT 190W": [
+    1
+  ],
+  "COM LIT 3": [
+    4,
+    8
+  ],
+  "COM LIT 60A": [
+    4,
+    8
+  ],
+  "COM LIT 60B": [
+    4,
+    8
+  ],
+  "COM LIT 60C": [
+    4,
+    8
+  ],
+  "COM LIT 8": [
+    4
+  ],
+  "COM LIT 9": [
+    4,
+    7
+  ],
+  "CRM/LAW C10": [
+    3
+  ],
+  "CRM/LAW C156": [
+    7
+  ],
+  "CRM/LAW C169W": [
+    1
+  ],
+  "CRM/LAW C183": [
+    3
+  ],
+  "CRM/LAW C187": [
+    3,
+    7
+  ],
+  "CRM/LAW C7": [
+    3
+  ],
+  "CRM/LAW H80": [
+    3
+  ],
+  "DANCE 185W": [
+    1
+  ],
+  "DANCE 3": [
+    2
+  ],
+  "DANCE 80": [
+    4,
+    8
+  ],
+  "DANCE 81": [
+    4
+  ],
+  "DANCE 82": [
+    8
+  ],
+  "DANCE 83": [
+    4
+  ],
+  "DANCE 85": [
+    4
+  ],
+  "DANCE 90A": [
+    4,
+    8
+  ],
+  "DANCE 90B": [
+    4,
+    8
+  ],
+  "DANCE 90C": [
+    4
+  ],
+  "DRAMA 10": [
+    4
+  ],
+  "DRAMA 109W": [
+    1
+  ],
+  "DRAMA 11": [
+    4
+  ],
+  "DRAMA 110W": [
+    1
+  ],
+  "DRAMA 112W": [
+    1
+  ],
+  "DRAMA 116W": [
+    1
+  ],
+  "DRAMA 118W": [
+    1
+  ],
+  "DRAMA 12": [
+    4
+  ],
+  "DRAMA 126W": [
+    1
+  ],
+  "DRAMA 129W": [
+    1
+  ],
+  "DRAMA 13": [
+    4,
+    7,
+    8
+  ],
+  "DRAMA 15": [
+    4
+  ],
+  "DRAMA 16": [
+    4
+  ],
+  "DRAMA 180W": [
+    1
+  ],
+  "DRAMA 20A": [
+    4
+  ],
+  "DRAMA 20B": [
+    4
+  ],
+  "DRAMA 20C": [
+    4
+  ],
+  "DRAMA 22": [
+    4
+  ],
+  "DRAMA 40A": [
+    4,
+    8
+  ],
+  "DRAMA 40B": [
+    4,
+    8
+  ],
+  "DRAMA 40C": [
+    4,
+    8
+  ],
+  "EARTHSS 1": [
+    2,
+    5
+  ],
+  "EARTHSS 15": [
+    2,
+    5,
+    8
+  ],
+  "EARTHSS 17": [
+    2,
+    5,
+    8
+  ],
+  "EARTHSS 176W": [
+    1
+  ],
+  "EARTHSS 177W": [
+    1
+  ],
+  "EARTHSS 19": [
+    2,
+    5
+  ],
+  "EARTHSS 190CW": [
+    1
+  ],
+  "EARTHSS 198W": [
+    1
+  ],
+  "EARTHSS 21": [
+    2,
+    5,
+    8
+  ],
+  "EARTHSS 23": [
+    2,
+    5,
+    8
+  ],
+  "EARTHSS 27": [
+    2,
+    8
+  ],
+  "EARTHSS 3": [
+    2,
+    5
+  ],
+  "EARTHSS 40A": [
+    2,
+    5
+  ],
+  "EARTHSS 40B": [
+    2
+  ],
+  "EARTHSS 40C": [
+    2,
+    5
+  ],
+  "EARTHSS 5": [
+    2,
+    5
+  ],
+  "EARTHSS 7": [
+    2,
+    5
+  ],
+  "EARTHSS H198": [
+    1
+  ],
+  "EARTHSS H30B": [
+    2,
+    5
+  ],
+  "EARTHSS H30C": [
+    3
+  ],
+  "EAS 192W": [
+    1
+  ],
+  "EAS 20": [
+    4,
+    8
+  ],
+  "EAS 40": [
+    4,
+    8
+  ],
+  "EAS 55": [
+    4,
+    8
+  ],
+  "EAS H84": [
+    4
+  ],
+  "ECON 1": [
+    3
+  ],
+  "ECON 11": [
+    2,
+    3
+  ],
+  "ECON 122CW": [
+    1
+  ],
+  "ECON 123CW": [
+    1
+  ],
+  "ECON 13": [
+    3,
+    8
+  ],
+  "ECON 137W": [
+    1
+  ],
+  "ECON 142CW": [
+    1
+  ],
+  "ECON 145FW": [
+    1
+  ],
+  "ECON 149W": [
+    1
+  ],
+  "ECON 153W": [
+    1
+  ],
+  "ECON 15A": [
+    5
+  ],
+  "ECON 15B": [
+    5
+  ],
+  "ECON 164AW": [
+    1
+  ],
+  "ECON 17": [
+    3
+  ],
+  "ECON 190BW": [
+    1
+  ],
+  "ECON 20A": [
+    3
+  ],
+  "ECON 20B": [
+    3
+  ],
+  "ECON 23": [
+    3
+  ],
+  "EDUC 10": [
+    3
+  ],
+  "EDUC 124": [
+    7
+  ],
+  "EDUC 143AW": [
+    1
+  ],
+  "EDUC 143BW": [
+    1,
+    7
+  ],
+  "EDUC 15": [
+    5
+  ],
+  "EDUC 179W": [
+    1
+  ],
+  "EDUC 25": [
+    3
+  ],
+  "EDUC 30": [
+    3
+  ],
+  "EDUC 40": [
+    3
+  ],
+  "EDUC 55": [
+    3
+  ],
+  "ENGLISH 10": [
+    4
+  ],
+  "ENGLISH 101W": [
+    1
+  ],
+  "ENGLISH 10B": [
+    4
+  ],
+  "ENGLISH 11": [
+    3,
+    4
+  ],
+  "ENGLISH 11C": [
+    3,
+    4
+  ],
+  "ENGLISH 12": [
+    4
+  ],
+  "ENGLISH 16": [
+    4
+  ],
+  "ENGLISH 17": [
+    4
+  ],
+  "ENGLISH 8": [
+    4,
+    7
+  ],
+  "ENGLISH 9": [
+    4
+  ],
+  "ENGLISH H80": [
+    3,
+    4
+  ],
+  "ENGLISH H81": [
+    3
+  ],
+  "ENGR 190W": [
+    1
+  ],
+  "ENGR 196W": [
+    1
+  ],
+  "ENGR 1A": [
+    2
+  ],
+  "ENGRCEE 40": [
+    3
+  ],
+  "ENGRCEE 60": [
+    3
+  ],
+  "ENGR H196W": [
+    1
+  ],
+  "EURO ST 10": [
+    3,
+    4,
+    8
+  ],
+  "EURO ST 11": [
+    3,
+    4,
+    8
+  ],
+  "EURO ST 12": [
+    3,
+    4,
+    5
+  ],
+  "EURO ST 13": [
+    4,
+    8
+  ],
+  "EURO ST 139W": [
+    1
+  ],
+  "EURO ST 190W": [
+    1
+  ],
+  "EURO ST 9": [
+    4,
+    8
+  ],
+  "EURO ST S10": [
+    3,
+    4,
+    8
+  ],
+  "EURO ST S11": [
+    3,
+    4,
+    8
+  ],
+  "FLM&MDA 139W": [
+    1
+  ],
+  "FLM&MDA 85A": [
+    4
+  ],
+  "FLM&MDA 85B": [
+    4
+  ],
+  "FLM&MDA 85C": [
+    4
+  ],
+  "FLM&MDA H80": [
+    4,
+    7
+  ],
+  "FRENCH 139W": [
+    1
+  ],
+  "FRENCH 1BC": [
+    6
+  ],
+  "FRENCH 1BCSP": [
+    6
+  ],
+  "FRENCH 1C": [
+    6
+  ],
+  "FRENCH 2A": [
+    8
+  ],
+  "FRENCH 2AB": [
+    8
+  ],
+  "FRENCH 2B": [
+    8
+  ],
+  "FRENCH 2BC": [
+    8
+  ],
+  "FRENCH 2C": [
+    8
+  ],
+  "FRENCH 50": [
+    4,
+    8
+  ],
+  "FRENCH S1BC": [
+    6
+  ],
+  "FRENCH S2AB": [
+    8
+  ],
+  "FRENCH S2BC": [
+    8
+  ],
+  "GDIM 25": [
+    2
+  ],
+  "GDIM 31": [
+    5
+  ],
+  "GDIM 32": [
+    5
+  ],
+  "GDIM 41": [
+    3
+  ],
+  "GEN&SEX 172": [
+    7
+  ],
+  "GEN&SEX 20": [
+    4,
+    7
+  ],
+  "GEN&SEX 50A": [
+    4,
+    7
+  ],
+  "GEN&SEX 50B": [
+    4,
+    7
+  ],
+  "GEN&SEX 50C": [
+    4,
+    7
+  ],
+  "GEN&SEX 60A": [
+    3
+  ],
+  "GEN&SEX 60B": [
+    3
+  ],
+  "GEN&SEX 60C": [
+    3,
+    8
+  ],
+  "GERMAN 139W": [
+    1
+  ],
+  "GERMAN 140W": [
+    1
+  ],
+  "GERMAN 150W": [
+    1
+  ],
+  "GERMAN 160W": [
+    1
+  ],
+  "GERMAN 170W": [
+    1
+  ],
+  "GERMAN 1BC": [
+    6
+  ],
+  "GERMAN 1C": [
+    6
+  ],
+  "GERMAN 2A": [
+    8
+  ],
+  "GERMAN 2B": [
+    8
+  ],
+  "GERMAN 2C": [
+    8
+  ],
+  "GERMAN S1BC": [
+    6
+  ],
+  "GERMAN S2AB": [
+    8
+  ],
+  "GERMAN S2BC": [
+    8
+  ],
+  "GLBL ME 100W": [
+    1
+  ],
+  "GLBL ME 60A": [
+    4,
+    8
+  ],
+  "GLBL ME 60B": [
+    3,
+    8
+  ],
+  "GLBL ME 60C": [
+    3,
+    8
+  ],
+  "GREEK 1C": [
+    6
+  ],
+  "HEBREW 1C": [
+    6
+  ],
+  "HEBREW 50": [
+    4,
+    8
+  ],
+  "HISTORY 10": [
+    4,
+    8
+  ],
+  "HISTORY 100W": [
+    1
+  ],
+  "HISTORY 11": [
+    3,
+    8
+  ],
+  "HISTORY 12": [
+    4
+  ],
+  "HISTORY 149": [
+    7
+  ],
+  "HISTORY 15A": [
+    4,
+    7
+  ],
+  "HISTORY 15C": [
+    3,
+    4,
+    7
+  ],
+  "HISTORY 15D": [
+    4,
+    7
+  ],
+  "HISTORY 15F": [
+    3,
+    4,
+    7
+  ],
+  "HISTORY 15G": [
+    7
+  ],
+  "HISTORY 16A": [
+    4,
+    8
+  ],
+  "HISTORY 16B": [
+    4,
+    8
+  ],
+  "HISTORY 16C": [
+    4,
+    8
+  ],
+  "HISTORY 18A": [
+    4,
+    8
+  ],
+  "HISTORY 21A": [
+    4,
+    8
+  ],
+  "HISTORY 21B": [
+    4,
+    8
+  ],
+  "HISTORY 21C": [
+    4,
+    8
+  ],
+  "HISTORY 36A": [
+    4
+  ],
+  "HISTORY 36B": [
+    4
+  ],
+  "HISTORY 36C": [
+    4
+  ],
+  "HISTORY 37A": [
+    4
+  ],
+  "HISTORY 37B": [
+    4
+  ],
+  "HISTORY 37C": [
+    4
+  ],
+  "HISTORY 40A": [
+    4
+  ],
+  "HISTORY 40B": [
+    4
+  ],
+  "HISTORY 40C": [
+    4
+  ],
+  "HISTORY 5": [
+    4
+  ],
+  "HISTORY 50": [
+    4,
+    8
+  ],
+  "HISTORY 60": [
+    2,
+    4
+  ],
+  "HISTORY 70A": [
+    4,
+    8
+  ],
+  "HISTORY 70B": [
+    4,
+    8
+  ],
+  "HISTORY 70C": [
+    4
+  ],
+  "HISTORY 70D": [
+    4,
+    8
+  ],
+  "HISTORY 70E": [
+    4,
+    8
+  ],
+  "HISTORY 70F": [
+    4,
+    8
+  ],
+  "HUMAN 10": [
+    4,
+    8
+  ],
+  "HUMAN 1A": [
+    4
+  ],
+  "HUMAN 1AS": [
+    1
+  ],
+  "HUMAN 1B": [
+    4
+  ],
+  "HUMAN 1BES": [
+    1
+  ],
+  "HUMAN 1BS": [
+    1
+  ],
+  "HUMAN 1C": [
+    4,
+    7,
+    8
+  ],
+  "HUMAN 1CS": [
+    1
+  ],
+  "HUMAN B1A": [
+    4
+  ],
+  "HUMAN H142W": [
+    1
+  ],
+  "HUMAN H1AS": [
+    1
+  ],
+  "HUMAN H1BS": [
+    1
+  ],
+  "HUMAN H1CS": [
+    1
+  ],
+  "HUMAN H80": [
+    4
+  ],
+  "HUMAN H81": [
+    3,
+    4
+  ],
+  "HUMAN H83": [
+    3
+  ],
+  "HUMAN H84": [
+    4
+  ],
+  "I&C SCI 10": [
+    2
+  ],
+  "I&C SCI 11": [
+    2,
+    3
+  ],
+  "I&C SCI 139W": [
+    1
+  ],
+  "I&C SCI 3": [
+    3
+  ],
+  "I&C SCI 31": [
+    2,
+    5
+  ],
+  "I&C SCI 32": [
+    2,
+    5,
+    5
+  ],
+  "I&C SCI 32A": [
+    2,
+    5,
+    5
+  ],
+  "I&C SCI 33": [
+    2,
+    5
+  ],
+  "I&C SCI 4": [
+    2
+  ],
+  "I&C SCI 46": [
+    5
+  ],
+  "I&C SCI 5": [
+    2
+  ],
+  "I&C SCI 51": [
+    2
+  ],
+  "I&C SCI 60": [
+    3
+  ],
+  "I&C SCI 61": [
+    2
+  ],
+  "I&C SCI 6B": [
+    5
+  ],
+  "I&C SCI 6D": [
+    5
+  ],
+  "I&C SCI 6N": [
+    2,
+    5
+  ],
+  "I&C SCI 7": [
+    5
+  ],
+  "I&C SCI 9": [
+    2,
+    5,
+    5
+  ],
+  "IN4MATX 12": [
+    2,
+    3
+  ],
+  "IN4MATX 162W": [
+    1
+  ],
+  "IN4MATX H81": [
+    3
+  ],
+  "INTL ST 1": [
+    3,
+    8
+  ],
+  "INTL ST 104BW": [
+    1
+  ],
+  "INTL ST 11": [
+    3,
+    8
+  ],
+  "INTL ST 114A": [
+    8
+  ],
+  "INTL ST 117A": [
+    8
+  ],
+  "INTL ST 12": [
+    3,
+    8
+  ],
+  "INTL ST 122": [
+    8
+  ],
+  "INTL ST 13": [
+    3,
+    8
+  ],
+  "INTL ST 14": [
+    3,
+    8
+  ],
+  "INTL ST 145A": [
+    8
+  ],
+  "INTL ST 147CW": [
+    1
+  ],
+  "INTL ST 148W": [
+    1
+  ],
+  "INTL ST 15": [
+    3,
+    8
+  ],
+  "INTL ST 153B": [
+    7
+  ],
+  "INTL ST 153E": [
+    8
+  ],
+  "INTL ST 154W": [
+    1
+  ],
+  "INTL ST 157A": [
+    1
+  ],
+  "INTL ST 158B": [
+    8
+  ],
+  "INTL ST 16": [
+    3,
+    8
+  ],
+  "INTL ST 162B": [
+    8
+  ],
+  "INTL ST 17": [
+    3,
+    8
+  ],
+  "INTL ST 177J": [
+    8
+  ],
+  "INTL ST 183CW": [
+    1
+  ],
+  "INTL ST 183E": [
+    8
+  ],
+  "INTL ST 32A": [
+    7
+  ],
+  "ITALIAN 1BC": [
+    6
+  ],
+  "ITALIAN 1BCSP": [
+    6
+  ],
+  "ITALIAN 1C": [
+    6
+  ],
+  "ITALIAN 2A": [
+    8
+  ],
+  "ITALIAN 2B": [
+    8
+  ],
+  "ITALIAN 2C": [
+    8
+  ],
+  "ITALIAN 50": [
+    4,
+    8
+  ],
+  "ITALIAN S1BC": [
+    6
+  ],
+  "JAPANSE 1C": [
+    6
+  ],
+  "JAPANSE 2A": [
+    8
+  ],
+  "JAPANSE 2B": [
+    8
+  ],
+  "JAPANSE 2C": [
+    8
+  ],
+  "JAPANSE 3A": [
+    8
+  ],
+  "JAPANSE 3B": [
+    8
+  ],
+  "JAPANSE 3C": [
+    8
+  ],
+  "JAPANSE S1BC": [
+    6
+  ],
+  "JAPANSE S2AB": [
+    8
+  ],
+  "JAPANSE S2BC": [
+    8
+  ],
+  "KOREAN 1C": [
+    6
+  ],
+  "KOREAN 1KC": [
+    6
+  ],
+  "KOREAN 2A": [
+    8
+  ],
+  "KOREAN 2B": [
+    8
+  ],
+  "KOREAN 2C": [
+    8
+  ],
+  "KOREAN 2KA": [
+    8
+  ],
+  "KOREAN 2KB": [
+    8
+  ],
+  "KOREAN 2KC": [
+    8
+  ],
+  "KOREAN 3A": [
+    8
+  ],
+  "KOREAN 3B": [
+    8
+  ],
+  "KOREAN 3C": [
+    8
+  ],
+  "KOREAN S1BC": [
+    6
+  ],
+  "LATIN 1C": [
+    6
+  ],
+  "LIT JRN 101BW": [
+    1
+  ],
+  "LIT JRN 20": [
+    4
+  ],
+  "LPS 100W": [
+    1
+  ],
+  "LPS 142W": [
+    1
+  ],
+  "LPS 29": [
+    2,
+    5
+  ],
+  "LPS 30": [
+    5
+  ],
+  "LPS 31": [
+    2,
+    5
+  ],
+  "LPS 40": [
+    2
+  ],
+  "LPS 60": [
+    2,
+    4
+  ],
+  "LPS 91": [
+    3
+  ],
+  "LPS H123": [
+    2
+  ],
+  "LPS H125": [
+    3
+  ],
+  "LPS H80": [
+    2
+  ],
+  "LPS H81": [
+    2
+  ],
+  "LPS H91": [
+    2,
+    3
+  ],
+  "LPS H95": [
+    3
+  ],
+  "LSCI 1": [
+    8
+  ],
+  "LSCI 10": [
+    3,
+    5
+  ],
+  "LSCI 195W": [
+    1
+  ],
+  "LSCI 2": [
+    7
+  ],
+  "LSCI 20": [
+    3,
+    5
+  ],
+  "LSCI 3": [
+    3,
+    5
+  ],
+  "LSCI 43": [
+    5
+  ],
+  "LSCI 51": [
+    3
+  ],
+  "LSCI 68": [
+    3
+  ],
+  "MATH 10": [
+    2,
+    5
+  ],
+  "MATH 195W": [
+    1
+  ],
+  "MATH 2A": [
+    5
+  ],
+  "MATH 2B": [
+    5
+  ],
+  "MATH 2D": [
+    5
+  ],
+  "MATH 3A": [
+    5
+  ],
+  "MATH 5A": [
+    5
+  ],
+  "MATH 5B": [
+    5
+  ],
+  "MATH 7A": [
+    5
+  ],
+  "MATH 7B": [
+    5
+  ],
+  "MATH 9": [
+    2,
+    5
+  ],
+  "MATH H2D": [
+    5
+  ],
+  "MGMT 111": [
+    8
+  ],
+  "MGMT 128": [
+    8
+  ],
+  "MGMT 191W": [
+    1
+  ],
+  "MGMT 4A": [
+    3
+  ],
+  "MGMT 4B": [
+    3
+  ],
+  "MGMT 7": [
+    5
+  ],
+  "MUSIC 142W": [
+    1
+  ],
+  "MUSIC 143W": [
+    1
+  ],
+  "MUSIC 144W": [
+    1
+  ],
+  "MUSIC 145W": [
+    1
+  ],
+  "MUSIC 25": [
+    4
+  ],
+  "MUSIC 3": [
+    4
+  ],
+  "MUSIC 4": [
+    4
+  ],
+  "MUSIC 40B": [
+    4,
+    8
+  ],
+  "MUSIC 40C": [
+    4,
+    8
+  ],
+  "MUSIC 40D": [
+    4,
+    8
+  ],
+  "MUSIC 41": [
+    4
+  ],
+  "MUSIC 42": [
+    4,
+    8
+  ],
+  "MUSIC 44": [
+    4,
+    8
+  ],
+  "MUSIC 45": [
+    4
+  ],
+  "MUSIC 46": [
+    4
+  ],
+  "MUSIC 47": [
+    4
+  ],
+  "MUSIC 48": [
+    4
+  ],
+  "MUSIC 5": [
+    4
+  ],
+  "MUSIC 51": [
+    4
+  ],
+  "MUSIC 78": [
+    4,
+    7
+  ],
+  "MUSIC 8": [
+    4
+  ],
+  "MUSIC 9": [
+    4
+  ],
+  "MUSIC H80": [
+    4
+  ],
+  "NUR SCI 108W": [
+    1
+  ],
+  "NUR SCI 110W": [
+    1
+  ],
+  "NUR SCI 179AW": [
+    1
+  ],
+  "NUR SCI 50": [
+    2
+  ],
+  "PERSIAN 1C": [
+    6
+  ],
+  "PERSIAN 2A": [
+    8
+  ],
+  "PERSIAN 2B": [
+    8
+  ],
+  "PERSIAN 2C": [
+    8
+  ],
+  "PERSIAN 50": [
+    4,
+    8
+  ],
+  "PHILOS 1": [
+    4
+  ],
+  "PHILOS 10": [
+    4
+  ],
+  "PHILOS 100W": [
+    1
+  ],
+  "PHILOS 102W": [
+    1
+  ],
+  "PHILOS 11": [
+    4
+  ],
+  "PHILOS 12": [
+    4
+  ],
+  "PHILOS 13": [
+    4
+  ],
+  "PHILOS 142W": [
+    1
+  ],
+  "PHILOS 2": [
+    4,
+    5
+  ],
+  "PHILOS 21": [
+    4
+  ],
+  "PHILOS 22": [
+    3
+  ],
+  "PHILOS 29": [
+    2,
+    5
+  ],
+  "PHILOS 3": [
+    2
+  ],
+  "PHILOS 30": [
+    5
+  ],
+  "PHILOS 31": [
+    2,
+    5
+  ],
+  "PHILOS 4": [
+    4
+  ],
+  "PHILOS 5": [
+    4
+  ],
+  "PHILOS 7": [
+    4
+  ],
+  "PHILOS 91": [
+    3
+  ],
+  "PHRMSCI 174L": [
+    1
+  ],
+  "PHRMSCI 177L": [
+    1
+  ],
+  "PHRMSCI H80": [
+    2
+  ],
+  "PHY SCI 139W": [
+    1
+  ],
+  "PHY SCI 9": [
+    2,
+    5,
+    5
+  ],
+  "PHYSICS 106W": [
+    1
+  ],
+  "PHYSICS 12": [
+    2,
+    5
+  ],
+  "PHYSICS 121W": [
+    1
+  ],
+  "PHYSICS 14": [
+    2,
+    5
+  ],
+  "PHYSICS 15": [
+    2
+  ],
+  "PHYSICS 17": [
+    2
+  ],
+  "PHYSICS 18": [
+    2
+  ],
+  "PHYSICS 19": [
+    2
+  ],
+  "PHYSICS 20A": [
+    2,
+    5
+  ],
+  "PHYSICS 20B": [
+    2,
+    5
+  ],
+  "PHYSICS 20D": [
+    2,
+    5
+  ],
+  "PHYSICS 20E": [
+    2,
+    5
+  ],
+  "PHYSICS 21": [
+    2
+  ],
+  "PHYSICS 3A": [
+    2,
+    5
+  ],
+  "PHYSICS 3B": [
+    2,
+    5
+  ],
+  "PHYSICS 3C": [
+    2,
+    5
+  ],
+  "PHYSICS 7C": [
+    2,
+    5
+  ],
+  "PHYSICS 7D": [
+    2,
+    5
+  ],
+  "PHYSICS 7E": [
+    2,
+    5
+  ],
+  "PHYSICS H80": [
+    2
+  ],
+  "PHYSICS H90": [
+    2,
+    5
+  ],
+  "POL SCI 10A": [
+    5
+  ],
+  "POL SCI 10B": [
+    5
+  ],
+  "POL SCI 10C": [
+    5
+  ],
+  "POL SCI 11A": [
+    3,
+    8
+  ],
+  "POL SCI 11C": [
+    3
+  ],
+  "POL SCI 121HW": [
+    1
+  ],
+  "POL SCI 122BW": [
+    1
+  ],
+  "POL SCI 124A": [
+    7
+  ],
+  "POL SCI 124B": [
+    7
+  ],
+  "POL SCI 125CW": [
+    1
+  ],
+  "POL SCI 126C": [
+    7
+  ],
+  "POL SCI 128BW": [
+    1
+  ],
+  "POL SCI 136BW": [
+    1
+  ],
+  "POL SCI 137BW": [
+    1
+  ],
+  "POL SCI 138AW": [
+    1
+  ],
+  "POL SCI 138CW": [
+    1
+  ],
+  "POL SCI 138DW": [
+    1
+  ],
+  "POL SCI 141B": [
+    8
+  ],
+  "POL SCI 141C": [
+    8
+  ],
+  "POL SCI 147CW": [
+    1
+  ],
+  "POL SCI 147E": [
+    8
+  ],
+  "POL SCI 154F": [
+    8
+  ],
+  "POL SCI 154G": [
+    8
+  ],
+  "POL SCI 154KW": [
+    1
+  ],
+  "POL SCI 171AW": [
+    1
+  ],
+  "POL SCI 171CW": [
+    1
+  ],
+  "POL SCI 172A": [
+    8
+  ],
+  "POL SCI 174CW": [
+    1
+  ],
+  "POL SCI 190W": [
+    1
+  ],
+  "POL SCI 21A": [
+    3
+  ],
+  "POL SCI 31A": [
+    3
+  ],
+  "POL SCI 32A": [
+    7
+  ],
+  "POL SCI 41A": [
+    3,
+    8
+  ],
+  "POL SCI 44B": [
+    3,
+    8
+  ],
+  "POL SCI 45A": [
+    3,
+    8
+  ],
+  "POL SCI 51A": [
+    3,
+    8
+  ],
+  "POL SCI 61A": [
+    3,
+    7
+  ],
+  "POL SCI 71A": [
+    3
+  ],
+  "POL SCI H80": [
+    8
+  ],
+  "PSCI 111W": [
+    1
+  ],
+  "PSCI 11A": [
+    3
+  ],
+  "PSCI 11B": [
+    3
+  ],
+  "PSCI 11C": [
+    3
+  ],
+  "PSCI 192Q": [
+    7
+  ],
+  "PSCI 192S": [
+    7
+  ],
+  "PSCI 9": [
+    3
+  ],
+  "PSYCH 10A": [
+    5
+  ],
+  "PSYCH 10B": [
+    5
+  ],
+  "PSYCH 10C": [
+    5
+  ],
+  "PSYCH 111BW": [
+    1
+  ],
+  "PSYCH 112BW": [
+    1
+  ],
+  "PSYCH 122P": [
+    2
+  ],
+  "PSYCH 146MW": [
+    1
+  ],
+  "PSYCH 21A": [
+    3
+  ],
+  "PSYCH 46A": [
+    3
+  ],
+  "PSYCH 56L": [
+    3
+  ],
+  "PSYCH 78A": [
+    3
+  ],
+  "PSYCH 7A": [
+    3
+  ],
+  "PSYCH 9A": [
+    3
+  ],
+  "PSYCH 9B": [
+    3
+  ],
+  "PSYCH 9C": [
+    3
+  ],
+  "PUBHLTH 1": [
+    3
+  ],
+  "PUBHLTH 168": [
+    8
+  ],
+  "PUBHLTH 170": [
+    8
+  ],
+  "PUBHLTH 174": [
+    8
+  ],
+  "PUBHLTH 195W": [
+    1
+  ],
+  "PUBHLTH 2": [
+    2
+  ],
+  "PUBHLTH 30": [
+    2
+  ],
+  "PUBHLTH 60": [
+    2
+  ],
+  "PUBHLTH 7A": [
+    5
+  ],
+  "PUBHLTH 7B": [
+    5
+  ],
+  "PUBHLTH 80": [
+    2
+  ],
+  "PUBHLTH 90": [
+    2
+  ],
+  "REL STD 110W": [
+    1
+  ],
+  "REL STD 17": [
+    3
+  ],
+  "REL STD 21": [
+    4
+  ],
+  "REL STD 5A": [
+    4,
+    8
+  ],
+  "REL STD 5B": [
+    4,
+    8
+  ],
+  "REL STD 5C": [
+    4,
+    8
+  ],
+  "REL STD 60": [
+    3,
+    7,
+    8
+  ],
+  "REL STD 61": [
+    3,
+    8
+  ],
+  "RUSSIAN 139W": [
+    1
+  ],
+  "RUSSIAN 1BC": [
+    6
+  ],
+  "RUSSIAN 1C": [
+    6
+  ],
+  "RUSSIAN 2A": [
+    8
+  ],
+  "RUSSIAN 2B": [
+    8
+  ],
+  "RUSSIAN 2C": [
+    8
+  ],
+  "RUSSIAN 50": [
+    4,
+    8
+  ],
+  "SOCECOL 1": [
+    3
+  ],
+  "SOCECOL 104W": [
+    1
+  ],
+  "SOCECOL 106W": [
+    1
+  ],
+  "SOCECOL 111W": [
+    1
+  ],
+  "SOCECOL 13": [
+    5
+  ],
+  "SOCECOL 183CW": [
+    1
+  ],
+  "SOCECOL 186CW": [
+    1
+  ],
+  "SOCECOL 194W": [
+    1
+  ],
+  "SOCECOL 195CW": [
+    1
+  ],
+  "SOCECOL 195W": [
+    1
+  ],
+  "SOCECOL E127": [
+    8
+  ],
+  "SOCECOL H190W": [
+    1
+  ],
+  "SOCECOL H20A": [
+    3
+  ],
+  "SOCECOL H20B": [
+    3
+  ],
+  "SOCECOL H20C": [
+    3
+  ],
+  "SOCIOL 1": [
+    3,
+    7
+  ],
+  "SOCIOL 10A": [
+    5
+  ],
+  "SOCIOL 10B": [
+    5
+  ],
+  "SOCIOL 10C": [
+    5
+  ],
+  "SOCIOL 120W": [
+    1
+  ],
+  "SOCIOL 145W": [
+    1
+  ],
+  "SOCIOL 152W": [
+    1
+  ],
+  "SOCIOL 154W": [
+    1
+  ],
+  "SOCIOL 155BW": [
+    1
+  ],
+  "SOCIOL 157AW": [
+    1
+  ],
+  "SOCIOL 158CW": [
+    1
+  ],
+  "SOCIOL 161W": [
+    1
+  ],
+  "SOCIOL 163": [
+    7
+  ],
+  "SOCIOL 164W": [
+    1
+  ],
+  "SOCIOL 167AW": [
+    1
+  ],
+  "SOCIOL 168W": [
+    1
+  ],
+  "SOCIOL 173W": [
+    1
+  ],
+  "SOCIOL 177C": [
+    3,
+    7
+  ],
+  "SOCIOL 177W": [
+    1
+  ],
+  "SOCIOL 180AW": [
+    1
+  ],
+  "SOCIOL 188BW": [
+    1
+  ],
+  "SOCIOL 2": [
+    3,
+    8
+  ],
+  "SOCIOL 3": [
+    3,
+    7
+  ],
+  "SOCIOL 31": [
+    3
+  ],
+  "SOCIOL 44": [
+    8
+  ],
+  "SOCIOL 51": [
+    7
+  ],
+  "SOCIOL 62": [
+    3
+  ],
+  "SOCIOL 63": [
+    7
+  ],
+  "SOCIOL 64": [
+    7
+  ],
+  "SOCIOL 68A": [
+    7
+  ],
+  "SOCIOL H188A": [
+    1
+  ],
+  "SOC SCI 10A": [
+    5
+  ],
+  "SOC SCI 10B": [
+    5
+  ],
+  "SOC SCI 10C": [
+    5
+  ],
+  "SOC SCI 11A": [
+    2,
+    3
+  ],
+  "SOC SCI 12": [
+    3,
+    8
+  ],
+  "SOC SCI 132": [
+    7
+  ],
+  "SOC SCI 133": [
+    3
+  ],
+  "SOC SCI 134W": [
+    1
+  ],
+  "SOC SCI 15": [
+    3,
+    8
+  ],
+  "SOC SCI 16": [
+    3,
+    8
+  ],
+  "SOC SCI 17": [
+    3,
+    8
+  ],
+  "SOC SCI 172AW": [
+    1
+  ],
+  "SOC SCI 173L": [
+    7
+  ],
+  "SOC SCI 183CW": [
+    1
+  ],
+  "SOC SCI 183E": [
+    8
+  ],
+  "SOC SCI 184GW": [
+    1
+  ],
+  "SOC SCI 185W": [
+    1
+  ],
+  "SOC SCI 193CW": [
+    1
+  ],
+  "SOC SCI 1A": [
+    3
+  ],
+  "SOC SCI 2A": [
+    3
+  ],
+  "SOC SCI 40": [
+    3
+  ],
+  "SOC SCI 4A": [
+    3,
+    8
+  ],
+  "SOC SCI 5A": [
+    3
+  ],
+  "SOC SCI 5D": [
+    3,
+    8
+  ],
+  "SOC SCI 70C": [
+    3,
+    7
+  ],
+  "SOC SCI 78A": [
+    3,
+    4,
+    7
+  ],
+  "SOC SCI 78B": [
+    3,
+    7
+  ],
+  "SOC SCI 78C": [
+    3,
+    7
+  ],
+  "SOC SCI H190C": [
+    1
+  ],
+  "SOC SCI H1E": [
+    3
+  ],
+  "SOC SCI H1F": [
+    3
+  ],
+  "SOC SCI H1G": [
+    3
+  ],
+  "SOC SCI H30D": [
+    3
+  ],
+  "SPANISH 1C": [
+    6
+  ],
+  "SPANISH 2A": [
+    8
+  ],
+  "SPANISH 2AB": [
+    8
+  ],
+  "SPANISH 2B": [
+    8
+  ],
+  "SPANISH 2C": [
+    8
+  ],
+  "SPANISH 3": [
+    8
+  ],
+  "SPANISH 3H": [
+    7
+  ],
+  "SPANISH 44": [
+    8
+  ],
+  "SPANISH 50": [
+    4,
+    8
+  ],
+  "SPANISH 60E": [
+    4,
+    8
+  ],
+  "SPANISH 60S": [
+    4,
+    8
+  ],
+  "SPANISH 61": [
+    4,
+    8
+  ],
+  "SPANISH 62": [
+    7
+  ],
+  "SPANISH S1BC": [
+    6
+  ],
+  "SPANISH S2AB": [
+    8
+  ],
+  "SPANISH S2BC": [
+    8
+  ],
+  "SPPS 102": [
+    8
+  ],
+  "SPPS 193CW": [
+    1
+  ],
+  "SPPS 40": [
+    3
+  ],
+  "SPPS 70A": [
+    7
+  ],
+  "SPPS H190C": [
+    1
+  ],
+  "STATS 6": [
+    5
+  ],
+  "STATS 67": [
+    5
+  ],
+  "STATS 7": [
+    5
+  ],
+  "STATS 8": [
+    5
+  ],
+  "UNI STU 13A": [
+    2
+  ],
+  "UNI STU 13B": [
+    2
+  ],
+  "UNI STU 13C": [
+    3
+  ],
+  "UNI STU 85A": [
+    3
+  ],
+  "UNI STU 85B": [
+    3
+  ],
+  "UNI STU 85C": [
+    3
+  ],
+  "UNI STU H30A": [
+    2,
+    5
+  ],
+  "UNI STU H30B": [
+    2,
+    5
+  ],
+  "UNI STU H30C": [
+    3
+  ],
+  "UNI STU H30D": [
+    3
+  ],
+  "UNI STU H30E": [
+    3
+  ],
+  "UNI STU H30F": [
+    2
+  ],
+  "UNI STU H80": [
+    3
+  ],
+  "UPPP 114W": [
+    1
+  ],
+  "UPPP 142": [
+    3
+  ],
+  "UPPP 166": [
+    3
+  ],
+  "UPPP 172": [
+    7
+  ],
+  "UPPP 4": [
+    3
+  ],
+  "UPPP 5": [
+    3
+  ],
+  "UPPP 8": [
+    3
+  ],
+  "UPPP H30E": [
+    3
+  ],
+  "UPPP H30F": [
+    2
+  ],
+  "VIETMSE 1C": [
+    6
+  ],
+  "VIETMSE 2A": [
+    8
+  ],
+  "VIETMSE 2B": [
+    8
+  ],
+  "VIETMSE 2C": [
+    8
+  ],
+  "VIETMSE 50": [
+    4
+  ],
+  "WRITING 101W": [
+    1
+  ],
+  "WRITING 139W": [
+    1
+  ],
+  "WRITING 30": [
+    1
+  ],
+  "WRITING 31": [
+    1
+  ],
+  "WRITING 37": [
+    1
+  ],
+  "WRITING 39B": [
+    1
+  ],
+  "WRITING 39C": [
+    1
+  ],
+  "WRITING 45": [
+    1
+  ],
+  "WRITING 50": [
+    1
+  ],
+  "WRITING 60": [
+    1
+  ]
+}
