@@ -4,3 +4,8 @@ pytesseract~=0.3.10
 Pillow~=10.1.0
 pdf2image~=1.16.3
 PyPDF2~=3.0.1
+
+Flask==3.0.0
+flask-sqlalchemy==3.1.1
+Flask-Pydantic==0.11.0
+flask-admin==1.6.1
