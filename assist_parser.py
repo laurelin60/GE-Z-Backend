@@ -401,6 +401,15 @@ class AssistParser:
 
         vert = base_height
 
+        if num_pages == 1:
+            output_page = pdf_reader.pages[0]
+            pdf_writer.add_page(output_page)
+            bytes_out = io.BytesIO()
+            pdf_writer.write(bytes_out)
+            merged_image = pdf2image.convert_from_bytes(bytes_out.getvalue(), dpi=400 * num_pages)[0]
+
+            return merged_image
+
         if num_pages > 2:
             vert += base_height * (num_pages - 2)
 
@@ -643,7 +652,8 @@ class AssistParser:
 
 
 def main():
-    AssistParser(r'input_pdfs/Art__B_A_.pdf', debug=False)
+    for path in Path(r'C:\Users\awang\Downloads\uci-transfer-courses\output').rglob('*.pdf'):
+        AssistParser(path, debug=True)
 
 
 if __name__ == '__main__':
