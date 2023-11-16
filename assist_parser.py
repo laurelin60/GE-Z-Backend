@@ -371,6 +371,8 @@ class AssistParser:
                     os.mkdir(f'debug/{d}')
         ###
 
+        print("STARTING", pdf_path)
+
         self.base_pdf_path: Path = Path(pdf_path)
 
         self.merged_pdf_image: Image = self.merge_pdf(debug=debug)

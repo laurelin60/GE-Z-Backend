@@ -18,7 +18,7 @@ def process_pdf(pdf_path, debug=False):
     AssistParserThreaded(pdf_path, debug)
 
     activeThreads -= 1
-    if (activeThreads < 0):
+    if activeThreads < 0:
         print("idk how this happened")
         activeThreads = 0
 
