@@ -385,7 +385,7 @@ class AssistParser:
         self.write_json()
 
     def merge_pdf(self, debug=False) -> Image:
-        print('MERGING', self.base_pdf_path)
+        # print('MERGING', self.base_pdf_path)
 
         pdf_writer = PdfWriter()
         pdf_reader = PdfReader(open(self.base_pdf_path, 'rb'))
@@ -434,7 +434,7 @@ class AssistParser:
         return merged_image
 
     def recolor_image(self, alpha, debug=False) -> np.ndarray:
-        print('RECOLORING')
+        # print('RECOLORING')
         img_array = np.array(self.merged_pdf_image.convert("L"))
         contrast_img_array = np.where(img_array > alpha, 255, 0).astype(np.uint8)
 
@@ -444,7 +444,7 @@ class AssistParser:
         return contrast_img_array
 
     def split_sections_main(self, debug=False) -> list[np.ndarray]:
-        print('SPLITTING MAIN SECTIONS')
+        # print('SPLITTING MAIN SECTIONS')
 
         image_width = self.recolored_image.shape[1]
 
@@ -479,7 +479,7 @@ class AssistParser:
         return sections
 
     def split_sections_sub(self, debug=False):
-        print('SPLITTING SUBSECTIONS')
+        # print('SPLITTING SUBSECTIONS')
 
         subsections_total = []
 
@@ -646,15 +646,16 @@ class AssistParser:
 
     def write_json(self):
         write_path = self.base_pdf_path.with_suffix('.json')
+        print('WRITING', write_path)
 
         with open(write_path, "w") as f:
             f.write(self.text_json)
-
 
 def main():
     for path in Path(r'C:\Users\awang\Downloads\uci-transfer-courses\output').rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
+
         AssistParser(path, debug=False)
 
 
