@@ -15,8 +15,10 @@ class AssistParserThreaded(AssistParser):
 
 def process_pdf(pdf_path, debug=False):
     global activeThreads
-    AssistParserThreaded(pdf_path, debug)
-
+    try:
+        AssistParserThreaded(pdf_path, debug)
+    except Exception as e:
+        print(f"Error while processing {pdf_path}, skipping. Exception: {e}")
     activeThreads -= 1
     if activeThreads < 0:
         print("idk how this happened")
@@ -42,3 +44,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    print("Done!")
