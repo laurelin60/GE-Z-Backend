@@ -1,0 +1,18 @@
+[
+  {
+    "from": {
+      "code": "MATH 181",
+      "name": "Calculus 1",
+      "units": "4.00"
+    },
+    "to": {
+      "code": "MATH 2A",
+      "name": "Single Variable Calculus",
+      "units": "4.00"
+    }
+  },
+  {
+    "from": {},
+    "to": {}
+  }
+]

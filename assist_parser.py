@@ -6,10 +6,11 @@
 
 
 import io
+import json
 import os.path
 import re
-import time
 from operator import itemgetter
+from pathlib import Path
 
 import cv2
 import numpy as np
@@ -22,20 +23,6 @@ if os.name == "posix":
     pytesseract.tesseract_cmd = r'/opt/homebrew/bin/tesseract'
 else:
     pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
-
-def _get_courses(lis) -> list:
-    if lis == ['']:
-        return []
-
-    courses = []
-
-    for s in lis:
-        course = _string_to_courses(s)
-        if course:
-            courses.append(course)
-
-    return courses
 
 
 class Course:
@@ -56,9 +43,9 @@ class Or:
         self.elements = elements
 
     def __repr__(self):
-        res = "Or ("
+        res = "Or("
         for e in self.elements:
-            res += e.__repr__() + ' '
+            res += e.__repr__() + ', '
         res += ")"
 
         return res
@@ -72,15 +59,29 @@ class And:
         self.elements = elements
 
     def __repr__(self):
-        res = "And ("
+        res = "And("
         for e in self.elements:
-            res += e.__repr__() + ' '
+            res += e.__repr__() + ', '
         res += ")"
 
         return res
 
     def add_element(self, e):
         self.elements.append(e)
+
+
+def _get_courses(lis) -> list:
+    if lis == ['']:
+        return []
+
+    courses = []
+
+    for s in lis:
+        course = _string_to_courses(s)
+        if course:
+            courses.append(course)
+
+    return courses
 
 
 def _string_to_courses(string) -> list[Course]:
@@ -279,6 +280,83 @@ def _get_subsections(section, horizontal_lines):
     return subsections
 
 
+def _format_course_from(lis: list[Course | str]) -> list[Or | Course]:
+    result = []
+    for string in lis:
+        if _is_course(string):
+            result += _course_from_string(string)
+
+    if len(result) < 2:
+        return result
+
+    my_or = Or([])
+
+    for element in result:
+        if isinstance(element, Course):
+            my_or.add_element(element)
+
+    return [my_or]
+
+
+def _format_course_to(lis: list[Course | str]) -> list[And | Course]:
+    result = []
+    for string in lis:
+        if _is_course(string):
+            result += _course_from_string(string)
+
+    if len(result) < 2:
+        return result
+
+    my_or = And([])
+
+    for element in result:
+        if isinstance(element, Course):
+            my_or.add_element(element)
+
+    return [my_or]
+
+
+def _course_from_string(string) -> list[Course]:
+    string = string.replace('\n', ' ')
+    match = re.findall(' *([0-9A-Z ]+) - (.*?)[ \n]\(([0-9]+\.[0-9]+)\)', string)
+
+    if match:
+        return [Course(m[0], m[1], m[2]) for m in match]
+
+    raise ValueError
+
+
+def _transfer_to_dict(transfer_from: Course, transfer_to: Course) -> dict:
+    res = {
+        "from": {
+            "code": transfer_from.course_id,
+            "name": transfer_from.name,
+            "units": transfer_from.units
+        },
+        "to": {
+            "code": transfer_to.course_id,
+            "name": transfer_to.name,
+            "units": transfer_to.units
+        }
+    }
+
+    return res
+
+
+def _format_course_list(lis: list[str]) -> list[Course | str]:
+    result = []
+    for string in lis:
+        if _is_course(string):
+            result += _course_from_string(string)
+        else:
+            if 'And' in string:
+                result.append('And')
+            if 'Or' in string:
+                result.append('Or')
+
+    return result
+
+
 class AssistParser:
     def __init__(self, pdf_path, debug=False):
         if not os.path.isfile(pdf_path):
@@ -293,7 +371,7 @@ class AssistParser:
                     os.mkdir(f'debug/{d}')
         ###
 
-        self.base_pdf_path: str = pdf_path
+        self.base_pdf_path: Path = Path(pdf_path)
 
         self.merged_pdf_image: Image = self.merge_pdf(debug=debug)
         self.recolored_image: np.ndarray = self.recolor_image(alpha=230, debug=debug)
@@ -303,8 +381,8 @@ class AssistParser:
         self.text_unformatted = self.get_sections_sides_sections(debug=debug)
         self.text_formatted = self.format_text()
 
-        for f in self.text_formatted:
-            print(f)
+        self.text_json = self.text_to_json()
+        self.write_json()
 
     def merge_pdf(self, debug=False) -> Image:
         print('MERGING', self.base_pdf_path)
@@ -455,10 +533,6 @@ class AssistParser:
             section_final = []
             skip = False
 
-            if debug:
-                print()
-                print('$$$ NEW')
-
             for sides in subsections:
                 if skip:
                     continue
@@ -531,67 +605,46 @@ class AssistParser:
 
         return formatted
 
+    def text_to_json(self):
+        text = self.text_formatted
+
+        total_json = []
+
+        for f in text:
+            transfer_from = f[1][0]
+            transfer_to = f[0][0]
+
+            if isinstance(transfer_from, Course) and isinstance(transfer_to, Course):
+                total_json.append(_transfer_to_dict(transfer_from, transfer_to))
+
+            elif isinstance(transfer_from, Course) and isinstance(transfer_to, And):
+                for t_course in transfer_to.elements:
+                    total_json.append(_transfer_to_dict(transfer_from, t_course))
+
+            elif isinstance(transfer_from, Or) and isinstance(transfer_to, Course):
+                for t_course in transfer_from.elements:
+                    total_json.append(_transfer_to_dict(t_course, transfer_to))
+
+            elif isinstance(transfer_from, Or) and isinstance(transfer_to, And):
+                for from_course in transfer_from.elements:
+                    for to_course in transfer_to.elements:
+                        total_json.append(_transfer_to_dict(from_course, to_course))
+
+            else:
+                raise ValueError
+
+        return json.dumps(total_json, indent=2)
+
+    def write_json(self):
+        write_path = self.base_pdf_path.with_suffix('.json')
+
+        with open(write_path, "w") as f:
+            f.write(self.text_json)
 
 
-def _format_course_list(lis: list[str]) -> list[Course | str]:
-    result = []
-    for string in lis:
-        if _is_course(string):
-            result += _course_from_string(string)
-        else:
-            if 'And' in string:
-                result.append('And')
-            if 'Or' in string:
-                result.append('Or')
-
-    return result
+def main():
+    AssistParser(r'input_pdfs/Art__B_A_.pdf', debug=False)
 
 
-def _format_course_from(lis: list[Course | str]) -> list[Or | Course]:
-    result = []
-    for string in lis:
-        if _is_course(string):
-            result += _course_from_string(string)
-
-    if len(result) < 2:
-        return result
-
-    my_or = Or([])
-
-    for element in result:
-        if isinstance(element, Course):
-            my_or.add_element(element)
-
-    return [my_or]
-
-def _format_course_to(lis: list[Course | str]) -> list[And | Course]:
-    result = []
-    for string in lis:
-        if _is_course(string):
-            result += _course_from_string(string)
-
-    if len(result) < 2:
-        return result
-
-    my_or = And([])
-
-    for element in result:
-        if isinstance(element, Course):
-            my_or.add_element(element)
-
-    return [my_or]
-
-
-def _course_from_string(string) -> list[Course]:
-    string = string.replace('\n', ' ')
-    match = re.findall(' *([0-9A-Z ]+) - (.*?)[ \n]\(([0-9]+\.[0-9]+)\)', string)
-
-    if match:
-        return [Course(m[0], m[1], m[2]) for m in match]
-
-    raise ValueError
-
-
-t1 = time.time()
-AssistParser(r'input_pdfs/Chemistry__B_S_.pdf', debug=False)
-print(time.time() - t1)
+if __name__ == '__main__':
+    main()
