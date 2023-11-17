@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from api import create_app
-from api.models import db, GECategory, ParentCourse, ChildCourse
+from api.models import db, GECategory, ParentCourse, ChildCourse, Articulation
 
 app = create_app()
 
@@ -57,23 +57,69 @@ def populate_child_courses(directory_path):
         for a in articulations:
             to_code = a["to"]["code"]
 
-            parent = ParentCourse.query.filter_by(course_code=to_code).first()
-            if not parent:
+            parent_course = ParentCourse.query.filter_by(
+                course_code=to_code
+            ).first()
+
+            # if parent course does not fulfill a GE
+            # no need to keep track of data
+            if not parent_course:
                 continue
 
             from_code = a["from"]["code"]
             college_name = path.parts[-2].replace('_', ' ')
 
-            child_query = ChildCourse.query.filter_by(course_code=from_code, pdf_id=pdf_id).first()
-            if child_query:
-                child_query.articulates_to.append(parent)
-                continue
+            child_course = ChildCourse.query.filter_by(
+                course_code=from_code,
+                college_name=college_name
+            ).first()
 
-            child = ChildCourse(course_code=from_code, pdf_id=pdf_id, college_name=college_name)
-            db.session.add(child)
+            if child_course:  # if exact child course already exists
 
-            parent.articulates_from.append(child)
-            db.session.commit()
+                # if articulation between parent and child already exists
+                # no need to add same articulation
+                articulation = Articulation.query.filter_by(
+                    parent_course_id=parent_course.id,
+                    child_course_id=child_course.id,
+                ).first()
+
+                if articulation:
+                    continue
+
+                # else add articulation between existing child and existing parent
+                articulation = Articulation(
+                    parent_course=parent_course,
+                    parent_course_id=parent_course.id,
+                    child_course=child_course,
+                    child_course_id=child_course.id,
+                    pdf_id=pdf_id
+                )
+
+                db.session.add(articulation)
+                db.session.commit()
+
+            else:
+                # if child course does not yet exist
+                # create and add new child course
+                # add articulation between new child and parent
+
+                child_course = ChildCourse(
+                    course_code=from_code,
+                    college_name=college_name
+                )
+
+                db.session.add(child_course)
+
+                articulation = Articulation(
+                    parent_course=parent_course,
+                    parent_course_id=parent_course.id,
+                    child_course=child_course,
+                    child_course_id=child_course.id,
+                    pdf_id=pdf_id
+                )
+
+                db.session.add(articulation)
+                db.session.commit()
 
 
 if __name__ == '__main__':

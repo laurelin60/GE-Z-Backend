@@ -10,7 +10,7 @@ def create_app():
 
     app.config.from_pyfile('config.py')
 
-    app.register_blueprint(api, url_prefix='/api')
+    app.register_blueprint(api)
 
     db.init_app(app)
 
@@ -19,7 +19,8 @@ def create_app():
     model_views_to_register = {
         ParentCourseView(models.ParentCourse, db.session),
         ChildCourseView(models.ChildCourse, db.session),
-        GECategoryView(models.GECategory, db.session)
+        GECategoryView(models.GECategory, db.session),
+        ArticulationView(models.Articulation, db.session),
     }
 
     for model_view in model_views_to_register:
