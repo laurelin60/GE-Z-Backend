@@ -12,8 +12,6 @@ def create_app():
 
     CORS(app)
 
-    SSLify(app)
-
     app.config.from_pyfile('config.py')
 
     app.register_blueprint(api)
