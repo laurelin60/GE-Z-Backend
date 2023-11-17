@@ -42,9 +42,8 @@ def get_cvc_courses():
         pdf_id = 0
         maps_to_courses = set()
         for articulation in cvc_course.articulates_to:
-            maps_to_courses.add(articulation.parent_course.course_code)
-
             if ge_model in articulation.parent_course.ge_categories:
+                maps_to_courses.add(articulation.parent_course.course_code)
                 pdf_id = articulation.pdf_id
                 break
 
