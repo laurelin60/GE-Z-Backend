@@ -40,17 +40,23 @@ def get_cvc_courses():
             ge_categories.append(ge.category)
 
         pdf_id = 0
+        maps_to_courses = set()
         for articulation in cvc_course.articulates_to:
+            maps_to_courses.add(articulation.parent_course.course_code)
+
             if ge_model in articulation.parent_course.ge_categories:
                 pdf_id = articulation.pdf_id
+                break
+
+        nice_to_haves = cvc_course.nice_to_haves.strip('][').split(', ')
 
         res.append(
             {
                 "college": cvc_course.college_name,
                 "courseCode": cvc_course.course_code,
                 "courseName": cvc_course.course_name,
-                "cvcId:": cvc_course.cvc_id,
-                "niceToHaves": cvc_course.nice_to_haves,
+                "cvcId:": str(cvc_course.cvc_id),
+                "niceToHaves": nice_to_haves,
                 "units": cvc_course.units,
                 "term": cvc_course.term_string,
                 "startMonth": cvc_course.term_start_month,
@@ -64,7 +70,8 @@ def get_cvc_courses():
                 "instantEnrollment": cvc_course.instant_enrollment,
 
                 "fulfillsGEs": ge_categories,
-                "pdfID": pdf_id
+                "mapToCourses": list(maps_to_courses),
+                "pdfID": str(pdf_id)
             }
         )
 
