@@ -42,7 +42,7 @@ def main(dir_path):
 
 
 if __name__ == '__main__':
-    MAX_THREADS = 15
+    MAX_THREADS = 16
     activeThreads = 0
 
     directory_path = r'C:\Users\awang\Downloads\CSULB\output'
