@@ -1,5 +1,4 @@
-import markdown
-from flask import Blueprint, request, jsonify, redirect, url_for, render_template
+from flask import Blueprint, request, jsonify, redirect, url_for
 
 from .models import GECategory, CVCCourse
 
