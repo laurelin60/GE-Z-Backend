@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, redirect, url_for
 
-from .models import GECategory
+from .models import GECategory, CVCCourse
 
 api = Blueprint('api', __name__)
 
@@ -41,14 +41,16 @@ def cvc_courses():
         for a in articulations:
             total_articulations.append(a)
 
-    res = []
+    result = []
     for articulation in total_articulations:
         child_course = articulation.child_course
-        res.append(
-            {
-                "college_name": child_course.college_name,
-                "course_code": child_course.course_code,
-            }
-        )
 
-    return message(res)
+        cvc_query = CVCCourse.query.filter_by(
+            college_name=child_course.college_name,
+            course_code=child_course.course_code.replace(' ', ''),
+        ).all()
+
+        if cvc_query:
+            result.append(cvc_query)
+
+    return message(result), 200

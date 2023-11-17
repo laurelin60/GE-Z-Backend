@@ -134,6 +134,15 @@ def populate_cvc_data():
             course_name = d["course"]
             course_code = course_name.split("-")[0].strip()
 
+            cvc_query = CVCCourse.query.filter_by(
+                course_code=course_code,
+                college_name=college_name,
+                cvc_data=str(d)
+            ).first()
+
+            if cvc_query:
+                continue
+
             cvc_course = CVCCourse(
                 course_code=course_code,
                 college_name=college_name,
