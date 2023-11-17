@@ -34,6 +34,9 @@ def cvc_courses():
     res = []
     for p_course in parent_courses:
         articulations = p_course.articulates_from
+        if not articulations:
+            continue
+
         print(articulations)
         print(type(articulations))
         for a in articulations:
