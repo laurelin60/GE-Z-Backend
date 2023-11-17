@@ -1,0 +1,29 @@
+[
+  {
+    "college": "Ohlone College",
+    "courseID": "BA101A",
+    "courseName": "Financial Accounting",
+    "courseId:": "1051975",
+    "niceToHaves": [
+      "Online Tutoring",
+      "Quality Reviewed"
+    ],
+    "units": 5,
+    "term": "Jan 22 - May 17",
+    "startMonth": 1,
+    "startDay": 22,
+    "endMonth": 5,
+    "endDay": 17,
+    "tuition": 230,
+    "async": true,
+    "hasOpenSeats": false,
+    "hasPrereqs": false,
+    "instantEnrollment": true,
+
+    "fulfillsGEs": [1, 2, 3],
+    "pdfID": "12345678"
+  },
+  {
+    "...": "..."
+  }
+]

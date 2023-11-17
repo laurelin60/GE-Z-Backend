@@ -19,6 +19,7 @@ class GECategory(db.Model):
     __tablename__ = 'ge_category'
 
     id = db.Column(db.Integer, primary_key=True)
+
     category = db.Column(db.Integer, nullable=False)
 
 
@@ -27,11 +28,9 @@ class ParentCourse(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    college_name = db.Column(db.String(100), nullable=False)
-    course_code = db.Column(db.String(20), nullable=False)
+    course_code = db.Column(db.String(20), nullable=False, unique=True)
 
     ge_categories = db.relationship('GECategory', secondary=course_ges, backref='courses')
-
     articulates_from = db.relationship('ChildCourse', secondary=articulation, backref='articulates_to')
 
 
@@ -40,6 +39,5 @@ class ChildCourse(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    college_name = db.Column(db.String(100), nullable=False)
     course_code = db.Column(db.String(20), nullable=False)
     pdf_id = db.Column(db.Integer(), nullable=False)

@@ -3,25 +3,27 @@ import re
 
 import requests
 
-d = {
-    "I": 1,
-    "II": 2,
-    "III": 3,
-    "IV": 4,
-    "V": 5,
-    "VI": 6,
-    "VII": 7,
-    "VIII": 8
-}
+# d = {
+#     "I": 1,
+#     "II": 2,
+#     "III": 3,
+#     "IV": 4,
+#     "V": 5,
+#     "VI": 6,
+#     "VII": 7,
+#     "VIII": 8
+# }
 
 
 def ge_list_to_ints(lis):
     res = []
     for string in lis:
-        match = re.search('GE ([IV]+)', string)
+
+        match = re.search('GE ([IV]+[ab])', string)
         roman = match.groups()[0]
 
-        res.append(d[roman])
+        print(roman)
+        res.append(roman)
 
     return res
 
