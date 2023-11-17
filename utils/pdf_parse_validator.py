@@ -34,4 +34,4 @@ def validate(directory_path):
 
 
 if __name__ == '__main__':
-    validate(r'C:\Users\awang\Downloads\transfer-courses-new-half')
+    validate(r'')

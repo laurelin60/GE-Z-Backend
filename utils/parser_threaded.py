@@ -4,8 +4,6 @@ import time
 from pathlib import Path
 from assist_parser import AssistParser
 
-MAX_THREADS = 16
-activeThreads = 0
 
 class AssistParserThreaded(AssistParser):
     def __init__(self, pdf_path, debug=False):
@@ -24,10 +22,11 @@ def process_pdf(pdf_path, debug=False):
         print("idk how this happened")
         activeThreads = 0
 
-def main():
+
+def main(dir_path):
     threads = []
     global activeThreads
-    for path in Path(r'').rglob('*.pdf'):
+    for path in Path(dir_path).rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
 
@@ -43,5 +42,10 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    MAX_THREADS = 16
+    activeThreads = 0
+
+    directory_path = r'C:\Users\awang\Downloads\CSULB\output'
+    main(directory_path)
+
     print("Done!")

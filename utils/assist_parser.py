@@ -597,6 +597,9 @@ class AssistParser:
                     right_lines = _get_lines_formatted(right, 0.6, 10)
                     right_text = _get_subsection_side_text(right, right_lines)
 
+                    if not left_text or not right_text:
+                        continue
+
                     if not _is_course(left_text[0]) or not _is_course(right_text[0]):
                         continue
 
@@ -670,7 +673,7 @@ class AssistParser:
 
 
 def main():
-    for path in Path(r'C:\Users\awang\PycharmProjects\DegreasyBackend\utils\input_pdfs').rglob('*.pdf'):
+    for path in Path(r'C:\Users\awang\Downloads\CSULB\output').rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
 
