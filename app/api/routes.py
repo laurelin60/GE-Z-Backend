@@ -74,7 +74,7 @@ def get_cvc_courses():
 
                 "fulfillsGEs": ge_categories,
                 "mapToCourses": list(maps_to_courses),
-                "pdfID": str(pdf_id)
+                "pdfId": str(pdf_id)
             }
         )
 
