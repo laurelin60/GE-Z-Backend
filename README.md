@@ -32,7 +32,7 @@ Response:
     "pdfId": "str, used to get assist link",
     "startDay": "int",
     "startMonth": "int",
-    "term": "str, string representatino of start & end dates",
+    "term": "str, string representation of start & end dates",
     "tuition": "int",
     "units": "str"
   },
