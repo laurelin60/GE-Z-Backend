@@ -40,6 +40,6 @@ def cvc_courses():
         print(articulations)
         print(type(articulations))
         for a in articulations:
-            res += a
+            res.append(a)
 
     return message(res)
