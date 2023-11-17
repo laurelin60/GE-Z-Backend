@@ -5,12 +5,12 @@ from .models import GECategory
 api = Blueprint('api', __name__)
 
 
-def error_message(message):
-    return jsonify({"error": str(message)})
+def error_message(string):
+    return jsonify({"error": str(string)})
 
 
-def message(message):
-    return jsonify({"msg": str(message)})
+def message(string):
+    return jsonify({"msg": str(string)})
 
 
 @api.get('/')
@@ -37,8 +37,6 @@ def cvc_courses():
         if not articulations:
             continue
 
-        print(articulations)
-        print(type(articulations))
         for a in articulations:
             res.append(a)
 
