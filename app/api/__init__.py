@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 
 from .admin import *
 from .models import db
@@ -7,6 +8,8 @@ from .routes import api
 
 def create_app():
     app = Flask(__name__)
+
+    CORS(app)
 
     app.config.from_pyfile('config.py')
 
@@ -21,6 +24,7 @@ def create_app():
         ChildCourseView(models.ChildCourse, db.session),
         GECategoryView(models.GECategory, db.session),
         ArticulationView(models.Articulation, db.session),
+        CVCCourseView(models.CVCCourse, db.session),
     }
 
     for model_view in model_views_to_register:

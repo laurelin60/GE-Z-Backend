@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from api import create_app
-from api.models import db, GECategory, ParentCourse, ChildCourse, Articulation
+from api.models import db, GECategory, ParentCourse, ChildCourse, Articulation, CVCCourse
 
 app = create_app()
 
@@ -122,8 +122,30 @@ def populate_child_courses(directory_path):
                 db.session.commit()
 
 
+def populate_cvc_data():
+    path = r"C:\Users\awang\PycharmProjects\DegreasyBackend\utils\data\CVC.json"
+    with open(path, 'r') as f:
+        data = json.loads(f.read())
+
+        data = data["data"]
+
+        for d in data:
+            college_name = d["college"]
+            course_name = d["course"]
+            course_code = course_name.split("-")[0].strip()
+
+            cvc_course = CVCCourse(
+                course_code=course_code,
+                college_name=college_name,
+                cvc_data=str(d)
+            )
+            db.session.add(cvc_course)
+            db.session.commit()
+
+
 if __name__ == '__main__':
     with app.app_context():
-        populate_ge_categories()
-        populate_parent_courses('../utils/data/GEs_formatted.json')
-        populate_child_courses(r'C:\Users\awang\Downloads\transfer-courses-new-half')
+        # populate_ge_categories()
+        # populate_parent_courses('../utils/data/GEs_formatted.json')
+        # populate_child_courses(r'C:\Users\awang\Downloads\transfer-courses-new-half')
+        populate_cvc_data()

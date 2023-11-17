@@ -23,7 +23,7 @@ class Articulation(db.Model):
     child_course = db.relationship('ChildCourse', back_populates='articulates_to', foreign_keys=[child_course_id])
 
     def __repr__(self):
-        return f'<Articulation {self.id} {self.child_course} -> {self.parent_course}>'
+        return f'<Articulation {self.child_course} -> {self.parent_course}>'
 
 
 class GECategory(db.Model):
@@ -65,3 +65,16 @@ class ChildCourse(db.Model):
 
     def __repr__(self):
         return f'<ChildCourse {self.course_code}, {self.college_name}>'
+
+
+class CVCCourse(db.Model):
+    __tablename__ = 'cvc_course'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    course_code = db.Column(db.String(20), nullable=False)
+    college_name = db.Column(db.String(100), nullable=False)
+    cvc_data = db.Column(db.String(2000), nullable=False)
+
+    def __repr__(self):
+        return f'<CVCCourse {self.course_code}, {self.college_name}>'

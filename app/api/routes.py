@@ -31,13 +31,24 @@ def cvc_courses():
         return error_message(f'incorrect param category={category}'), 400
 
     parent_courses = GECategory.query.filter_by(category=category).first().parent_courses
-    res = []
+
+    total_articulations = []
     for p_course in parent_courses:
         articulations = p_course.articulates_from
         if not articulations:
             continue
 
         for a in articulations:
-            res.append(a)
+            total_articulations.append(a)
+
+    res = []
+    for articulation in total_articulations:
+        child_course = articulation.child_course
+        res.append(
+            {
+                "college_name": child_course.college_name,
+                "course_code": child_course.course_code,
+            }
+        )
 
     return message(res)
