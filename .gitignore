@@ -162,3 +162,6 @@ utils/input_pdfs
 utils/debug
 utils/test.py
 input/
+
+package-lock.json
+package.json
