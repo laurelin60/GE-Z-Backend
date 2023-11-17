@@ -1,4 +1,5 @@
-from flask import Blueprint, request, jsonify, redirect, url_for
+import markdown
+from flask import Blueprint, request, jsonify, redirect, url_for, render_template
 
 from .models import GECategory, CVCCourse
 
@@ -20,7 +21,7 @@ def index():
 
 @api.route('/api/docs')
 def docs():
-    return "DOCS"
+    return "<h1>GE-Z Backend</h1> <a href=\"https://github.com/laurelinXYZABC/Degree-EZ-Backend#readme\">docs</a>"
 
 
 @api.get('/api/cvc-courses')
