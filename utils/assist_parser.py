@@ -443,7 +443,7 @@ class AssistParser:
             pdf_writer.write('debug/merged/merged.pdf')
         ###
 
-        merged_image = pdf2image.convert_from_bytes(bytes_out.getvalue(), dpi=350 * num_pages)[0]
+        merged_image = pdf2image.convert_from_bytes(bytes_out.getvalue(), dpi=min(400 * num_pages, 1600))[0]
 
         return merged_image
 
@@ -673,7 +673,7 @@ class AssistParser:
 
 
 def main():
-    for path in Path(r'C:\Users\awang\Downloads\CSULB\output').rglob('*.pdf'):
+    for path in Path(r'').rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
 
