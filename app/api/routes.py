@@ -49,6 +49,9 @@ def get_cvc_courses():
                 break
 
         nice_to_haves = cvc_course.nice_to_haves.strip('][').split(', ')
+        nice_to_haves_formatted = []
+        for nth in nice_to_haves:
+            nice_to_haves_formatted.append(nth.strip('\''))
 
         res.append(
             {
@@ -56,7 +59,7 @@ def get_cvc_courses():
                 "courseCode": cvc_course.course_code,
                 "courseName": cvc_course.course_name,
                 "cvcId:": str(cvc_course.cvc_id),
-                "niceToHaves": nice_to_haves,
+                "niceToHaves": nice_to_haves_formatted,
                 "units": cvc_course.units,
                 "term": cvc_course.term_string,
                 "startMonth": cvc_course.term_start_month,

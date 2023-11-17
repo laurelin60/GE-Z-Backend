@@ -21,6 +21,8 @@
     "instantEnrollment": true,
 
     "fulfillsGEs": ["Ia", "II", "VI"],
+    "mapToCourses": ["CS 101", "ABC 123"],
+
     "pdfID": "12345678"
   }
 ]
