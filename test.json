@@ -21,10 +21,6 @@
     "instantEnrollment": true,
 
     "fulfillsGEs": ["Ia", "II", "VI"],
-    "mapsToCourses": ["RZ101 - Introduction to Rizzology", "..."],
     "pdfID": "12345678"
-  },
-  {
-    "...": "..."
   }
 ]

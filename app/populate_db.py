@@ -123,9 +123,24 @@ def populate_child_courses(directory_path):
 
 
 def populate_cvc_data():
+    month_ints = {
+        "Jan": 1,
+        "Feb": 2,
+        "Mar": 3,
+        "Apr": 4,
+        "May": 5,
+        "Jun": 6,
+        "Jul": 7,
+        "Aug": 8,
+        "Sep": 9,
+        "Oct": 10,
+        "Nov": 11,
+        "Dec": 12
+    }
     path = r"C:\Users\awang\PycharmProjects\DegreasyBackend\utils\data\CVC.json"
     with open(path, 'r') as f:
-        data = json.loads(f.read())
+        data_raw = f.read()
+        data = json.loads(data_raw)
 
         data = data["data"]
 
@@ -133,6 +148,30 @@ def populate_cvc_data():
             college_name = d["college"]
             course_name = d["course"]
             course_code = course_name.split("-")[0].strip()
+
+            term = d["term"]
+            term_start = term.split("-")[0].strip()
+            term_end = term.split("-")[1].strip()
+
+            term_start_month = term_start.split(' ')[0]
+            term_start_month_int = month_ints[term_start_month]
+
+            term_start_day_int = int(term_start.split(' ')[0])
+
+            term_end_month = term_end.split(' ')[0]
+            term_end_month_int = month_ints[term_end_month]
+
+            term_end_day_int = int(term_end.split(' ')[0])
+
+            d["startMonth"] = term_start_month_int
+            d["startDay"] = term_start_day_int
+            d["endMonth"] = term_end_month_int
+            d["endDay"] = term_end_day_int
+
+            d = json.loads(d)
+            d = d.replace('\'', '"')
+            d = d.replace(": True", ": true")
+            d = d.replace(": False", ": false")
 
             cvc_query = CVCCourse.query.filter_by(
                 course_code=course_code,

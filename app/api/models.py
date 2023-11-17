@@ -73,8 +73,28 @@ class CVCCourse(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     course_code = db.Column(db.String(20), nullable=False)
+    course_name = db.Column(db.String(100), nullable=False)
     college_name = db.Column(db.String(100), nullable=False)
-    cvc_data = db.Column(db.String(2000), nullable=False)
+
+    cvc_id = db.Column(db.Integer, nullable=False)
+    nice_to_haves = db.Column(db.String(500), nullable=False)
+    units = db.Column(db.String(5), nullable=False)
+    term_string = db.Column(db.String(20), nullable=False)
+
+    term_start_month = db.Column(db.Integer, nullable=False)
+    term_start_day = db.Column(db.Integer, nullable=False)
+    term_end_month = db.Column(db.Integer, nullable=False)
+    term_end_day = db.Column(db.Integer, nullable=False)
+
+    tuition = db.Column(db.Integer, nullable=False)
+    is_async = db.Column(db.Boolean, nullable=False)
+    has_open_seats = db.Column(db.Boolean, nullable=False)
+    has_prereqs = db.Column(db.Boolean, nullable=False)
+    instant_enrollment = db.Column(db.Boolean, nullable=False)
+
+    # fulfills_ges = db.relationship('GECategory', backref='cvc_course', lazy='dynamic')
+
+
 
     def __repr__(self):
         return f'<CVCCourse {self.course_code}, {self.college_name}>'

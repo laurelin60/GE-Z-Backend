@@ -1,3 +1,5 @@
+import json
+
 from flask import Blueprint, request, jsonify, redirect, url_for
 
 from .models import GECategory, CVCCourse
@@ -50,7 +52,41 @@ def cvc_courses():
             course_code=child_course.course_code.replace(' ', ''),
         ).all()
 
-        if cvc_query:
-            result.append(cvc_query)
+        for cvc_course in cvc_query:
+            data = cvc_course.cvc_data
 
-    return message(result), 200
+            json_data = json.loads(data)
+
+            print(json.dumps(json_data, indent=2))
+
+    return message(''), 200
+
+
+@api.get('/api/test')
+def test_get():
+    return jsonify([
+            {
+                "college": "Ohlone College",
+                "courseCode": "BA101A",
+                "courseName": "Financial Accounting",
+                "cvcId:": "1051975",
+                "niceToHaves": [
+                  "Online Tutoring",
+                  "Quality Reviewed"
+                ],
+                "units": 5,
+                "term": "Jan 22 - May 17",
+                "startMonth": 1,
+                "startDay": 22,
+                "endMonth": 5,
+                "endDay": 17,
+                "tuition": 230,
+                "async": True,
+                "hasOpenSeats": False,
+                "hasPrereqs": False,
+                "instantEnrollment": True,
+            
+                "fulfillsGEs": ["Ia", "II", "VI"],
+                "pdfID": "12345678"
+              }]
+    ), 200
