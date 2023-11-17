@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 from api import create_app
-from api.models import db, GECategory, ParentCourse, ChildCourse, Articulation, CVCCourse
+from api.models import db, GECategory, ParentCourse, ChildCourse, Articulation, CVCCourse, CVCArticulation
 
 app = create_app()
 
@@ -45,6 +45,7 @@ def populate_child_courses(directory_path):
     x = int(total / 50)
 
     for i, path in enumerate(Path(directory_path).rglob('*.json')):
+        # progress bar
         if i % x == 0:
             print(int(i / x) * '#' + (50 - int(i / x)) * ' ' + '|')
 
@@ -124,70 +125,115 @@ def populate_child_courses(directory_path):
 
 def populate_cvc_data():
     month_ints = {
-        "Jan": 1,
-        "Feb": 2,
-        "Mar": 3,
-        "Apr": 4,
-        "May": 5,
-        "Jun": 6,
-        "Jul": 7,
-        "Aug": 8,
-        "Sep": 9,
-        "Oct": 10,
-        "Nov": 11,
-        "Dec": 12
+        "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
+        "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12
     }
-    path = r"C:\Users\awang\PycharmProjects\DegreasyBackend\utils\data\CVC.json"
+
+    print("CREATING CVCCourses")
+
+    path = r"../utils/data/CVC.json"
     with open(path, 'r') as f:
         data_raw = f.read()
-        data = json.loads(data_raw)
 
-        data = data["data"]
+    data_json = json.loads(data_raw)
 
-        for d in data:
-            college_name = d["college"]
-            course_name = d["course"]
-            course_code = course_name.split("-")[0].strip()
+    data = data_json["data"]
 
-            term = d["term"]
-            term_start = term.split("-")[0].strip()
-            term_end = term.split("-")[1].strip()
+    x = int(len(data) / 50)
 
-            term_start_month = term_start.split(' ')[0]
-            term_start_month_int = month_ints[term_start_month]
+    for i, cvc_course in enumerate(data):
+        # progress bar
+        if i % x == 0:
+            print(int(i / x) * '#' + (50 - int(i / x)) * ' ' + '|')
 
-            term_start_day_int = int(term_start.split(' ')[0])
+        course_code = cvc_course["course"].split("-")[0].strip()
+        college_name = cvc_course["college"]
+        cvc_id = cvc_course["cvcId"]
 
-            term_end_month = term_end.split(' ')[0]
-            term_end_month_int = month_ints[term_end_month]
+        cvc_query: CVCCourse = CVCCourse.query.filter_by(
+            course_code=course_code,
+            college_name=college_name,
+            cvc_id=cvc_id
+        ).first()
 
-            term_end_day_int = int(term_end.split(' ')[0])
+        if cvc_query:
+            continue
 
-            d["startMonth"] = term_start_month_int
-            d["startDay"] = term_start_day_int
-            d["endMonth"] = term_end_month_int
-            d["endDay"] = term_end_day_int
+        term = cvc_course["term"]
+        term_start = term.split("-")[0].strip()
+        term_end = term.split("-")[1].strip()
 
-            d = json.loads(d)
-            d = d.replace('\'', '"')
-            d = d.replace(": True", ": true")
-            d = d.replace(": False", ": false")
+        term_start_month = term_start.split(' ')[0]
+        term_start_month_int = month_ints[term_start_month]
+        term_start_day_int = int(term_start.split(' ')[1])
 
-            cvc_query = CVCCourse.query.filter_by(
-                course_code=course_code,
-                college_name=college_name,
-                cvc_data=str(d)
+        term_end_month = term_end.split(' ')[0]
+        term_end_month_int = month_ints[term_end_month]
+        term_end_day_int = int(term_end.split(' ')[1])
+
+        cvc_course_model = CVCCourse(
+            course_code=course_code,
+            course_name=cvc_course["course"].split("-")[1].strip(),
+            college_name=college_name,
+            cvc_id=cvc_id,
+            nice_to_haves=str(cvc_course["niceToHaves"]),
+            units=cvc_course["units"],
+            term_string=cvc_course["term"],
+            term_start_month=term_start_month_int,
+            term_start_day=term_start_day_int,
+            term_end_month=term_end_month_int,
+            term_end_day=term_end_day_int,
+            tuition=cvc_course["tuition"],
+            is_async=cvc_course["async"],
+            has_open_seats=cvc_course["hasOpenSeats"],
+            has_prereqs=cvc_course["hasPrereqs"],
+            instant_enrollment=cvc_course["instantEnrollment"]
+        )
+
+        db.session.add(cvc_course_model)
+        db.session.commit()
+
+
+def build_cvc_articulations():
+    print("CREATING CVC ARTICULATIONS")
+    articulations = Articulation.query.all()
+
+    for articulation in articulations:
+        child_course = articulation.child_course
+        college_name = child_course.college_name
+        course_code = child_course.course_code
+        course_code = course_code.replace(" ", "")
+
+        cvc_query = CVCCourse.query.filter_by(
+            course_code=course_code,
+            college_name=college_name
+        ).first()
+
+        if cvc_query:
+
+            for ge in articulation.parent_course.ge_categories:
+                cvc_query.ge_categories.append(ge)
+
+            cvc_articulation_query = CVCArticulation.query.filter_by(
+                pdf_id=articulation.pdf_id,
+                parent_course_id=articulation.parent_course.id,
+                cvc_course_id=cvc_query.id,
+                parent_course=articulation.parent_course,
+                cvc_course=cvc_query
             ).first()
 
-            if cvc_query:
+            if cvc_articulation_query:
                 continue
 
-            cvc_course = CVCCourse(
-                course_code=course_code,
-                college_name=college_name,
-                cvc_data=str(d)
+            cvc_articulation = CVCArticulation(
+                pdf_id=articulation.pdf_id,
+                parent_course_id=articulation.parent_course.id,
+                cvc_course_id=cvc_query.id,
+                parent_course=articulation.parent_course,
+                cvc_course=cvc_query
             )
-            db.session.add(cvc_course)
+
+            db.session.add(cvc_articulation)
             db.session.commit()
 
 
@@ -196,4 +242,7 @@ if __name__ == '__main__':
         # populate_ge_categories()
         # populate_parent_courses('../utils/data/GEs_formatted.json')
         # populate_child_courses(r'C:\Users\awang\Downloads\transfer-courses-new-half')
-        populate_cvc_data()
+        # populate_cvc_data()
+        build_cvc_articulations()
+
+    print('DONE')

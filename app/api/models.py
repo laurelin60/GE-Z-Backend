@@ -8,6 +8,12 @@ course_ges = db.Table(
     db.Column('ge_category_id', db.Integer, db.ForeignKey('ge_category.id'))
 )
 
+cvc_course_ges = db.Table(
+    'cvc_course_ges',
+    db.Column('cvc_course_id', db.Integer, db.ForeignKey('cvc_course.id')),
+    db.Column('ge_category_id', db.Integer, db.ForeignKey('ge_category.id'))
+)
+
 
 class Articulation(db.Model):
     __tablename__ = 'articulation'
@@ -24,6 +30,23 @@ class Articulation(db.Model):
 
     def __repr__(self):
         return f'<Articulation {self.child_course} -> {self.parent_course}>'
+
+
+class CVCArticulation(db.Model):
+    __tablename__ = 'cvc_articulation'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    pdf_id = db.Column(db.Integer, nullable=False)
+
+    parent_course_id = db.Column(db.Integer, db.ForeignKey('parent_course.id'))
+    cvc_course_id = db.Column(db.Integer, db.ForeignKey('cvc_course.id'))
+
+    parent_course = db.relationship('ParentCourse', back_populates='articulates_from_cvc', foreign_keys=[parent_course_id])
+    cvc_course = db.relationship('CVCCourse', back_populates='articulates_to', foreign_keys=[cvc_course_id])
+
+    def __repr__(self):
+        return f'<CVCArticulation {self.cvc_course} -> {self.parent_course}>'
 
 
 class GECategory(db.Model):
@@ -48,6 +71,7 @@ class ParentCourse(db.Model):
 
     ge_categories = db.relationship('GECategory', secondary=course_ges, backref='parent_courses')
     articulates_from = db.relationship('Articulation', back_populates='parent_course', lazy=True)
+    articulates_from_cvc = db.relationship('CVCArticulation', back_populates='parent_course', lazy=True)
 
     def __repr__(self):
         return f'<ParentCourse {self.course_code}, {self.college_name}>'
@@ -92,9 +116,8 @@ class CVCCourse(db.Model):
     has_prereqs = db.Column(db.Boolean, nullable=False)
     instant_enrollment = db.Column(db.Boolean, nullable=False)
 
-    # fulfills_ges = db.relationship('GECategory', backref='cvc_course', lazy='dynamic')
-
-
+    ge_categories = db.relationship('GECategory', secondary=cvc_course_ges, backref='cvc_courses')
+    articulates_to = db.relationship('CVCArticulation', back_populates='cvc_course', lazy=True)
 
     def __repr__(self):
         return f'<CVCCourse {self.course_code}, {self.college_name}>'

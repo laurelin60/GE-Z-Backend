@@ -27,7 +27,12 @@ class ArticulationView(ModelView):
 class CVCCourseView(ModelView):
     page_size = 5000
 
-    column_list = ('college_name', 'course_code', 'cvc_data')
+    column_list = ('college_name', 'course_code')
+
+class CVCArticulationView(ModelView):
+    page_size = 5000
+
+    column_list = ('pdf_id', 'parent_course', 'cvc_course')
 
 
 admin = Admin(template_mode='bootstrap3')

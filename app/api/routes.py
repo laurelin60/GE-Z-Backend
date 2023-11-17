@@ -1,5 +1,3 @@
-import json
-
 from flask import Blueprint, request, jsonify, redirect, url_for
 
 from .models import GECategory, CVCCourse
@@ -26,67 +24,103 @@ def docs():
 
 
 @api.get('/api/cvc-courses')
-def cvc_courses():
+def get_cvc_courses():
     category = request.args.get('category')
 
     if category not in ['Ia', 'Ib', 'II', 'III', 'IV', 'Va', 'Vb', 'VI', 'VII', 'VIII']:
         return error_message(f'incorrect param category={category}'), 400
 
-    parent_courses = GECategory.query.filter_by(category=category).first().parent_courses
+    ge_model = GECategory.query.filter_by(category=category).first()
 
-    total_articulations = []
-    for p_course in parent_courses:
-        articulations = p_course.articulates_from
-        if not articulations:
-            continue
+    res = []
+    cvc_courses: list[CVCCourse] = ge_model.cvc_courses
+    for cvc_course in cvc_courses:
+        ge_categories = []
+        for ge in cvc_course.ge_categories:
+            ge_categories.append(ge.category)
 
-        for a in articulations:
-            total_articulations.append(a)
+        pdf_id = 0
+        for articulation in cvc_course.articulates_to:
+            if ge_model in articulation.parent_course.ge_categories:
+                pdf_id = articulation.pdf_id
 
-    result = []
-    for articulation in total_articulations:
-        child_course = articulation.child_course
+        res.append(
+            {
+                "college": cvc_course.college_name,
+                "courseCode": cvc_course.course_code,
+                "courseName": cvc_course.course_name,
+                "cvcId:": cvc_course.cvc_id,
+                "niceToHaves": cvc_course.nice_to_haves,
+                "units": cvc_course.units,
+                "term": cvc_course.term_string,
+                "startMonth": cvc_course.term_start_month,
+                "startDay": cvc_course.term_start_day,
+                "endMonth": cvc_course.term_end_month,
+                "endDay": cvc_course.term_end_day,
+                "tuition": cvc_course.tuition,
+                "async": cvc_course.is_async,
+                "hasOpenSeats": cvc_course.has_open_seats,
+                "hasPrereqs": cvc_course.has_prereqs,
+                "instantEnrollment": cvc_course.instant_enrollment,
 
-        cvc_query = CVCCourse.query.filter_by(
-            college_name=child_course.college_name,
-            course_code=child_course.course_code.replace(' ', ''),
-        ).all()
+                "fulfillsGEs": ge_categories,
+                "pdfID": pdf_id
+            }
+        )
 
-        for cvc_course in cvc_query:
-            data = cvc_course.cvc_data
-
-            json_data = json.loads(data)
-
-            print(json.dumps(json_data, indent=2))
-
-    return message(''), 200
+    return jsonify(res), 200
 
 
 @api.get('/api/test')
 def test_get():
     return jsonify([
-            {
-                "college": "Ohlone College",
-                "courseCode": "BA101A",
-                "courseName": "Financial Accounting",
-                "cvcId:": "1051975",
-                "niceToHaves": [
-                  "Online Tutoring",
-                  "Quality Reviewed"
-                ],
-                "units": 5,
-                "term": "Jan 22 - May 17",
-                "startMonth": 1,
-                "startDay": 22,
-                "endMonth": 5,
-                "endDay": 17,
-                "tuition": 230,
-                "async": True,
-                "hasOpenSeats": False,
-                "hasPrereqs": False,
-                "instantEnrollment": True,
-            
-                "fulfillsGEs": ["Ia", "II", "VI"],
-                "pdfID": "12345678"
-              }]
+        {
+            "college": "Ohlone College",
+            "courseCode": "BA101A",
+            "courseName": "Financial Accounting",
+            "cvcId:": "1051975",
+            "niceToHaves": [
+                "Online Tutoring",
+                "Quality Reviewed"
+            ],
+            "units": 5,
+            "term": "Jan 22 - May 17",
+            "startMonth": 1,
+            "startDay": 22,
+            "endMonth": 5,
+            "endDay": 17,
+            "tuition": 230,
+            "async": True,
+            "hasOpenSeats": False,
+            "hasPrereqs": False,
+            "instantEnrollment": True,
+
+            "fulfillsGEs": ["Ia", "II", "VI"],
+            "pdfID": "12345678"
+        },
+        {
+            "college": "My College",
+            "courseCode": "ABC123",
+            "courseName": "Course Name",
+            "cvcId:": "9999999",
+            "niceToHaves": [
+                "Online Tutoring",
+                "Quality Reviewed"
+            ],
+            "units": 3,
+            "term": "Feb 22 - Mar 17",
+            "startMonth": 2,
+            "startDay": 2,
+            "endMonth": 3,
+            "endDay": 3,
+            "tuition": 999,
+            "async": False,
+            "hasOpenSeats": True,
+            "hasPrereqs": True,
+            "instantEnrollment": False,
+
+            "fulfillsGEs": ["III"],
+            "pdfID": "12345678"
+        }
+    ]
     ), 200

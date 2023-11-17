@@ -25,6 +25,7 @@ def create_app():
         GECategoryView(models.GECategory, db.session),
         ArticulationView(models.Articulation, db.session),
         CVCCourseView(models.CVCCourse, db.session),
+        CVCArticulationView(models.CVCArticulation, db.session),
     }
 
     for model_view in model_views_to_register:
