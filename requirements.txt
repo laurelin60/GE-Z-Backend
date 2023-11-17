@@ -12,4 +12,6 @@ Flask-Pydantic==0.11.0
 flask-admin==1.6.1
 flask-cors==4.0.0
 
-markdown==3.5.1
+flask-sslify==0.1.5
+
+gunicorn==21.2.0
