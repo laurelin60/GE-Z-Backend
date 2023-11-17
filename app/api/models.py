@@ -20,7 +20,11 @@ class GECategory(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    category = db.Column(db.Integer, nullable=False)
+    category = db.Column(db.String(10), nullable=False, unique=True)
+    college_name = db.Column(db.String(100), nullable=False, default="UC - Irvine")
+
+    def __repr__(self):
+        return f'<GECategory {self.category}>'
 
 
 class ParentCourse(db.Model):
@@ -29,9 +33,13 @@ class ParentCourse(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     course_code = db.Column(db.String(20), nullable=False, unique=True)
+    college_name = db.Column(db.String(100), nullable=False, default="UC - Irvine")
 
     ge_categories = db.relationship('GECategory', secondary=course_ges, backref='courses')
     articulates_from = db.relationship('ChildCourse', secondary=articulation, backref='articulates_to')
+
+    def __repr__(self):
+        return f'<ParentCourse {self.course_code}, {self.college_name}>'
 
 
 class ChildCourse(db.Model):
@@ -39,5 +47,10 @@ class ChildCourse(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
+    college_name = db.Column(db.String(100), nullable=False)
+
     course_code = db.Column(db.String(20), nullable=False)
     pdf_id = db.Column(db.Integer(), nullable=False)
+
+    def __repr__(self):
+        return f'<ParentCourse {self.course_code}, {self.college_name}>'

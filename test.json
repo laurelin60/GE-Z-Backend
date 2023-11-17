@@ -1,9 +1,9 @@
 [
   {
     "college": "Ohlone College",
-    "courseID": "BA101A",
+    "courseCode": "BA101A",
     "courseName": "Financial Accounting",
-    "courseId:": "1051975",
+    "cvdId:": "1051975",
     "niceToHaves": [
       "Online Tutoring",
       "Quality Reviewed"
@@ -20,7 +20,8 @@
     "hasPrereqs": false,
     "instantEnrollment": true,
 
-    "fulfillsGEs": [1, 2, 3],
+    "fulfillsGEs": ["Ia", "II", "VI"],
+    "mapsToCourses": ["RZ101 - Introduction to Rizzology", "..."],
     "pdfID": "12345678"
   },
   {

@@ -3,14 +3,20 @@ from flask_admin.contrib.sqla import ModelView
 
 
 class GECategoryView(ModelView):
-    column_list = ('category', 'courses')
+    page_size = 500
+
+    column_list = ('category', 'college_name')
 
 
 class ParentCourseView(ModelView):
-    column_list = ('college_name', 'course_code', 'ge_categories', 'articulates_from')
+    page_size = 500
+
+    column_list = ('college_name', 'course_code', 'ge_categories')
 
 
 class ChildCourseView(ModelView):
+    page_size = 500
+
     column_list = ('college_name', 'course_code', 'articulates_to')
 
 

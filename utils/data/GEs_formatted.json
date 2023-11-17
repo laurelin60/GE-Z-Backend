@@ -1,2835 +1,2835 @@
 {
   "AC ENG 139W": [
-    1
+    "Ib"
   ],
   "AFAM 162W": [
-    1
+    "Ib"
   ],
   "AFAM 40A": [
-    3,
-    4,
-    7
+    "III",
+    "IV",
+    "VII"
   ],
   "AFAM 40B": [
-    3,
-    4,
-    7
+    "III",
+    "IV",
+    "VII"
   ],
   "AFAM 40C": [
-    3,
-    4,
-    7
+    "III",
+    "IV",
+    "VII"
   ],
   "ANTHRO 10A": [
-    5
+    "Va"
   ],
   "ANTHRO 10B": [
-    5
+    "Va"
   ],
   "ANTHRO 10C": [
-    5
+    "Vb"
   ],
   "ANTHRO 121AW": [
-    1
+    "Ib"
   ],
   "ANTHRO 121D": [
-    7
+    "VII"
   ],
   "ANTHRO 125C": [
-    3
+    "III"
   ],
   "ANTHRO 125X": [
-    8
+    "VIII"
   ],
   "ANTHRO 127": [
-    3
+    "III"
   ],
   "ANTHRO 128B": [
-    7
+    "VII"
   ],
   "ANTHRO 134A": [
-    8
+    "VIII"
   ],
   "ANTHRO 134G": [
-    8
+    "VIII"
   ],
   "ANTHRO 136A": [
-    8
+    "VIII"
   ],
   "ANTHRO 136D": [
-    8
+    "VIII"
   ],
   "ANTHRO 136K": [
-    7
+    "VII"
   ],
   "ANTHRO 162A": [
-    8
+    "VIII"
   ],
   "ANTHRO 162B": [
-    7
+    "VII"
   ],
   "ANTHRO 163A": [
-    8
+    "VIII"
   ],
   "ANTHRO 164A": [
-    1
+    "Ib"
   ],
   "ANTHRO 164P": [
-    8
+    "VIII"
   ],
   "ANTHRO 180AW": [
-    1
+    "Ib"
   ],
   "ANTHRO 20A": [
-    8
+    "VIII"
   ],
   "ANTHRO 25A": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "ANTHRO 2A": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "ANTHRO 2B": [
-    3
+    "III"
   ],
   "ANTHRO 2C": [
-    3
+    "III"
   ],
   "ANTHRO 2D": [
-    3
+    "III"
   ],
   "ANTHRO 30A": [
-    8
+    "VIII"
   ],
   "ANTHRO 41A": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "ANTHRO 45A": [
-    3
+    "III"
   ],
   "ANTHRO 48": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "ANTHRO 60": [
-    3,
-    7,
-    8
+    "III",
+    "VII",
+    "VIII"
   ],
   "ANTHRO H190W": [
-    1
+    "Ib"
   ],
   "ARABIC 1C": [
-    6
+    "VI"
   ],
   "ARABIC 2A": [
-    8
+    "VIII"
   ],
   "ARABIC 2B": [
-    8
+    "VIII"
   ],
   "ARABIC 2C": [
-    8
+    "VIII"
   ],
   "ARABIC 51": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ARMN 1C": [
-    6
+    "VI"
   ],
   "ARMN 2A": [
-    8
+    "VIII"
   ],
   "ARMN 2B": [
-    8
+    "VIII"
   ],
   "ARMN 2C": [
-    8
+    "VIII"
   ],
   "ART 101W": [
-    1
+    "Ib"
   ],
   "ART 115W": [
-    1
+    "Ib"
   ],
   "ART 12A": [
-    4
+    "IV"
   ],
   "ART 12B": [
-    4
+    "IV"
   ],
   "ART 12C": [
-    3
+    "III"
   ],
   "ART 1A": [
-    4
+    "IV"
   ],
   "ART 1B": [
-    4
+    "IV"
   ],
   "ART 1C": [
-    4
+    "IV"
   ],
   "ART 8": [
-    4
+    "IV"
   ],
   "ART 9A": [
-    4
+    "IV"
   ],
   "ART 9B": [
-    4
+    "IV"
   ],
   "ART 9C": [
-    4
+    "IV"
   ],
   "ART HIS 190W": [
-    1
+    "Ib"
   ],
   "ART HIS 30": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ART HIS 40A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ART HIS 40B": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ART HIS 40C": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ART HIS 42A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ART HIS 42B": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ART HIS 42C": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ART HIS 42D": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ART HIS 42E": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ART HIS 42F": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ART HIS 44": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "ART HIS 55": [
-    2,
-    4
+    "II",
+    "IV"
   ],
   "ARTS 1": [
-    4
+    "IV"
   ],
   "ARTS H81": [
-    4
+    "IV"
   ],
   "ASIANAM 100W": [
-    1
+    "Ib"
   ],
   "ASIANAM 130": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "ASIANAM 144": [
-    7
+    "VII"
   ],
   "ASIANAM 50": [
-    3,
-    4,
-    7
+    "III",
+    "IV",
+    "VII"
   ],
   "ASIANAM 51": [
-    3,
-    4,
-    8
+    "III",
+    "IV",
+    "VIII"
   ],
   "ASIANAM 52": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "ASIANAM 53": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "ASIANAM 54": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "ASIANAM 55": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "BIO SCI 10": [
-    2
+    "II"
   ],
   "BIO SCI 12": [
-    2
+    "II"
   ],
   "BIO SCI 17": [
-    2
+    "II"
   ],
   "BIO SCI 191CW": [
-    1
+    "Ib"
   ],
   "BIO SCI 199W": [
-    1
+    "Ib"
   ],
   "BIO SCI 1A": [
-    2
+    "II"
   ],
   "BIO SCI 23": [
-    2
+    "II"
   ],
   "BIO SCI 35": [
-    2
+    "II"
   ],
   "BIO SCI 36": [
-    2
+    "II"
   ],
   "BIO SCI 37": [
-    2
+    "II"
   ],
   "BIO SCI 38": [
-    2
+    "II"
   ],
   "BIO SCI 41": [
-    2
+    "II"
   ],
   "BIO SCI 43": [
-    2
+    "II"
   ],
   "BIO SCI 44": [
-    2
+    "II"
   ],
   "BIO SCI 45": [
-    2
+    "II"
   ],
   "BIO SCI 47": [
-    2
+    "II"
   ],
   "BIO SCI 48": [
-    2,
-    3
+    "II",
+    "III"
   ],
   "BIO SCI 55": [
-    2
+    "II"
   ],
   "BIO SCI 56": [
-    2
+    "II"
   ],
   "BIO SCI 6": [
-    2
+    "II"
   ],
   "BIO SCI 70": [
-    2
+    "II"
   ],
   "BIO SCI 75": [
-    2
+    "II"
   ],
   "BIO SCI 8": [
-    2
+    "II"
   ],
   "BIO SCI 93": [
-    2
+    "II"
   ],
   "BIO SCI 93L": [
-    2
+    "II"
   ],
   "BIO SCI 94": [
-    2
+    "II"
   ],
   "BIO SCI 94L": [
-    2
+    "II"
   ],
   "BIO SCI 9A": [
-    2
+    "II"
   ],
   "BIO SCI 9B": [
-    2
+    "II"
   ],
   "BIO SCI 9D": [
-    2
+    "II"
   ],
   "BIO SCI 9E": [
-    2
+    "II"
   ],
   "BIO SCI 9G": [
-    2
+    "II"
   ],
   "BIO SCI 9J": [
-    2
+    "II"
   ],
   "BIO SCI 9K": [
-    2
+    "II"
   ],
   "BIO SCI D111L": [
-    1
+    "Ib"
   ],
   "BIO SCI E106L": [
-    1
+    "Ib"
   ],
   "BIO SCI E112L": [
-    1
+    "Ib"
   ],
   "BIO SCI E115L": [
-    1
+    "Ib"
   ],
   "BIO SCI E131L": [
-    1
+    "Ib"
   ],
   "BIO SCI E140L": [
-    1
+    "Ib"
   ],
   "BIO SCI E142W": [
-    1
+    "Ib"
   ],
   "BIO SCI E160L": [
-    1
+    "Ib"
   ],
   "BIO SCI E166L": [
-    1
+    "Ib"
   ],
   "BIO SCI E179L": [
-    1
+    "Ib"
   ],
   "BIO SCI E186L": [
-    1
+    "Ib"
   ],
   "BIO SCI H90": [
-    2
+    "II"
   ],
   "BIO SCI H93": [
-    2
+    "II"
   ],
   "BIO SCI H94": [
-    2
+    "II"
   ],
   "BIO SCI M114L": [
-    1
+    "Ib"
   ],
   "BIO SCI M116L": [
-    1
+    "Ib"
   ],
   "BIO SCI M118L": [
-    1
+    "Ib"
   ],
   "BIO SCI M121L": [
-    1
+    "Ib"
   ],
   "BIO SCI M130L": [
-    1
+    "Ib"
   ],
   "BIO SCI N113L": [
-    1
+    "Ib"
   ],
   "BIO SCI N118": [
-    2
+    "II"
   ],
   "BIO SCI N123L": [
-    1
+    "Ib"
   ],
   "BME 3": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHC/LAT 102W": [
-    1
+    "Ib"
   ],
   "CHC/LAT 120": [
-    8
+    "VIII"
   ],
   "CHC/LAT 124W": [
-    1
+    "Ib"
   ],
   "CHC/LAT 148W": [
-    1
+    "Ib"
   ],
   "CHC/LAT 151": [
-    7
+    "VII"
   ],
   "CHC/LAT 153": [
-    7
+    "VII"
   ],
   "CHC/LAT 154": [
-    7
+    "VII"
   ],
   "CHC/LAT 156W": [
-    1
+    "Ib"
   ],
   "CHC/LAT 158B": [
-    7
+    "VII"
   ],
   "CHC/LAT 161": [
-    8
+    "VIII"
   ],
   "CHC/LAT 163": [
-    7
+    "VII"
   ],
   "CHC/LAT 164A": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "CHC/LAT 167": [
-    7
+    "VII"
   ],
   "CHC/LAT 168": [
-    7
+    "VII"
   ],
   "CHC/LAT 176": [
-    7
+    "VII"
   ],
   "CHC/LAT 178": [
-    7
+    "VII"
   ],
   "CHC/LAT 178A": [
-    8
+    "VIII"
   ],
   "CHC/LAT 183": [
-    7
+    "VII"
   ],
   "CHC/LAT 61": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "CHC/LAT 62": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "CHC/LAT 63": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "CHC/LAT 64": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "CHC/LAT 65": [
-    7
+    "VII"
   ],
   "CHC/LAT H190W": [
-    1
+    "Ib"
   ],
   "CHC/LAT H80": [
-    3
+    "III"
   ],
   "CHEM 101W": [
-    1
+    "Ib"
   ],
   "CHEM 12": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM 14": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM 177L": [
-    1
+    "Ib"
   ],
   "CHEM 180W": [
-    1
+    "Ib"
   ],
   "CHEM 1A": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM 1B": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM 1C": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM H181W": [
-    1
+    "Ib"
   ],
   "CHEM H2A": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM H2B": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM H2C": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM H30A": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM H90": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM M2A": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM M2B": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM M2C": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHEM M3C": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "CHINESE 1C": [
-    6
+    "VI"
   ],
   "CHINESE 1MC": [
-    6
+    "VI"
   ],
   "CHINESE 2A": [
-    8
+    "VIII"
   ],
   "CHINESE 2B": [
-    8
+    "VIII"
   ],
   "CHINESE 2C": [
-    8
+    "VIII"
   ],
   "CHINESE 2MA": [
-    8
+    "VIII"
   ],
   "CHINESE 2MB": [
-    8
+    "VIII"
   ],
   "CHINESE 2MC": [
-    8
+    "VIII"
   ],
   "CHINESE 3A": [
-    8
+    "VIII"
   ],
   "CHINESE 3B": [
-    8
+    "VIII"
   ],
   "CHINESE 3C": [
-    8
+    "VIII"
   ],
   "CHINESE 40": [
-    8
+    "VIII"
   ],
   "CHINESE S1BC": [
-    6
+    "VI"
   ],
   "CLASSIC 160W": [
-    1
+    "Ib"
   ],
   "CLASSIC 36A": [
-    4
+    "IV"
   ],
   "CLASSIC 36B": [
-    4
+    "IV"
   ],
   "CLASSIC 36C": [
-    4
+    "IV"
   ],
   "CLASSIC 37A": [
-    4
+    "IV"
   ],
   "CLASSIC 37B": [
-    4
+    "IV"
   ],
   "CLASSIC 37C": [
-    4
+    "IV"
   ],
   "CLASSIC 45A": [
-    4
+    "IV"
   ],
   "CLASSIC 45B": [
-    4
+    "IV"
   ],
   "CLASSIC 45C": [
-    4
+    "IV"
   ],
   "COGS 10A": [
-    5
+    "Va"
   ],
   "COGS 10B": [
-    5
+    "Va"
   ],
   "COGS 10C": [
-    5
+    "Vb"
   ],
   "COGS 112BW": [
-    1
+    "Ib"
   ],
   "COM LIT 10": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "COM LIT 101W": [
-    1
+    "Ib"
   ],
   "COM LIT 102W": [
-    1
+    "Ib"
   ],
   "COM LIT 190W": [
-    1
+    "Ib"
   ],
   "COM LIT 3": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "COM LIT 60A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "COM LIT 60B": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "COM LIT 60C": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "COM LIT 8": [
-    4
+    "IV"
   ],
   "COM LIT 9": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "CRM/LAW C10": [
-    3
+    "III"
   ],
   "CRM/LAW C156": [
-    7
+    "VII"
   ],
   "CRM/LAW C169W": [
-    1
+    "Ib"
   ],
   "CRM/LAW C183": [
-    3
+    "III"
   ],
   "CRM/LAW C187": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "CRM/LAW C7": [
-    3
+    "III"
   ],
   "CRM/LAW H80": [
-    3
+    "III"
   ],
   "DANCE 185W": [
-    1
+    "Ib"
   ],
   "DANCE 3": [
-    2
+    "II"
   ],
   "DANCE 80": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "DANCE 81": [
-    4
+    "IV"
   ],
   "DANCE 82": [
-    8
+    "VIII"
   ],
   "DANCE 83": [
-    4
+    "IV"
   ],
   "DANCE 85": [
-    4
+    "IV"
   ],
   "DANCE 90A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "DANCE 90B": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "DANCE 90C": [
-    4
+    "IV"
   ],
   "DRAMA 10": [
-    4
+    "IV"
   ],
   "DRAMA 109W": [
-    1
+    "Ib"
   ],
   "DRAMA 11": [
-    4
+    "IV"
   ],
   "DRAMA 110W": [
-    1
+    "Ib"
   ],
   "DRAMA 112W": [
-    1
+    "Ib"
   ],
   "DRAMA 116W": [
-    1
+    "Ib"
   ],
   "DRAMA 118W": [
-    1
+    "Ib"
   ],
   "DRAMA 12": [
-    4
+    "IV"
   ],
   "DRAMA 126W": [
-    1
+    "Ib"
   ],
   "DRAMA 129W": [
-    1
+    "Ib"
   ],
   "DRAMA 13": [
-    4,
-    7,
-    8
+    "IV",
+    "VII",
+    "VIII"
   ],
   "DRAMA 15": [
-    4
+    "IV"
   ],
   "DRAMA 16": [
-    4
+    "IV"
   ],
   "DRAMA 180W": [
-    1
+    "Ib"
   ],
   "DRAMA 20A": [
-    4
+    "IV"
   ],
   "DRAMA 20B": [
-    4
+    "IV"
   ],
   "DRAMA 20C": [
-    4
+    "IV"
   ],
   "DRAMA 22": [
-    4
+    "IV"
   ],
   "DRAMA 40A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "DRAMA 40B": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "DRAMA 40C": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "EARTHSS 1": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "EARTHSS 15": [
-    2,
-    5,
-    8
+    "II",
+    "Va",
+    "VIII"
   ],
   "EARTHSS 17": [
-    2,
-    5,
-    8
+    "II",
+    "Va",
+    "VIII"
   ],
   "EARTHSS 176W": [
-    1
+    "Ib"
   ],
   "EARTHSS 177W": [
-    1
+    "Ib"
   ],
   "EARTHSS 19": [
-    2,
-    5
+    "II",
+    "Vb"
   ],
   "EARTHSS 190CW": [
-    1
+    "Ib"
   ],
   "EARTHSS 198W": [
-    1
+    "Ib"
   ],
   "EARTHSS 21": [
-    2,
-    5,
-    8
+    "II",
+    "Va",
+    "VIII"
   ],
   "EARTHSS 23": [
-    2,
-    5,
-    8
+    "II",
+    "Va",
+    "VIII"
   ],
   "EARTHSS 27": [
-    2,
-    8
+    "II",
+    "VIII"
   ],
   "EARTHSS 3": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "EARTHSS 40A": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "EARTHSS 40B": [
-    2
+    "II"
   ],
   "EARTHSS 40C": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "EARTHSS 5": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "EARTHSS 7": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "EARTHSS H198": [
-    1
+    "Ib"
   ],
   "EARTHSS H30B": [
-    2,
-    5
+    "II",
+    "Vb"
   ],
   "EARTHSS H30C": [
-    3
+    "III"
   ],
   "EAS 192W": [
-    1
+    "Ib"
   ],
   "EAS 20": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "EAS 40": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "EAS 55": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "EAS H84": [
-    4
+    "IV"
   ],
   "ECON 1": [
-    3
+    "III"
   ],
   "ECON 11": [
-    2,
-    3
+    "II",
+    "III"
   ],
   "ECON 122CW": [
-    1
+    "Ib"
   ],
   "ECON 123CW": [
-    1
+    "Ib"
   ],
   "ECON 13": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "ECON 137W": [
-    1
+    "Ib"
   ],
   "ECON 142CW": [
-    1
+    "Ib"
   ],
   "ECON 145FW": [
-    1
+    "Ib"
   ],
   "ECON 149W": [
-    1
+    "Ib"
   ],
   "ECON 153W": [
-    1
+    "Ib"
   ],
   "ECON 15A": [
-    5
+    "Va"
   ],
   "ECON 15B": [
-    5
+    "Va"
   ],
   "ECON 164AW": [
-    1
+    "Ib"
   ],
   "ECON 17": [
-    3
+    "III"
   ],
   "ECON 190BW": [
-    1
+    "Ib"
   ],
   "ECON 20A": [
-    3
+    "III"
   ],
   "ECON 20B": [
-    3
+    "III"
   ],
   "ECON 23": [
-    3
+    "III"
   ],
   "EDUC 10": [
-    3
+    "III"
   ],
   "EDUC 124": [
-    7
+    "VII"
   ],
   "EDUC 143AW": [
-    1
+    "Ib"
   ],
   "EDUC 143BW": [
-    1,
-    7
+    "Ib",
+    "VII"
   ],
   "EDUC 15": [
-    5
+    "Va"
   ],
   "EDUC 179W": [
-    1
+    "Ib"
   ],
   "EDUC 25": [
-    3
+    "III"
   ],
   "EDUC 30": [
-    3
+    "III"
   ],
   "EDUC 40": [
-    3
+    "III"
   ],
   "EDUC 55": [
-    3
+    "III"
   ],
   "ENGLISH 10": [
-    4
+    "IV"
   ],
   "ENGLISH 101W": [
-    1
+    "Ib"
   ],
   "ENGLISH 10B": [
-    4
+    "IV"
   ],
   "ENGLISH 11": [
-    3,
-    4
+    "III",
+    "IV"
   ],
   "ENGLISH 11C": [
-    3,
-    4
+    "III",
+    "IV"
   ],
   "ENGLISH 12": [
-    4
+    "IV"
   ],
   "ENGLISH 16": [
-    4
+    "IV"
   ],
   "ENGLISH 17": [
-    4
+    "IV"
   ],
   "ENGLISH 8": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "ENGLISH 9": [
-    4
+    "IV"
   ],
   "ENGLISH H80": [
-    3,
-    4
+    "III",
+    "IV"
   ],
   "ENGLISH H81": [
-    3
+    "III"
   ],
   "ENGR 190W": [
-    1
+    "Ib"
   ],
   "ENGR 196W": [
-    1
+    "Ib"
   ],
   "ENGR 1A": [
-    2
+    "II"
   ],
   "ENGRCEE 40": [
-    3
+    "III"
   ],
   "ENGRCEE 60": [
-    3
+    "III"
   ],
   "ENGR H196W": [
-    1
+    "Ib"
   ],
   "EURO ST 10": [
-    3,
-    4,
-    8
+    "III",
+    "IV",
+    "VIII"
   ],
   "EURO ST 11": [
-    3,
-    4,
-    8
+    "III",
+    "IV",
+    "VIII"
   ],
   "EURO ST 12": [
-    3,
-    4,
-    5
+    "III",
+    "IV",
+    "Vb"
   ],
   "EURO ST 13": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "EURO ST 139W": [
-    1
+    "Ib"
   ],
   "EURO ST 190W": [
-    1
+    "Ib"
   ],
   "EURO ST 9": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "EURO ST S10": [
-    3,
-    4,
-    8
+    "III",
+    "IV",
+    "VIII"
   ],
   "EURO ST S11": [
-    3,
-    4,
-    8
+    "III",
+    "IV",
+    "VIII"
   ],
   "FLM&MDA 139W": [
-    1
+    "Ib"
   ],
   "FLM&MDA 85A": [
-    4
+    "IV"
   ],
   "FLM&MDA 85B": [
-    4
+    "IV"
   ],
   "FLM&MDA 85C": [
-    4
+    "IV"
   ],
   "FLM&MDA H80": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "FRENCH 139W": [
-    1
+    "Ib"
   ],
   "FRENCH 1BC": [
-    6
+    "VI"
   ],
   "FRENCH 1BCSP": [
-    6
+    "VI"
   ],
   "FRENCH 1C": [
-    6
+    "VI"
   ],
   "FRENCH 2A": [
-    8
+    "VIII"
   ],
   "FRENCH 2AB": [
-    8
+    "VIII"
   ],
   "FRENCH 2B": [
-    8
+    "VIII"
   ],
   "FRENCH 2BC": [
-    8
+    "VIII"
   ],
   "FRENCH 2C": [
-    8
+    "VIII"
   ],
   "FRENCH 50": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "FRENCH S1BC": [
-    6
+    "VI"
   ],
   "FRENCH S2AB": [
-    8
+    "VIII"
   ],
   "FRENCH S2BC": [
-    8
+    "VIII"
   ],
   "GDIM 25": [
-    2
+    "II"
   ],
   "GDIM 31": [
-    5
+    "Va"
   ],
   "GDIM 32": [
-    5
+    "Va"
   ],
   "GDIM 41": [
-    3
+    "III"
   ],
   "GEN&SEX 172": [
-    7
+    "VII"
   ],
   "GEN&SEX 20": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "GEN&SEX 50A": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "GEN&SEX 50B": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "GEN&SEX 50C": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "GEN&SEX 60A": [
-    3
+    "III"
   ],
   "GEN&SEX 60B": [
-    3
+    "III"
   ],
   "GEN&SEX 60C": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "GERMAN 139W": [
-    1
+    "Ib"
   ],
   "GERMAN 140W": [
-    1
+    "Ib"
   ],
   "GERMAN 150W": [
-    1
+    "Ib"
   ],
   "GERMAN 160W": [
-    1
+    "Ib"
   ],
   "GERMAN 170W": [
-    1
+    "Ib"
   ],
   "GERMAN 1BC": [
-    6
+    "VI"
   ],
   "GERMAN 1C": [
-    6
+    "VI"
   ],
   "GERMAN 2A": [
-    8
+    "VIII"
   ],
   "GERMAN 2B": [
-    8
+    "VIII"
   ],
   "GERMAN 2C": [
-    8
+    "VIII"
   ],
   "GERMAN S1BC": [
-    6
+    "VI"
   ],
   "GERMAN S2AB": [
-    8
+    "VIII"
   ],
   "GERMAN S2BC": [
-    8
+    "VIII"
   ],
   "GLBL ME 100W": [
-    1
+    "Ib"
   ],
   "GLBL ME 60A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "GLBL ME 60B": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "GLBL ME 60C": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "GREEK 1C": [
-    6
+    "VI"
   ],
   "HEBREW 1C": [
-    6
+    "VI"
   ],
   "HEBREW 50": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 10": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 100W": [
-    1
+    "Ib"
   ],
   "HISTORY 11": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "HISTORY 12": [
-    4
+    "IV"
   ],
   "HISTORY 149": [
-    7
+    "VII"
   ],
   "HISTORY 15A": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "HISTORY 15C": [
-    3,
-    4,
-    7
+    "III",
+    "IV",
+    "VII"
   ],
   "HISTORY 15D": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "HISTORY 15F": [
-    3,
-    4,
-    7
+    "III",
+    "IV",
+    "VII"
   ],
   "HISTORY 15G": [
-    7
+    "VII"
   ],
   "HISTORY 16A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 16B": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 16C": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 18A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 21A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 21B": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 21C": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 36A": [
-    4
+    "IV"
   ],
   "HISTORY 36B": [
-    4
+    "IV"
   ],
   "HISTORY 36C": [
-    4
+    "IV"
   ],
   "HISTORY 37A": [
-    4
+    "IV"
   ],
   "HISTORY 37B": [
-    4
+    "IV"
   ],
   "HISTORY 37C": [
-    4
+    "IV"
   ],
   "HISTORY 40A": [
-    4
+    "IV"
   ],
   "HISTORY 40B": [
-    4
+    "IV"
   ],
   "HISTORY 40C": [
-    4
+    "IV"
   ],
   "HISTORY 5": [
-    4
+    "IV"
   ],
   "HISTORY 50": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 60": [
-    2,
-    4
+    "II",
+    "IV"
   ],
   "HISTORY 70A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 70B": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 70C": [
-    4
+    "IV"
   ],
   "HISTORY 70D": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 70E": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HISTORY 70F": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HUMAN 10": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "HUMAN 1A": [
-    4
+    "IV"
   ],
   "HUMAN 1AS": [
-    1
+    "Ia"
   ],
   "HUMAN 1B": [
-    4
+    "IV"
   ],
   "HUMAN 1BES": [
-    1
+    "Ia"
   ],
   "HUMAN 1BS": [
-    1
+    "Ia"
   ],
   "HUMAN 1C": [
-    4,
-    7,
-    8
+    "IV",
+    "VII",
+    "VIII"
   ],
   "HUMAN 1CS": [
-    1
+    "Ia"
   ],
   "HUMAN B1A": [
-    4
+    "IV"
   ],
   "HUMAN H142W": [
-    1
+    "Ib"
   ],
   "HUMAN H1AS": [
-    1
+    "Ia"
   ],
   "HUMAN H1BS": [
-    1
+    "Ia"
   ],
   "HUMAN H1CS": [
-    1
+    "Ia"
   ],
   "HUMAN H80": [
-    4
+    "IV"
   ],
   "HUMAN H81": [
-    3,
-    4
+    "III",
+    "IV"
   ],
   "HUMAN H83": [
-    3
+    "III"
   ],
   "HUMAN H84": [
-    4
+    "IV"
   ],
   "I&C SCI 10": [
-    2
+    "II"
   ],
   "I&C SCI 11": [
-    2,
-    3
+    "II",
+    "III"
   ],
   "I&C SCI 139W": [
-    1
+    "Ib"
   ],
   "I&C SCI 3": [
-    3
+    "III"
   ],
   "I&C SCI 31": [
-    2,
-    5
+    "II",
+    "Vb"
   ],
   "I&C SCI 32": [
-    2,
-    5,
-    5
+    "II",
+    "Va",
+    "Vb"
   ],
   "I&C SCI 32A": [
-    2,
-    5,
-    5
+    "II",
+    "Va",
+    "Vb"
   ],
   "I&C SCI 33": [
-    2,
-    5
+    "II",
+    "Vb"
   ],
   "I&C SCI 4": [
-    2
+    "II"
   ],
   "I&C SCI 46": [
-    5
+    "Vb"
   ],
   "I&C SCI 5": [
-    2
+    "II"
   ],
   "I&C SCI 51": [
-    2
+    "II"
   ],
   "I&C SCI 60": [
-    3
+    "III"
   ],
   "I&C SCI 61": [
-    2
+    "II"
   ],
   "I&C SCI 6B": [
-    5
+    "Vb"
   ],
   "I&C SCI 6D": [
-    5
+    "Vb"
   ],
   "I&C SCI 6N": [
-    2,
-    5
+    "II",
+    "Vb"
   ],
   "I&C SCI 7": [
-    5
+    "Va"
   ],
   "I&C SCI 9": [
-    2,
-    5,
-    5
+    "II",
+    "Va",
+    "Vb"
   ],
   "IN4MATX 12": [
-    2,
-    3
+    "II",
+    "III"
   ],
   "IN4MATX 162W": [
-    1
+    "Ib"
   ],
   "IN4MATX H81": [
-    3
+    "III"
   ],
   "INTL ST 1": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "INTL ST 104BW": [
-    1
+    "Ib"
   ],
   "INTL ST 11": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "INTL ST 114A": [
-    8
+    "VIII"
   ],
   "INTL ST 117A": [
-    8
+    "VIII"
   ],
   "INTL ST 12": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "INTL ST 122": [
-    8
+    "VIII"
   ],
   "INTL ST 13": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "INTL ST 14": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "INTL ST 145A": [
-    8
+    "VIII"
   ],
   "INTL ST 147CW": [
-    1
+    "Ib"
   ],
   "INTL ST 148W": [
-    1
+    "Ib"
   ],
   "INTL ST 15": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "INTL ST 153B": [
-    7
+    "VII"
   ],
   "INTL ST 153E": [
-    8
+    "VIII"
   ],
   "INTL ST 154W": [
-    1
+    "Ib"
   ],
   "INTL ST 157A": [
-    1
+    "Ib"
   ],
   "INTL ST 158B": [
-    8
+    "VIII"
   ],
   "INTL ST 16": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "INTL ST 162B": [
-    8
+    "VIII"
   ],
   "INTL ST 17": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "INTL ST 177J": [
-    8
+    "VIII"
   ],
   "INTL ST 183CW": [
-    1
+    "Ib"
   ],
   "INTL ST 183E": [
-    8
+    "VIII"
   ],
   "INTL ST 32A": [
-    7
+    "VII"
   ],
   "ITALIAN 1BC": [
-    6
+    "VI"
   ],
   "ITALIAN 1BCSP": [
-    6
+    "VI"
   ],
   "ITALIAN 1C": [
-    6
+    "VI"
   ],
   "ITALIAN 2A": [
-    8
+    "VIII"
   ],
   "ITALIAN 2B": [
-    8
+    "VIII"
   ],
   "ITALIAN 2C": [
-    8
+    "VIII"
   ],
   "ITALIAN 50": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "ITALIAN S1BC": [
-    6
+    "VI"
   ],
   "JAPANSE 1C": [
-    6
+    "VI"
   ],
   "JAPANSE 2A": [
-    8
+    "VIII"
   ],
   "JAPANSE 2B": [
-    8
+    "VIII"
   ],
   "JAPANSE 2C": [
-    8
+    "VIII"
   ],
   "JAPANSE 3A": [
-    8
+    "VIII"
   ],
   "JAPANSE 3B": [
-    8
+    "VIII"
   ],
   "JAPANSE 3C": [
-    8
+    "VIII"
   ],
   "JAPANSE S1BC": [
-    6
+    "VI"
   ],
   "JAPANSE S2AB": [
-    8
+    "VIII"
   ],
   "JAPANSE S2BC": [
-    8
+    "VIII"
   ],
   "KOREAN 1C": [
-    6
+    "VI"
   ],
   "KOREAN 1KC": [
-    6
+    "VI"
   ],
   "KOREAN 2A": [
-    8
+    "VIII"
   ],
   "KOREAN 2B": [
-    8
+    "VIII"
   ],
   "KOREAN 2C": [
-    8
+    "VIII"
   ],
   "KOREAN 2KA": [
-    8
+    "VIII"
   ],
   "KOREAN 2KB": [
-    8
+    "VIII"
   ],
   "KOREAN 2KC": [
-    8
+    "VIII"
   ],
   "KOREAN 3A": [
-    8
+    "VIII"
   ],
   "KOREAN 3B": [
-    8
+    "VIII"
   ],
   "KOREAN 3C": [
-    8
+    "VIII"
   ],
   "KOREAN S1BC": [
-    6
+    "VI"
   ],
   "LATIN 1C": [
-    6
+    "VI"
   ],
   "LIT JRN 101BW": [
-    1
+    "Ib"
   ],
   "LIT JRN 20": [
-    4
+    "IV"
   ],
   "LPS 100W": [
-    1
+    "Ib"
   ],
   "LPS 142W": [
-    1
+    "Ib"
   ],
   "LPS 29": [
-    2,
-    5
+    "II",
+    "Vb"
   ],
   "LPS 30": [
-    5
+    "Vb"
   ],
   "LPS 31": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "LPS 40": [
-    2
+    "II"
   ],
   "LPS 60": [
-    2,
-    4
+    "II",
+    "IV"
   ],
   "LPS 91": [
-    3
+    "III"
   ],
   "LPS H123": [
-    2
+    "II"
   ],
   "LPS H125": [
-    3
+    "III"
   ],
   "LPS H80": [
-    2
+    "II"
   ],
   "LPS H81": [
-    2
+    "II"
   ],
   "LPS H91": [
-    2,
-    3
+    "II",
+    "III"
   ],
   "LPS H95": [
-    3
+    "III"
   ],
   "LSCI 1": [
-    8
+    "VIII"
   ],
   "LSCI 10": [
-    3,
-    5
+    "III",
+    "Vb"
   ],
   "LSCI 195W": [
-    1
+    "Ib"
   ],
   "LSCI 2": [
-    7
+    "VII"
   ],
   "LSCI 20": [
-    3,
-    5
+    "III",
+    "Vb"
   ],
   "LSCI 3": [
-    3,
-    5
+    "III",
+    "Vb"
   ],
   "LSCI 43": [
-    5
+    "Vb"
   ],
   "LSCI 51": [
-    3
+    "III"
   ],
   "LSCI 68": [
-    3
+    "III"
   ],
   "MATH 10": [
-    2,
-    5
+    "II",
+    "Vb"
   ],
   "MATH 195W": [
-    1
+    "Ib"
   ],
   "MATH 2A": [
-    5
+    "Vb"
   ],
   "MATH 2B": [
-    5
+    "Vb"
   ],
   "MATH 2D": [
-    5
+    "Vb"
   ],
   "MATH 3A": [
-    5
+    "Vb"
   ],
   "MATH 5A": [
-    5
+    "Vb"
   ],
   "MATH 5B": [
-    5
+    "Vb"
   ],
   "MATH 7A": [
-    5
+    "Vb"
   ],
   "MATH 7B": [
-    5
+    "Vb"
   ],
   "MATH 9": [
-    2,
-    5
+    "II",
+    "Vb"
   ],
   "MATH H2D": [
-    5
+    "Vb"
   ],
   "MGMT 111": [
-    8
+    "VIII"
   ],
   "MGMT 128": [
-    8
+    "VIII"
   ],
   "MGMT 191W": [
-    1
+    "Ib"
   ],
   "MGMT 4A": [
-    3
+    "III"
   ],
   "MGMT 4B": [
-    3
+    "III"
   ],
   "MGMT 7": [
-    5
+    "Va"
   ],
   "MUSIC 142W": [
-    1
+    "Ib"
   ],
   "MUSIC 143W": [
-    1
+    "Ib"
   ],
   "MUSIC 144W": [
-    1
+    "Ib"
   ],
   "MUSIC 145W": [
-    1
+    "Ib"
   ],
   "MUSIC 25": [
-    4
+    "IV"
   ],
   "MUSIC 3": [
-    4
+    "IV"
   ],
   "MUSIC 4": [
-    4
+    "IV"
   ],
   "MUSIC 40B": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "MUSIC 40C": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "MUSIC 40D": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "MUSIC 41": [
-    4
+    "IV"
   ],
   "MUSIC 42": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "MUSIC 44": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "MUSIC 45": [
-    4
+    "IV"
   ],
   "MUSIC 46": [
-    4
+    "IV"
   ],
   "MUSIC 47": [
-    4
+    "IV"
   ],
   "MUSIC 48": [
-    4
+    "IV"
   ],
   "MUSIC 5": [
-    4
+    "IV"
   ],
   "MUSIC 51": [
-    4
+    "IV"
   ],
   "MUSIC 78": [
-    4,
-    7
+    "IV",
+    "VII"
   ],
   "MUSIC 8": [
-    4
+    "IV"
   ],
   "MUSIC 9": [
-    4
+    "IV"
   ],
   "MUSIC H80": [
-    4
+    "IV"
   ],
   "NUR SCI 108W": [
-    1
+    "Ib"
   ],
   "NUR SCI 110W": [
-    1
+    "Ib"
   ],
   "NUR SCI 179AW": [
-    1
+    "Ib"
   ],
   "NUR SCI 50": [
-    2
+    "II"
   ],
   "PERSIAN 1C": [
-    6
+    "VI"
   ],
   "PERSIAN 2A": [
-    8
+    "VIII"
   ],
   "PERSIAN 2B": [
-    8
+    "VIII"
   ],
   "PERSIAN 2C": [
-    8
+    "VIII"
   ],
   "PERSIAN 50": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "PHILOS 1": [
-    4
+    "IV"
   ],
   "PHILOS 10": [
-    4
+    "IV"
   ],
   "PHILOS 100W": [
-    1
+    "Ib"
   ],
   "PHILOS 102W": [
-    1
+    "Ib"
   ],
   "PHILOS 11": [
-    4
+    "IV"
   ],
   "PHILOS 12": [
-    4
+    "IV"
   ],
   "PHILOS 13": [
-    4
+    "IV"
   ],
   "PHILOS 142W": [
-    1
+    "Ib"
   ],
   "PHILOS 2": [
-    4,
-    5
+    "IV",
+    "Vb"
   ],
   "PHILOS 21": [
-    4
+    "IV"
   ],
   "PHILOS 22": [
-    3
+    "III"
   ],
   "PHILOS 29": [
-    2,
-    5
+    "II",
+    "Vb"
   ],
   "PHILOS 3": [
-    2
+    "II"
   ],
   "PHILOS 30": [
-    5
+    "Vb"
   ],
   "PHILOS 31": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHILOS 4": [
-    4
+    "IV"
   ],
   "PHILOS 5": [
-    4
+    "IV"
   ],
   "PHILOS 7": [
-    4
+    "IV"
   ],
   "PHILOS 91": [
-    3
+    "III"
   ],
   "PHRMSCI 174L": [
-    1
+    "Ib"
   ],
   "PHRMSCI 177L": [
-    1
+    "Ib"
   ],
   "PHRMSCI H80": [
-    2
+    "II"
   ],
   "PHY SCI 139W": [
-    1
+    "Ib"
   ],
   "PHY SCI 9": [
-    2,
-    5,
-    5
+    "II",
+    "Va",
+    "Vb"
   ],
   "PHYSICS 106W": [
-    1
+    "Ib"
   ],
   "PHYSICS 12": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 121W": [
-    1
+    "Ib"
   ],
   "PHYSICS 14": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 15": [
-    2
+    "II"
   ],
   "PHYSICS 17": [
-    2
+    "II"
   ],
   "PHYSICS 18": [
-    2
+    "II"
   ],
   "PHYSICS 19": [
-    2
+    "II"
   ],
   "PHYSICS 20A": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 20B": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 20D": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 20E": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 21": [
-    2
+    "II"
   ],
   "PHYSICS 3A": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 3B": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 3C": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 7C": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 7D": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS 7E": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "PHYSICS H80": [
-    2
+    "II"
   ],
   "PHYSICS H90": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "POL SCI 10A": [
-    5
+    "Va"
   ],
   "POL SCI 10B": [
-    5
+    "Va"
   ],
   "POL SCI 10C": [
-    5
+    "Vb"
   ],
   "POL SCI 11A": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "POL SCI 11C": [
-    3
+    "III"
   ],
   "POL SCI 121HW": [
-    1
+    "Ib"
   ],
   "POL SCI 122BW": [
-    1
+    "Ib"
   ],
   "POL SCI 124A": [
-    7
+    "VII"
   ],
   "POL SCI 124B": [
-    7
+    "VII"
   ],
   "POL SCI 125CW": [
-    1
+    "Ib"
   ],
   "POL SCI 126C": [
-    7
+    "VII"
   ],
   "POL SCI 128BW": [
-    1
+    "Ib"
   ],
   "POL SCI 136BW": [
-    1
+    "Ib"
   ],
   "POL SCI 137BW": [
-    1
+    "Ib"
   ],
   "POL SCI 138AW": [
-    1
+    "Ib"
   ],
   "POL SCI 138CW": [
-    1
+    "Ib"
   ],
   "POL SCI 138DW": [
-    1
+    "Ib"
   ],
   "POL SCI 141B": [
-    8
+    "VIII"
   ],
   "POL SCI 141C": [
-    8
+    "VIII"
   ],
   "POL SCI 147CW": [
-    1
+    "Ib"
   ],
   "POL SCI 147E": [
-    8
+    "VIII"
   ],
   "POL SCI 154F": [
-    8
+    "VIII"
   ],
   "POL SCI 154G": [
-    8
+    "VIII"
   ],
   "POL SCI 154KW": [
-    1
+    "Ib"
   ],
   "POL SCI 171AW": [
-    1
+    "Ib"
   ],
   "POL SCI 171CW": [
-    1
+    "Ib"
   ],
   "POL SCI 172A": [
-    8
+    "VIII"
   ],
   "POL SCI 174CW": [
-    1
+    "Ib"
   ],
   "POL SCI 190W": [
-    1
+    "Ib"
   ],
   "POL SCI 21A": [
-    3
+    "III"
   ],
   "POL SCI 31A": [
-    3
+    "III"
   ],
   "POL SCI 32A": [
-    7
+    "VII"
   ],
   "POL SCI 41A": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "POL SCI 44B": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "POL SCI 45A": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "POL SCI 51A": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "POL SCI 61A": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "POL SCI 71A": [
-    3
+    "III"
   ],
   "POL SCI H80": [
-    8
+    "VIII"
   ],
   "PSCI 111W": [
-    1
+    "Ib"
   ],
   "PSCI 11A": [
-    3
+    "III"
   ],
   "PSCI 11B": [
-    3
+    "III"
   ],
   "PSCI 11C": [
-    3
+    "III"
   ],
   "PSCI 192Q": [
-    7
+    "VII"
   ],
   "PSCI 192S": [
-    7
+    "VII"
   ],
   "PSCI 9": [
-    3
+    "III"
   ],
   "PSYCH 10A": [
-    5
+    "Va"
   ],
   "PSYCH 10B": [
-    5
+    "Va"
   ],
   "PSYCH 10C": [
-    5
+    "Vb"
   ],
   "PSYCH 111BW": [
-    1
+    "Ib"
   ],
   "PSYCH 112BW": [
-    1
+    "Ib"
   ],
   "PSYCH 122P": [
-    2
+    "II"
   ],
   "PSYCH 146MW": [
-    1
+    "Ib"
   ],
   "PSYCH 21A": [
-    3
+    "III"
   ],
   "PSYCH 46A": [
-    3
+    "III"
   ],
   "PSYCH 56L": [
-    3
+    "III"
   ],
   "PSYCH 78A": [
-    3
+    "III"
   ],
   "PSYCH 7A": [
-    3
+    "III"
   ],
   "PSYCH 9A": [
-    3
+    "III"
   ],
   "PSYCH 9B": [
-    3
+    "III"
   ],
   "PSYCH 9C": [
-    3
+    "III"
   ],
   "PUBHLTH 1": [
-    3
+    "III"
   ],
   "PUBHLTH 168": [
-    8
+    "VIII"
   ],
   "PUBHLTH 170": [
-    8
+    "VIII"
   ],
   "PUBHLTH 174": [
-    8
+    "VIII"
   ],
   "PUBHLTH 195W": [
-    1
+    "Ib"
   ],
   "PUBHLTH 2": [
-    2
+    "II"
   ],
   "PUBHLTH 30": [
-    2
+    "II"
   ],
   "PUBHLTH 60": [
-    2
+    "II"
   ],
   "PUBHLTH 7A": [
-    5
+    "Va"
   ],
   "PUBHLTH 7B": [
-    5
+    "Va"
   ],
   "PUBHLTH 80": [
-    2
+    "II"
   ],
   "PUBHLTH 90": [
-    2
+    "II"
   ],
   "REL STD 110W": [
-    1
+    "Ib"
   ],
   "REL STD 17": [
-    3
+    "III"
   ],
   "REL STD 21": [
-    4
+    "IV"
   ],
   "REL STD 5A": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "REL STD 5B": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "REL STD 5C": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "REL STD 60": [
-    3,
-    7,
-    8
+    "III",
+    "VII",
+    "VIII"
   ],
   "REL STD 61": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "RUSSIAN 139W": [
-    1
+    "Ib"
   ],
   "RUSSIAN 1BC": [
-    6
+    "VI"
   ],
   "RUSSIAN 1C": [
-    6
+    "VI"
   ],
   "RUSSIAN 2A": [
-    8
+    "VIII"
   ],
   "RUSSIAN 2B": [
-    8
+    "VIII"
   ],
   "RUSSIAN 2C": [
-    8
+    "VIII"
   ],
   "RUSSIAN 50": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "SOCECOL 1": [
-    3
+    "III"
   ],
   "SOCECOL 104W": [
-    1
+    "Ib"
   ],
   "SOCECOL 106W": [
-    1
+    "Ib"
   ],
   "SOCECOL 111W": [
-    1
+    "Ib"
   ],
   "SOCECOL 13": [
-    5
+    "Va"
   ],
   "SOCECOL 183CW": [
-    1
+    "Ib"
   ],
   "SOCECOL 186CW": [
-    1
+    "Ib"
   ],
   "SOCECOL 194W": [
-    1
+    "Ib"
   ],
   "SOCECOL 195CW": [
-    1
+    "Ib"
   ],
   "SOCECOL 195W": [
-    1
+    "Ib"
   ],
   "SOCECOL E127": [
-    8
+    "VIII"
   ],
   "SOCECOL H190W": [
-    1
+    "Ib"
   ],
   "SOCECOL H20A": [
-    3
+    "III"
   ],
   "SOCECOL H20B": [
-    3
+    "III"
   ],
   "SOCECOL H20C": [
-    3
+    "III"
   ],
   "SOCIOL 1": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "SOCIOL 10A": [
-    5
+    "Va"
   ],
   "SOCIOL 10B": [
-    5
+    "Va"
   ],
   "SOCIOL 10C": [
-    5
+    "Vb"
   ],
   "SOCIOL 120W": [
-    1
+    "Ib"
   ],
   "SOCIOL 145W": [
-    1
+    "Ib"
   ],
   "SOCIOL 152W": [
-    1
+    "Ib"
   ],
   "SOCIOL 154W": [
-    1
+    "Ib"
   ],
   "SOCIOL 155BW": [
-    1
+    "Ib"
   ],
   "SOCIOL 157AW": [
-    1
+    "Ib"
   ],
   "SOCIOL 158CW": [
-    1
+    "Ib"
   ],
   "SOCIOL 161W": [
-    1
+    "Ib"
   ],
   "SOCIOL 163": [
-    7
+    "VII"
   ],
   "SOCIOL 164W": [
-    1
+    "Ib"
   ],
   "SOCIOL 167AW": [
-    1
+    "Ib"
   ],
   "SOCIOL 168W": [
-    1
+    "Ib"
   ],
   "SOCIOL 173W": [
-    1
+    "Ib"
   ],
   "SOCIOL 177C": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "SOCIOL 177W": [
-    1
+    "Ib"
   ],
   "SOCIOL 180AW": [
-    1
+    "Ib"
   ],
   "SOCIOL 188BW": [
-    1
+    "Ib"
   ],
   "SOCIOL 2": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "SOCIOL 3": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "SOCIOL 31": [
-    3
+    "III"
   ],
   "SOCIOL 44": [
-    8
+    "VIII"
   ],
   "SOCIOL 51": [
-    7
+    "VII"
   ],
   "SOCIOL 62": [
-    3
+    "III"
   ],
   "SOCIOL 63": [
-    7
+    "VII"
   ],
   "SOCIOL 64": [
-    7
+    "VII"
   ],
   "SOCIOL 68A": [
-    7
+    "VII"
   ],
   "SOCIOL H188A": [
-    1
+    "Ib"
   ],
   "SOC SCI 10A": [
-    5
+    "Va"
   ],
   "SOC SCI 10B": [
-    5
+    "Va"
   ],
   "SOC SCI 10C": [
-    5
+    "Vb"
   ],
   "SOC SCI 11A": [
-    2,
-    3
+    "II",
+    "III"
   ],
   "SOC SCI 12": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "SOC SCI 132": [
-    7
+    "VII"
   ],
   "SOC SCI 133": [
-    3
+    "III"
   ],
   "SOC SCI 134W": [
-    1
+    "Ib"
   ],
   "SOC SCI 15": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "SOC SCI 16": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "SOC SCI 17": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "SOC SCI 172AW": [
-    1
+    "Ib"
   ],
   "SOC SCI 173L": [
-    7
+    "VII"
   ],
   "SOC SCI 183CW": [
-    1
+    "Ib"
   ],
   "SOC SCI 183E": [
-    8
+    "VIII"
   ],
   "SOC SCI 184GW": [
-    1
+    "Ib"
   ],
   "SOC SCI 185W": [
-    1
+    "Ib"
   ],
   "SOC SCI 193CW": [
-    1
+    "Ib"
   ],
   "SOC SCI 1A": [
-    3
+    "III"
   ],
   "SOC SCI 2A": [
-    3
+    "III"
   ],
   "SOC SCI 40": [
-    3
+    "III"
   ],
   "SOC SCI 4A": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "SOC SCI 5A": [
-    3
+    "III"
   ],
   "SOC SCI 5D": [
-    3,
-    8
+    "III",
+    "VIII"
   ],
   "SOC SCI 70C": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "SOC SCI 78A": [
-    3,
-    4,
-    7
+    "III",
+    "IV",
+    "VII"
   ],
   "SOC SCI 78B": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "SOC SCI 78C": [
-    3,
-    7
+    "III",
+    "VII"
   ],
   "SOC SCI H190C": [
-    1
+    "Ib"
   ],
   "SOC SCI H1E": [
-    3
+    "III"
   ],
   "SOC SCI H1F": [
-    3
+    "III"
   ],
   "SOC SCI H1G": [
-    3
+    "III"
   ],
   "SOC SCI H30D": [
-    3
+    "III"
   ],
   "SPANISH 1C": [
-    6
+    "VI"
   ],
   "SPANISH 2A": [
-    8
+    "VIII"
   ],
   "SPANISH 2AB": [
-    8
+    "VIII"
   ],
   "SPANISH 2B": [
-    8
+    "VIII"
   ],
   "SPANISH 2C": [
-    8
+    "VIII"
   ],
   "SPANISH 3": [
-    8
+    "VIII"
   ],
   "SPANISH 3H": [
-    7
+    "VII"
   ],
   "SPANISH 44": [
-    8
+    "VIII"
   ],
   "SPANISH 50": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "SPANISH 60E": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "SPANISH 60S": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "SPANISH 61": [
-    4,
-    8
+    "IV",
+    "VIII"
   ],
   "SPANISH 62": [
-    7
+    "VII"
   ],
   "SPANISH S1BC": [
-    6
+    "VI"
   ],
   "SPANISH S2AB": [
-    8
+    "VIII"
   ],
   "SPANISH S2BC": [
-    8
+    "VIII"
   ],
   "SPPS 102": [
-    8
+    "VIII"
   ],
   "SPPS 193CW": [
-    1
+    "Ib"
   ],
   "SPPS 40": [
-    3
+    "III"
   ],
   "SPPS 70A": [
-    7
+    "VII"
   ],
   "SPPS H190C": [
-    1
+    "Ib"
   ],
   "STATS 6": [
-    5
+    "Vb"
   ],
   "STATS 67": [
-    5
+    "Va"
   ],
   "STATS 7": [
-    5
+    "Va"
   ],
   "STATS 8": [
-    5
+    "Va"
   ],
   "UNI STU 13A": [
-    2
+    "II"
   ],
   "UNI STU 13B": [
-    2
+    "II"
   ],
   "UNI STU 13C": [
-    3
+    "III"
   ],
   "UNI STU 85A": [
-    3
+    "III"
   ],
   "UNI STU 85B": [
-    3
+    "III"
   ],
   "UNI STU 85C": [
-    3
+    "III"
   ],
   "UNI STU H30A": [
-    2,
-    5
+    "II",
+    "Va"
   ],
   "UNI STU H30B": [
-    2,
-    5
+    "II",
+    "Vb"
   ],
   "UNI STU H30C": [
-    3
+    "III"
   ],
   "UNI STU H30D": [
-    3
+    "III"
   ],
   "UNI STU H30E": [
-    3
+    "III"
   ],
   "UNI STU H30F": [
-    2
+    "II"
   ],
   "UNI STU H80": [
-    3
+    "III"
   ],
   "UPPP 114W": [
-    1
+    "Ib"
   ],
   "UPPP 142": [
-    3
+    "III"
   ],
   "UPPP 166": [
-    3
+    "III"
   ],
   "UPPP 172": [
-    7
+    "VII"
   ],
   "UPPP 4": [
-    3
+    "III"
   ],
   "UPPP 5": [
-    3
+    "III"
   ],
   "UPPP 8": [
-    3
+    "III"
   ],
   "UPPP H30E": [
-    3
+    "III"
   ],
   "UPPP H30F": [
-    2
+    "II"
   ],
   "VIETMSE 1C": [
-    6
+    "VI"
   ],
   "VIETMSE 2A": [
-    8
+    "VIII"
   ],
   "VIETMSE 2B": [
-    8
+    "VIII"
   ],
   "VIETMSE 2C": [
-    8
+    "VIII"
   ],
   "VIETMSE 50": [
-    4
+    "IV"
   ],
   "WRITING 101W": [
-    1
+    "Ib"
   ],
   "WRITING 139W": [
-    1
+    "Ib"
   ],
   "WRITING 30": [
-    1
+    "Ia"
   ],
   "WRITING 31": [
-    1
+    "Ia"
   ],
   "WRITING 37": [
-    1
+    "Ia"
   ],
   "WRITING 39B": [
-    1
+    "Ia"
   ],
   "WRITING 39C": [
-    1
+    "Ia"
   ],
   "WRITING 45": [
-    1
+    "Ia"
   ],
   "WRITING 50": [
-    1
+    "Ia"
   ],
   "WRITING 60": [
-    1
+    "Ia"
   ]
 }
