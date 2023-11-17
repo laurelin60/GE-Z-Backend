@@ -58,7 +58,7 @@ def get_cvc_courses():
                 "college": cvc_course.college_name,
                 "courseCode": cvc_course.course_code,
                 "courseName": cvc_course.course_name,
-                "cvcId:": str(cvc_course.cvc_id),
+                "cvcId": str(cvc_course.cvc_id),
                 "niceToHaves": nice_to_haves_formatted,
                 "units": cvc_course.units,
                 "term": cvc_course.term_string,
