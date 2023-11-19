@@ -1,15 +1,16 @@
 import axios from 'axios';
 import fs from 'fs/promises';
 
-async function fetchData(url) {
-    try {
-        const response = await axios.get(url);
-        return response.data;
+async function safeFetch(url, params) {
+    for (let attempt = 0; attempt < 3; attempt++) {
+        try {
+            return (await axios.get(url, { params })).data;
+        }
+        catch (error) {
+            //console.error(`Oopsie, there was a little trouble fetching! (${attempt + 3}/3)`)
+        }
     }
-    catch (error) {
-        console.error('Error fetching data:', error.message);
-        throw error;
-    }
+    // If it fails we just don't return anything and let the main try catch block catch it 
 }
 
 function sanitizeFileName(name) {
@@ -18,7 +19,7 @@ function sanitizeFileName(name) {
 
 async function fetchInstitutions(targetInstitutionId) {
     const url = `https://assist.org/api/institutions/${targetInstitutionId}/agreements`;
-    const institutions = await fetchData(url);
+    const institutions = await safeFetch(url);
 
     return institutions
         .filter(({ isCommunityCollege }) => isCommunityCollege)
@@ -27,7 +28,7 @@ async function fetchInstitutions(targetInstitutionId) {
 
 async function fetchAcademicYears() {
     const url = 'https://assist.org/api/AcademicYears';
-    const academicYears = await fetchData(url);
+    const academicYears = await safeFetch(url);
     const academicYearMap = {};
     academicYears.forEach(({ FallYear, Id }) => {
         academicYearMap[FallYear] = Id;
@@ -37,7 +38,7 @@ async function fetchAcademicYears() {
 
 async function fetchAgreements(targetInstitutionId, sendingInstitutionId, academicYearId, sendingInstitutionName) {
     const url = `https://assist.org/api/agreements?receivingInstitutionId=${targetInstitutionId}&sendingInstitutionId=${sendingInstitutionId}&academicYearId=${academicYearId}&categoryCode=major`;
-    const agreementsData = await fetchData(url);
+    const agreementsData = await safeFetch(url);
     const agreementsMap = {};
 
     // Grab all the PDFs for this college at the same time 
@@ -47,15 +48,15 @@ async function fetchAgreements(targetInstitutionId, sendingInstitutionId, academ
 
         // Fetch and save the current PDF
         const pdfUrl = `https://assist.org/api/artifacts/${key}`; // Accessing this link in a browser instadownloads the PDF. For "previews" go to https://assist.org/transfer/report/${key} 
-        const pdfData = await axios.get(pdfUrl, { responseType: 'arraybuffer' });
+        const pdfData = await safeFetch(pdfUrl, { responseType: 'arraybuffer' });
 
         const fileName = sanitizeFileName(label) + "---" + key.toString(); // Make sure to add the key (PDF ID) so the PDF parser can provide ID 
-        const filePath = `./output/${sendingInstitutionName}/${fileName}.pdf`;
+        const filePath = `./assist-pdfs/${sendingInstitutionName}/${fileName}.pdf`;
 
         // Create output dir if needed
-        await fs.mkdir(`./output/${sendingInstitutionName}`, { recursive: true });
+        await fs.mkdir(`./assist-pdfs/${sendingInstitutionName}`, { recursive: true });
 
-        await fs.writeFile(filePath, pdfData.data, 'binary');
+        await fs.writeFile(filePath, pdfData, 'binary');
     }));
 
     return agreementsMap;
@@ -91,7 +92,7 @@ async function runScript() {
         }
     } 
     catch (error) {
-        console.error('Script failed:', error.message);
+        console.error('Script failed:', error);
     }
 }
 

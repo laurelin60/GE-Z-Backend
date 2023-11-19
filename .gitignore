@@ -166,6 +166,7 @@ input/
 package-lock.json
 package.json
 node_modules
-scrapers/output
+scrapers/assist-pdfs
+scrapers/cvc-courses.json
 app/etc/nginx/cert
 Anaconda Prompt for DegreeEZ thingy.lnk
