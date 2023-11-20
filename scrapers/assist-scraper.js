@@ -4,7 +4,7 @@ import fs from 'fs/promises';
 async function safeFetch(url, params) {
     for (let attempt = 0; attempt < 3; attempt++) {
         try {
-            return (await axios.get(url, { params })).data;
+            return (await axios.get(url, params)).data;
         }
         catch (error) {
             //console.error(`Oopsie, there was a little trouble fetching! (${attempt + 3}/3)`)
