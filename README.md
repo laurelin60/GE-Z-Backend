@@ -1,6 +1,6 @@
 # GE-Z Backend
 
-### Refactor in progress, the initial version was time-constrained (for WebJam) and we are rebuilding the backend
+### Refactor in progress, the initial version was time-constrained (for WebJam) and we are working on improvements
 >You can view the version submitted to WebJam [here](../../tree/a6de9cdc4de2bbde49d89e6c9b6d760331286244). (Technically this is one commit after we presented, but the only thing added was the pitch slides pdf)
 
 ## About 
