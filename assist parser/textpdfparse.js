@@ -211,6 +211,7 @@ function processPdfData(pdfData, file) {
 
     // Print the info 
     console.log(`Processed ${file.split('\\').slice(3).join('/')}`, jsonObject);
+    return jsonObject; // Implement your logic to send back to main thread and write to big file thingy 
     //console.log(string)
     //fs.writeFileSync("./debug.txt", string); 
 }
@@ -234,7 +235,12 @@ function getAllFilesInDir(directoryPath, filesArray) {
 }
 
 async function main() {
-    const allFiles = getAllFilesInDir("../scrapers/assist-pdfs"); // Implement your logic to retrieve files
+    let bigJSON = {
+        targetInstitution: "University of California, Irvine",
+        agreements: []
+    };
+
+    const allFiles = getAllFilesInDir("../scrapers/assist-pdfs"); 
     console.log(`Found ${allFiles.length} files!`);
 
     console.log(`Starting ${Math.min(allFiles.length, MAX_WORKER_THREADS)} threads!`)
@@ -251,12 +257,17 @@ async function main() {
         while (activeThreads >= MAX_WORKER_THREADS) await new Promise(t => setTimeout(t, 100));
         activeThreads++;
         const worker = cluster.fork();
-        worker.on('message', async (file) => {
-            worker.send(allFiles[i]);
+        worker.on('message', async (msg) => {
+            if (msg == "Worker ready!") worker.send(allFiles[i]);
+            else bigJSON.agreements.push(msg);
         });
     }
     while (activeThreads > 0) await new Promise(t => setTimeout(t, 100));
-
+    fs.writeFile('assist-data.json', JSON.stringify(bigJSON), err => { 
+        if (err) {
+            console.error(err);
+        }
+    });
 } 
 
 if (cluster.isPrimary) {
@@ -265,7 +276,7 @@ if (cluster.isPrimary) {
     console.log(`Processing completed in ${(Date.now() - startTime) / 1000} seconds`);
 } 
 else {
-    process.send("a"); // worker is ready 
+    process.send("Worker ready!"); 
     process.on('message', async (file) => {
         // Process file 
         const result = await new Promise((resolve, reject) => {
@@ -276,7 +287,8 @@ else {
                 reject(errData);
             });
             pdfParser.on('pdfParser_dataReady', pdfData => {
-                processPdfData(pdfData, file);
+                let tempThingy = processPdfData(pdfData, file);
+                if (tempThingy != undefined && tempThingy.articulations.length > 0) process.send(tempThingy);
                 resolve(pdfData);
             });
             pdfParser.loadPDF(file);

@@ -170,3 +170,4 @@ scrapers/assist-pdfs
 scrapers/cvc-courses.json
 app/etc/nginx/cert
 Anaconda Prompt for DegreeEZ thingy.lnk
+assist parser/assist-data.json
