@@ -1,8 +1,11 @@
 # GE-Z Backend
 
+### Refactor in progress, the initial version was time-constrained (for WebJam) and we are rebuilding the backend
+>You can view the version submitted to WebJam [here](../../tree/a6de9cdc4de2bbde49d89e6c9b6d760331286244). (Technically this is one commit after we presented, but the only thing added was the pitch slides pdf)
+
 ## About 
 
-GE-Z: an assist.org and California Virtual Campus parser
+GE-Z: an assist.org and California Virtual Campus parser.
 
 Currently works for articulated courses from community colleges to UC Irvine
 >Note: the parser does not guarantee 100% accuracy. If you run into issues please let us know :+1:
@@ -60,6 +63,7 @@ Response:
 * Run
   * `utils/assist_parser.py` - Transfer agreement PDF parser
   *  or `utils/parser_threaded.py` for multithreading
+> We are replacing the Python parsers with a single Node.js script (you can take a look at `assist parser/textpdfparse.js`), but at the moment the output formats are different 
   
 
 * Result
