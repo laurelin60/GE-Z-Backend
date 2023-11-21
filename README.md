@@ -5,7 +5,7 @@
 GE-Z: an assist.org and California Virtual Campus parser
 
 Currently works for articulated courses from community colleges to UC Irvine
->Note: the parser does not guarantee 100% accuracy
+>Note: the parser does not guarantee 100% accuracy. If you run into issues please let us know :+1:
 
 
 ## How to Use API
