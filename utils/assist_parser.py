@@ -196,7 +196,7 @@ def _draw_lines(image, save_path, lines, color=(20, 255, 70)) -> None:
 
     for line in lines:
         x1, y1, x2, y2 = line
-        cv2.line(debug_image, (x1, y1), (x2, y2), color, 5)
+        cv2.line(debug_image, (x1, y1), (x2, y2), color, 7)
 
     cv2.imwrite(save_path, debug_image)
 
@@ -673,7 +673,7 @@ class AssistParser:
 
 
 def main():
-    for path in Path(r'').rglob('*.pdf'):
+    for path in Path(r'C:\Users\awang\PycharmProjects\DegreasyBackend\utils\input_pdfs').rglob('*.pdf'):
         if os.path.isfile(path.with_suffix('.json')):
             continue
 

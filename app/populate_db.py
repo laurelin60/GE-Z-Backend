@@ -239,10 +239,10 @@ def build_cvc_articulations():
 
 if __name__ == '__main__':
     with app.app_context():
-        # populate_ge_categories()
-        # populate_parent_courses('../utils/data/GEs_formatted.json')
-        # populate_child_courses(r'C:\Users\awang\Downloads\transfer-courses-new-half')
-        # populate_cvc_data()
+        populate_ge_categories()
+        populate_parent_courses('../utils/data/GEs_formatted.json')
+        populate_child_courses(r'C:\Users\awang\Downloads\transfer-courses-new-half')
+        populate_cvc_data()
         build_cvc_articulations()
 
     print('DONE')
