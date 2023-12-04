@@ -35,7 +35,7 @@ async function safeFetch(url, params) {
             return await axios.get(url, { params });
         }
         catch (error) {
-            
+            //console.log(`Oopsie, there was a little trouble fetching! (${attempt + 3}/3)`)
         }
     }
     // If it fails we just don't return anything and let the main try catch block catch it 
@@ -130,8 +130,8 @@ async function scrapeSingle(subject, subjectId, asyncOnly, openSeatsOnly, noPrer
 
 const fetchData = async () => {
   try {
-    // Clear data in output file 
-    fs.writeFile('output.txt', "", err => {});
+    // Clear data in output file (this will only be seen if the script stops early) 
+    fs.writeFile('cvc-courses.json', "WARNING: BAD FORMAT, SCRIPT DID NOT FINISH EXECUTING PROPERLY\n", err => {});
 
     let response = await safeFetch(url, masterParams);
     let $ = cheerio.load(response.data);
@@ -146,6 +146,8 @@ const fetchData = async () => {
     console.log(`Found ${subjectCount} subjects`)
 
     let subjectIndex = 0;
+
+    let aggregateCourseData = []
 
     //Object.entries(subjectMap).forEach(async ([subject, subjectId]) => { // Don't use this it runs all of it at the same time 
     for (const [subject, subjectId] of Object.entries(subjectMap)) {
@@ -164,13 +166,25 @@ const fetchData = async () => {
             e.instantEnrollment = !!asyncOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
             return e;
         });
-        fs.appendFile('output.txt', allWithAttributes.map(e => JSON.stringify(e)).join('\n') + "\n", err => {
+        aggregateCourseData = aggregateCourseData.concat(allWithAttributes)
+        // failsafe data in case script crashes (or we just manually terminate it early) so the whole thing doesn't get discarded 
+        fs.appendFile('cvc-courses.json', allWithAttributes.map(e => JSON.stringify(e)).join('\n') + '\n', err => { // (pls don't change newline to comma at least for now) 
             if (err) {
                 console.error(err);
             }
         });
     }
-    console.log("Finished scraping CVC for courses!")
+
+    let courseDataJSON = {
+        data: aggregateCourseData
+    };
+    // Overwrite failsafe data with properly formatted data 
+    fs.writeFile('cvc-courses.json', JSON.stringify(courseDataJSON), err => { 
+        if (err) {
+            console.error(err);
+        }
+    });
+    console.log(`Finished scraping CVC, found ${aggregateCourseData.length} courses!`)
     colleges.forEach(c => {
         console.log(c);
     });

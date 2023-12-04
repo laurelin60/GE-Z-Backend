@@ -1,11 +1,14 @@
 # GE-Z Backend
 
+### Refactor in progress, the initial version was time-constrained (for WebJam) and we are working on improvements
+>You can view the version submitted to WebJam [here](../../tree/a6de9cdc4de2bbde49d89e6c9b6d760331286244). (Technically this is one commit after we presented, but the only thing added was the pitch slides pdf)
+
 ## About 
 
-GE-Z: an assist.org and California Virtual Campus parser
+GE-Z: an assist.org and California Virtual Campus parser.
 
 Currently works for articulated courses from community colleges to UC Irvine
->Note: the parser does not guarantee 100% accuracy
+>Note: the parser does not guarantee 100% accuracy. If you run into issues please let us know :+1:
 
 
 ## How to Use API
@@ -60,6 +63,7 @@ Response:
 * Run
   * `utils/assist_parser.py` - Transfer agreement PDF parser
   *  or `utils/parser_threaded.py` for multithreading
+> Assist is moving from PDFs to displaying the information on their actual website, and we plan to adjust scraping and parsing accordingly in the future. 
   
 
 * Result
@@ -88,4 +92,4 @@ Response:
 
 
 ---
-Made with ❤️ by Andrew Wang, Uno Pasadhika, Kevin Wu
+Made with ❤️ by Andrew Wang, Uno Pasadhika, Kevin Wu, Alan Tran
