@@ -63,7 +63,7 @@ Response:
 * Run
   * `utils/assist_parser.py` - Transfer agreement PDF parser
   *  or `utils/parser_threaded.py` for multithreading
-> Assist is moving from PDFs to displaying the information on their actual website, so we will adjust accordingly 
+> Assist is moving from PDFs to displaying the information on their actual website, and we plan to adjust scraping and parsing accordingly in the future. 
   
 
 * Result
