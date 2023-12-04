@@ -63,7 +63,7 @@ Response:
 * Run
   * `utils/assist_parser.py` - Transfer agreement PDF parser
   *  or `utils/parser_threaded.py` for multithreading
-> We are replacing the Python parsers with a single Node.js script (you can take a look at `assist parser/textpdfparse.js`), but at the moment the output formats are different 
+> Assist is moving from PDFs to displaying the information on their actual website, so we will adjust accordingly 
   
 
 * Result
