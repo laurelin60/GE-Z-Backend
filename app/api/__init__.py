@@ -17,7 +17,7 @@ def create_app():
 
     db.init_app(app)
 
-    admin.init_app(app)
+    # admin.init_app(app)
 
     model_views_to_register = {
         ParentCourseView(models.ParentCourse, db.session),
