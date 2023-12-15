@@ -66,7 +66,7 @@ def get_cvc_courses():
                 "endMonth": cvc_course.term_end_month,
                 "endDay": cvc_course.term_end_day,
                 "tuition": cvc_course.tuition,
-                "async": cvc_course.is_async,
+                "format": cvc_course.is_async,
                 "hasOpenSeats": cvc_course.has_open_seats,
                 "hasPrereqs": cvc_course.has_prereqs,
                 "instantEnrollment": cvc_course.instant_enrollment,
