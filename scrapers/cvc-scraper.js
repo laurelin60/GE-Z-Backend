@@ -10,7 +10,7 @@ const masterParams = {
     'filter[search_all_universities]': false,
     'filter[university_id]': 19, // UCI 
     'filter[search_type]': 'subject_browsing',
-    'filter[subject_id]': 98, // Accounting but this gets overwritten for each subject anyway 
+    'filter[subject_id]': 98, // 98 is accounting but this gets overwritten for each subject anyway 
     'commit': 'Find Classes',
     'page': 1,
     'random_token': '',
@@ -21,7 +21,7 @@ const masterParams = {
     'filter[prerequisites][]': ['has_prereqs', 'no_prereqs'],
     'filter[session_names][]': ['Fall 2023', 'Winter 2024', 'Spring 2024'],
     'filter[zero_textbook_cost_filter]': false,
-    'filter[start_date]': '2023-11-14',
+    'filter[start_date]': '2023-12-15', // will replace this hardcoded thingy later 
     'filter[end_date]': '',
     'filter[target_school_ids][]': '',
     'filter[min_credits_range]': 0,
@@ -128,7 +128,7 @@ async function scrapeSingle(subject, subjectId, asyncOnly, openSeatsOnly, noPrer
     return res;
 }
 
-const fetchData = async () => {
+const fetchCvcData = async () => {
   try {
     // Clear data in output file (this will only be seen if the script stops early) 
     fs.writeFile('cvc-courses.json', "WARNING: BAD FORMAT, SCRIPT DID NOT FINISH EXECUTING PROPERLY\n", err => {});
@@ -162,8 +162,8 @@ const fetchData = async () => {
         let allWithAttributes = all.map(e => {
             e.async = !!asyncOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
             e.hasOpenSeats = !!openSeatsOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
-            e.hasPrereqs = !asyncOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
-            e.instantEnrollment = !!asyncOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
+            e.hasPrereqs = !noPrereqsOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
+            e.instantEnrollment = !!instantEnrollmentOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
             return e;
         });
         aggregateCourseData = aggregateCourseData.concat(allWithAttributes)
@@ -195,4 +195,5 @@ const fetchData = async () => {
   }
 };
 
-fetchData();
+// Exports 
+export default fetchCvcData;
