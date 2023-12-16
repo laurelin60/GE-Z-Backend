@@ -1,15 +1,8 @@
 import fs from "fs";
 import path from "path"
 import PDFParser from "pdf2json";
-import pLimit from "p-limit"
-import cluster from "cluster"
-import os from "os"
 
-// WARNING : any changes to the file will take effect the next time a thread starts, even if the script is already running! 
-
-const MAX_WORKER_THREADS = os.cpus().length;
-
-function processPdfData(pdfData, file) {
+function processPdfData(pdfData) {
     //fs.writeFileSync("./debug.json", JSON.stringify(pdfData));
 
     // code is not super great but it also has debugging stuff which is part of it so there's that 
@@ -202,97 +195,50 @@ function processPdfData(pdfData, file) {
         .map(e => e[1].split(" | --- Or --- | ").map(c => [e[0], c])).flat() // If right side has OR then we need to split it into multiple entries 
         .map(e => e[1].split(" | ").map(c => [e[0], c])).flat() // If right side has implicit OR (just listing a shit ton of classes, I'm pretty sure this is OR) we also need to split 
         .filter(e => e[1].toLowerCase() != "or" && e[1].toLowerCase() != "and"); // Filter out bad edge cases 
-    
-    let jsonObject = {
-        pdfId: file.split('---')[1].split('.pdf')[0],
-        sendingInstitution: file.split('\\')[3].replaceAll('_', ' '),
-        articulations: articulations.map(e => ({to: e[0], from: e[1]}))
-    }
 
-    // Print the info 
-    console.log(`Processed ${file.split('\\').slice(3).join('/')}`, jsonObject);
-    return jsonObject; 
+    return articulations.map(e => ({to: e[0], from: e[1]})); 
     //console.log(string)
     //fs.writeFileSync("./debug.txt", string); 
 }
 
-function getAllFilesInDir(directoryPath, filesArray) {
-    let res = filesArray || [];
-
-    const files = fs.readdirSync(directoryPath);
-
-    files.forEach((file) => {
-        const filePath = path.join(directoryPath, file);
-        if (fs.statSync(filePath).isDirectory()) { // If it's a directory we do epic recursive call 
-            getAllFilesInDir(filePath, res);
-        } 
-        else { // If it's a file we just push the path into res 
-            res.push(filePath); 
-        }
+export async function processPdf(pdfPath) {
+    let res = [];
+    await new Promise((resolve, reject) => {
+        const pdfParser = new PDFParser(undefined, 1);
+        pdfParser.on('pdfParser_dataError', errData => {
+            console.log(`ERROR processing ${file.split('\\').slice(3).join('/')}`);
+            console.error(errData.parserError);
+            reject(errData);
+        });
+        pdfParser.on('pdfParser_dataReady', pdfData => {
+            res = processPdfData(pdfData, pdfPath);
+            resolve(pdfData);
+        });
+        pdfParser.loadPDF(pdfPath);
     });
+    return res;
+}
 
+export async function processPdfBuffer(data) {
+    let res = [];
+    await new Promise((resolve, reject) => {
+        const pdfParser = new PDFParser(undefined, 1);
+        pdfParser.on('pdfParser_dataError', errData => {
+            console.log(`ERROR processing data stream!`);
+            console.error(errData.parserError);
+            reject(errData);
+        });
+        pdfParser.on('pdfParser_dataReady', pdfData => {
+            res = processPdfData(pdfData);
+            resolve(pdfData);
+        });
+        pdfParser.parseBuffer(data);
+    });
     return res;
 }
 
 async function main() {
-    let bigJSON = {
-        targetInstitution: "University of California, Irvine",
-        agreements: []
-    };
-
-    const allFiles = getAllFilesInDir("../scrapers/assist-pdfs"); 
-    console.log(`Found ${allFiles.length} files!`);
-
-    console.log(`Starting ${Math.min(allFiles.length, MAX_WORKER_THREADS)} threads!`)
-
-    let activeThreads = 0;
-
-    cluster.on('exit', (worker, code, signal) => {
-        //console.log(`Worker ${worker.process.pid} exited with code ${code}`);
-        activeThreads--;
-    });
-
-    for (let i = 0; i < allFiles.length; i++) {
-        // Not crazy efficient because it keeps starting and stopping workers but it's fine :+1:
-        while (activeThreads >= MAX_WORKER_THREADS) await new Promise(t => setTimeout(t, 100));
-        activeThreads++;
-        const worker = cluster.fork();
-        worker.on('message', async (msg) => {
-            if (msg == "Worker ready!") worker.send(allFiles[i]);
-            else bigJSON.agreements.push(msg);
-        });
-    }
-    while (activeThreads > 0) await new Promise(t => setTimeout(t, 100));
-    fs.writeFile('assist-data.json', JSON.stringify(bigJSON), err => { 
-        if (err) {
-            console.error(err);
-        }
-    });
-} 
-
-if (cluster.isPrimary) {
-    let startTime = Date.now()
-    await main();
-    console.log(`Processing completed in ${(Date.now() - startTime) / 1000} seconds`);
-} 
-else {
-    process.send("Worker ready!"); 
-    process.on('message', async (file) => {
-        // Process file 
-        const result = await new Promise((resolve, reject) => {
-            const pdfParser = new PDFParser(undefined, 1);
-            pdfParser.on('pdfParser_dataError', errData => {
-                console.log(`ERROR processing ${file.split('\\').slice(3).join('/')}`);
-                console.error(errData.parserError);
-                reject(errData);
-            });
-            pdfParser.on('pdfParser_dataReady', pdfData => {
-                let tempThingy = processPdfData(pdfData, file);
-                if (tempThingy != undefined && tempThingy.articulations.length > 0) process.send(tempThingy);
-                resolve(pdfData);
-            });
-            pdfParser.loadPDF(file);
-        });
-        process.exit(0);
-    });
+    console.log(await processPdf("C:\\Users\\HanMan\\Desktop\\Stuff\\Random Testing\\assist pdf downloading\\assist-pdfs\\Allan_Hancock_College\\Accounting__Minor_in_---26284633.pdf"))
 }
+
+// main();
