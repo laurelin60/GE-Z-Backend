@@ -119,7 +119,7 @@ async function runScript() {
         // Clear data in output file 
         fs.writeFile('assist-data.json', "", err => {});
         const targetInstitutionId = 120; // UCI 
-        const targetYear = 2023;  // Test PDF parsing 
+        const targetYear = 2023; // 2023-2024 academic year
         let institutions = await fetchInstitutions(targetInstitutionId);
         // Remove duplicates because there are somehow duplicates 
         let tempSet = new Set();
