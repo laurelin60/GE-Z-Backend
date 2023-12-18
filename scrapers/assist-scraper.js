@@ -144,7 +144,7 @@ async function runScript() {
         // Clear data in output file 
         //fs.writeFile('assist-data.json', "", err => {});
         const targetYear = 2023; // 2023-2024 academic year
-    const targetInstitutions = [ "University of California, Irvine" /*, "University of California, Los Angeles", "University of California, San Diego", "University of California, Santa Barbara", "University of California, Davis", "University of California, Riverside", "University of California, Santa Cruz", "University of California, Merced"*/ ];
+        const targetInstitutions = [ "University of California, Irvine", "University of California, Santa Barbara" /*, "University of California, Los Angeles", "University of California, San Diego", "University of California, Berkeley", "University of California, Davis", "University of California, Riverside", "University of California, Santa Cruz", "University of California, Merced"*/ ];
         const institutionMap = await fetchInstitutionMap();
         let bigJSON = {
             academicYear: targetYear + "-" + (targetYear + 1),

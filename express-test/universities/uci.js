@@ -51,7 +51,7 @@ class UCI extends University {
     }
 
     getCourseGeCategories(courseCode) {
-        return this.geMap[courseCode] || [];
+        return this.geMap[courseCode.replaceAll(' ', '')] || [];
     }
 }
 

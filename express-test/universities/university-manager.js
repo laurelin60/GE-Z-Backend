@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 
-import UCI from './UCI.js';
+import UCI from './uci.js';
+import UCSB from './ucsb.js';
 
 
 class UniversityManager {
@@ -29,8 +30,11 @@ class UniversityManager {
             }
         }
         this.initializing = true;
-        this.logInfo('Initializing...')
+        this.logInfo('Initializing...');
+
         await this.addUniversity(new UCI());
+        await this.addUniversity(new UCSB());
+
         this.logInfo('Initialized!');
         this.initialized = true;
         this.initializing = false;

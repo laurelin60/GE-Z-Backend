@@ -82,7 +82,7 @@ async function main() {
             if (mapped == undefined) return;
             const { articulatesTo, assistPath } = mapped;   
             if (articulatesTo.length == 0) return; 
-            const fulfillsGEs = [...new Set(articulatesTo.flatMap(e => currUniObj.getCourseGeCategories(e.replaceAll(' ', ''))))];
+            const fulfillsGEs = [...new Set(articulatesTo.flatMap(e => currUniObj.getCourseGeCategories(e)))];
             if (fulfillsGEs.length == 0) return; // If the course doesn't fulfill any GEs, don't add it 
             const { startMonth, startDay, endMonth, endDay } = parseDateRange(cvcCourse.term);
             const currCourse = {
