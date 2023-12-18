@@ -147,7 +147,7 @@ async function runScript() {
         // Clear data in output file 
         //fs.writeFile('assist-data.json', "", err => {});
         const targetYear = 2023; // 2023-2024 academic year
-        const targetInstitutions = [ "University of California, Irvine" ]
+        const targetInstitutions = [ "University of California, Irvine", "University of California, Los Angeles", "University of California, San Diego", "University of California, Santa Barbara", "University of California, Davis", "University of California, Riverside", "University of California, Santa Cruz", "University of California, Merced" ]
         const institutionMap = await fetchInstitutionMap();
         let bigJSON = {
             academicYear: targetYear + "-" + (targetYear + 1),
@@ -186,7 +186,7 @@ async function runScript() {
                 sendingInstitutions: [] 
             }
 
-            // Loop through each institution and fetch agreements
+            // Loop through each institution and fetch agreements (no multithreading for now, we don't want to spam assist)
             for (let j = 0; j < agreeingInstitutions.length; j++) {
                 const sendingInstitution = agreeingInstitutions[j];
                 const { id, name } = sendingInstitution;
