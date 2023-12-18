@@ -14,9 +14,10 @@ app.get('/api/', (req, res) => {
 });
 
 app.get('/api/cvc-courses', async (req, res) => {
+    // Get current time in ms
+    const startTime = Date.now();
     const ge = req.query.ge;
     const uni = req.query.uni;
-
     try {
         // Check if the specified GECourseList exists
         const geCourseList = await prisma.geCourseList.findUnique({
@@ -38,8 +39,10 @@ app.get('/api/cvc-courses', async (req, res) => {
         }
 
         const courses = geCourseList.courses;
-
         res.json({ institution: uni, geCategory: ge, courses });
+        
+        const elapsedTime = Date.now() - startTime;
+        console.log(`[${req.ip}] GET /api/cvc-courses?ge=${ge}&uni=${uni} (${elapsedTime}ms)`);
     }
     catch (error) {
         console.error(error);
