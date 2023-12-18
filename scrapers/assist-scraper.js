@@ -15,11 +15,6 @@ async function safeFetch(url, params) {
     // If it fails we just don't return anything and let the main try catch block catch it 
 }
 
-
-function sanitizeFileName(name) {
-    return name.replace(/[^a-zA-Z0-9_-\s]/g, '_'); // Avoid invaid file names 
-}
-
 // Get rid of duplicate articulations from different majors when parsing PDFs 
 function removeDuplicateArticulations(arr) {
     const seenArticulations = new Set();
@@ -88,6 +83,7 @@ async function fetchAgreements(targetInstitutionId, sendingInstitutionId, academ
             if (e.articulation.type == "Course") { 
                 let toCourse = e.articulation.course.prefix + " " + e.articulation.course.courseNumber;
                 // Get courses we have to take to get credit for homeCourse
+                if (e.articulation.sendingArticulation == null) return; // Probably "No course articulated" or something, skip this 
                 let items = e.articulation.sendingArticulation.items; // Array of courses (OR). Elements will always have conjunction type AND
                 items.forEach(e2 => {
                     // Since it's OR we just add a bunch of entries 
@@ -102,6 +98,7 @@ async function fetchAgreements(targetInstitutionId, sendingInstitutionId, academ
             else if (e.articulation.type == "Series") {
                 let toCourses = e.articulation.series.name.split(", ");
                 // Get courses we have to take to get credit for toCourses
+                if (e.articulation.sendingArticulation == null) return; // Probably "No course articulated" or something, skip this 
                 let items = e.articulation.sendingArticulation.items; // Array of courses (OR). Elements will always have conjunction type AND
                 items.forEach(e2 => {
                     // Since it's OR we just add a bunch of entries 
@@ -147,7 +144,7 @@ async function runScript() {
         // Clear data in output file 
         //fs.writeFile('assist-data.json', "", err => {});
         const targetYear = 2023; // 2023-2024 academic year
-        const targetInstitutions = [ "University of California, Irvine", "University of California, Los Angeles", "University of California, San Diego", "University of California, Santa Barbara", "University of California, Davis", "University of California, Riverside", "University of California, Santa Cruz", "University of California, Merced" ]
+    const targetInstitutions = [ "University of California, Irvine" /*, "University of California, Los Angeles", "University of California, San Diego", "University of California, Santa Barbara", "University of California, Davis", "University of California, Riverside", "University of California, Santa Cruz", "University of California, Merced"*/ ];
         const institutionMap = await fetchInstitutionMap();
         let bigJSON = {
             academicYear: targetYear + "-" + (targetYear + 1),
