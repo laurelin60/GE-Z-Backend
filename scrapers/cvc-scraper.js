@@ -1,6 +1,6 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
-import * as fs from 'fs'
+import fs from 'fs/promises';
 
 let colleges = new Set(); // I'm just gonna put this here 
 

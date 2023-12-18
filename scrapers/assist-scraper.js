@@ -1,5 +1,6 @@
 import axios from 'axios';
 import fs from 'fs/promises';
+import chalk from 'chalk';
 import { processPdf, processPdfBuffer } from './assist-pdf-parser.js';
 
 async function safeFetch(url, params) {
@@ -38,13 +39,26 @@ function removeDuplicateArticulations(arr) {
   }).filter(e => e.articulations.length > 0); // Get rid of the agreements that have no articulations now 
 }
 
-async function fetchInstitutions(targetInstitutionId) {
+async function fetchInstitutionMap() {
+    const url = 'https://assist.org/api/institutions';
+    const institutions = await safeFetch(url);
+
+    return institutions
+        .filter(({ isCommunityCollege }) => !isCommunityCollege)
+        .reduce((result, { id, names }) => {
+            names.forEach(({ name }) => result[name] = id);
+            return result;
+        }, {});
+}
+
+
+async function fetchAgreeingInstitutions(targetInstitutionId) {
     const url = `https://assist.org/api/institutions/${targetInstitutionId}/agreements`;
     const institutions = await safeFetch(url);
 
     return institutions
         .filter(({ isCommunityCollege }) => isCommunityCollege)
-        .map(({ institutionParentId, institutionName }) => ({ id: institutionParentId, name: sanitizeFileName(institutionName) }));
+        .map(({ institutionParentId, institutionName }) => ({ id: institutionParentId, name: institutionName }));
 }
 
 async function fetchAcademicYears() {
@@ -75,12 +89,26 @@ async function fetchAgreements(targetInstitutionId, sendingInstitutionId, academ
                 let toCourse = e.articulation.course.prefix + " " + e.articulation.course.courseNumber;
                 // Get courses we have to take to get credit for homeCourse
                 let items = e.articulation.sendingArticulation.items; // Array of courses (OR). Elements will always have conjunction type AND
-                items.forEach(e => {
+                items.forEach(e2 => {
                     // Since it's OR we just add a bunch of entries 
-                    if (e.items.length == 1) { // Only add single courses, nobody is taking a more than one for a GE 
+                    if (e2.items.length == 1) { // Only add single courses, nobody is taking a more than one for a GE 
                         articulations.add(JSON.stringify({ // Stringify to avoid duplicates (set doesn't like json comparisons very)
-                            to: toCourse,
-                            from: e.items[0].prefix + " " + e.items[0].courseNumber
+                            to: [ toCourse ],
+                            from: [ e2.items[0].prefix + " " + e2.items[0].courseNumber ] // Array for now in case this scraper is also used for other things where we need series so the format is the same 
+                        }));
+                    }
+                });
+            }
+            else if (e.articulation.type == "Series") {
+                let toCourses = e.articulation.series.name.split(", ");
+                // Get courses we have to take to get credit for toCourses
+                let items = e.articulation.sendingArticulation.items; // Array of courses (OR). Elements will always have conjunction type AND
+                items.forEach(e2 => {
+                    // Since it's OR we just add a bunch of entries 
+                    if (e2.items.length == 1) { // Only add single courses, nobody is taking a more than one for a GE 
+                        articulations.add(JSON.stringify({ // Stringify to avoid duplicates (set doesn't like json comparisons very)
+                            to: toCourses,
+                            from: [ e2.items[0].prefix + " " + e2.items[0].courseNumber ] // Array for now in case this scraper is also used for other things where we need series so the format is the same 
                         }));
                     }
                 });
@@ -117,53 +145,69 @@ async function fetchAgreements(targetInstitutionId, sendingInstitutionId, academ
 async function runScript() {
     try {
         // Clear data in output file 
-        fs.writeFile('assist-data.json', "", err => {});
-        const targetInstitutionId = 120; // UCI 
+        //fs.writeFile('assist-data.json', "", err => {});
         const targetYear = 2023; // 2023-2024 academic year
-        let institutions = await fetchInstitutions(targetInstitutionId);
-        // Remove duplicates because there are somehow duplicates 
-        let tempSet = new Set();
-        institutions = institutions.filter(e => {
-            if (tempSet.has(e.id)) return false;
-            tempSet.add(e.id);
-            return true;
-        });
-        //console.log('Institutions:', institutions);
-
-        const academicYears = await fetchAcademicYears();
-        //console.log('Academic Years:', academicYears);
-
-        const academicYearId = academicYears[targetYear];
-        if (academicYearId == 0) {
-            console.log("Invalid academic year!");
-            return;
-        }
-
+        const targetInstitutions = [ "University of California, Irvine" ]
+        const institutionMap = await fetchInstitutionMap();
         let bigJSON = {
-            targetInstitution: "University of California, Irvine",
             academicYear: targetYear + "-" + (targetYear + 1),
-            sendingInstitutions: [] 
+            targetInstitutions: []
         }
+        for (let i = 0; i < targetInstitutions.length; i++) {
+            const targetInstitutionName = targetInstitutions[i];
+            const targetInstitutionId = institutionMap[targetInstitutionName]; 
+            if (targetInstitutionId == undefined) {
+                console.log(`Invalid target institution ${targetInstitutionName}, skipping!`);
+                return;
+            }
+            console.log(`Initiating collection sequence for target ${chalk.greenBright(targetInstitutionName)} (ID: ${targetInstitutionId})`);
+            let agreeingInstitutions = await fetchAgreeingInstitutions(targetInstitutionId);
+            agreeingInstitutions = agreeingInstitutions.filter(e => e.id != targetInstitutionId);
+            // Remove duplicates because there are somehow duplicates 
+            let tempSet = new Set();
+            agreeingInstitutions = agreeingInstitutions.filter(e => {
+                if (tempSet.has(e.id)) return false;
+                tempSet.add(e.id);
+                return true;
+            });
+            //console.log('Institutions:', institutions);
 
-        // Loop through each institution and fetch agreements
-        for (const sendingInstitution of institutions) {
-            const { id, name } = sendingInstitution;
-            let currentInstitutionAgreements = {
-                sendingInstitution: name,
-                agreements: [] 
-            };
-            // Skip fetching agreements for the target institution (UCI) 
-            if (id !== targetInstitutionId) {
-                console.log(`Fetching agreements for ${name} (ID: ${id})`);
+            const academicYears = await fetchAcademicYears();
+            //console.log('Academic Years:', academicYears);
+
+            const academicYearId = academicYears[targetYear];
+            if (academicYearId == 0) {
+                console.log("Invalid academic year!");
+                return;
+            }
+
+            let currTargetJSON = {
+                targetInstitution: targetInstitutionName,
+                sendingInstitutions: [] 
+            }
+
+            // Loop through each institution and fetch agreements
+            for (let j = 0; j < agreeingInstitutions.length; j++) {
+                const sendingInstitution = agreeingInstitutions[j];
+                const { id, name } = sendingInstitution;
+                let currentInstitutionAgreements = {
+                    sendingInstitution: name,
+                    agreements: [] 
+                };
+                process.stdout.write(`\r                                                                                                       `);
+                process.stdout.write(`\r[${j + 1}/${agreeingInstitutions.length}] Fetching agreements for ${chalk.blueBright(name)} (ID: ${id})`);
                 const agreements = await fetchAgreements(targetInstitutionId, id, academicYearId, name);
                 //console.log(agreements);
                 currentInstitutionAgreements.agreements = currentInstitutionAgreements.agreements.concat(agreements);
                 // Only delay in PDF mode (to avoid spamming assist too much), delay shouldn't be required for normal mode because it's just one request 
                 // Super unlikely for PDF mode to only have one major with articulations (if we're wrong we just wait 7 seconds, I'm too lazy to do anything with this edge case since the impacts are minimal and I've never seen it anyway) 
                 // Non-PDF mode will have everything on one page so agreements will always be length 1 
+                // If length is 0 then ig just don't delay 
                 if (agreements.length > 1) await new Promise(t => setTimeout(t, 7000)); 
+                currTargetJSON.sendingInstitutions.push(currentInstitutionAgreements);
             }
-            bigJSON.sendingInstitutions.push(currentInstitutionAgreements);
+            console.log(`\rFinished fetching agreements for ${chalk.greenBright(targetInstitutionName)} (ID: ${targetInstitutionId})                    `)
+            bigJSON.targetInstitutions.push(currTargetJSON);
         }
         fs.writeFile('assist-data.json', JSON.stringify(bigJSON), err => { 
             if (err) {
