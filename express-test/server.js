@@ -18,16 +18,18 @@ app.get('/api/', (req, res) => {
 app.get('/api/cvc-courses', async (req, res) => {
     // Get current time in ms
     const startTime = Date.now();
-    const ge = decodeURIComponent(req.query.ge);
-    const uni = decodeURIComponent(req.query.uni);
+    let ge = req.query.ge;
+    let uni = req.query.uni;
     let missingParams = [];
-    if (ge == 'undefined') missingParams.push('ge');
-    if (uni == 'undefined') missingParams.push('uni');
+    if (!ge) missingParams.push('ge');
+    if (!uni) missingParams.push('uni');
     if (missingParams.length > 0) {
         return res.status(400).json({
             error: 'Missing required query parameters: ' + missingParams.join(', '),
         });
     }
+    ge = decodeURIComponent(ge);
+    uni = decodeURIComponent(uni);
     try {
         // Check if the specified GECourseList exists
         const geCourseList = await prisma.geCourseList.findUnique({
@@ -71,16 +73,18 @@ app.get('/api/cvc-courses', async (req, res) => {
 app.get('/api/test', async (req, res) => {
     // Get current time in ms
     const startTime = Date.now();
-    const course = decodeURIComponent(req.query.course);
-    const uni = decodeURIComponent(req.query.uni);
+    let course = req.query.course;
+    let uni = req.query.uni;
     let missingParams = [];
-    if (course == 'undefined') missingParams.push('course');
-    if (uni == 'undefined') missingParams.push('uni');
+    if (!course) missingParams.push('course');
+    if (!uni) missingParams.push('uni');
     if (missingParams.length > 0) {
         return res.status(400).json({
             error: 'Missing required query parameters: ' + missingParams.join(', '),
         });
     }
+    course = decodeURIComponent(course);
+    uni = decodeURIComponent(uni);
     try {
         // Check if the specified GECourseList exists
         const courses = await prisma.cvcCourse.findMany({
