@@ -12,7 +12,7 @@ class UCSB extends University {
 
     async initialize() {
         // Initialize course GE categories (from their CourseDog API) (UI at https://catalog.ucsb.edu/courses)
-        const url = 'https://app.coursedog.com/api/v1/cm/ucsb/courses/search/%24filters?skip=0&limit=1000000000&columns=customFields.generalSubjectAreas%2Ccode';
+        const url = "https://app.coursedog.com/api/v1/cm/ucsb/courses/search/%24filters?skip=0&limit=1000000000&columns=customFields.generalSubjectAreas%2Ccode";
         const response = await axios.get(url);
 
         if (response.status == 200) {

@@ -12,11 +12,12 @@ class UCI extends University {
 
     async initialize() {
         // Initialize course GE categories (from PeterPortal) 
-        const url = 'https://api-next.peterportal.org/v1/graphql';
+        const url = "https://api-next.peterportal.org/v1/graphql";
         const headers = {
             'Content-Type': 'application/json',
         };
         const data = {
+            // Query from the peterportal demo thingy 
             query: `
                 query ExampleQuery {
                     allCourses {

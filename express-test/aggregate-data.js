@@ -31,8 +31,7 @@ function parseDateRange(dateString) {
 }
 
 async function main() {
-    const uniMan = new UniversityManager();
-    await uniMan.initialize();
+    await UniversityManager.initialize();
     const assistData = await readJSONFile('../scrapers/assist-data.json');
     const cvcData = await readJSONFile('../scrapers/cvc-courses.json');
 
@@ -61,7 +60,7 @@ async function main() {
             console.log(`Mapping for ${targetInstitution} was not properly loaded, skipping!`); // This should never happen 
             return; 
         }
-        let currUniObj = uniMan.getUniversity(targetInstitution);
+        let currUniObj = UniversityManager.getUniversity(targetInstitution);
         if (currUniObj == undefined) {
             console.log(`University manager has no object for ${targetInstitution}, skipping!`); // This happens if a university is added to assist-data.json but not the university manager thingy 
             return;

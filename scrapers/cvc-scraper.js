@@ -198,3 +198,7 @@ const fetchCvcData = async () => {
 
 // Exports 
 export default fetchCvcData;
+
+if (process.argv[1].split('/').slice(-1)[0] = 'cvc-scraper.js') { // kind of a bad way of doing it but it works 
+    fetchCvcData();
+}
