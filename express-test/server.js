@@ -1,11 +1,14 @@
 // server.js
 import express from 'express';
 import https from 'https';
+import cors from 'cors';
 import fs from 'fs/promises';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 const app = express();
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send(':)');
