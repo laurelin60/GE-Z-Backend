@@ -90,6 +90,7 @@ async function main() {
                 courseCode,
                 courseName,
                 cvcId: cvcCourse.cvcId,
+                niceToHaves: cvcCourse.niceToHaves,
                 units: cvcCourse.units, 
                 term: cvcCourse.term,
                 startMonth,
