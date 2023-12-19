@@ -129,52 +129,54 @@ async function scrapeSingle(subject, subjectId, asyncOnly, openSeatsOnly, noPrer
 }
 
 const fetchCvcData = async () => {
-  try {
-    // Clear data in output file (this will only be seen if the script stops early) 
-    fs.writeFile('cvc-courses.json', "WARNING: BAD FORMAT, SCRIPT DID NOT FINISH EXECUTING PROPERLY\n", err => {});
+    let aggregateCourseData = [];
+    try {
+        // Clear data in output file (this will only be seen if the script stops early) 
+        fs.writeFile('cvc-courses.json', "WARNING: BAD FORMAT, SCRIPT DID NOT FINISH EXECUTING PROPERLY\n", err => {});
 
-    let response = await safeFetch(url, masterParams);
-    let $ = cheerio.load(response.data);
+        let response = await safeFetch(url, masterParams);
+        let $ = cheerio.load(response.data);
 
-    const subjectMap = $('#filter_subject_id option').toArray().reduce((acc, element) => {
-        const e = $(element);
-        if (e.text() != "Select a subject") acc[e.text()] = e.val();
-        return acc;
-    }, {});
-    
-    const subjectCount = Object.entries(subjectMap).length;
-    console.log(`Found ${subjectCount} subjects`)
+        const subjectMap = $('#filter_subject_id option').toArray().reduce((acc, element) => {
+            const e = $(element);
+            if (e.text() != "Select a subject") acc[e.text()] = e.val();
+            return acc;
+        }, {});
+        
+        const subjectCount = Object.entries(subjectMap).length;
+        console.log(`Found ${subjectCount} subjects`)
 
-    let subjectIndex = 0;
+        let subjectIndex = 0;
 
-    let aggregateCourseData = []
-
-    //Object.entries(subjectMap).forEach(async ([subject, subjectId]) => { // Don't use this it runs all of it at the same time 
-    for (const [subject, subjectId] of Object.entries(subjectMap)) {
-        subjectIndex++;
-        console.log(`[${subjectIndex}/${subjectCount}] Scraping courses for ${subject} (ID ${subjectId})`);
-        // No multithreading, don't spam cvc 
-        let all = await scrapeSingle(subject, subjectId, false, false, false, false);
-        let asyncOnly = await scrapeSingle(subject, subjectId, true, false, false, false);
-        let openSeatsOnly = await scrapeSingle(subject, subjectId, false, true, false, false);
-        let noPrereqsOnly = await scrapeSingle(subject, subjectId, false, false, true, false);
-        let instantEnrollmentOnly = await scrapeSingle(subject, subjectId, false, false, false, true);
-        let allWithAttributes = all.map(e => {
-            e.async = !!asyncOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
-            e.hasOpenSeats = !!openSeatsOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
-            e.hasPrereqs = !noPrereqsOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
-            e.instantEnrollment = !!instantEnrollmentOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
-            return e;
-        });
-        aggregateCourseData = aggregateCourseData.concat(allWithAttributes)
-        // failsafe data in case script crashes (or we just manually terminate it early) so the whole thing doesn't get discarded 
-        fs.appendFile('cvc-courses.json', allWithAttributes.map(e => JSON.stringify(e)).join('\n') + '\n', err => { // (pls don't change newline to comma at least for now) 
-            if (err) {
-                console.error(err);
-            }
-        });
+        //Object.entries(subjectMap).forEach(async ([subject, subjectId]) => { // Don't use this it runs all of it at the same time 
+        for (const [subject, subjectId] of Object.entries(subjectMap)) {
+            subjectIndex++;
+            console.log(`[${subjectIndex}/${subjectCount}] Scraping courses for ${subject} (ID ${subjectId})`);
+            // No multithreading, don't spam cvc 
+            let all = await scrapeSingle(subject, subjectId, false, false, false, false);
+            let asyncOnly = await scrapeSingle(subject, subjectId, true, false, false, false);
+            let openSeatsOnly = await scrapeSingle(subject, subjectId, false, true, false, false);
+            let noPrereqsOnly = await scrapeSingle(subject, subjectId, false, false, true, false);
+            let instantEnrollmentOnly = await scrapeSingle(subject, subjectId, false, false, false, true);
+            let allWithAttributes = all.map(e => {
+                e.async = !!asyncOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
+                e.hasOpenSeats = !!openSeatsOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
+                e.hasPrereqs = !noPrereqsOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
+                e.instantEnrollment = !!instantEnrollmentOnly.find(t => t.college == e.college && t.course == e.course && t.term == e.term);
+                return e;
+            });
+            aggregateCourseData = aggregateCourseData.concat(allWithAttributes)
+            // failsafe data in case script crashes (or we just manually terminate it early) so the whole thing doesn't get discarded 
+            fs.appendFile('cvc-courses.json', allWithAttributes.map(e => JSON.stringify(e)).join('\n') + '\n', err => { // (pls don't change newline to comma at least for now) 
+                if (err) {
+                    console.error(err);
+                }
+            });
+        }
+    } 
+    catch (error) {
+        console.error('Error fetching data:', error);
     }
-
     let courseDataJSON = {
         data: aggregateCourseData
     };
@@ -188,12 +190,7 @@ const fetchCvcData = async () => {
     colleges.forEach(c => {
         console.log(c);
     });
-
-  } 
-  catch (error) {
-    console.error('Error fetching data:', error);
-  }
-  return courseDataJSON;
+    return courseDataJSON;
 };
 
 // Exports 
