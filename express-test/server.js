@@ -20,9 +20,12 @@ app.get('/api/cvc-courses', async (req, res) => {
     const startTime = Date.now();
     const ge = decodeURIComponent(req.query.ge);
     const uni = decodeURIComponent(req.query.uni);
-    if (!ge || !uni) {
+    let missingParams = [];
+    if (ge == 'undefined') missingParams.push('ge');
+    if (uni == 'undefined') missingParams.push('uni');
+    if (missingParams.length > 0) {
         return res.status(400).json({
-            error: `Missing required query parameters: ` + (ge ? '' : 'ge, ') + (uni ? '' : 'uni'),
+            error: 'Missing required query parameters: ' + missingParams.join(', '),
         });
     }
     try {
@@ -70,9 +73,12 @@ app.get('/api/test', async (req, res) => {
     const startTime = Date.now();
     const course = decodeURIComponent(req.query.course);
     const uni = decodeURIComponent(req.query.uni);
-    if (!course || !uni) {
+    let missingParams = [];
+    if (course == 'undefined') missingParams.push('course');
+    if (uni == 'undefined') missingParams.push('uni');
+    if (missingParams.length > 0) {
         return res.status(400).json({
-            error: `Missing required query parameters: ` + (course ? '' : 'course, ') + (uni ? '' : 'uni'),
+            error: 'Missing required query parameters: ' + missingParams.join(', '),
         });
     }
     try {
