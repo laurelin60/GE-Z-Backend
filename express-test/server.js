@@ -18,8 +18,13 @@ app.get('/api/', (req, res) => {
 app.get('/api/cvc-courses', async (req, res) => {
     // Get current time in ms
     const startTime = Date.now();
-    const ge = req.query.ge;
-    const uni = req.query.uni;
+    const ge = decodeURIComponent(req.query.ge);
+    const uni = decodeURIComponent(req.query.uni);
+    if (!ge || !uni) {
+        return res.status(400).json({
+            error: `Missing required query parameters: ` + (ge ? '' : 'ge, ') + (uni ? '' : 'uni'),
+        });
+    }
     try {
         // Check if the specified GECourseList exists
         const geCourseList = await prisma.geCourseList.findUnique({
@@ -63,8 +68,13 @@ app.get('/api/cvc-courses', async (req, res) => {
 app.get('/api/test', async (req, res) => {
     // Get current time in ms
     const startTime = Date.now();
-    const course = req.query.course;
-    const uni = req.query.uni;
+    const course = decodeURIComponent(req.query.course);
+    const uni = decodeURIComponent(req.query.uni);
+    if (!course || !uni) {
+        return res.status(400).json({
+            error: `Missing required query parameters: ` + (course ? '' : 'course, ') + (uni ? '' : 'uni'),
+        });
+    }
     try {
         // Check if the specified GECourseList exists
         const courses = await prisma.cvcCourse.findMany({
