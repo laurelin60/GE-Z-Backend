@@ -39,7 +39,15 @@ app.get('/api/cvc-courses', async (req, res) => {
         }
 
         const courses = geCourseList.courses;
-        res.json({ institution: uni, geCategory: ge, courses });
+        res.json({
+            institution: uni,
+            geCategory: ge,
+            courses: courses.map(course => {
+              const { id, targetInstitution, geCourseListId, ...rest } = course;
+              return rest;
+            }),
+          });
+          
         
         const elapsedTime = Date.now() - startTime;
         console.log(`[${req.ip}] GET /api/cvc-courses?ge=${ge}&uni=${uni} (${elapsedTime}ms)`);
