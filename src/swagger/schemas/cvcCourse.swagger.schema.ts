@@ -19,6 +19,10 @@ const cvcCourseSwaggerSchema = {
             type: "string",
             example: "1234567",
         },
+        assistPath: {
+            type: "string",
+            example: "transfer/results?...",
+        },
         niceToHaves: {
             type: "array",
             items: {
@@ -79,7 +83,7 @@ const cvcCourseSwaggerSchema = {
             example: true,
         },
         fulfillsGEs: arrayOfGESchema,
-        mapsToCourses: {
+        articulatesTo: {
             type: "array",
             items: {
                 type: "string",

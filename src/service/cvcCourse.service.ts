@@ -17,8 +17,9 @@ function cvcQueryToResponse(
     }>,
 ) {
     const countMap = new Map();
-    cvcCourse.fulfillsGEs.forEach(({ category }) => countMap.set(category, (countMap.get(category) || 0) + 1));
-    let fulfillsGEs = Array.from(countMap, ([val, count]) => ({ category: val, count }));
+    cvcCourse.fulfillsGEs.forEach(({category}) => countMap.set(category, (countMap.get(category) || 0) + 1));
+    let fulfillsGEs = Array.from(countMap, ([val, count]) => ({category: val, count}));
+
     return {
         sendingInstitution: cvcCourse.college,
         courseCode: cvcCourse.courseCode,
@@ -39,7 +40,7 @@ function cvcQueryToResponse(
         hasOpenSeats: cvcCourse.hasOpenSeats,
         hasPrereqs: cvcCourse.hasPrereqs,
         instantEnrollment: cvcCourse.instantEnrollment,
-        fulfillsGEs,
+        fulfillsGEs: fulfillsGEs,
         articulatesTo: cvcCourse.articulatesTo.flatMap((articulation) =>
             articulation.to.map((course) => course.courseCode),
         ),
@@ -55,8 +56,8 @@ export const getCvcCoursesByGE = async (
                 some: {
                     institution: {
                         OR: [
-                            { name: request.institution },
-                            { code: request.institution },
+                            {name: request.institution},
+                            {code: request.institution},
                         ],
                     },
                     category: request.ge,
@@ -69,8 +70,8 @@ export const getCvcCoursesByGE = async (
                 where: {
                     toInstitution: {
                         OR: [
-                            { name: request.institution },
-                            { code: request.institution },
+                            {name: request.institution},
+                            {code: request.institution},
                         ],
                     },
                 },
@@ -96,8 +97,8 @@ export const getCvcCoursesByCourse = async (
                             courseCode: request.courseCode,
                             institution: {
                                 OR: [
-                                    { name: request.institution },
-                                    { code: request.institution },
+                                    {name: request.institution},
+                                    {code: request.institution},
                                 ],
                             },
                         },
@@ -113,8 +114,8 @@ export const getCvcCoursesByCourse = async (
                         where: {
                             institution: {
                                 OR: [
-                                    { name: request.institution },
-                                    { code: request.institution },
+                                    {name: request.institution},
+                                    {code: request.institution},
                                 ],
                             },
                         },
@@ -138,5 +139,5 @@ export const getCvcLastUpdated = async () => {
     if (!cvcCourse) {
         throw new Error("No CVC courses found");
     }
-    return cvcCourse.updatedAt.getTime(); 
+    return cvcCourse.updatedAt.getTime();
 };
