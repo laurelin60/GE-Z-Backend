@@ -99,52 +99,78 @@ async function seedAgreement(
         });
 
         if (fromCourses.length > 0 && toCourses.length > 0) {
-            const createdArticulation = await xprisma.articulation.create({
-                data: {
-                    fromCollege: sendingInstitution,
-                    toInstitution: {
-                        connect: {
-                            name: targetInstitution,
-                        },
-                    },
-                    assistPath: agreement.assistPath,
-                    from: {
-                        connect: fromCourses.map((course) => ({
-                            id: course.id,
-                        })),
-                    },
-                    to: {
-                        connect: toCourses.map((course) => ({
-                            id: course.id,
-                        })),
-                    },
-                },
-                include: {
-                    from: true,
-                    to: {
-                        include: {
-                            geCategories: true,
-                        },
-                    },
-                },
-            });
-
-            for (const fromCourse of createdArticulation.from) {
-                await xprisma.cvcCourse.update({
+            if (fromCourses.length > 0 && toCourses.length > 0) {
+                // Check if an articulation with the same 'from' and 'to' courses already exists
+                const existingArticulation = await xprisma.articulation.findFirst({
                     where: {
-                        id: fromCourse.id,
-                    },
-                    data: {
-                        fulfillsGEs: {
-                            connect: createdArticulation.to.flatMap(
-                                (toCourse) =>
-                                    toCourse.geCategories.map((geCategory) => ({
-                                        id: geCategory.id,
-                                    })),
-                            ),
+                        fromCollege: sendingInstitution,
+                        toInstitutionId: toCourses[0].institutionId,
+                        from: {
+                            every: {
+                                id: {
+                                    in: fromCourses.map(course => course.id),
+                                },
+                            },
+                        },
+                        to: {
+                            every: {
+                                id: {
+                                    in: toCourses.map(course => course.id),
+                                },
+                            },
                         },
                     },
                 });
+
+                if (!existingArticulation) {
+                    const createdArticulation = await xprisma.articulation.create({
+                        data: {
+                            fromCollege: sendingInstitution,
+                            toInstitution: {
+                                connect: {
+                                    name: targetInstitution,
+                                },
+                            },
+                            assistPath: agreement.assistPath,
+                            from: {
+                                connect: fromCourses.map((course) => ({
+                                    id: course.id,
+                                })),
+                            },
+                            to: {
+                                connect: toCourses.map((course) => ({
+                                    id: course.id,
+                                })),
+                            },
+                        },
+                        include: {
+                            from: true,
+                            to: {
+                                include: {
+                                    geCategories: true,
+                                },
+                            },
+                        },
+                    });
+
+                    for (const fromCourse of createdArticulation.from) {
+                        await xprisma.cvcCourse.update({
+                            where: {
+                                id: fromCourse.id,
+                            },
+                            data: {
+                                fulfillsGEs: {
+                                    connect: createdArticulation.to.flatMap(
+                                        (toCourse) =>
+                                            toCourse.geCategories.map((geCategory) => ({
+                                                id: geCategory.id,
+                                            })),
+                                    ),
+                                },
+                            },
+                        });
+                    }
+                }
             }
         }
     }
