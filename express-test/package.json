@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@prisma/client": "^5.7.0",
+    "axios": "^1.6.2",
+    "body-parser": "^1.20.2",
+    "chalk": "^5.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "ip": "^1.1.8",
+    "pg-promise": "^11.5.4",
+    "prisma": "^5.7.0"
+  }
+}
