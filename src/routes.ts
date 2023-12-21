@@ -6,9 +6,17 @@ import {
 import { getCvcCoursesByCourseHandler } from "./controller/cvcCourse.controller";
 import { getInstitutionsHandler } from "./controller/institution.controller";
 import { getCoursesByInstitutionHandler } from "./controller/course.controller";
+import swagger from "./swagger/swagger";
 
 const router = express.Router();
 
+// docs
+router.get("/", (req, res) => {
+    res.redirect("/api/docs");
+});
+swagger("/docs", router);
+
+// status
 router.get("/status", (req, res) => {
     res.status(200).json({ status: 200, data: "OK" });
 });

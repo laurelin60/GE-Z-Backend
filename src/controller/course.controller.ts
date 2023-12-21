@@ -21,7 +21,6 @@ export const getCoursesByInstitutionHandler = async (
             data: institutionCourses,
         });
     } catch (error) {
-        logger.warn(error);
         if (error instanceof z.ZodError) {
             return res.status(400).json({
                 status: res.statusCode,

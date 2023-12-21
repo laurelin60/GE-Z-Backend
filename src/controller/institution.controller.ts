@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { z } from "zod";
 import { institutionRequestSchema } from "../model/institution.model";
 import { getInstitutions } from "../service/institution.service";
-import logger from "../util/logger";
 
 export const getInstitutionsHandler = async (req: Request, res: Response) => {
     try {
@@ -17,7 +16,6 @@ export const getInstitutionsHandler = async (req: Request, res: Response) => {
             data: cvcCourses,
         });
     } catch (error) {
-        logger.warn(error);
         if (error instanceof z.ZodError) {
             return res.status(400).json({
                 status: res.statusCode,

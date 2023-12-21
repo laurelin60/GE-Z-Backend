@@ -53,11 +53,11 @@ export const swaggerDefinition = {
 
     components: {
         schemas: {
-            Course: courseSwaggerSchema,
             Institution: institutionSwaggerSchema,
+            Course: courseSwaggerSchema,
             CvcCourse: cvcCourseSwaggerSchema,
-            ArrayOfGE:arrayOfGESchema,
-            ErrorResponse: errorResponseSwaggerSchema
+            ArrayOfGE: arrayOfGESchema,
+            ErrorResponse: errorResponseSwaggerSchema,
         },
     },
 };

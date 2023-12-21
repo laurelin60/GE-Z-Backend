@@ -3,6 +3,10 @@ const institutionSwaggerSchema = {
     properties: {
         name: {
             type: "string",
+            example: "University of California, Irvine",
+        },
+        code: {
+            type: "string",
             example: "UCI",
         },
         geCategories: {

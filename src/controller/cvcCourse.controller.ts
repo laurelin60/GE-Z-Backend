@@ -14,7 +14,6 @@ import {
     cvcLastUpdatedResponseSchema,
     getCvcCoursesResponseSchema,
 } from "../model/cvcCourse.model";
-import logger from "../util/logger";
 
 export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
     try {
@@ -22,7 +21,7 @@ export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
             ...req.query,
         });
 
-        const cvcCourses = await getCvcCoursesByGE(requestValidated)
+        const cvcCourses = await getCvcCoursesByGE(requestValidated);
         const lastUpdated = await getCvcLastUpdated();
 
         res.status(200).json({
@@ -31,7 +30,6 @@ export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
             lastUpdated: lastUpdated,
         } satisfies z.infer<typeof getCvcCoursesResponseSchema>);
     } catch (error) {
-        logger.warn(error)
         if (error instanceof z.ZodError) {
             return res.status(400).json({
                 status: res.statusCode,
@@ -55,7 +53,7 @@ export const getCvcCoursesByCourseHandler = async (
             ...req.query,
         });
 
-        const cvcCourses = await getCvcCoursesByCourse(requestValidated)
+        const cvcCourses = await getCvcCoursesByCourse(requestValidated);
         const lastUpdated = await getCvcLastUpdated();
 
         res.status(200).json({
@@ -64,7 +62,6 @@ export const getCvcCoursesByCourseHandler = async (
             lastUpdated: lastUpdated,
         } satisfies z.infer<typeof getCvcCoursesResponseSchema>);
     } catch (error) {
-        logger.warn(error)
         if (error instanceof z.ZodError) {
             return res.status(400).json({
                 status: res.statusCode,
@@ -93,7 +90,6 @@ export const cvcLastUpdatedHandler = async (req: Request, res: Response) => {
             },
         } satisfies z.infer<typeof cvcLastUpdatedResponseSchema>);
     } catch (error) {
-        logger.warn(error)
         if (error instanceof z.ZodError) {
             return res.status(400).json({
                 status: res.statusCode,
