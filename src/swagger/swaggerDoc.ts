@@ -8,6 +8,7 @@ import cvcCourseCourseSwaggerPath from "./paths/cvcCourse/cvcCourseCourse.swagge
 import cvcCourseLastUpdatedSwaggerPath from "./paths/cvcCourse/cvcCourseLastUpdated.swagger.path";
 import institutionSwaggerPath from "./paths/institution/institution.swagger.path";
 import courseSwaggerPath from "./paths/course/course.swagger.path";
+import arrayOfGESchema from "./schemas/arrayOfGE.swagger.schema";
 
 export const swaggerDefinition = {
     openapi: "3.0.3",
@@ -54,6 +55,7 @@ export const swaggerDefinition = {
             Course: courseSwaggerSchema,
             Institution: institutionSwaggerSchema,
             CvcCourse: cvcCourseSwaggerSchema,
+            ArrayOfGE:arrayOfGESchema
         },
     },
 };

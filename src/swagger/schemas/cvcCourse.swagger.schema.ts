@@ -1,3 +1,5 @@
+import arrayOfGESchema from "./arrayOfGE.swagger.schema";
+
 const cvcCourseSwaggerSchema = {
     type: "object",
     properties: {
@@ -76,13 +78,7 @@ const cvcCourseSwaggerSchema = {
             type: "boolean",
             example: true,
         },
-        fulfillsGEs: {
-            type: "array",
-            items: {
-                type: "string",
-                example: "III",
-            },
-        },
+        fulfillsGEs: arrayOfGESchema,
         mapsToCourses: {
             type: "array",
             items: {
