@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Institution {
+  id           Int            @id @default(autoincrement())
+  updatedAt    DateTime       @updatedAt
+  createdAt    DateTime       @default(now())
+  //
+  name         String // University of California, Irvine
+  code         String // UCI
+  //
+  geCategories GeCategory[]
+  Course       Course[]
+  Articulation Articulation[]
+
+  @@unique([name])
+}
+
+model GeCategory {
+  id            Int         @id @default(autoincrement())
+  updatedAt     DateTime    @updatedAt
+  createdAt     DateTime    @default(now())
+  //
+  category      String
+  //
+  institution   Institution @relation(fields: [institutionId], references: [id])
+  institutionId Int
+  //
+  courses       Course[]
+  cvcCourses    CvcCourse[]
+
+  @@unique([institutionId, category])
+}
+
+model Course {
+  id               Int            @id @default(autoincrement())
+  updatedAt        DateTime       @updatedAt
+  createdAt        DateTime       @default(now())
+  //
+  courseCode       String
+  courseDepartment String
+  courseNumber     String
+  courseName       String?        @default("")
+  //
+  institution      Institution    @relation(fields: [institutionId], references: [id])
+  institutionId    Int
+  articulatesFrom  Articulation[]
+  geCategories     GeCategory[]
+
+  @@unique([institutionId, courseCode])
+}
+
+model CvcCourse {
+  id                Int            @id @default(autoincrement())
+  updatedAt         DateTime       @updatedAt
+  createdAt         DateTime       @default(now())
+  //
+  college           String
+  courseCode        String
+  courseName        String
+  cvcId             String
+  niceToHaves       String[]
+  units             Float
+  term              String
+  startYear         Int
+  startMonth        Int
+  startDay          Int
+  endYear           Int
+  endMonth          Int
+  endDay            Int
+  tuition           Int
+  async             Boolean
+  hasOpenSeats      Boolean
+  hasPrereqs        Boolean
+  instantEnrollment Boolean
+  //
+  fulfillsGEs       GeCategory[]
+  articulatesTo     Articulation[]
+
+  @@unique([cvcId, courseCode])
+}
+
+model Articulation {
+  id              Int         @id @default(autoincrement())
+  updatedAt       DateTime    @updatedAt
+  createdAt       DateTime    @default(now())
+  //
+  assistPath      String
+  fromCollege     String
+  //
+  toInstitution   Institution @relation(fields: [toInstitutionId], references: [id])
+  toInstitutionId Int
+  from            CvcCourse[]
+  to              Course[]
+}

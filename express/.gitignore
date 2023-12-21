@@ -1,0 +1,8 @@
+.idea
+gen
+
+node_modules
+dist
+prisma/migrations
+
+.env
