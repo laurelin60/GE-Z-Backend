@@ -1,5 +1,4 @@
 import { version } from "../../package.json";
-import updateTimeSwaggerSchema from "./schemas/updateTime.swagger.schema";
 import cvcCourseSwaggerSchema from "./schemas/cvcCourse.swagger.schema";
 import institutionSwaggerSchema from "./schemas/institution.swagger.schema";
 import courseSwaggerSchema from "./schemas/course.swagger.schema";
@@ -52,7 +51,6 @@ export const swaggerDefinition = {
 
     components: {
         schemas: {
-            UpdateTime: updateTimeSwaggerSchema,
             Course: courseSwaggerSchema,
             Institution: institutionSwaggerSchema,
             CvcCourse: cvcCourseSwaggerSchema,

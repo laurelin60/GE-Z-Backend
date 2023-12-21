@@ -1,11 +1,10 @@
 // api path: /api/cvc-course/last-updated
 
-import updateTimeSwaggerSchema from "../../schemas/updateTime.swagger.schema";
 
 const cvcCourseLastUpdatedSwaggerPath = {
     get: {
         tags: ["cvc-course"],
-        summary: "Get last updated date of CVC courses in UTC",
+        summary: "Get last updated date of CVC courses as a UNIX timestamp",
         responses: {
             "200": {
                 description: "Success",
@@ -18,7 +17,15 @@ const cvcCourseLastUpdatedSwaggerPath = {
                                     type: "number",
                                     example: 200,
                                 },
-                                data: updateTimeSwaggerSchema,
+                                data: {
+                                    type: "object",
+                                    properties: {
+                                        lastUpdated: {
+                                            type: "number",
+                                            example: 1234567891011,
+                                        },
+                                    },
+                                },
                             },
                         },
                     },

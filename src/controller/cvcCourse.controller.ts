@@ -22,17 +22,14 @@ export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
             ...req.query,
         });
 
-        const cvcCourses = (await getCvcCoursesByGE(requestValidated)).map(course => {
-            let { targetInstitution, ...rest } = course;
-            return rest; 
-        });
+        const cvcCourses = await getCvcCoursesByGE(requestValidated)
         const lastUpdated = await getCvcLastUpdated();
 
         res.status(200).json({
             status: res.statusCode,
             data: cvcCourses,
             lastUpdated: lastUpdated,
-        }/* satisfies z.infer<typeof getCvcCoursesResponseSchema>*/); // hehe I made it not satisfy >:D 
+        } satisfies z.infer<typeof getCvcCoursesResponseSchema>);
     } catch (error) {
         logger.warn(error)
         if (error instanceof z.ZodError) {
@@ -58,17 +55,14 @@ export const getCvcCoursesByCourseHandler = async (
             ...req.query,
         });
 
-        const cvcCourses = (await getCvcCoursesByCourse(requestValidated)).map(course => {
-            let { targetInstitution, ...rest } = course;
-            return rest; 
-        });
+        const cvcCourses = await getCvcCoursesByCourse(requestValidated)
         const lastUpdated = await getCvcLastUpdated();
 
         res.status(200).json({
             status: res.statusCode,
             data: cvcCourses,
             lastUpdated: lastUpdated,
-        }/*satisfies z.infer<typeof getCvcCoursesResponseSchema>*/); // hehe I made it not satisfy >:D 
+        } satisfies z.infer<typeof getCvcCoursesResponseSchema>);
     } catch (error) {
         logger.warn(error)
         if (error instanceof z.ZodError) {
@@ -94,7 +88,9 @@ export const cvcLastUpdatedHandler = async (req: Request, res: Response) => {
 
         res.status(200).json({
             status: res.statusCode,
-            lastUpdated,
+            data: {
+                lastUpdated: lastUpdated,
+            },
         } satisfies z.infer<typeof cvcLastUpdatedResponseSchema>);
     } catch (error) {
         logger.warn(error)

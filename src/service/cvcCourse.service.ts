@@ -20,7 +20,6 @@ function cvcQueryToResponse(
     cvcCourse.fulfillsGEs.forEach(({ category }) => countMap.set(category, (countMap.get(category) || 0) + 1));
     let fulfillsGEs = Array.from(countMap, ([val, count]) => ({ category: val, count }));
     return {
-        targetInstitution: cvcCourse.articulatesTo[0].toInstitution.name,
         sendingInstitution: cvcCourse.college,
         courseCode: cvcCourse.courseCode,
         courseName: cvcCourse.courseName,

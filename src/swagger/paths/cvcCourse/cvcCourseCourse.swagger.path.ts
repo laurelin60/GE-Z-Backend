@@ -1,6 +1,5 @@
 // api path: /api/cvc-course/course
 
-import updateTimeSwaggerSchema from "../../schemas/updateTime.swagger.schema";
 import cvcCourseSwaggerSchema from "../../schemas/cvcCourse.swagger.schema";
 
 const cvcCourseCourseSwaggerPath = {
@@ -56,7 +55,10 @@ const cvcCourseCourseSwaggerPath = {
                                     type: "array",
                                     items: cvcCourseSwaggerSchema
                                 },
-                                lastUpdated: updateTimeSwaggerSchema,
+                                lastUpdated: {
+                                    type: "number",
+                                    example: 1234567891011,
+                                },
                             },
                         },
                     },

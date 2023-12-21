@@ -69,11 +69,11 @@ async function getCvcLastUpdatedBenchmark() {
 }
 
 async function runBenchmarks() {
-    await benchmark(getInstitutionsBenchmark, -1);
-    await benchmark(getCoursesByInstitutionBenchmark, -1);
-    await benchmark(getCvcCoursesByGEBenchmark, 1_000, true);
-    await benchmark(getCvcCoursesByCourseBenchmark, -1);
-    await benchmark(getCvcLastUpdatedBenchmark, -1);
+    await benchmark(getInstitutionsBenchmark, 10);
+    await benchmark(getCoursesByInstitutionBenchmark, 10);
+    await benchmark(getCvcCoursesByGEBenchmark, 10);
+    await benchmark(getCvcCoursesByCourseBenchmark, 10);
+    await benchmark(getCvcLastUpdatedBenchmark, 10);
 }
 
 runBenchmarks().catch((error) => {

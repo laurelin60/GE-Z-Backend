@@ -23,7 +23,6 @@ export const cvcCourseByCourseRequestSchema = z
 
 export const cvcCourseSchema = z
     .object({
-        targetInstitution: z.string(), // Won't be returned in server response for now but keeping it just in case 
         sendingInstitution: z.string(),
         courseCode: z.string(),
         courseName: z.string(),
@@ -53,7 +52,9 @@ export const cvcLastUpdatedRequestSchema = z.object({}).strict();
 export const cvcLastUpdatedResponseSchema = z
     .object({
         status: z.number(),
-        lastUpdated: z.number(),
+        data: z.object({
+            lastUpdated: z.number()
+        })
     })
     .strict();
 
