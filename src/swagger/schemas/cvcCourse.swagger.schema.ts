@@ -3,7 +3,7 @@ import arrayOfGESchema from "./arrayOfGE.swagger.schema";
 const cvcCourseSwaggerSchema = {
     type: "object",
     properties: {
-        college: {
+        sendingInstitution: {
             type: "string",
             example: "Irvine Valley College",
         },

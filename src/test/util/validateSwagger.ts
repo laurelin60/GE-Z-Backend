@@ -10,9 +10,7 @@ function swaggerSchemaToZod(swaggerSchema: SwaggerSchema): z.ZodSchema {
     switch (swaggerSchema.type) {
         case "object":
             if (!swaggerSchema.properties) {
-                throw new Error(
-                    'Invalid Swagger schema: missing "properties" field for object type',
-                );
+                return z.object({});
             }
             return z
                 .object(
@@ -41,6 +39,9 @@ function swaggerSchemaToZod(swaggerSchema: SwaggerSchema): z.ZodSchema {
 
         case "number":
             return z.number();
+
+        case "boolean":
+            return z.boolean();
 
         default:
             throw new Error(`Unsupported Swagger type: ${swaggerSchema.type}`);

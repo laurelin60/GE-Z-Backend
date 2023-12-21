@@ -5,7 +5,8 @@ import routes from "./routes";
 import logger from "./util/logger";
 
 export const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT =
+    process.env.NODE_ENV === "test" ? process.env.TEST_PORT : process.env.PORT;
 
 app.use(cors());
 app.use(express.json());

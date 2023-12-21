@@ -6,10 +6,9 @@ const errorResponseSwaggerSchema = {
             example: 400,
         },
         error: {
-            type: "any",
-            example: "any",
-        }
-    }
+            type: "object",
+        },
+    },
 };
 
 export default errorResponseSwaggerSchema;

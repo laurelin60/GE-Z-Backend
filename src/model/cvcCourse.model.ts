@@ -11,6 +11,8 @@ export const cvcCourseByGERequestSchema = z
     .object({
         institution: z.string(),
         ge: z.string(),
+        take: z.string().regex(/^\d+$/).transform(Number).optional(),
+        skip: z.string().regex(/^\d+$/).transform(Number).optional(),
     })
     .strict();
 
@@ -18,8 +20,12 @@ export const cvcCourseByCourseRequestSchema = z
     .object({
         institution: z.string(),
         courseCode: z.string(),
+        take: z.string().regex(/^\d+$/).transform(Number).optional(),
+        skip: z.string().regex(/^\d+$/).transform(Number).optional(),
     })
     .strict();
+
+export const cvcLastUpdatedRequestSchema = z.object({}).strict();
 
 export const cvcCourseSchema = z
     .object({
@@ -47,14 +53,12 @@ export const cvcCourseSchema = z
     })
     .strict();
 
-export const cvcLastUpdatedRequestSchema = z.object({}).strict();
-
 export const cvcLastUpdatedResponseSchema = z
     .object({
         status: z.number(),
         data: z.object({
-            lastUpdated: z.number()
-        })
+            lastUpdated: z.number(),
+        }),
     })
     .strict();
 

@@ -39,6 +39,25 @@ const cvcCourseCourseSwaggerPath = {
                     },
                 },
             },
+            {
+                name: "take",
+                in: "query",
+                description: "Number to return",
+                required: false,
+                schema: {
+                    type: "number",
+                    example: 10,
+                },
+            },
+            {
+                name: "skip",
+                in: "query",
+                description: "Number to skip",
+                required: false,
+                schema: {
+                    type: "number",
+                },
+            },
         ],
         responses: {
             "200": {
@@ -54,7 +73,7 @@ const cvcCourseCourseSwaggerPath = {
                                 },
                                 data: {
                                     type: "array",
-                                    items: cvcCourseSwaggerSchema
+                                    items: cvcCourseSwaggerSchema,
                                 },
                                 lastUpdated: {
                                     type: "number",
@@ -69,9 +88,9 @@ const cvcCourseCourseSwaggerPath = {
                 description: "Invalid institution or GE category",
                 content: {
                     "application/json": {
-                        schema: errorResponseSwaggerSchema
-                    }
-                }
+                        schema: errorResponseSwaggerSchema,
+                    },
+                },
             },
         },
     },

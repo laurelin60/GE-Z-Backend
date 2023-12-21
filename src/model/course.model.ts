@@ -3,6 +3,8 @@ import { z } from "zod";
 export const coursesByInstitutionRequestSchema = z
     .object({
         institution: z.string(),
+        take: z.string().regex(/^\d+$/).transform(Number).optional(),
+        skip: z.string().regex(/^\d+$/).transform(Number).optional(),
     })
     .strict();
 

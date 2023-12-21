@@ -39,7 +39,7 @@ describe("Endpoints", () => {
         });
     });
 
-    describe("Institution", () => {
+    describe("Institutions", () => {
         describe("GET /api/institutions", () => {
             let response: ChaiHttp.Response;
 
@@ -71,47 +71,222 @@ describe("Endpoints", () => {
         });
     });
 
-    describe.skip("Courses", () => {
+    describe("Courses", () => {
         describe("GET /api/courses", () => {
-            let responseValid: ChaiHttp.Response;
-            let responseInvalid: ChaiHttp.Response;
+            describe("Valid", () => {
+                let response: ChaiHttp.Response;
 
-            before((done) => {
-                chai.request(app)
-                    .get("/api/courses?institution=UCI")
-                    .end((err, res) => {
-                        responseValid = res;
-                        done();
-                    });
-                chai.request(app)
-                    .get("/api/courses?this-is-invalid=true")
-                    .end((err, res) => {
-                        responseInvalid = res;
-                        done();
-                    });
+                before((done) => {
+                    chai.request(app)
+                        .get("/api/courses")
+                        .query({ institution: "UCI", take: "1" })
+                        .end((err, res) => {
+                            response = res;
+                            done();
+                        });
+                });
+
+                it("should be 200", (done) => {
+                    response.should.have.status(200);
+                    response.body.should.have.property("status").eql(200);
+                    response.body.should.have.property("data");
+                    done();
+                });
+
+                it("should match response type of swagger docs", (done) => {
+                    validateSwagger(
+                        swaggerDefinition.paths["/courses"].get.responses["200"]
+                            .content["application/json"].schema,
+                        response.body,
+                    );
+                    done();
+                });
             });
+            describe("Invalid", () => {
+                let response: ChaiHttp.Response;
 
-            it("should be 200", (done) => {
-                responseValid.should.have.status(200);
-                responseValid.body.should.have.property("status").eql(200);
-                responseValid.body.should.have.property("data");
-                done();
+                before((done) => {
+                    chai.request(app)
+                        .get("/api/courses")
+                        .query({ _invalid: "invalid" })
+                        .end((err, res) => {
+                            response = res;
+                            done();
+                        });
+                });
+
+                it("should be 400", (done) => {
+                    response.should.have.status(400);
+                    response.body.should.have.property("status").eql(400);
+                    response.body.should.have.property("error");
+                    done();
+                });
+
+                it("should match response type of swagger docs", (done) => {
+                    validateSwagger(
+                        swaggerDefinition.paths["/courses"].get.responses["400"]
+                            .content["application/json"].schema,
+                        response.body,
+                    );
+                    done();
+                });
             });
+        });
+    });
+    describe("CVC Courses", () => {
+        describe("GET /api/cvc-courses", () => {
+            describe("Valid", () => {
+                let response: ChaiHttp.Response;
 
-            it("should match response type of swagger docs", (done) => {
-                validateSwagger(
-                    swaggerDefinition.paths["/courses"].get.responses["200"]
-                        .content["application/json"].schema,
-                    responseValid.body,
-                );
-                done();
+                before((done) => {
+                    chai.request(app)
+                        .get("/api/cvc-courses")
+                        .query({ institution: "UCI", ge: "III", take: "1" })
+                        .end((err, res) => {
+                            response = res;
+                            done();
+                        });
+                });
+
+                it("should be 200", (done) => {
+                    response.should.have.status(200);
+                    response.body.should.have.property("status").eql(200);
+                    response.body.should.have.property("data");
+                    done();
+                });
+
+                it("should match response type of swagger docs", (done) => {
+                    validateSwagger(
+                        swaggerDefinition.paths["/cvc-courses"].get.responses[
+                            "200"
+                        ].content["application/json"].schema,
+                        response.body,
+                    );
+                    done();
+                });
             });
+            describe("Invalid", () => {
+                let response: ChaiHttp.Response;
 
-            it("should be 400 for invalid parameters", (done) => {
-                responseInvalid.should.have.status(400);
-                responseInvalid.body.should.have.property("status").eql(400);
-                responseInvalid.body.should.have.property("error");
-                done();
+                before((done) => {
+                    chai.request(app)
+                        .get("/api/cvc-courses")
+                        .query({ _invalid: "invalid" })
+                        .end((err, res) => {
+                            response = res;
+                            done();
+                        });
+                });
+
+                it("should be 400", (done) => {
+                    response.should.have.status(400);
+                    response.body.should.have.property("status").eql(400);
+                    response.body.should.have.property("error");
+                    done();
+                });
+
+                it("should match response type of swagger docs", (done) => {
+                    validateSwagger(
+                        swaggerDefinition.paths["/cvc-courses"].get.responses[
+                            "400"
+                        ].content["application/json"].schema,
+                        response.body,
+                    );
+                    done();
+                });
+            });
+        });
+        describe("GET /api/cvc-courses/course", () => {
+            describe("Valid", () => {
+                let response: ChaiHttp.Response;
+
+                before((done) => {
+                    chai.request(app)
+                        .get("/api/cvc-courses/course")
+                        .query({ institution: "UCI", courseCode: "ANTHRO 2A" })
+                        .end((err, res) => {
+                            response = res;
+                            done();
+                        });
+                });
+
+                it("should be 200", (done) => {
+                    response.should.have.status(200);
+                    response.body.should.have.property("status").eql(200);
+                    response.body.should.have.property("data");
+                    done();
+                });
+
+                it("should match response type of swagger docs", (done) => {
+                    validateSwagger(
+                        swaggerDefinition.paths["/cvc-courses/course"].get
+                            .responses["200"].content["application/json"]
+                            .schema,
+                        response.body,
+                    );
+                    done();
+                });
+            });
+            describe("Invalid", () => {
+                let response: ChaiHttp.Response;
+
+                before((done) => {
+                    chai.request(app)
+                        .get("/api/cvc-courses/course")
+                        .query({ _invalid: "invalid" })
+                        .end((err, res) => {
+                            response = res;
+                            done();
+                        });
+                });
+
+                it("should be 400", (done) => {
+                    response.should.have.status(400);
+                    response.body.should.have.property("status").eql(400);
+                    response.body.should.have.property("error");
+                    done();
+                });
+
+                it("should match response type of swagger docs", (done) => {
+                    validateSwagger(
+                        swaggerDefinition.paths["/cvc-courses/course"].get
+                            .responses["400"].content["application/json"]
+                            .schema,
+                        response.body,
+                    );
+                    done();
+                });
+            });
+        });
+        describe("GET /api/cvc-courses/last-updated", () => {
+            describe("Valid", () => {
+                let response: ChaiHttp.Response;
+
+                before((done) => {
+                    chai.request(app)
+                        .get("/api/cvc-courses/last-updated")
+                        .end((err, res) => {
+                            response = res;
+                            done();
+                        });
+                });
+
+                it("should be 200", (done) => {
+                    response.should.have.status(200);
+                    response.body.should.have.property("status").eql(200);
+                    response.body.should.have.property("data");
+                    done();
+                });
+
+                it("should match response type of swagger docs", (done) => {
+                    validateSwagger(
+                        swaggerDefinition.paths["/cvc-courses/last-updated"].get
+                            .responses["200"].content["application/json"]
+                            .schema,
+                        response.body,
+                    );
+                    done();
+                });
             });
         });
     });

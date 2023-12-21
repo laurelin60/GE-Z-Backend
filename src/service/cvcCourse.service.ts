@@ -5,20 +5,25 @@ import { Prisma } from "@prisma/client";
 import {
     cvcCourseByCourseRequestSchema,
     cvcCourseByGERequestSchema,
-    cvcCourseSchema
+    cvcCourseSchema,
 } from "../model/cvcCourse.model";
 
 function cvcQueryToResponse(
     cvcCourse: Prisma.CvcCourseGetPayload<{
         include: {
             fulfillsGEs: true;
-            articulatesTo: { include: { to: true, toInstitution: true } };
+            articulatesTo: { include: { to: true; toInstitution: true } };
         };
     }>,
 ) {
     const countMap = new Map();
-    cvcCourse.fulfillsGEs.forEach(({category}) => countMap.set(category, (countMap.get(category) || 0) + 1));
-    let fulfillsGEs = Array.from(countMap, ([val, count]) => ({category: val, count}));
+    cvcCourse.fulfillsGEs.forEach(({ category }) =>
+        countMap.set(category, (countMap.get(category) || 0) + 1),
+    );
+    const fulfillsGEs = Array.from(countMap, ([val, count]) => ({
+        category: val,
+        count,
+    }));
 
     return {
         sendingInstitution: cvcCourse.college,
@@ -51,13 +56,15 @@ export const getCvcCoursesByGE = async (
     request: z.infer<typeof cvcCourseByGERequestSchema>,
 ) => {
     const cvcCourses = await xprisma.cvcCourse.findMany({
+        take: request.take,
+        skip: request.skip,
         where: {
             fulfillsGEs: {
                 some: {
                     institution: {
                         OR: [
-                            {name: request.institution},
-                            {code: request.institution},
+                            { name: request.institution },
+                            { code: request.institution },
                         ],
                     },
                     category: request.ge,
@@ -70,14 +77,14 @@ export const getCvcCoursesByGE = async (
                 where: {
                     toInstitution: {
                         OR: [
-                            {name: request.institution},
-                            {code: request.institution},
+                            { name: request.institution },
+                            { code: request.institution },
                         ],
                     },
                 },
                 include: {
                     to: true,
-                    toInstitution: true
+                    toInstitution: true,
                 },
             },
         },
@@ -89,6 +96,8 @@ export const getCvcCoursesByCourse = async (
     request: z.infer<typeof cvcCourseByCourseRequestSchema>,
 ) => {
     const cvcCourses = await xprisma.cvcCourse.findMany({
+        take: request.take,
+        skip: request.skip,
         where: {
             articulatesTo: {
                 some: {
@@ -97,8 +106,8 @@ export const getCvcCoursesByCourse = async (
                             courseCode: request.courseCode,
                             institution: {
                                 OR: [
-                                    {name: request.institution},
-                                    {code: request.institution},
+                                    { name: request.institution },
+                                    { code: request.institution },
                                 ],
                             },
                         },
@@ -114,13 +123,13 @@ export const getCvcCoursesByCourse = async (
                         where: {
                             institution: {
                                 OR: [
-                                    {name: request.institution},
-                                    {code: request.institution},
+                                    { name: request.institution },
+                                    { code: request.institution },
                                 ],
                             },
                         },
                     },
-                    toInstitution: true
+                    toInstitution: true,
                 },
             },
         },

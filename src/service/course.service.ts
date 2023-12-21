@@ -6,14 +6,16 @@ import {
 } from "../model/course.model";
 
 export const getCoursesByInstitution = async (
-    institutionCourseRequest: z.infer<typeof coursesByInstitutionRequestSchema>,
+    request: z.infer<typeof coursesByInstitutionRequestSchema>,
 ) => {
     const courseResult = await xprisma.course.findMany({
+        take: request.take,
+        skip: request.skip,
         where: {
             institution: {
                 OR: [
-                    { name: institutionCourseRequest.institution },
-                    { code: institutionCourseRequest.institution },
+                    { name: request.institution },
+                    { code: request.institution },
                 ],
             },
         },

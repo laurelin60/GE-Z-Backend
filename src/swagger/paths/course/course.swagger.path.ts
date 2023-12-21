@@ -25,6 +25,25 @@ const courseSwaggerPath = {
                     },
                 },
             },
+            {
+                name: "take",
+                in: "query",
+                description: "Number to return",
+                required: false,
+                schema: {
+                    type: "number",
+                    example: 10,
+                },
+            },
+            {
+                name: "skip",
+                in: "query",
+                description: "Number to skip",
+                required: false,
+                schema: {
+                    type: "number",
+                },
+            },
         ],
         responses: {
             "200": {
@@ -51,9 +70,9 @@ const courseSwaggerPath = {
                 description: "Invalid institution or GE category",
                 content: {
                     "application/json": {
-                        schema: errorResponseSwaggerSchema
-                    }
-                }
+                        schema: errorResponseSwaggerSchema,
+                    },
+                },
             },
         },
     },

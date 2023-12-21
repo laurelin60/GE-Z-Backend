@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { coursesByInstitutionRequestSchema } from "../model/course.model";
 import { getCoursesByInstitution } from "../service/course.service";
 import { z } from "zod";
-import logger from "../util/logger";
 
 export const getCoursesByInstitutionHandler = async (
     req: Request,
