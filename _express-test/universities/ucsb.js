@@ -1,4 +1,4 @@
-import University from './University.js';
+import University from './university.js';
 import axios from 'axios';
 
 
