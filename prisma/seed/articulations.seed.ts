@@ -37,48 +37,47 @@ export async function seedArticulations() {
         (institution) => institution.code,
     );
 
-    // REPLACE
-    institutionCodes.forEach((code) => {
+    const promises = institutionCodes.map(async (code) => {
         const articulationsData = fs.readFileSync(
-            path.resolve(
-                __dirname,
-                `./institutions/${code}/${code}.assist.json`,
-            ),
+            path.resolve(__dirname, `./institutions/${code}/${code}.assist.json`),
             "utf-8",
         );
-        //
 
         const assist = assistSchema.parse(JSON.parse(articulationsData));
 
-        assist.targetInstitutions.forEach((targetInstitution) => {
-            targetInstitution.sendingInstitutions.forEach(
-                (sendingInstitution) => {
-                    sendingInstitution.agreements.forEach((agreement) =>
-                        seedAgreement(
-                            agreement,
-                            sendingInstitution.sendingInstitution,
-                            targetInstitution.targetInstitution,
+        await Promise.all(
+            assist.targetInstitutions.flatMap((targetInstitution) =>
+                targetInstitution.sendingInstitutions.flatMap(
+                    (sendingInstitution) =>
+                        sendingInstitution.agreements.map((agreement) =>
+                            seedAgreement(
+                                agreement,
+                                sendingInstitution.sendingInstitution,
+                                targetInstitution.targetInstitution,
+                            ),
                         ),
-                    );
-                },
-            );
-        });
+                ),
+            ),
+        );
     });
+
+    await Promise.all(promises);
 
     const added = await xprisma.articulation.findMany();
     logger.info(`Seeded ${added.length} Articulations`);
 }
 
+
 function formatCode(inputString: string): string {
     return inputString.replace(/[^a-zA-Z0-9]/g, "");
 }
 
-function seedAgreement(
+async function seedAgreement(
     agreement: z.infer<typeof agreementSchema>,
     sendingInstitution: string,
     targetInstitution: string,
 ) {
-    agreement.articulations.forEach(async (articulation) => {
+    for (const articulation of agreement.articulations) {
         const fromCourses = await xprisma.cvcCourse.findMany({
             where: {
                 courseCode: {
@@ -148,5 +147,5 @@ function seedAgreement(
                 });
             }
         }
-    });
+    }
 }

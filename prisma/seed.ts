@@ -12,4 +12,6 @@ async function seed() {
 seed().catch((error) => {
     logger.fatal(error);
     process.exit(1);
+}).finally(() => {
+    logger.info("Seeding complete");
 });
