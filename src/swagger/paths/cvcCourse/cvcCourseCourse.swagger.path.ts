@@ -1,6 +1,7 @@
 // api path: /api/cvc-course/course
 
 import cvcCourseSwaggerSchema from "../../schemas/cvcCourse.swagger.schema";
+import errorResponseSwaggerSchema from "../../schemas/errorResponse.swagger.schema";
 
 const cvcCourseCourseSwaggerPath = {
     get: {
@@ -65,7 +66,12 @@ const cvcCourseCourseSwaggerPath = {
                 },
             },
             "400": {
-                description: "Invalid institution or course code",
+                description: "Invalid institution or GE category",
+                content: {
+                    "application/json": {
+                        schema: errorResponseSwaggerSchema
+                    }
+                }
             },
         },
     },

@@ -1,6 +1,7 @@
 // api path: /api/course
 
 import courseSwaggerSchema from "../../schemas/course.swagger.schema";
+import errorResponseSwaggerSchema from "../../schemas/errorResponse.swagger.schema";
 
 const courseSwaggerPath = {
     get: {
@@ -47,7 +48,12 @@ const courseSwaggerPath = {
                 },
             },
             "400": {
-                description: "Invalid institution",
+                description: "Invalid institution or GE category",
+                content: {
+                    "application/json": {
+                        schema: errorResponseSwaggerSchema
+                    }
+                }
             },
         },
     },

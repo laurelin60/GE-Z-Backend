@@ -9,9 +9,10 @@ import cvcCourseLastUpdatedSwaggerPath from "./paths/cvcCourse/cvcCourseLastUpda
 import institutionSwaggerPath from "./paths/institution/institution.swagger.path";
 import courseSwaggerPath from "./paths/course/course.swagger.path";
 import arrayOfGESchema from "./schemas/arrayOfGE.swagger.schema";
+import errorResponseSwaggerSchema from "./schemas/errorResponse.swagger.schema";
 
 export const swaggerDefinition = {
-    openapi: "3.0.3",
+    openapi: "3.1.0",
     info: {
         title: "GE-Z Backend",
         description:
@@ -55,7 +56,8 @@ export const swaggerDefinition = {
             Course: courseSwaggerSchema,
             Institution: institutionSwaggerSchema,
             CvcCourse: cvcCourseSwaggerSchema,
-            ArrayOfGE:arrayOfGESchema
+            ArrayOfGE:arrayOfGESchema,
+            ErrorResponse: errorResponseSwaggerSchema
         },
     },
 };
