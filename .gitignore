@@ -15,3 +15,5 @@ Anaconda Prompt for DegreeEZ thingy.lnk
 assist parser/assist-data.json
 express/scrapers/assist-data.json
 ###
+scrapers/assist-data.json
+scrapers/cvc-courses.json
