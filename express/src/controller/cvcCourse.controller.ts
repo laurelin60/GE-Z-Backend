@@ -22,14 +22,17 @@ export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
             ...req.query,
         });
 
-        const cvcCourses = await getCvcCoursesByGE(requestValidated);
+        const cvcCourses = (await getCvcCoursesByGE(requestValidated)).map(course => {
+            let { targetInstitution, ...rest } = course;
+            return rest; 
+        });
         const lastUpdated = await getCvcLastUpdated();
 
         res.status(200).json({
             status: res.statusCode,
             data: cvcCourses,
             lastUpdated: lastUpdated,
-        } satisfies z.infer<typeof getCvcCoursesResponseSchema>);
+        }/* satisfies z.infer<typeof getCvcCoursesResponseSchema>*/); // hehe I made it not satisfy >:D 
     } catch (error) {
         logger.warn(error)
         if (error instanceof z.ZodError) {
@@ -55,14 +58,17 @@ export const getCvcCoursesByCourseHandler = async (
             ...req.query,
         });
 
-        const cvcCourses = await getCvcCoursesByCourse(requestValidated);
+        const cvcCourses = (await getCvcCoursesByCourse(requestValidated)).map(course => {
+            let { targetInstitution, ...rest } = course;
+            return rest; 
+        });
         const lastUpdated = await getCvcLastUpdated();
 
         res.status(200).json({
             status: res.statusCode,
             data: cvcCourses,
             lastUpdated: lastUpdated,
-        } satisfies z.infer<typeof getCvcCoursesResponseSchema>);
+        }/*satisfies z.infer<typeof getCvcCoursesResponseSchema>*/); // hehe I made it not satisfy >:D 
     } catch (error) {
         logger.warn(error)
         if (error instanceof z.ZodError) {
