@@ -62,7 +62,7 @@ export const cvcLastUpdatedResponseSchema = z
     })
     .strict();
 
-export const getCvcCoursesResponseSchema = z
+export const cvcCoursesResponseSchema = z
     .object({
         status: z.number(),
         data: z.array(cvcCourseSchema),

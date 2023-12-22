@@ -1,8 +1,10 @@
 import { xprisma } from "../util/prisma.client";
 import { z } from "zod";
-import { institutionResponseSchema } from "../model/institution.model";
+import { institutionSchema } from "../model/institution.model";
 
-export const getInstitutions = async () => {
+export const getInstitutions = async (): Promise<
+    z.infer<typeof institutionSchema>[]
+> => {
     const institutionsResult = await xprisma.institution.findMany({
         include: {
             geCategories: true,
@@ -16,6 +18,6 @@ export const getInstitutions = async () => {
             geCategories: institution.geCategories.map(
                 (geCategory) => geCategory.category,
             ),
-        } satisfies z.infer<typeof institutionResponseSchema>;
+        } satisfies z.infer<typeof institutionSchema>;
     });
 };

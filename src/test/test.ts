@@ -4,6 +4,12 @@ import { describe } from "mocha";
 import { app } from "../index";
 import { swaggerDefinition } from "../swagger/swaggerDoc";
 import validateSwagger from "./util/validateSwagger";
+import { coursesByInstitutionResponseSchema } from "../model/course.model";
+import {
+    cvcCoursesResponseSchema,
+    cvcLastUpdatedResponseSchema,
+} from "../model/cvcCourse.model";
+import { institutionsResponseSchema } from "../model/institution.model";
 
 chai.use(chaiHttp);
 chai.should();
@@ -68,6 +74,11 @@ describe("Endpoints", () => {
                 );
                 done();
             });
+
+            it("should match response type in .model", (done) => {
+                institutionsResponseSchema.parse(response.body);
+                done();
+            });
         });
     });
 
@@ -99,6 +110,10 @@ describe("Endpoints", () => {
                             .content["application/json"].schema,
                         response.body,
                     );
+                    done();
+                });
+                it("should match response type in .model", (done) => {
+                    coursesByInstitutionResponseSchema.parse(response.body);
                     done();
                 });
             });
@@ -164,6 +179,10 @@ describe("Endpoints", () => {
                     );
                     done();
                 });
+                it("should match response type in .model", (done) => {
+                    cvcCoursesResponseSchema.parse(response.body);
+                    done();
+                });
             });
             describe("Invalid", () => {
                 let response: ChaiHttp.Response;
@@ -203,7 +222,11 @@ describe("Endpoints", () => {
                 before((done) => {
                     chai.request(app)
                         .get("/api/cvc-courses/course")
-                        .query({ institution: "UCI", courseCode: "ANTHRO 2A" })
+                        .query({
+                            institution: "UCI",
+                            courseCode: "ANTHRO 2A",
+                            take: "1",
+                        })
                         .end((err, res) => {
                             response = res;
                             done();
@@ -224,6 +247,10 @@ describe("Endpoints", () => {
                             .schema,
                         response.body,
                     );
+                    done();
+                });
+                it("should match response type in .model", (done) => {
+                    cvcCoursesResponseSchema.parse(response.body);
                     done();
                 });
             });
@@ -285,6 +312,10 @@ describe("Endpoints", () => {
                             .schema,
                         response.body,
                     );
+                    done();
+                });
+                it("should match response type in .model", (done) => {
+                    cvcLastUpdatedResponseSchema.parse(response.body);
                     done();
                 });
             });

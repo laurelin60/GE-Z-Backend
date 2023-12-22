@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { institutionRequestSchema } from "../model/institution.model";
+import {
+    institutionRequestSchema,
+    institutionsResponseSchema,
+} from "../model/institution.model";
 import { getInstitutions } from "../service/institution.service";
 
 export const getInstitutionsHandler = async (req: Request, res: Response) => {
@@ -9,12 +12,12 @@ export const getInstitutionsHandler = async (req: Request, res: Response) => {
             ...req.query,
         });
 
-        const cvcCourses = await getInstitutions();
+        const institutions = await getInstitutions();
 
         res.status(200).json({
             status: res.statusCode,
-            data: cvcCourses,
-        });
+            data: institutions,
+        } satisfies z.infer<typeof institutionsResponseSchema>);
     } catch (error) {
         if (error instanceof z.ZodError) {
             return res.status(400).json({

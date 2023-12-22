@@ -2,7 +2,7 @@ import { z } from "zod";
 import { xprisma } from "../util/prisma.client";
 import {
     coursesByInstitutionRequestSchema,
-    coursesByInstitutionResponseSchema,
+    courseSchema,
 } from "../model/course.model";
 
 export const getCoursesByInstitution = async (
@@ -34,6 +34,6 @@ export const getCoursesByInstitution = async (
             geCategories: course.geCategories.map(
                 (geCategory) => geCategory.category,
             ),
-        } satisfies z.infer<typeof coursesByInstitutionResponseSchema>;
+        } satisfies z.infer<typeof courseSchema>;
     });
 };

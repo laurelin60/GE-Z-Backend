@@ -12,7 +12,7 @@ import {
     cvcCourseByGERequestSchema,
     cvcLastUpdatedRequestSchema,
     cvcLastUpdatedResponseSchema,
-    getCvcCoursesResponseSchema,
+    cvcCoursesResponseSchema,
 } from "../model/cvcCourse.model";
 
 export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
@@ -28,7 +28,7 @@ export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
             status: res.statusCode,
             data: cvcCourses,
             lastUpdated: lastUpdated,
-        } satisfies z.infer<typeof getCvcCoursesResponseSchema>);
+        } satisfies z.infer<typeof cvcCoursesResponseSchema>);
     } catch (error) {
         if (error instanceof z.ZodError) {
             return res.status(400).json({
@@ -60,7 +60,7 @@ export const getCvcCoursesByCourseHandler = async (
             status: res.statusCode,
             data: cvcCourses,
             lastUpdated: lastUpdated,
-        } satisfies z.infer<typeof getCvcCoursesResponseSchema>);
+        } satisfies z.infer<typeof cvcCoursesResponseSchema>);
     } catch (error) {
         if (error instanceof z.ZodError) {
             return res.status(400).json({

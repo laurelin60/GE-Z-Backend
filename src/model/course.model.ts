@@ -8,12 +8,19 @@ export const coursesByInstitutionRequestSchema = z
     })
     .strict();
 
-export const coursesByInstitutionResponseSchema = z
+export const courseSchema = z
     .object({
         courseCode: z.string(),
         courseDepartment: z.string(),
         courseNumber: z.string(),
         courseName: z.string(),
         geCategories: z.array(z.string()),
+    })
+    .strict();
+
+export const coursesByInstitutionResponseSchema = z
+    .object({
+        status: z.number(),
+        data: z.array(courseSchema),
     })
     .strict();
