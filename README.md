@@ -32,8 +32,6 @@ See the [frontend](https://github.com/laurelin60/GE-Z-Frontend).
 * All UCs and CSUs
 
 
-
-Currently works for articulated courses from CVC community colleges to UC Irvine.
 > Note: the parser does not guarantee 100% accuracy. If you run into issues please let us know :+1:
 
 ## Getting Started
