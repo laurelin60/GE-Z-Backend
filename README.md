@@ -1,23 +1,38 @@
 # GE-Z Backend
 
-### Refactor in progress, the initial version was time-constrained (for WebJam) and we are working on improvements
+<p align="center">
+Built with: <br>
+<img src=https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white>
+<img src=https://img.shields.io/badge/pnpm-yellow?style=for-the-badge&logo=pnpm&logoColor=white>
+<img src=https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white>
+<img src=https://img.shields.io/badge/Express%20js-303030?style=for-the-badge&logo=express&logoColor=white>
+<img src=https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white>
+<img src=https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white>
+<img src=https://img.shields.io/badge/redis-CC0000.svg?&style=for-the-badge&logo=redis&logoColor=white>
+<img src=https://img.shields.io/badge/Mocha-8D6748?style=for-the-badge&logo=Mocha&logoColor=white>
+<img src=https://img.shields.io/badge/chai-A30701?style=for-the-badge&logo=chai&logoColor=white>
+<img src=https://img.shields.io/badge/Amazon_AWS-EE8800?style=for-the-badge&logo=amazonaws&logoColor=white>
+</p>
 
-> You can view the version submitted to WebJam [here](../../tree/a6de9cdc4de2bbde49d89e6c9b6d760331286244). (Technically
-> this is one commit after we presented, but the only thing added was the pitch slides pdf)
+### 🥇 WebJam 2023 First Place Winner
+
+> You can view the version submitted to WebJam [here](../../tree/a6de9cdc4de2bbde49d89e6c9b6d760331286244)
 
 ## About
 
-GE-Z: an assist.org and California Virtual Campus parser.
+GE-Z Backend is a REST api for course articulations using assist.org and California Virtual Campus.
+See the [frontend](https://github.com/laurelin60/GE-Z-Frontend).
 
-Currently works for articulated courses from community colleges to UC Irvine
+Currently works for articulated courses from CVC community colleges to UC Irvine.
 > Note: the parser does not guarantee 100% accuracy. If you run into issues please let us know :+1:
 
 ## Getting Started
 
-
-1. Clone the repo
-2. Copy `.env.example` to `.env`
-3. Make sure you have [pnpm](https://pnpm.io/installation) installed
+1. Make sure you have
+   [Node.js 20.10.0](https://nodejs.org/en/download) and
+   [pnpm](https://pnpm.io/installation) installed
+2. Clone the repo
+3. Copy `.env.example` to `.env`
 4. Run:
 
 ```bash 
@@ -32,87 +47,8 @@ pnpm run db:regenerate
 pnpm run dev
 ```
 
-## How to Use API
-
-Endpoint: `/api/cvc-courses?category=<category>`
-
-Response:
-
-```json
-[
-  {
-    "async": "bool",
-    "college": "str, college name",
-    "courseCode": "str",
-    "courseName": "str",
-    "cvcId:": "str, used to get cvc link",
-    "endDay": "int",
-    "endMonth": "int",
-    "fulfillsGEs": "list[str], GEs fulfilled (can be multiple)",
-    "hasOpenSeats": "bool",
-    "hasPrereqs": "bool",
-    "instantEnrollment": "bool",
-    "mapToCourses": "list[str], all articulations from course",
-    "niceToHaves": "list[str]",
-    "pdfId": "str, used to get assist link",
-    "startDay": "int",
-    "startMonth": "int",
-    "term": "str, string representation of start & end dates",
-    "tuition": "int",
-    "units": "str"
-  },
-  {
-    "...": "..."
-  }
-]
-
-```
-
-## How to Run
-
-### 1. Web Scraping
-
-* Run:
-    * `scrapers/cvc-scraper.js` - California Virtual Campus scraping
-    * `scrapers/assist-scraper.js` - Assist.org scraping
-
-
-* Result:
-    * JSON of available CVC courses
-    * Directory of all transfer agreement PDFs, grouped by college
-
-### 2. PDF Parsing
-
-* Run
-    * `utils/assist_parser.py` - Transfer agreement PDF parser
-    * or `utils/parser_threaded.py` for multithreading
-
-> Assist is moving from PDFs to displaying the information on their actual website, and we plan to adjust scraping and
-> parsing accordingly in the future.
-
-* Result
-    * JSON text data, stored in the same path as each PDF
-
-> Note on how the PDF parser works:
-> 1. Join PDF pages into single vertical PNG
-> 2. Recolor PNG into binary black & white
-> 3. Recursively detect text sections with OpenCV line detection
-> 4. In each section, perform ocr on text with pytesseract
-> 5. Format text into JSON
-
-### 3. SQL Database Population & Backend
-
-* Run
-    * `app/populate_db.py` - Database populator
-    * `app/app.py` - Flask backend
-
-
-* Result
-    * A fully built SQL database
-    * A running backend api
-
-> Tip: access an admin panel for the database through the `/admin` route
-
-
 ---
-Made with ❤️ by Andrew Wang, Uno Pasadhika, Kevin Wu, Alan Tran
+Made with ❤️ by
+[Uno Pasadhika](https://www.linkedin.com/in/wpasadhika/),
+[Andrew Wang](https://www.linkedin.com/in/andrew-wang0/),
+[Kevin Wu](https://www.linkedin.com/in/kevinwu098/)
