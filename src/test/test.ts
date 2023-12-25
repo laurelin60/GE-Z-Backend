@@ -4,6 +4,8 @@ import { describe } from "mocha";
 import { app } from "../index";
 import { swaggerDefinition } from "../swagger/swaggerDoc";
 import validateSwagger from "./util/validateSwagger";
+
+// Schemas
 import { coursesByInstitutionResponseSchema } from "../model/course.model";
 import {
     cvcCoursesResponseSchema,
@@ -13,6 +15,8 @@ import { institutionsResponseSchema } from "../model/institution.model";
 
 chai.use(chaiHttp);
 chai.should();
+
+describe("Database", () => {});
 
 describe("Endpoints", () => {
     describe("Status", () => {

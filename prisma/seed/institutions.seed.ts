@@ -21,11 +21,11 @@ const coursesSchema = z.array(
     }),
 );
 
-export async function seedInstitutions() {
+export async function seedInstitutions(seedFilePath: string) {
     logger.info("Seeding Institutions");
 
     const institutionsData = fs.readFileSync(
-        path.resolve(__dirname, "./institutions/institutions.json"),
+        path.resolve(__dirname, seedFilePath),
         "utf-8",
     );
 

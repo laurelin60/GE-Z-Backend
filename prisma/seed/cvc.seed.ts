@@ -85,11 +85,11 @@ function formatCourseCode(courseName: string) {
     };
 }
 
-export async function seedCvc(): Promise<void> {
+export async function seedCvc(seedFilePath: string) {
     logger.info("Seeding CvcCourses");
 
     const data = fs.readFileSync(
-        path.resolve(__dirname, "./cvc/cvc.json"),
+        path.resolve(__dirname, seedFilePath),
         "utf-8",
     );
     const cvcCourses = JSON.parse(data);
