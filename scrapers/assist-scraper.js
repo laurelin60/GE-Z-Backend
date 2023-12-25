@@ -88,7 +88,7 @@ async function fetchAgreements(targetInstitutionId, sendingInstitutionId, academ
                 items.forEach(e2 => {
                     // Since it's OR we just add a bunch of entries 
                     if (e2.items.length == 1) { // Only add single courses, nobody is taking a more than one for a GE 
-                        articulations.add(JSON.stringify({ // Stringify to avoid duplicates (set doesn't like json comparisons very)
+                        articulations.add(JSON.stringify({ // Stringify to avoid duplicates (set doesn't like json comparisons very much)
                             to: [ toCourse ],
                             from: [ e2.items[0].prefix + " " + e2.items[0].courseNumber ] // Array for now in case this scraper is also used for other things where we need series so the format is the same 
                         }));
@@ -103,7 +103,7 @@ async function fetchAgreements(targetInstitutionId, sendingInstitutionId, academ
                 items.forEach(e2 => {
                     // Since it's OR we just add a bunch of entries 
                     if (e2.items.length == 1) { // Only add single courses, nobody is taking a more than one for a GE 
-                        articulations.add(JSON.stringify({ // Stringify to avoid duplicates (set doesn't like json comparisons very)
+                        articulations.add(JSON.stringify({ // Stringify to avoid duplicates (set doesn't like json comparisons very much)
                             to: toCourses,
                             from: [ e2.items[0].prefix + " " + e2.items[0].courseNumber ] // Array for now in case this scraper is also used for other things where we need series so the format is the same 
                         }));
