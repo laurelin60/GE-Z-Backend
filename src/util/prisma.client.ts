@@ -18,14 +18,14 @@ const cacheMiddleware: Prisma.Middleware = createPrismaRedisCache({
         "Institution",
         "GeCategory",
         "Course",
-        // "CvcCourse",
+        // "CvcCourse", // <- CvcCourse queries are not excluded
         "Articulation",
     ],
     storage: {
         type: "memory",
-        options: { size: 1024, invalidation: true, log: logger },
+        options: { size: 256, invalidation: true, log: logger },
     },
-    cacheTime: 86_400,
+    cacheTime: 86_400, // 24 hours
     onError: (key) => {
         logger.error("cache error", key);
     },
