@@ -1,4 +1,3 @@
-import logger from "../../src/util/logger";
 import { xprisma } from "../../src/util/prisma.client";
 
 export type agreement = {
