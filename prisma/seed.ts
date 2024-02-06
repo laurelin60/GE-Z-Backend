@@ -1,7 +1,8 @@
-import { seedInstitutions } from "./seed/institutions.seed";
-import { seedCvc } from "./seed/cvc.seed";
-import { seedArticulations } from "./seed/articulations.seed";
 import logger from "../src/util/logger";
+
+import { seedArticulations } from "./seed/articulations.seed";
+import { seedCvc } from "./seed/cvc.seed";
+import { seedInstitutions } from "./seed/institutions.seed";
 
 async function seed() {
     await seedInstitutions("./institutions/institutions.json");
@@ -12,7 +13,6 @@ async function seed() {
 seed()
     .catch((error) => {
         logger.fatal(error);
-        process.exit(1);
     })
     .finally(() => {
         logger.info("Seeding complete");

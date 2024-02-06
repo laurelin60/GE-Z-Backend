@@ -1,8 +1,10 @@
-require("dotenv").config();
-import express from "express";
 import cors from "cors";
+import express from "express";
+
 import routes from "./routes";
 import logger from "./util/logger";
+
+require("dotenv").config();
 
 export const app = express();
 const PORT =

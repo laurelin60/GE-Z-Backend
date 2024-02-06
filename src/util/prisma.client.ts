@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import { createPrismaRedisCache } from "prisma-redis-middleware";
+
 import logger from "./logger";
 
 const globalForPrisma = globalThis as { prisma?: PrismaClient };
@@ -31,6 +32,7 @@ const cacheMiddleware: Prisma.Middleware = createPrismaRedisCache({
     },
 });
 
+// TODO: Update this to use client extension
 xprisma.$use(cacheMiddleware);
 
 xprisma.$connect();
