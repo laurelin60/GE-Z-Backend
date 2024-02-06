@@ -1,8 +1,10 @@
 import fs from "fs";
 import path from "path";
+
 import { z } from "zod";
-import { xprisma } from "../../src/util/prisma.client";
+
 import logger from "../../src/util/logger";
+import { xprisma } from "../../src/util/prisma.client";
 
 const institutionsSchema = z.array(
     z.object({

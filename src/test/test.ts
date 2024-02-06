@@ -1,17 +1,17 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe } from "mocha";
-import { app } from "../index";
-import { swaggerDefinition } from "../swagger/swaggerDoc";
-import validateSwagger from "./util/validateSwagger";
 
-// Schemas
+import { app } from "../index";
 import { coursesByInstitutionResponseSchema } from "../model/course.model";
 import {
     cvcCoursesResponseSchema,
     cvcLastUpdatedResponseSchema,
 } from "../model/cvcCourse.model";
 import { institutionsResponseSchema } from "../model/institution.model";
+import { swaggerDefinition } from "../swagger/swaggerDoc";
+
+import validateSwagger from "./util/validateSwagger";
 
 chai.use(chaiHttp);
 chai.should();

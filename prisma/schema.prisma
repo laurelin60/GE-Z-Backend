@@ -31,7 +31,6 @@ model GeCategory {
   //
   institution   Institution @relation(fields: [institutionId], references: [id])
   institutionId Int
-  //
   courses       Course[]
   cvcCourses    CvcCourse[]
 

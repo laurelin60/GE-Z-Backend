@@ -1,9 +1,11 @@
 import fs from "fs";
 import path from "path";
-import { xprisma } from "../../src/util/prisma.client";
-import logger from "../../src/util/logger";
-import { z } from "zod";
+
 import { Prisma } from "@prisma/client";
+import { z } from "zod";
+
+import logger from "../../src/util/logger";
+import { xprisma } from "../../src/util/prisma.client";
 
 function formatTerm(term: string) {
     const monthAbbreviations: { [key: string]: number } = {

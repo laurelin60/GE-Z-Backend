@@ -1,4 +1,3 @@
-import logger from "./logger";
 import { getCoursesByInstitution } from "../service/course.service";
 import {
     getCvcCoursesByCourse,
@@ -6,6 +5,8 @@ import {
     getCvcLastUpdated,
 } from "../service/cvcCourse.service";
 import { getInstitutions } from "../service/institution.service";
+
+import logger from "./logger";
 
 async function benchmark(
     query: () => void,
