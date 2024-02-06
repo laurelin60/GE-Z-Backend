@@ -8,18 +8,18 @@ datasource db {
 }
 
 model Institution {
-  id           Int            @id @default(autoincrement())
-  updatedAt    DateTime       @updatedAt
-  createdAt    DateTime       @default(now())
+  id            Int            @id @default(autoincrement())
+  updatedAt     DateTime       @updatedAt
+  createdAt     DateTime       @default(now())
   //
-  name         String // University of California, Irvine
-  code         String // UCI
+  name          String // University of California, Irvine
+  code          String // UCI
   //
-  geCategories GeCategory[]
-  Course       Course[]
-  Articulation Articulation[]
+  geCategories  GeCategory[]
+  courses       Course[]
+  articulations Articulation[]
 
-  @@unique([name])
+  @@unique([code])
 }
 
 model GeCategory {
@@ -67,13 +67,8 @@ model CvcCourse {
   niceToHaves       String[]
   units             Float
   term              String
-  startYear         Int
-  startMonth        Int
-  startDay          Int
-  endYear           Int
-  endMonth          Int
-  endDay            Int
-  tuition           Int
+  startTime         DateTime
+  endTime           DateTime
   async             Boolean
   hasOpenSeats      Boolean
   hasPrereqs        Boolean

@@ -3,7 +3,7 @@
   "scripts": {
     "db:benchmark": "ts-node src/util/prisma.benchmark.ts",
     "db:reformat": "ts-node prisma/seed/institutions/institutions.reformat.ts",
-    "db:regenerate": "pnpm prisma db push --force-reset && pnpm prisma db seed",
+    "db:regenerate": "npx prisma db push --force-reset && npx prisma db seed",
     "test": "mocha --require ts-node/register src/test/*.ts --exit",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
@@ -48,7 +48,7 @@
     "typescript": "5.3.3"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node prisma/seed.scrape.ts"
   },
   "packageManager": "pnpm@8.15.1",
   "engines": {

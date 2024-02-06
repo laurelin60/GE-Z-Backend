@@ -39,11 +39,9 @@ export async function seedInstitutions(seedFilePath: string) {
                 name: institution.name,
                 code: institution.code,
                 geCategories: {
-                    create: institution.geCategories.map(
-                        (category: string) => ({
-                            category,
-                        }),
-                    ),
+                    create: institution.geCategories.map((category) => ({
+                        category,
+                    })),
                 },
             },
             include: {

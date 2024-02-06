@@ -1,7 +1,9 @@
-import { z } from "zod";
 import * as fs from "fs";
-import logger from "../../../../src/util/logger";
 import * as path from "path";
+
+import { z } from "zod";
+
+import logger from "../../../../src/util/logger";
 
 function formatGE(ge: string) {
     const match = ge.match(/GE (?<category>.*):.*/);
