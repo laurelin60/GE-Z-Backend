@@ -114,7 +114,7 @@ async function getFromCourses(articulation: articulation, fromCollege: string) {
     return xprisma.cvcCourse.findMany({
         where: {
             courseCode: {
-                in: articulation.fromCvcCoursesCodes,
+                in: articulation.fromCvcCoursesCodes.map(formatCode),
             },
             college: fromCollege,
         },

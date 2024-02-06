@@ -58,7 +58,7 @@ const sampleArticulations = [
         assistPath: "www.sample.com?from=mpc&to=ucsb",
         articulations: [
             {
-                fromCvcCoursesCodes: ["MPCANTH2"],
+                fromCvcCoursesCodes: ["MPCANTH 2"],
                 toCoursesCodes: ["ANTH 2"],
             },
         ],
