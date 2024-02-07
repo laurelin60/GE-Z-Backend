@@ -1,12 +1,12 @@
-import { xprisma } from "../util/prisma.client";
-import { z } from "zod";
 import { Prisma } from "@prisma/client";
+import { z } from "zod";
 
 import {
     cvcCourseByCourseRequestSchema,
     cvcCourseByGERequestSchema,
     cvcCourseSchema,
 } from "../model/cvcCourse.model";
+import { xprisma } from "../util/prisma.client";
 
 function cvcQueryToResponse(
     cvcCourse: Prisma.CvcCourseGetPayload<{
@@ -33,13 +33,6 @@ function cvcQueryToResponse(
         assistPath: cvcCourse.articulatesTo[0].assistPath,
         niceToHaves: cvcCourse.niceToHaves,
         units: cvcCourse.units,
-        term: cvcCourse.term,
-        startYear: cvcCourse.startYear,
-        startMonth: cvcCourse.startMonth,
-        startDay: cvcCourse.startDay,
-        endYear: cvcCourse.endYear,
-        endMonth: cvcCourse.endMonth,
-        endDay: cvcCourse.endDay,
         tuition: cvcCourse.tuition,
         async: cvcCourse.async,
         hasOpenSeats: cvcCourse.hasOpenSeats,

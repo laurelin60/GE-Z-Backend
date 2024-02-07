@@ -2,18 +2,17 @@ import { Request, Response } from "express";
 import { z } from "zod";
 
 import {
-    getCvcCoursesByCourse,
-    getCvcCoursesByGE,
-    getCvcLastUpdated,
-} from "../service/cvcCourse.service";
-
-import {
     cvcCourseByCourseRequestSchema,
     cvcCourseByGERequestSchema,
     cvcLastUpdatedRequestSchema,
     cvcLastUpdatedResponseSchema,
     cvcCoursesResponseSchema,
 } from "../model/cvcCourse.model";
+import {
+    getCvcCoursesByCourse,
+    getCvcCoursesByGE,
+    getCvcLastUpdated,
+} from "../service/cvcCourse.service";
 
 export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
     try {

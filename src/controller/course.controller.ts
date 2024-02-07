@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
+import { z } from "zod";
+
 import {
     coursesByInstitutionRequestSchema,
     coursesByInstitutionResponseSchema,
 } from "../model/course.model";
 import { getCoursesByInstitution } from "../service/course.service";
-import { z } from "zod";
 
 export const getCoursesByInstitutionHandler = async (
     req: Request,
