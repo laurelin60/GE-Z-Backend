@@ -66,13 +66,13 @@ model CvcCourse {
   cvcId             String
   niceToHaves       String[]
   units             Float
-  term              String
   startTime         DateTime
   endTime           DateTime
   async             Boolean
   hasOpenSeats      Boolean
   hasPrereqs        Boolean
   instantEnrollment Boolean
+  tuition           Int
   //
   fulfillsGEs       GeCategory[]
   articulatesTo     Articulation[]

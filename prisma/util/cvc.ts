@@ -7,13 +7,13 @@ export type cvcCourse = {
     cvcId: string;
     niceToHaves: string[];
     units: number;
-    term: string;
     startTime: Date;
     endTime: Date;
     async: boolean;
     hasOpenSeats: boolean;
     hasPrereqs: boolean;
     instantEnrollment: boolean;
+    tuition: number;
 };
 
 export async function createManyCvcCourses(cvcCourses: cvcCourse[]) {

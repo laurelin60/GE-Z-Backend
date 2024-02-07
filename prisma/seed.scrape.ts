@@ -41,13 +41,13 @@ const sampleCvcCourses = [
         cvcId: "123cvcid",
         niceToHaves: ["Nice1", "Nice2"],
         units: 4,
-        term: "Sep 01 - Dec 01",
         startTime: new Date("2021-09-01"),
         endTime: new Date("2021-12-01"),
         async: false,
         hasOpenSeats: true,
         hasPrereqs: true,
         instantEnrollment: true,
+        tuition: 180,
     },
 ] satisfies cvcCourse[];
 
