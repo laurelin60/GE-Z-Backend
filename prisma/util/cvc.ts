@@ -7,8 +7,8 @@ export type cvcCourse = {
     cvcId: string;
     niceToHaves: string[];
     units: number;
-    startTime: Date;
-    endTime: Date;
+    startDate: Date;
+    endDate: Date;
     async: boolean;
     hasOpenSeats: boolean;
     hasPrereqs: boolean;
