@@ -10,7 +10,7 @@
   },
   "ignorePatterns": [
     "/dist/*",
-    "**.*.js"
+    "**/*.js"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
