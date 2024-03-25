@@ -7,21 +7,20 @@ let colleges = new Set(); // I'm just gonna put this here
 const url = "https://search.cvc.edu/search";
 const masterParams = {
     "filter[display_home_school]": false,
-    "filter[search_all_universities]": false,
-    "filter[university_id]": 19, // UCI
+    "filter[search_all_universities]": true,
     "filter[search_type]": "subject_browsing",
-    "filter[subject_id]": 98, // 98 is accounting but this gets overwritten for each subject anyway
-    commit: "Find Classes",
-    page: 1,
-    random_token: "",
+    "filter[subject_id]": 98, 
+    "commit": "Find Classes",
+    "page": 1,
+    "random_token": "",
     "filter[oei_phase_2_filter]": false,
     "filter[show_only_available]": false,
     "filter[delivery_methods][]": "online",
     "filter[delivery_method_subtypes][]": ["online_sync", "online_async"],
-    "filter[prerequisites][]": ["has_prereqs", "no_prereqs"],
+    "filter[prerequisites][]": ["", "has_prereqs", "no_prereqs"],
     "filter[session_names][]": ["Fall 2023", "Winter 2024", "Spring 2024"],
     "filter[zero_textbook_cost_filter]": false,
-    "filter[start_date]": "2023-12-15", // will replace this hardcoded thingy later
+    "filter[start_date]": "2024-03-07", // will replace this hardcoded thingy later
     "filter[end_date]": "",
     "filter[target_school_ids][]": "",
     "filter[min_credits_range]": 0,
@@ -49,41 +48,32 @@ async function scrapeSingle(
     instantEnrollmentOnly,
 ) {
     let res = [];
+    let currentScrapeSingleFoundCvcIds = new Set();
     // Set params
-    let localParams = masterParams;
+    let localParams = JSON.parse(JSON.stringify(masterParams));
     localParams.page = 1;
     localParams["filter[subject_id]"] = subjectId;
-    if (asyncOnly)
-        localParams["filter[delivery_method_subtypes][]"] = "online_async";
-    if (openSeatsOnly)
-        localParams["filter[show_only_available]"] = [false, true];
+    if (asyncOnly) localParams["filter[delivery_method_subtypes][]"] = "online_async";
+    if (openSeatsOnly) localParams["filter[show_only_available]"] = [false, true];
     if (noPrereqsOnly) localParams["filter[prerequisites][]"] = "no_prereqs";
-    if (instantEnrollmentOnly)
-        localParams["filter[oei_phase_2_filter]"] = [false, true];
+    if (instantEnrollmentOnly) localParams["filter[oei_phase_2_filter]"] = [false, true];
     // Request
     let response = await safeFetch(url, localParams);
     let $ = cheerio.load(response.data);
-    const courseCount = parseInt(
-        $(
-            "#new_filter > div > div.my-8.pb-4.border-b.border-gray-300 > div > div.mb-2.text-sm > b",
-        ).text(),
-    );
-    // console.log("Course count:", courseCount);
-
-    const subjectTotalPages = Math.ceil(courseCount / 10);
-    for (let i = 1; i <= subjectTotalPages; i++) {
+    for (let i = 1; i <= 100; i++) {
         //process.stdout.write(`Page ${i}/${subjectTotalPages}\r`)
         if (i > 1) {
             localParams.page = i;
             response = await safeFetch(url, localParams);
             $ = cheerio.load(response.data);
         }
-
+        let pageCourseCount = 0;
         $("#search-results > div:nth-child(n)")
             .slice(0, 10)
             .each(async (index, element) => {
-                if ((i - 1) * 10 + index >= courseCount) return;
                 const e = $(element);
+                if (!e.attr("class").startsWith("course")) return;
+                pageCourseCount++;
                 const college = e
                     .children()
                     .eq(0)
@@ -189,8 +179,11 @@ async function scrapeSingle(
                     tuition: tuition,
                 };
                 colleges.add(college);
+                if (currentScrapeSingleFoundCvcIds.has(cvcId)) return;
+                currentScrapeSingleFoundCvcIds.add(cvcId);
                 res.push(jsonObject);
             });
+        if (pageCourseCount < 10) break;
     }
     return res;
 }
@@ -228,79 +221,21 @@ const fetchCvcData = async () => {
                 `[${subjectIndex}/${subjectCount}] Scraping courses for ${subject} (ID ${subjectId})`,
             );
             // No multithreading, don't spam cvc
-            let all = await scrapeSingle(
-                subject,
-                subjectId,
-                false,
-                false,
-                false,
-                false,
-            );
-            let asyncOnly = await scrapeSingle(
-                subject,
-                subjectId,
-                true,
-                false,
-                false,
-                false,
-            );
-            let openSeatsOnly = await scrapeSingle(
-                subject,
-                subjectId,
-                false,
-                true,
-                false,
-                false,
-            );
-            let noPrereqsOnly = await scrapeSingle(
-                subject,
-                subjectId,
-                false,
-                false,
-                true,
-                false,
-            );
-            let instantEnrollmentOnly = await scrapeSingle(
-                subject,
-                subjectId,
-                false,
-                false,
-                false,
-                true,
-            );
+            let all = await scrapeSingle(subject, subjectId, false, false, false, false);
+            let asyncOnly = await scrapeSingle(subject, subjectId, true, false, false, false);
+            let openSeatsOnly = await scrapeSingle(subject, subjectId, false, true, false, false);
+            let noPrereqsOnly = await scrapeSingle(subject, subjectId, false, false, true, false);
+            let instantEnrollmentOnly = await scrapeSingle(subject, subjectId, false, false, false, true);
             let allWithAttributes = all.map((e) => {
-                e.async = !!asyncOnly.find(
-                    (t) =>
-                        t.college === e.college &&
-                        t.course === e.course &&
-                        t.term === e.term,
-                );
-                e.hasOpenSeats = !!openSeatsOnly.find(
-                    (t) =>
-                        t.college === e.college &&
-                        t.course === e.course &&
-                        t.term === e.term,
-                );
-                e.hasPrereqs = !noPrereqsOnly.find(
-                    (t) =>
-                        t.college === e.college &&
-                        t.course === e.course &&
-                        t.term === e.term,
-                );
-                e.instantEnrollment = !!instantEnrollmentOnly.find(
-                    (t) =>
-                        t.college === e.college &&
-                        t.course === e.course &&
-                        t.term === e.term,
-                );
+                e.async = !!asyncOnly.find((t) => t.college === e.college && t.course === e.course && t.term === e.term && t.cvcId === e.cvcId);
+                e.hasOpenSeats = !!openSeatsOnly.find((t) => t.college === e.college && t.course === e.course && t.term === e.term && t.cvcId === e.cvcId);
+                e.hasPrereqs = !noPrereqsOnly.find((t) => t.college === e.college && t.course === e.course && t.term === e.term && t.cvcId === e.cvcId);
+                e.instantEnrollment = !!instantEnrollmentOnly.find((t) => t.college === e.college && t.course === e.course && t.term === e.term && t.cvcId === e.cvcId);
                 return e;
             });
             aggregateCourseData = aggregateCourseData.concat(allWithAttributes);
             // failsafe data in case script crashes (or we just manually terminate it early) so the whole thing doesn't get discarded
-            fs.appendFile(
-                "cvc-courses.json",
-                allWithAttributes.map((e) => JSON.stringify(e)).join("\n") +
-                    "\n",
+            fs.appendFile("cvc-courses.json", allWithAttributes.map((e) => JSON.stringify(e)).join("\n") + "\n",
                 (err) => {
                     // (pls don't change newline to comma at least for now)
                     if (err) {
@@ -313,7 +248,7 @@ const fetchCvcData = async () => {
         console.error("Error fetching data:", error);
     }
     let courseDataJSON = {
-        data: aggregateCourseData,
+        data: aggregateCourseData
     };
     // Overwrite failsafe data with properly formatted data
     fs.writeFile("cvc-courses.json", JSON.stringify(courseDataJSON), (err) => {

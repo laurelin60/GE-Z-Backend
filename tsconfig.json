@@ -11,7 +11,8 @@
     "rootDirs": [
       "./src",
       "./prisma"
-    ]
+    ],
+    "noImplicitAny": false
   },
   "include": [
     "src/**/*.ts",
@@ -19,5 +20,5 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }
