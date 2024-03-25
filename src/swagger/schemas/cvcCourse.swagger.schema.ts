@@ -34,34 +34,6 @@ const cvcCourseSwaggerSchema = {
             type: "number",
             example: 3,
         },
-        term: {
-            type: "string",
-            example: "Jan 16 - May 22",
-        },
-        startYear: {
-            type: "number",
-            example: 2024,
-        },
-        startMonth: {
-            type: "number",
-            example: 1,
-        },
-        startDay: {
-            type: "number",
-            example: 16,
-        },
-        endYear: {
-            type: "number",
-            example: 2024,
-        },
-        endMonth: {
-            type: "number",
-            example: 5,
-        },
-        endDay: {
-            type: "number",
-            example: 22,
-        },
         tuition: {
             type: "number",
             example: 138,

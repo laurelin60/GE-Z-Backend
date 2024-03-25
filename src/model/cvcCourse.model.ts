@@ -37,6 +37,8 @@ export const cvcCourseSchema = z
         niceToHaves: z.array(z.string()),
         units: z.number(),
         tuition: z.number(),
+        startDate: z.date(),
+        endDate: z.date(),
         async: z.boolean(),
         hasOpenSeats: z.boolean(),
         hasPrereqs: z.boolean(),

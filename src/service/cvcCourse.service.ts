@@ -34,6 +34,8 @@ function cvcQueryToResponse(
         niceToHaves: cvcCourse.niceToHaves,
         units: cvcCourse.units,
         tuition: cvcCourse.tuition,
+        startDate: cvcCourse.startDate,
+        endDate: cvcCourse.endDate,
         async: cvcCourse.async,
         hasOpenSeats: cvcCourse.hasOpenSeats,
         hasPrereqs: cvcCourse.hasPrereqs,

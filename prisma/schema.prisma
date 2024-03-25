@@ -66,8 +66,8 @@ model CvcCourse {
   cvcId             String
   niceToHaves       String[]
   units             Float
-  startTime         DateTime
-  endTime           DateTime
+  startDate         DateTime
+  endDate           DateTime
   async             Boolean
   hasOpenSeats      Boolean
   hasPrereqs        Boolean
