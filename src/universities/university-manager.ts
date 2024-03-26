@@ -2,6 +2,7 @@ import chalk from 'chalk';
 
 import UCI from './uci';
 import UCSB from './ucsb';
+import UCLA from './ucla';
 import University from './university';
 
 
@@ -34,6 +35,7 @@ class UniversityManager {
 
         await UniversityManager.addUniversity(new UCI());
         await UniversityManager.addUniversity(new UCSB());
+        await UniversityManager.addUniversity(new UCLA());
 
         UniversityManager.logInfo('Initialized!');
         UniversityManager.initialized = true;

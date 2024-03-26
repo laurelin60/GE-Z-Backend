@@ -27,6 +27,7 @@ See the [frontend](https://github.com/laurelin60/GE-Z-Frontend).
 ### Currently Supports:
 * UCI ✅
 * UCSB ✅
+* UCLA ✅
 
 ### In the Works:
 * All UCs and CSUs
