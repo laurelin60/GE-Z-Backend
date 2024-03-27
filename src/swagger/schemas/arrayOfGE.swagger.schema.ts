@@ -10,7 +10,7 @@ const arrayOfGESchema = {
             count: {
                 type: "number",
                 example: 1,
-            }
+            },
         },
     },
 };

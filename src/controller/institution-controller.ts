@@ -7,6 +7,8 @@ import {
 } from "../model/institution-model";
 import { getInstitutions } from "../service/institution-service";
 
+import { handleError } from "./util/response-handler";
+
 export const getInstitutionsHandler = async (req: Request, res: Response) => {
     try {
         institutionRequestSchema.parse({
@@ -20,15 +22,6 @@ export const getInstitutionsHandler = async (req: Request, res: Response) => {
             data: institutions,
         } satisfies z.infer<typeof institutionsResponseSchema>);
     } catch (error) {
-        if (error instanceof z.ZodError) {
-            return res.status(400).json({
-                status: res.statusCode,
-                error: error,
-            });
-        }
-        return res.status(400).json({
-            status: res.statusCode,
-            error: (error as Error).message,
-        });
+        handleError(res, error);
     }
 };

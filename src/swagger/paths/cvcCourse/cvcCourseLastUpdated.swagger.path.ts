@@ -1,6 +1,5 @@
 // api path: /api/cvc-course/last-updated
 
-
 const cvcCourseLastUpdatedSwaggerPath = {
     get: {
         tags: ["cvc-course"],

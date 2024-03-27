@@ -10,7 +10,7 @@ export const xprisma =
     new PrismaClient({
         log:
             process.env.NODE_ENV !== "production"
-                ? ["info", "warn", "error"] // Add "query" to log queries
+                ? ["info", "warn", "error"]
                 : undefined,
     });
 
@@ -32,7 +32,6 @@ const cacheMiddleware: Prisma.Middleware = createPrismaRedisCache({
     },
 });
 
-// TODO: Update this to use client extension
 xprisma.$use(cacheMiddleware);
 
 xprisma.$connect();

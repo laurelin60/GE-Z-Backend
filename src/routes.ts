@@ -3,7 +3,7 @@ import express from "express";
 
 import { getCoursesByInstitutionHandler } from "./controller/course-controller";
 import {
-    cvcLastUpdatedHandler,
+    getCvcLastUpdatedHandler,
     getCvcCoursesByGEHandler,
 } from "./controller/cvc-controller";
 import { getCvcCoursesByCourseHandler } from "./controller/cvc-controller";
@@ -38,7 +38,7 @@ router.get("/status", async (req, res) => {
 // cvc-courses
 router.get("/cvc-courses", getCvcCoursesByGEHandler);
 router.get("/cvc-courses/course", getCvcCoursesByCourseHandler);
-router.get("/cvc-courses/last-updated", cvcLastUpdatedHandler);
+router.get("/cvc-courses/last-updated", getCvcLastUpdatedHandler);
 
 // institutions
 router.get("/institutions", getInstitutionsHandler);

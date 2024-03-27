@@ -1,10 +1,9 @@
-import chalk from 'chalk';
+import chalk from "chalk";
 
-import UCI from './uci';
-import UCSB from './ucsb';
-import UCLA from './ucla';
-import University from './university';
-
+import UCI from "./uci";
+import UCLA from "./ucla";
+import UCSB from "./ucsb";
+import University from "./university";
 
 class UniversityManager {
     static universities: University[];
@@ -12,13 +11,17 @@ class UniversityManager {
     static initializing: boolean;
 
     static logInfo(message) {
-        console.log(`[${chalk.cyan('UniMan')}] ${message}`);
+        console.log(`[${chalk.cyan("UniMan")}] ${message}`);
     }
 
     static async addUniversity(uni) {
         await uni.initialize();
-        if (uni.valid) UniversityManager.logInfo(`Successfully initialized ${uni.name}`);
-        else UniversityManager.logInfo(chalk.redBright(`Failed to initialize ${uni.name}!`));
+        if (uni.valid)
+            UniversityManager.logInfo(`Successfully initialized ${uni.name}`);
+        else
+            UniversityManager.logInfo(
+                chalk.redBright(`Failed to initialize ${uni.name}!`),
+            );
         UniversityManager.universities.push(uni);
     }
 
@@ -26,24 +29,24 @@ class UniversityManager {
         if (UniversityManager.initialized) return;
         if (UniversityManager.initializing) {
             while (UniversityManager.initializing) {
-                await new Promise(resolve => setTimeout(resolve, 100));
+                await new Promise((resolve) => setTimeout(resolve, 100));
             }
         }
         UniversityManager.initializing = true;
-        UniversityManager.logInfo('Initializing...');
+        UniversityManager.logInfo("Initializing...");
         UniversityManager.universities = [];
 
         await UniversityManager.addUniversity(new UCI());
         await UniversityManager.addUniversity(new UCSB());
         await UniversityManager.addUniversity(new UCLA());
 
-        UniversityManager.logInfo('Initialized!');
+        UniversityManager.logInfo("Initialized!");
         UniversityManager.initialized = true;
         UniversityManager.initializing = false;
     }
 
     static async reset() {
-        UniversityManager.logInfo('Resetting');
+        UniversityManager.logInfo("Resetting");
         UniversityManager.universities = [];
         UniversityManager.initialized = false;
         UniversityManager.initializing = false;
@@ -51,7 +54,7 @@ class UniversityManager {
     }
 
     static getUniversity(name) {
-        return UniversityManager.universities.find(uni => uni.name == name);
+        return UniversityManager.universities.find((uni) => uni.name == name);
     }
 }
 

@@ -55,7 +55,7 @@ const sampleArticulations = [
     {
         fromCollege: "Monterey Peninsula College",
         toInstitutionCode: "UCSB",
-        assistPath: "www.sample.com?from=mpc&to=ucsb",
+        assistPath: "www.assist.org?from=mpc&to=ucsb",
         articulations: [
             {
                 fromCvcCoursesCodes: ["MPCANTH 2"],

@@ -25,13 +25,14 @@ GE-Z Backend is a REST api for course articulations using assist.org and Califor
 See the [frontend](https://github.com/laurelin60/GE-Z-Frontend).
 
 ### Currently Supports:
-* UCI ✅
-* UCSB ✅
-* UCLA ✅
+
+-   UCI ✅
+-   UCSB ✅
+-   UCLA ✅
 
 ### In the Works:
-* All UCs and CSUs
 
+-   All UCs and CSUs
 
 > Note: the parser does not guarantee 100% accuracy. If you run into issues please let us know :+1:
 
@@ -44,7 +45,7 @@ See the [frontend](https://github.com/laurelin60/GE-Z-Frontend).
 3. Copy `.env.example` to `.env`
 4. Run:
 
-```bash 
+```bash
 pnpm i
 ```
 
@@ -57,6 +58,7 @@ pnpm run dev
 ```
 
 ---
+
 Made with ❤️ by
 [Uno Pasadhika](https://www.linkedin.com/in/wpasadhika/),
 [Andrew Wang](https://www.linkedin.com/in/andrew-wang0/),

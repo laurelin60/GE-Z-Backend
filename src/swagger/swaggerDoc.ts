@@ -1,15 +1,16 @@
 import { version } from "../../package.json";
-import cvcCourseSwaggerSchema from "./schemas/cvcCourse.swagger.schema";
-import institutionSwaggerSchema from "./schemas/institution.swagger.schema";
-import courseSwaggerSchema from "./schemas/course.swagger.schema";
-import statusSwaggerPath from "./paths/status/status.swagger.path";
+
+import courseSwaggerPath from "./paths/course/course.swagger.path";
 import cvcCourseSwaggerPath from "./paths/cvcCourse/cvcCourse.swagger.path";
 import cvcCourseCourseSwaggerPath from "./paths/cvcCourse/cvcCourseCourse.swagger.path";
 import cvcCourseLastUpdatedSwaggerPath from "./paths/cvcCourse/cvcCourseLastUpdated.swagger.path";
 import institutionSwaggerPath from "./paths/institution/institution.swagger.path";
-import courseSwaggerPath from "./paths/course/course.swagger.path";
+import statusSwaggerPath from "./paths/status/status.swagger.path";
 import arrayOfGESchema from "./schemas/arrayOfGE.swagger.schema";
+import courseSwaggerSchema from "./schemas/course.swagger.schema";
+import cvcCourseSwaggerSchema from "./schemas/cvcCourse.swagger.schema";
 import errorResponseSwaggerSchema from "./schemas/errorResponse.swagger.schema";
+import institutionSwaggerSchema from "./schemas/institution.swagger.schema";
 
 export const swaggerDefinition = {
     openapi: "3.1.0",

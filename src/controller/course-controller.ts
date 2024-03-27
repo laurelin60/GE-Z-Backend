@@ -7,6 +7,8 @@ import {
 } from "../model/course-model";
 import { getCoursesByInstitution } from "../service/course-service";
 
+import { handleError } from "./util/response-handler";
+
 export const getCoursesByInstitutionHandler = async (
     req: Request,
     res: Response,
@@ -24,15 +26,6 @@ export const getCoursesByInstitutionHandler = async (
             data: institutionCourses,
         } satisfies z.infer<typeof coursesByInstitutionResponseSchema>);
     } catch (error) {
-        if (error instanceof z.ZodError) {
-            return res.status(400).json({
-                status: res.statusCode,
-                error: error,
-            });
-        }
-        return res.status(400).json({
-            status: res.statusCode,
-            error: (error as Error).message,
-        });
+        handleError(res, error);
     }
 };

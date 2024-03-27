@@ -1,6 +1,6 @@
-import University from './university';
-import axios from 'axios';
+import axios from "axios";
 
+import University from "./university";
 
 class UCSB extends University {
     constructor() {
@@ -12,12 +12,13 @@ class UCSB extends University {
 
     async initialize() {
         // Initialize course GE categories (from their CourseDog API) (UI at https://catalog.ucsb.edu/courses)
-        const url = "https://app.coursedog.com/api/v1/cm/ucsb/courses/search/%24filters?skip=0&limit=1000000000&columns=customFields.generalSubjectAreas%2Ccode";
+        const url =
+            "https://app.coursedog.com/api/v1/cm/ucsb/courses/search/%24filters?skip=0&limit=1000000000&columns=customFields.generalSubjectAreas%2Ccode";
         const response = await axios.get(url);
 
         if (response.status == 200) {
             const courseArray = response.data.data;
-            courseArray.forEach(element => {
+            courseArray.forEach((element) => {
                 const courseId = element.code;
                 const geList = element.customFields.generalSubjectAreas;
                 this.geMap[courseId] = geList;
@@ -26,8 +27,8 @@ class UCSB extends University {
         }
     }
 
-    getGeCategories() { 
-        return [ 'A1', 'A2', 'B', 'C', 'D', 'E', 'F', 'G' ];
+    getGeCategories() {
+        return ["A1", "A2", "B", "C", "D", "E", "F", "G"];
     }
 
     getCourseGeCategories(courseCode) {

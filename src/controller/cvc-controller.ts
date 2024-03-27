@@ -14,6 +14,8 @@ import {
     getCvcLastUpdated,
 } from "../service/cvc-service";
 
+import { handleError } from "./util/response-handler";
+
 export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
     try {
         const requestValidated = cvcCourseByGERequestSchema.parse({
@@ -29,17 +31,7 @@ export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
             lastUpdated: lastUpdated,
         } satisfies z.infer<typeof cvcCoursesResponseSchema>);
     } catch (error) {
-        if (error instanceof z.ZodError) {
-            return res.status(400).json({
-                status: res.statusCode,
-                error: error,
-            });
-        }
-        return res.status(400).json({
-            test: "ass",
-            status: res.statusCode,
-            error: (error as Error).message,
-        });
+        handleError(res, error);
     }
 };
 
@@ -61,20 +53,11 @@ export const getCvcCoursesByCourseHandler = async (
             lastUpdated: lastUpdated,
         } satisfies z.infer<typeof cvcCoursesResponseSchema>);
     } catch (error) {
-        if (error instanceof z.ZodError) {
-            return res.status(400).json({
-                status: res.statusCode,
-                error: error,
-            });
-        }
-        return res.status(400).json({
-            status: res.statusCode,
-            error: (error as Error).message,
-        });
+        handleError(res, error);
     }
 };
 
-export const cvcLastUpdatedHandler = async (req: Request, res: Response) => {
+export const getCvcLastUpdatedHandler = async (req: Request, res: Response) => {
     try {
         cvcLastUpdatedRequestSchema.parse({
             ...req.query,
@@ -89,15 +72,6 @@ export const cvcLastUpdatedHandler = async (req: Request, res: Response) => {
             },
         } satisfies z.infer<typeof cvcLastUpdatedResponseSchema>);
     } catch (error) {
-        if (error instanceof z.ZodError) {
-            return res.status(400).json({
-                status: res.statusCode,
-                error: error,
-            });
-        }
-        return res.status(400).json({
-            status: res.statusCode,
-            error: (error as Error).message,
-        });
+        handleError(res, error);
     }
 };
