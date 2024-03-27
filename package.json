@@ -48,7 +48,7 @@
     "typescript": "5.3.3"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.scrape.ts"
+    "seed": "ts-node prisma/seed-scrape.ts"
   },
   "packageManager": "pnpm@8.15.1",
   "engines": {

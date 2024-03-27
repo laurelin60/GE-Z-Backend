@@ -1,10 +1,10 @@
-import { getCoursesByInstitution } from "../service/course.service";
+import { getCoursesByInstitution } from "../service/course-service";
 import {
     getCvcCoursesByCourse,
     getCvcCoursesByGE,
     getCvcLastUpdated,
-} from "../service/cvcCourse.service";
-import { getInstitutions } from "../service/institution.service";
+} from "../service/cvc-service";
+import { getInstitutions } from "../service/institution-service";
 
 import logger from "./logger";
 

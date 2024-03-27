@@ -7,12 +7,12 @@ import {
     cvcLastUpdatedRequestSchema,
     cvcLastUpdatedResponseSchema,
     cvcCoursesResponseSchema,
-} from "../model/cvcCourse.model";
+} from "../model/cvc-model";
 import {
     getCvcCoursesByCourse,
     getCvcCoursesByGE,
     getCvcLastUpdated,
-} from "../service/cvcCourse.service";
+} from "../service/cvc-service";
 
 export const getCvcCoursesByGEHandler = async (req: Request, res: Response) => {
     try {

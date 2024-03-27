@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { institutionSchema } from "../model/institution.model";
+import { institutionSchema } from "../model/institution-model";
 import { xprisma } from "../util/prisma.client";
 
 export const getInstitutions = async (): Promise<

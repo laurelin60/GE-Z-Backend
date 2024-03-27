@@ -4,8 +4,8 @@ import { z } from "zod";
 import {
     institutionRequestSchema,
     institutionsResponseSchema,
-} from "../model/institution.model";
-import { getInstitutions } from "../service/institution.service";
+} from "../model/institution-model";
+import { getInstitutions } from "../service/institution-service";
 
 export const getInstitutionsHandler = async (req: Request, res: Response) => {
     try {

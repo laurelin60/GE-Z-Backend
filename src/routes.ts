@@ -1,13 +1,16 @@
+import { PrismaClient } from "@prisma/client";
 import express from "express";
 
-import { getCoursesByInstitutionHandler } from "./controller/course.controller";
+import { getCoursesByInstitutionHandler } from "./controller/course-controller";
 import {
     cvcLastUpdatedHandler,
     getCvcCoursesByGEHandler,
-} from "./controller/cvcCourse.controller";
-import { getCvcCoursesByCourseHandler } from "./controller/cvcCourse.controller";
-import { getInstitutionsHandler } from "./controller/institution.controller";
+} from "./controller/cvc-controller";
+import { getCvcCoursesByCourseHandler } from "./controller/cvc-controller";
+import { getInstitutionsHandler } from "./controller/institution-controller";
 import swagger from "./swagger/swagger";
+
+const prisma = new PrismaClient();
 
 const router = express.Router();
 
@@ -18,8 +21,18 @@ router.get("/", (req, res) => {
 swagger("/docs", router);
 
 // status
-router.get("/status", (req, res) => {
-    res.status(200).json({ status: 200, data: "OK" });
+router.get("/status", async (req, res) => {
+    try {
+        await prisma.$connect();
+        res.status(200).json({ status: 200, data: "OK" });
+    } catch (error) {
+        res.status(500).json({
+            status: 500,
+            error: "Database connection failed",
+        });
+    } finally {
+        await prisma.$disconnect();
+    }
 });
 
 // cvc-courses

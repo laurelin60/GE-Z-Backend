@@ -71,4 +71,4 @@ async function exampleSeed() {
     await createManyArticulations(sampleArticulations);
 }
 
-exampleSeed();
+exampleSeed().then(() => {});

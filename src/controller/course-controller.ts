@@ -4,8 +4,8 @@ import { z } from "zod";
 import {
     coursesByInstitutionRequestSchema,
     coursesByInstitutionResponseSchema,
-} from "../model/course.model";
-import { getCoursesByInstitution } from "../service/course.service";
+} from "../model/course-model";
+import { getCoursesByInstitution } from "../service/course-service";
 
 export const getCoursesByInstitutionHandler = async (
     req: Request,

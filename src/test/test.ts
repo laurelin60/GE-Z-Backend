@@ -3,12 +3,12 @@ import chaiHttp from "chai-http";
 import { describe } from "mocha";
 
 import { app } from "../index";
-import { coursesByInstitutionResponseSchema } from "../model/course.model";
+import { coursesByInstitutionResponseSchema } from "../model/course-model";
 import {
     cvcCoursesResponseSchema,
     cvcLastUpdatedResponseSchema,
-} from "../model/cvcCourse.model";
-import { institutionsResponseSchema } from "../model/institution.model";
+} from "../model/cvc-model";
+import { institutionsResponseSchema } from "../model/institution-model";
 import { swaggerDefinition } from "../swagger/swaggerDoc";
 
 import validateSwagger from "./util/validateSwagger";

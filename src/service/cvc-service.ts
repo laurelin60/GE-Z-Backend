@@ -5,7 +5,7 @@ import {
     cvcCourseByCourseRequestSchema,
     cvcCourseByGERequestSchema,
     cvcCourseSchema,
-} from "../model/cvcCourse.model";
+} from "../model/cvc-model";
 import { xprisma } from "../util/prisma.client";
 
 function cvcQueryToResponse(
