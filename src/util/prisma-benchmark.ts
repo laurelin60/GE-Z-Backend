@@ -8,25 +8,21 @@ import { getInstitutions } from "../service/institution-service";
 
 import logger from "./logger";
 
-async function benchmark(
-    query: () => void,
-    iterations: number,
-    skipFirst = false,
-) {
+async function benchmark(query: () => void, iterations: number) {
     if (iterations <= 0) {
         return;
     }
-    if (skipFirst) {
-        await query();
-    }
+    const startFirst = performance.now();
+    query();
+    const firstTime = (performance.now() - startFirst).toFixed(2);
 
     const start = performance.now();
     for (let i = 0; i < iterations; i++) {
-        await query();
+        query();
     }
     const end = performance.now();
     const avgTime = ((end - start) / iterations).toFixed(2);
-    logger.info(`${query.name} | avg: ${avgTime}ms`);
+    logger.info(`${query.name} | first: ${firstTime}ms | cached: ${avgTime}ms`);
 }
 
 async function getInstitutionsBenchmark() {
@@ -70,11 +66,11 @@ async function getCvcLastUpdatedBenchmark() {
 }
 
 async function runBenchmarks() {
-    await benchmark(getInstitutionsBenchmark, 10);
-    await benchmark(getCoursesByInstitutionBenchmark, 10);
-    await benchmark(getCvcCoursesByGEBenchmark, 10);
-    await benchmark(getCvcCoursesByCourseBenchmark, 10);
-    await benchmark(getCvcLastUpdatedBenchmark, 10);
+    await benchmark(getInstitutionsBenchmark, 20);
+    await benchmark(getCoursesByInstitutionBenchmark, 20);
+    await benchmark(getCvcCoursesByGEBenchmark, 20);
+    await benchmark(getCvcCoursesByCourseBenchmark, 20);
+    await benchmark(getCvcLastUpdatedBenchmark, 20);
 }
 
 runBenchmarks().catch((error) => {

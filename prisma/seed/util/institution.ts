@@ -1,6 +1,6 @@
-import { xprisma } from "../../src/util/prisma.client";
+import { xprisma } from "../../../src/util/prisma-client";
 
-type course = {
+export type course = {
     courseCode: string;
     courseName: string;
     courseNumber: string;

@@ -4,7 +4,7 @@ import {
     coursesByInstitutionRequestSchema,
     courseSchema,
 } from "../model/course-model";
-import { xprisma } from "../util/prisma.client";
+import { xprisma } from "../util/prisma-client";
 
 export const getCoursesByInstitution = async (
     request: z.infer<typeof coursesByInstitutionRequestSchema>,

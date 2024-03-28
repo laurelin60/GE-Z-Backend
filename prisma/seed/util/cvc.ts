@@ -1,4 +1,4 @@
-import { xprisma } from "../../src/util/prisma.client";
+import { xprisma } from "../../../src/util/prisma-client";
 
 export type cvcCourse = {
     college: string;

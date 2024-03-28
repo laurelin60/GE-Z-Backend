@@ -32,6 +32,7 @@ const cacheMiddleware: Prisma.Middleware = createPrismaRedisCache({
     },
 });
 
+// noinspection JSDeprecatedSymbols
 xprisma.$use(cacheMiddleware);
 
 xprisma.$connect();
