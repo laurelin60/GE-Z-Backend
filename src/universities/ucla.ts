@@ -44,7 +44,7 @@ class UCLA extends University {
         const html = response.data;
         const $ = cheerio.load(html);
         const s = new Set();
-
+        let ct = 0;
         $(".col-md-1").each((index, element) => {
             const parent = $(element).parent();
             if (s.has(parent)) return;
@@ -73,10 +73,12 @@ class UCLA extends University {
                 ", ",
             )})`;
             if (this.dcs.has(strrep)) return;
+            ct++;
             this.dcs.add(strrep);
             this.geMap[`${categoryCode}${catalogNum}`.replaceAll(" ", "")] =
                 geCats;
         });
+        console.log("aaaaa", ct);
     }
 
     async getCookie(): Promise<string> {
@@ -98,7 +100,6 @@ class UCLA extends University {
                 catMap[e.display_value.trim()] = e.subj_area_cd.trim();
             });
             const cookie = await this.getCookie();
-            console.log(cookie);
             await this.fetchAndAddCourses(
                 '?input={"FoundationCode"%3A"AH"%2C"SubjectArea"%3A"%"%2C"LabDemoFilter"%3Afalse%2C"WritingTwoFilter"%3Afalse%2C"MultiCategoryFilter"%3Afalse%2C"DiversityFilter"%3Afalse}&search_criteria=Foundations+of+Arts+and+Humanities',
                 catMap,
