@@ -22,7 +22,25 @@ class UCLA extends University {
         const baseUrl: string =
             "https://sa.ucla.edu/ro/Public/SOC/Search/SearchByFoundation";
         const url: string = baseUrl + paramString;
-        const response = await axios.get(url, { headers: { Cookie: cookie } });
+        const response = await axios.get(url, {
+            headers: {
+                Accept: "*/*",
+                "Accept-Encoding": "gzip, deflate, br, zstd",
+                "Accept-Language": "en-US,en;q=0.9",
+                Connection: "keep-alive",
+                Host: "sa.ucla.edu",
+                Referer: "https://sa.ucla.edu/ro/Public/SOC/Search/GECoursesMasterList",
+                "Sec-Ch-Ua": `"Google Chrome";v="123", "Not:A-Brand";v="8", "Chromium";v="123"`,
+                "Sec-Ch-Ua-Mobile": "?0",
+                "Sec-Ch-Ua-Platform": `"Windows"`,
+                "Sec-Fetch-Dest": "empty",
+                "Sec-Fetch-Mode": "cors",
+                "Sec-Fetch-Site": "same-origin",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+                "X-Requested-With": "XMLHttpRequest",
+                Cookie: cookie
+            }
+        });        
         const html = response.data;
         const $ = cheerio.load(html);
         const s = new Set();
@@ -80,6 +98,7 @@ class UCLA extends University {
                 catMap[e.display_value.trim()] = e.subj_area_cd.trim();
             });
             const cookie = await this.getCookie();
+            console.log(cookie);
             await this.fetchAndAddCourses(
                 '?input={"FoundationCode"%3A"AH"%2C"SubjectArea"%3A"%"%2C"LabDemoFilter"%3Afalse%2C"WritingTwoFilter"%3Afalse%2C"MultiCategoryFilter"%3Afalse%2C"DiversityFilter"%3Afalse}&search_criteria=Foundations+of+Arts+and+Humanities',
                 catMap,
