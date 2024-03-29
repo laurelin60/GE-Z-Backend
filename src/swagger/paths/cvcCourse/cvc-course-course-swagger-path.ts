@@ -1,7 +1,7 @@
 // api path: /api/cvc-course/course
 
-import cvcCourseSwaggerSchema from "../../schemas/cvcCourse.swagger.schema";
-import errorResponseSwaggerSchema from "../../schemas/errorResponse.swagger.schema";
+import cvcCourseSwaggerSchema from "../../schemas/cvc-course-swagger-schema";
+import errorResponseSwaggerSchema from "../../schemas/error-response-swagger-schema";
 
 const cvcCourseCourseSwaggerPath = {
     get: {
@@ -28,7 +28,7 @@ const cvcCourseCourseSwaggerPath = {
             {
                 name: "courseCode",
                 in: "query",
-                description: "Course code",
+                description: "Course code (matching the pattern /[A-Z0-9&]+/)",
                 required: true,
                 schema: {
                     type: "string",

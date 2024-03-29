@@ -1,4 +1,4 @@
-import arrayOfGESchema from "./arrayOfGE.swagger.schema";
+import arrayOfGESchema from "./array-of-ge-swagger.schema";
 
 const cvcCourseSwaggerSchema = {
     type: "object",
@@ -37,6 +37,14 @@ const cvcCourseSwaggerSchema = {
         tuition: {
             type: "number",
             example: 138,
+        },
+        startDate: {
+            type: "number",
+            example: 1700000000,
+        },
+        endDate: {
+            type: "number",
+            example: 1700000000,
         },
         async: {
             type: "boolean",

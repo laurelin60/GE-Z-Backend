@@ -1,4 +1,4 @@
-import cvcCourseSwaggerSchema from "./cvcCourse.swagger.schema";
+import cvcCourseSwaggerSchema from "./cvc-course-swagger-schema";
 
 const arrayOfCvcCourseSwaggerSchema = {
     type: "array",

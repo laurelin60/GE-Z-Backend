@@ -35,8 +35,8 @@ function cvcQueryToResponse(
         niceToHaves: cvcCourse.niceToHaves,
         units: cvcCourse.units,
         tuition: cvcCourse.tuition,
-        startDate: cvcCourse.startDate,
-        endDate: cvcCourse.endDate,
+        startDate: cvcCourse.startDate.getTime() / 1000,
+        endDate: cvcCourse.endDate.getTime() / 1000,
         async: cvcCourse.async,
         hasOpenSeats: cvcCourse.hasOpenSeats,
         hasPrereqs: cvcCourse.hasPrereqs,
@@ -68,7 +68,16 @@ export const getCvcCoursesByGE = async (
             },
         },
         include: {
-            fulfillsGEs: true,
+            fulfillsGEs: {
+                where: {
+                    institution: {
+                        OR: [
+                            { name: request.institution },
+                            { code: request.institution },
+                        ],
+                    },
+                },
+            },
             articulatesTo: {
                 where: {
                     toInstitution: {
@@ -112,7 +121,16 @@ export const getCvcCoursesByCourse = async (
             },
         },
         include: {
-            fulfillsGEs: true,
+            fulfillsGEs: {
+                where: {
+                    institution: {
+                        OR: [
+                            { name: request.institution },
+                            { code: request.institution },
+                        ],
+                    },
+                },
+            },
             articulatesTo: {
                 include: {
                     to: {

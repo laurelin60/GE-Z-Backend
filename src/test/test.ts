@@ -9,9 +9,9 @@ import {
     cvcLastUpdatedResponseSchema,
 } from "../model/cvc-model";
 import { institutionsResponseSchema } from "../model/institution-model";
-import { swaggerDefinition } from "../swagger/swaggerDoc";
+import { swaggerDefinition } from "../swagger/swagger-doc";
 
-import validateSwagger from "./util/validateSwagger";
+import validateSwagger from "./util/validate-swagger";
 
 chai.use(chaiHttp);
 chai.should();

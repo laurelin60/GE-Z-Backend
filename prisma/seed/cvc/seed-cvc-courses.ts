@@ -23,6 +23,7 @@ const cvcCourseSchema = z
     })
     .strict()
     .transform((cvcCourse) => {
+        const transformedTerm = transformTermString(cvcCourse.term);
         return {
             college: cvcCourse.college,
             courseCode: cvcCourse.course.split(" - ")[0],
@@ -30,8 +31,8 @@ const cvcCourseSchema = z
             cvcId: cvcCourse.cvcId,
             niceToHaves: cvcCourse.niceToHaves,
             units: cvcCourse.units,
-            startDate: transformDateString(cvcCourse.term.split(" - ")[0]),
-            endDate: transformDateString(cvcCourse.term.split(" - ")[1]),
+            startDate: transformedTerm[0],
+            endDate: transformedTerm[1],
             async: cvcCourse.async,
             hasOpenSeats: cvcCourse.hasOpenSeats,
             hasPrereqs: cvcCourse.hasPrereqs,
@@ -40,21 +41,38 @@ const cvcCourseSchema = z
         };
     });
 
-function transformDateString(dateString: string): Date {
-    const current = new Date();
-    const date = new Date(dateString);
+function transformTermString(termString: string): Date[] {
+    function transformDate(
+        dateString: string,
+        forceAfter: Date = new Date(0),
+    ): Date {
+        const date = new Date(dateString);
 
-    if (
-        date.getMonth() > current.getMonth() ||
-        (date.getMonth() === current.getMonth() &&
-            date.getDate() >= current.getDate())
-    ) {
-        date.setFullYear(current.getFullYear());
-    } else {
-        date.setFullYear(current.getFullYear() + 1);
+        if (
+            date.getMonth() > now.getMonth() ||
+            (date.getMonth() === now.getMonth() &&
+                date.getDate() >= now.getDate())
+        ) {
+            date.setFullYear(now.getFullYear());
+        } else {
+            date.setFullYear(now.getFullYear() + 1);
+        }
+
+        if (date < forceAfter) {
+            date.setFullYear(date.getFullYear() + 1);
+        }
+
+        return date;
     }
 
-    return date;
+    const startTermString = termString.split(" - ")[0];
+    const endTermString = termString.split(" - ")[1];
+    const now = new Date();
+
+    const startDate = transformDate(startTermString);
+    const endDate = transformDate(endTermString, startDate);
+
+    return [startDate, endDate];
 }
 
 async function seedCvc(filepath: string) {

@@ -15,13 +15,13 @@ const prisma = new PrismaClient();
 const router = express.Router();
 
 // docs
-router.get("/", (req, res) => {
+router.get("/", (_req, res) => {
     res.redirect("/api/docs");
 });
 swagger("/docs", router);
 
 // status
-router.get("/status", async (req, res) => {
+router.get("/status", async (_req, res) => {
     try {
         await prisma.$connect();
         res.status(200).json({ status: 200, data: "OK" });

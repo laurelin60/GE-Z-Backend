@@ -1,6 +1,6 @@
 // api path: /api/institution
 
-import institutionSwaggerSchema from "../../schemas/institution.swagger.schema";
+import institutionSwaggerSchema from "../../schemas/institution-swagger-schema";
 
 const institutionSwaggerPath = {
     get: {

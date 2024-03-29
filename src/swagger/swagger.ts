@@ -2,7 +2,7 @@ import express from "express";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
-import { options } from "./swaggerDoc";
+import { options } from "./swagger-doc";
 
 const swaggerDocument = swaggerJSDoc(options);
 

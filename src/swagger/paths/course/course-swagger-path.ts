@@ -1,17 +1,17 @@
-// api path: /api/cvc-course
+// api path: /api/course
 
-import cvcCourseSwaggerSchema from "../../schemas/cvcCourse.swagger.schema";
-import errorResponseSwaggerSchema from "../../schemas/errorResponse.swagger.schema";
+import courseSwaggerSchema from "../../schemas/course-swagger-schema";
+import errorResponseSwaggerSchema from "../../schemas/error-response-swagger-schema";
 
-const cvcCourseSwaggerPath = {
+const courseSwaggerPath = {
     get: {
-        tags: ["cvc-course"],
-        summary: "Find CVC courses by parent institution & GE category",
+        tags: ["course"],
+        summary: "Get all courses and their GE categories by Institution",
         parameters: [
             {
                 name: "institution",
                 in: "query",
-                description: "Parent Institution of the GE",
+                description: "Parent Institution",
                 required: true,
                 schema: {
                     type: "string",
@@ -22,20 +22,6 @@ const cvcCourseSwaggerPath = {
                     },
                     code: {
                         value: "UCI",
-                    },
-                },
-            },
-            {
-                name: "ge",
-                in: "query",
-                description: "GE category",
-                required: true,
-                schema: {
-                    type: "string",
-                },
-                examples: {
-                    category: {
-                        value: "Va",
                     },
                 },
             },
@@ -73,11 +59,7 @@ const cvcCourseSwaggerPath = {
                                 },
                                 data: {
                                     type: "array",
-                                    items: cvcCourseSwaggerSchema,
-                                },
-                                lastUpdated: {
-                                    type: "number",
-                                    example: 1234567891011,
+                                    items: courseSwaggerSchema,
                                 },
                             },
                         },
@@ -96,4 +78,4 @@ const cvcCourseSwaggerPath = {
     },
 };
 
-export default cvcCourseSwaggerPath;
+export default courseSwaggerPath;
