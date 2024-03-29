@@ -5,6 +5,7 @@
     "db:regenerate": "npx prisma db push --force-reset && npx prisma db seed",
     "scrape:cvc": "node scrapers/cvc-scraper.mjs",
     "scrape:assist": "node scrapers/assist-scraper.mjs",
+    "scrape:all": "npm run scrape:cvc && npm run scrape:assist",
     "seed:institutions": "ts-node prisma/seed/institutions/seed-institutions.ts",
     "seed:cvc": "ts-node prisma/seed/cvc/seed-cvc-courses.ts",
     "seed:articulations": "ts-node prisma/seed/assist/seed-articulations.ts",
