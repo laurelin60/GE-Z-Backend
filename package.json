@@ -2,7 +2,6 @@
   "version": "0.1.0",
   "scripts": {
     "db:benchmark": "ts-node src/util/prisma-benchmark.ts",
-    "db:regenerate": "npx prisma db push --force-reset && npx prisma db seed",
     "scrape:cvc": "node scrapers/cvc-scraper.mjs",
     "scrape:assist": "node scrapers/assist-scraper.mjs",
     "scrape:all": "npm run scrape:cvc && npm run scrape:assist",
@@ -53,9 +52,6 @@
     "prisma": "5.11.0",
     "ts-node": "10.9.2",
     "typescript": "5.4.3"
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed/seed.ts"
   },
   "engines": {
     "node": "20"
