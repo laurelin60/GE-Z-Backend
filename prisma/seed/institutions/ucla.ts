@@ -39,15 +39,16 @@ async function getUclaCourses(): Promise<course[]> {
         "https://sa.ucla.edu/ro/Public/SOC/Search/SearchByFoundation";
 
     const queries = [
-        '?input={"FoundationCode":"AH","SubjectArea":"%25","LabDemoFilter":false,"WritingTwoFilter":false,"MultiCategoryFilter":false,"DiversityFilter":false}&search_criteria=Foundations+of+Arts+and+Humanities',
-        '?input={"FoundationCode":"SI","SubjectArea":"%25","LabDemoFilter":false,"WritingTwoFilter":false,"MultiCategoryFilter":false,"DiversityFilter":false}&search_criteria=Foundations+of+Scientific+Inquiry',
-        '?input={"FoundationCode":"SC","SubjectArea":"%25","LabDemoFilter":false,"WritingTwoFilter":false,"MultiCategoryFilter":false,"DiversityFilter":false}&search_criteria=Foundations+of+Society+and+Culture',
+        "?input=%7B%22FoundationCode%22%3A%22AH%22%2C%22SubjectArea%22%3A%22%25%22%2C%22LabDemoFilter%22%3Afalse%2C%22WritingTwoFilter%22%3Afalse%2C%22MultiCategoryFilter%22%3Afalse%2C%22DiversityFilter%22%3Afalse%7D&search_criteria=Foundations+of+Arts+and+Humanities",
+        "?input=%7B%22FoundationCode%22%3A%22SI%22%2C%22SubjectArea%22%3A%22%25%22%2C%22LabDemoFilter%22%3Afalse%2C%22WritingTwoFilter%22%3Afalse%2C%22MultiCategoryFilter%22%3Afalse%2C%22DiversityFilter%22%3Afalse%7D&search_criteria=Foundations+of+Scientific+Inquiry",
+        "?input=%7B%22FoundationCode%22%3A%22SC%22%2C%22SubjectArea%22%3A%22%25%22%2C%22LabDemoFilter%22%3Afalse%2C%22WritingTwoFilter%22%3Afalse%2C%22MultiCategoryFilter%22%3Afalse%2C%22DiversityFilter%22%3Afalse%7D&search_criteria=Foundations+of+Society+and+Culture",
     ];
 
-    const courses: course[] = [];
+    let courses: course[] = [];
 
     for (const query of queries) {
         const url: string = baseUrl + query;
+
         const response = await axios.get(url, {
             headers: { Cookie: cookie },
         });
@@ -56,11 +57,11 @@ async function getUclaCourses(): Promise<course[]> {
 
         if (geCourses.length === 0) {
             logger.warn("Failed to scrape courses for url: " + url);
+            continue;
         }
 
-        courses.concat(geCourses);
+        courses = courses.concat(geCourses);
     }
-
     return courses;
 }
 
