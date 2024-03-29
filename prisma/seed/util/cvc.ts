@@ -16,9 +16,17 @@ export type cvcCourse = {
     tuition: number;
 };
 
-export async function createManyCvcCourses(cvcCourses: cvcCourse[]) {
+export async function createManyCvcCourses(
+    cvcCourses: cvcCourse[],
+    updatedAt: Date,
+) {
+    const updatedCvcCourses = cvcCourses.map((course) => ({
+        ...course,
+        updatedAt,
+    }));
+
     await xprisma.cvcCourse.createMany({
-        data: cvcCourses,
+        data: updatedCvcCourses,
         skipDuplicates: true,
     });
 }

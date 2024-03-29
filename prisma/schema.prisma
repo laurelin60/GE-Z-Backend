@@ -12,14 +12,12 @@ model Institution {
   updatedAt     DateTime       @updatedAt
   createdAt     DateTime       @default(now())
   //
-  name          String // University of California, Irvine
-  code          String // UCI
+  name          String         @unique
+  code          String         @unique
   //
   geCategories  GeCategory[]
   courses       Course[]
   articulations Articulation[]
-
-  @@unique([code])
 }
 
 model GeCategory {
@@ -29,7 +27,7 @@ model GeCategory {
   //
   category      String
   //
-  institution   Institution @relation(fields: [institutionId], references: [id])
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
   institutionId Int
   courses       Course[]
   cvcCourses    CvcCourse[]
@@ -47,7 +45,7 @@ model Course {
   courseNumber     String
   courseName       String?        @default("")
   //
-  institution      Institution    @relation(fields: [institutionId], references: [id])
+  institution      Institution    @relation(fields: [institutionId], references: [id], onDelete: Cascade)
   institutionId    Int
   articulatesFrom  Articulation[]
   geCategories     GeCategory[]
@@ -81,15 +79,20 @@ model CvcCourse {
 }
 
 model Articulation {
-  id              Int         @id @default(autoincrement())
-  updatedAt       DateTime    @updatedAt
-  createdAt       DateTime    @default(now())
+  id                 Int          @id @default(autoincrement())
+  updatedAt          DateTime     @updatedAt
+  createdAt          DateTime     @default(now())
   //
-  assistPath      String
-  fromCollege     String
+  assistPath         String
+  fromCollege        String
+  toInstitutionName  String
+  fromCoursesStrings String[]
+  toCoursesStrings   String[]
   //
-  toInstitution   Institution @relation(fields: [toInstitutionId], references: [id])
-  toInstitutionId Int
-  from            CvcCourse[]
-  to              Course[]
+  toInstitution      Institution? @relation(fields: [toInstitutionId], references: [id])
+  toInstitutionId    Int?
+  from               CvcCourse[]
+  to                 Course[]
+
+  @@unique([fromCollege, toInstitutionName, fromCoursesStrings, toCoursesStrings])
 }

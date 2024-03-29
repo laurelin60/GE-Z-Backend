@@ -3,7 +3,9 @@ import pretty from "pino-pretty";
 
 const logger = pino(
     pretty({
-        translateTime: "SYS:standard",
+        colorize: true,
+        ignore: "pid,hostname",
+        translateTime: "SYS:HH:MM:ss",
     }),
 );
 

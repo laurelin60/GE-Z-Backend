@@ -26,7 +26,7 @@ describe("Endpoints", () => {
             before((done) => {
                 chai.request(app)
                     .get("/api/status")
-                    .end((err, res) => {
+                    .end((_err, res) => {
                         response = res;
                         done();
                     });
@@ -56,7 +56,7 @@ describe("Endpoints", () => {
             before((done) => {
                 chai.request(app)
                     .get("/api/institutions")
-                    .end((err, res) => {
+                    .end((_err, res) => {
                         response = res;
                         done();
                     });
@@ -95,7 +95,7 @@ describe("Endpoints", () => {
                     chai.request(app)
                         .get("/api/courses")
                         .query({ institution: "UCI", take: "1" })
-                        .end((err, res) => {
+                        .end((_err, res) => {
                             response = res;
                             done();
                         });
@@ -128,7 +128,7 @@ describe("Endpoints", () => {
                     chai.request(app)
                         .get("/api/courses")
                         .query({ _invalid: "invalid" })
-                        .end((err, res) => {
+                        .end((_err, res) => {
                             response = res;
                             done();
                         });
@@ -161,7 +161,7 @@ describe("Endpoints", () => {
                     chai.request(app)
                         .get("/api/cvc-courses")
                         .query({ institution: "UCI", ge: "III", take: "1" })
-                        .end((err, res) => {
+                        .end((_err, res) => {
                             response = res;
                             done();
                         });
@@ -195,7 +195,7 @@ describe("Endpoints", () => {
                     chai.request(app)
                         .get("/api/cvc-courses")
                         .query({ _invalid: "invalid" })
-                        .end((err, res) => {
+                        .end((_err, res) => {
                             response = res;
                             done();
                         });
@@ -231,7 +231,7 @@ describe("Endpoints", () => {
                             courseCode: "ANTHRO 2A",
                             take: "1",
                         })
-                        .end((err, res) => {
+                        .end((_err, res) => {
                             response = res;
                             done();
                         });
@@ -265,7 +265,7 @@ describe("Endpoints", () => {
                     chai.request(app)
                         .get("/api/cvc-courses/course")
                         .query({ _invalid: "invalid" })
-                        .end((err, res) => {
+                        .end((_err, res) => {
                             response = res;
                             done();
                         });
@@ -296,7 +296,7 @@ describe("Endpoints", () => {
                 before((done) => {
                     chai.request(app)
                         .get("/api/cvc-courses/last-updated")
-                        .end((err, res) => {
+                        .end((_err, res) => {
                             response = res;
                             done();
                         });

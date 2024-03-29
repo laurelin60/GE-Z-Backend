@@ -14,15 +14,17 @@ async function benchmark(query: () => void, iterations: number) {
     }
     const startFirst = performance.now();
     query();
-    const firstTime = (performance.now() - startFirst).toFixed(2);
+    const firstTime = (performance.now() - startFirst).toFixed(3);
 
     const start = performance.now();
     for (let i = 0; i < iterations; i++) {
         query();
     }
     const end = performance.now();
-    const avgTime = ((end - start) / iterations).toFixed(2);
-    logger.info(`${query.name} | first: ${firstTime}ms | cached: ${avgTime}ms`);
+    const avgTime = ((end - start) / iterations).toFixed(3);
+    logger.info(
+        `${query.name.padEnd(35)}first: ${firstTime}ms | cached: ${avgTime}ms`,
+    );
 }
 
 async function getInstitutionsBenchmark() {
@@ -66,11 +68,13 @@ async function getCvcLastUpdatedBenchmark() {
 }
 
 async function runBenchmarks() {
-    await benchmark(getInstitutionsBenchmark, 20);
-    await benchmark(getCoursesByInstitutionBenchmark, 20);
-    await benchmark(getCvcCoursesByGEBenchmark, 20);
-    await benchmark(getCvcCoursesByCourseBenchmark, 20);
-    await benchmark(getCvcLastUpdatedBenchmark, 20);
+    const ITERATIONS = 100;
+
+    await benchmark(getInstitutionsBenchmark, ITERATIONS);
+    await benchmark(getCoursesByInstitutionBenchmark, ITERATIONS);
+    await benchmark(getCvcCoursesByGEBenchmark, ITERATIONS);
+    await benchmark(getCvcCoursesByCourseBenchmark, ITERATIONS);
+    await benchmark(getCvcLastUpdatedBenchmark, ITERATIONS);
 }
 
 runBenchmarks().catch((error) => {

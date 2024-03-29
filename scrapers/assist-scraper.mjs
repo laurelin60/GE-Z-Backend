@@ -1,7 +1,7 @@
 import axios from "axios";
 import fs from "fs/promises";
 import chalk from "chalk";
-import { processPdf, processPdfBuffer } from "./assist-pdf-parser.mjs";
+// import { processPdf, processPdfBuffer } from "./assist-pdf-parser.mjs";
 
 async function safeFetch(url, params) {
     for (let attempt = 0; attempt < 3; attempt++) {
@@ -242,10 +242,7 @@ async function runScript() {
                     agreements: [],
                 };
                 process.stdout.write(
-                    `\r                                                                                                       `,
-                );
-                process.stdout.write(
-                    `\r[${j + 1}/${
+                    `\r\r[${j + 1}/${
                         agreeingInstitutions.length
                     }] Fetching agreements for ${chalk.blueBright(
                         name,

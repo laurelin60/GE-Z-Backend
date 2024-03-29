@@ -314,6 +314,7 @@ const fetchCvcData = async () => {
     }
     let courseDataJSON = {
         data: aggregateCourseData,
+        updatedAt: Date.now(),
     };
     // Overwrite failsafe data with properly formatted data
     fs.writeFile("cvc-courses.json", JSON.stringify(courseDataJSON), (err) => {

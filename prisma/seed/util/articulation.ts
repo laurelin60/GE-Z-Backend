@@ -1,142 +1,174 @@
+import logger from "../../../src/util/logger";
 import { xprisma } from "../../../src/util/prisma-client";
+
+import formatCode from "./format-code";
 
 export type agreement = {
     assistPath: string;
     fromCollege: string;
-    toInstitutionCode: string;
+    toInstitutionName: string;
     articulations: articulation[];
 };
 
 export type articulation = {
-    fromCvcCoursesCodes: string[];
-    toCoursesCodes: string[];
+    fromCvcCourseCodes: string[];
+    toCourseCodes: string[];
 };
 
 export async function createManyArticulations(agreements: agreement[]) {
-    for (const agreement of agreements) {
-        for (const articulation of agreement.articulations) {
-            const fromCourses = await getFromCourses(
-                articulation,
-                agreement.fromCollege,
-            );
-            const toCourses = await getToCourses(
-                articulation,
-                agreement.toInstitutionCode,
-            );
+    await xprisma.articulation.createMany({
+        data: agreements.flatMap((agreement) =>
+            agreement.articulations.map((articulation) => ({
+                fromCollege: agreement.fromCollege,
+                toInstitutionName: agreement.toInstitutionName,
+                assistPath: agreement.assistPath,
+                fromCoursesStrings:
+                    articulation.fromCvcCourseCodes.map(formatCode),
+                toCoursesStrings: articulation.toCourseCodes.map(formatCode),
+            })),
+        ),
+        skipDuplicates: true,
+    });
 
-            if (toCourses.length > 0) {
-                const existingArticulation =
-                    await xprisma.articulation.findFirst({
-                        where: {
-                            fromCollege: agreement.fromCollege,
-                            toInstitution: {
-                                code: agreement.toInstitutionCode,
-                            },
-                            from: {
-                                every: {
-                                    id: {
-                                        in: fromCourses.map(
-                                            (course) => course.id,
-                                        ),
-                                    },
-                                },
-                            },
-                            to: {
-                                every: {
-                                    id: {
-                                        in: toCourses.map(
-                                            (course) => course.id,
-                                        ),
-                                    },
-                                },
-                            },
-                        },
-                    });
+    await connectInstitutions();
+    await connectCvcCourses();
+    await connectCvcGes();
+}
 
-                if (!existingArticulation) {
-                    const createdArticulation =
-                        await xprisma.articulation.create({
-                            data: {
-                                fromCollege: agreement.fromCollege,
-                                toInstitution: {
-                                    connect: {
-                                        code: agreement.toInstitutionCode,
-                                    },
-                                },
-                                assistPath: agreement.assistPath,
-                                from: {
-                                    connect: fromCourses.map((course) => ({
-                                        id: course.id,
-                                    })),
-                                },
-                                to: {
-                                    connect: toCourses.map((course) => ({
-                                        id: course.id,
-                                    })),
-                                },
-                            },
-                            include: {
-                                from: true,
-                                to: {
-                                    include: {
-                                        geCategories: true,
-                                    },
-                                },
-                            },
-                        });
+async function connectInstitutions() {
+    const institutions = await xprisma.institution.findMany();
 
-                    for (const fromCvcCourse of createdArticulation.from) {
-                        await xprisma.cvcCourse.update({
-                            where: {
-                                id: fromCvcCourse.id,
-                            },
-                            data: {
-                                fulfillsGEs: {
-                                    connect: createdArticulation.to.flatMap(
-                                        (toCourse) =>
-                                            toCourse.geCategories.map(
-                                                (geCategory) => ({
-                                                    id: geCategory.id,
-                                                }),
-                                            ),
-                                    ),
-                                },
-                            },
-                        });
-                    }
-                }
+    for (const institution of institutions) {
+        logger.info(`Connecting articulations to ${institution.name}`);
+        await xprisma.articulation.updateMany({
+            where: {
+                toInstitutionName: institution.name,
+            },
+            data: {
+                toInstitutionId: institution.id,
+            },
+        });
+
+        const articulations = await xprisma.articulation.findMany({
+            where: {
+                toInstitutionId: institution.id,
+            },
+        });
+
+        for (const [i, articulation] of articulations.entries()) {
+            if (i % 10 === 9) {
+                process.stdout.write(`\r[${i + 1}/${articulations.length}]`);
             }
+            const courses = await xprisma.course.findMany({
+                where: {
+                    institutionId: institution.id,
+                    courseCode: {
+                        in: articulation.toCoursesStrings,
+                    },
+                },
+            });
+
+            await xprisma.articulation.update({
+                where: {
+                    id: articulation.id,
+                },
+                data: {
+                    to: {
+                        connect: courses.map((course) => ({
+                            id: course.id,
+                        })),
+                    },
+                },
+            });
         }
+
+        process.stdout.write(`\r`);
     }
 }
 
-async function getFromCourses(articulation: articulation, fromCollege: string) {
-    return xprisma.cvcCourse.findMany({
-        where: {
-            courseCode: {
-                in: articulation.fromCvcCoursesCodes.map(formatCode),
+async function connectCvcCourses() {
+    logger.info("Connecting articulations to CVC courses");
+
+    const articulations = await xprisma.articulation.findMany();
+
+    for (const [i, articulation] of articulations.entries()) {
+        if (i % 10 === 9) {
+            process.stdout.write(`\r[${i + 1}/${articulations.length}]`);
+        }
+
+        const fromCourses = await xprisma.cvcCourse.findMany({
+            where: {
+                college: articulation.fromCollege,
+                courseCode: {
+                    in: articulation.fromCoursesStrings,
+                },
             },
-            college: fromCollege,
-        },
-    });
+        });
+
+        await xprisma.articulation.update({
+            where: {
+                id: articulation.id,
+            },
+            data: {
+                from: {
+                    connect: fromCourses.map((course) => ({
+                        id: course.id,
+                    })),
+                },
+            },
+        });
+    }
+
+    process.stdout.write(`\r`);
 }
 
-async function getToCourses(
-    articulation: articulation,
-    toInstitutionCode: string,
-) {
-    return xprisma.course.findMany({
-        where: {
-            courseCode: {
-                in: articulation.toCoursesCodes,
-            },
-            institution: {
-                code: toInstitutionCode,
+async function connectCvcGes() {
+    logger.info("Connecting CVC courses to GE categories");
+
+    const cvcCourses = await xprisma.cvcCourse.findMany({
+        include: {
+            articulatesTo: {
+                include: {
+                    to: {
+                        select: {
+                            geCategories: true,
+                        },
+                    },
+                },
             },
         },
     });
-}
 
-function formatCode(inputString: string): string {
-    return inputString.replace(/[^a-zA-Z0-9]/g, "");
+    for (const [i, cvcCourse] of cvcCourses.entries()) {
+        if (i % 10 === 9) {
+            process.stdout.write(`\r[${i + 1}/${cvcCourses.length}]`);
+        }
+
+        if (cvcCourse.articulatesTo.length < 1) {
+            continue;
+        }
+
+        const geCategories = cvcCourse.articulatesTo.flatMap((articulation) =>
+            articulation.to.flatMap((course) => course.geCategories),
+        );
+
+        if (geCategories.length < 1) {
+            continue;
+        }
+
+        await xprisma.cvcCourse.update({
+            where: {
+                id: cvcCourse.id,
+            },
+            data: {
+                fulfillsGEs: {
+                    connect: geCategories.map((geCategory) => ({
+                        id: geCategory.id,
+                    })),
+                },
+            },
+        });
+    }
+
+    process.stdout.write(`\r`);
 }
