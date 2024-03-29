@@ -44,7 +44,7 @@ class UCLA extends University {
         const html = response.data;
         const $ = cheerio.load(html);
         const s = new Set();
-        let ct = 0;
+        
         $(".col-md-1").each((index, element) => {
             const parent = $(element).parent();
             if (s.has(parent)) return;
@@ -73,12 +73,10 @@ class UCLA extends University {
                 ", ",
             )})`;
             if (this.dcs.has(strrep)) return;
-            ct++;
             this.dcs.add(strrep);
             this.geMap[`${categoryCode}${catalogNum}`.replaceAll(" ", "")] =
                 geCats;
         });
-        console.log("aaaaa", ct);
     }
 
     async getCookie(): Promise<string> {
