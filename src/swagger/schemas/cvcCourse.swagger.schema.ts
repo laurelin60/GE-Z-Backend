@@ -59,7 +59,7 @@ const cvcCourseSwaggerSchema = {
             type: "array",
             items: {
                 type: "string",
-                example: "ANTHRO 2A",
+                example: "ANTHRO2A",
             },
         },
     },

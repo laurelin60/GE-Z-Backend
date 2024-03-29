@@ -228,7 +228,7 @@ describe("Endpoints", () => {
                         .get("/api/cvc-courses/course")
                         .query({
                             institution: "UCI",
-                            courseCode: "ANTHRO 2A",
+                            courseCode: "ANTHRO2A",
                             take: "1",
                         })
                         .end((_err, res) => {

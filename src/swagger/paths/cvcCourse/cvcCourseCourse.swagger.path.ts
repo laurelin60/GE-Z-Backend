@@ -35,7 +35,7 @@ const cvcCourseCourseSwaggerPath = {
                 },
                 examples: {
                     courseCode: {
-                        value: "ANTHRO 2A",
+                        value: "ANTHRO2A",
                     },
                 },
             },

@@ -6,6 +6,7 @@ import {
     cvcCourseByGERequestSchema,
     cvcCourseSchema,
 } from "../model/cvc-model";
+import logger from "../util/logger";
 import { xprisma } from "../util/prisma-client";
 
 function cvcQueryToResponse(
@@ -137,9 +138,8 @@ export const getCvcLastUpdated = async () => {
     const cvcCourse = await xprisma.cvcCourse.findFirst();
 
     if (!cvcCourse) {
-        throw new Error(
-            "No CVC courses found. Unable to get last updated timestamp.",
-        );
+        logger.error("No CVC courses exist, unable to get last updated time");
+        return new Date(0).getTime();
     }
     return cvcCourse.updatedAt.getTime();
 };

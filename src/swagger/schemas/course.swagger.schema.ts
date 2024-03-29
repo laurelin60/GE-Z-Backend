@@ -3,7 +3,7 @@ const courseSwaggerSchema = {
     properties: {
         courseCode: {
             type: "string",
-            example: "ANTHRO 2A",
+            example: "ANTHRO2A",
         },
         courseName: {
             type: "string",

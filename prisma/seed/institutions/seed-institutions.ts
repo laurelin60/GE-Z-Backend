@@ -9,9 +9,9 @@ import getUcsbInstitution from "./ucsb";
 async function seedInstitutions() {
     logger.info("Fetching institutions");
 
-    const uci = await getUciInstitution();
-    const ucla = await getUclaInstitution();
-    const ucsb = await getUcsbInstitution();
+    const uci: institution = await getUciInstitution();
+    const ucla: institution = await getUclaInstitution();
+    const ucsb: institution = await getUcsbInstitution();
 
     const institutions = [uci, ucla, ucsb] satisfies institution[];
 

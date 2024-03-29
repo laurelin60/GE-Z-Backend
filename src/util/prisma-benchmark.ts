@@ -38,28 +38,16 @@ async function getCoursesByInstitutionBenchmark() {
 }
 
 async function getCvcCoursesByGEBenchmark() {
-    const geList = [
-        "Ia",
-        "Ib",
-        "II",
-        "III",
-        "IV",
-        "Va",
-        "Vb",
-        "VI",
-        "VII",
-        "VIII",
-    ];
     await getCvcCoursesByGE({
         institution: "University of California, Irvine",
-        ge: geList[Math.floor(Math.random() * geList.length)],
+        ge: "III",
     });
 }
 
 async function getCvcCoursesByCourseBenchmark() {
     await getCvcCoursesByCourse({
         institution: "University of California, Irvine",
-        courseCode: "ANTHRO 2A",
+        courseCode: "ANTHRO2A",
     });
 }
 

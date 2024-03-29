@@ -44,7 +44,7 @@ async function getUclaCourses(): Promise<course[]> {
         '?input={"FoundationCode":"SC","SubjectArea":"%25","LabDemoFilter":false,"WritingTwoFilter":false,"MultiCategoryFilter":false,"DiversityFilter":false}&search_criteria=Foundations+of+Society+and+Culture',
     ];
 
-    let courses: course[] = [];
+    const courses: course[] = [];
 
     for (const query of queries) {
         const url: string = baseUrl + query;
@@ -58,7 +58,7 @@ async function getUclaCourses(): Promise<course[]> {
             logger.warn("Failed to scrape courses for url: " + url);
         }
 
-        courses = courses.concat();
+        courses.concat(geCourses);
     }
 
     return courses;
