@@ -27,9 +27,6 @@ const cacheMiddleware: Prisma.Middleware = createPrismaRedisCache({
         options: { size: 256, invalidation: true, log: logger },
     },
     cacheTime: 86_400, // 24 hours
-    onError: (key) => {
-        logger.error("cache error", key);
-    },
 });
 
 // noinspection JSDeprecatedSymbols

@@ -9,6 +9,8 @@ import { getInstitutions } from "../service/institution-service";
 import logger from "./logger";
 
 async function benchmark(query: () => void, iterations: number) {
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
     if (iterations <= 0) {
         return;
     }
@@ -20,6 +22,7 @@ async function benchmark(query: () => void, iterations: number) {
     for (let i = 0; i < iterations; i++) {
         query();
     }
+
     const end = performance.now();
     const avgTime = ((end - start) / iterations).toFixed(3);
     logger.info(

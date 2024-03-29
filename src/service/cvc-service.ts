@@ -12,20 +12,15 @@ import { xprisma } from "../util/prisma-client";
 function cvcQueryToResponse(
     cvcCourse: Prisma.CvcCourseGetPayload<{
         include: {
-            fulfillsGEs: true;
+            fulfillsGEs: {
+                include: {
+                    geCategory: true;
+                };
+            };
             articulatesTo: { include: { to: true; toInstitution: true } };
         };
     }>,
 ) {
-    const countMap = new Map();
-    cvcCourse.fulfillsGEs.forEach(({ category }) =>
-        countMap.set(category, (countMap.get(category) || 0) + 1),
-    );
-    const fulfillsGEs = Array.from(countMap, ([val, count]) => ({
-        category: val,
-        count,
-    }));
-
     return {
         sendingInstitution: cvcCourse.college,
         courseCode: cvcCourse.courseCode,
@@ -41,7 +36,10 @@ function cvcQueryToResponse(
         hasOpenSeats: cvcCourse.hasOpenSeats,
         hasPrereqs: cvcCourse.hasPrereqs,
         instantEnrollment: cvcCourse.instantEnrollment,
-        fulfillsGEs: fulfillsGEs,
+        fulfillsGEs: cvcCourse.fulfillsGEs.map((fulfillsGe) => ({
+            count: fulfillsGe.count,
+            category: fulfillsGe.geCategory.category,
+        })),
         articulatesTo: cvcCourse.articulatesTo.flatMap((articulation) =>
             articulation.to.map((course) => course.courseCode),
         ),
@@ -57,24 +55,31 @@ export const getCvcCoursesByGE = async (
         where: {
             fulfillsGEs: {
                 some: {
-                    institution: {
-                        OR: [
-                            { name: request.institution },
-                            { code: request.institution },
-                        ],
+                    geCategory: {
+                        institution: {
+                            OR: [
+                                { name: request.institution },
+                                { code: request.institution },
+                            ],
+                        },
+                        category: request.ge,
                     },
-                    category: request.ge,
                 },
             },
         },
         include: {
             fulfillsGEs: {
+                include: {
+                    geCategory: true,
+                },
                 where: {
-                    institution: {
-                        OR: [
-                            { name: request.institution },
-                            { code: request.institution },
-                        ],
+                    geCategory: {
+                        institution: {
+                            OR: [
+                                { name: request.institution },
+                                { code: request.institution },
+                            ],
+                        },
                     },
                 },
             },
@@ -122,12 +127,17 @@ export const getCvcCoursesByCourse = async (
         },
         include: {
             fulfillsGEs: {
+                include: {
+                    geCategory: true,
+                },
                 where: {
-                    institution: {
-                        OR: [
-                            { name: request.institution },
-                            { code: request.institution },
-                        ],
+                    geCategory: {
+                        institution: {
+                            OR: [
+                                { name: request.institution },
+                                { code: request.institution },
+                            ],
+                        },
                     },
                 },
             },

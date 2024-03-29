@@ -86,7 +86,7 @@ async function connectInstitutions() {
     }
 }
 
-async function connectCvcCourses() {
+export async function connectCvcCourses() {
     logger.info("Connecting articulations to CVC courses");
 
     const articulations = await xprisma.articulation.findMany();
@@ -122,8 +122,8 @@ async function connectCvcCourses() {
     process.stdout.write(`\r`);
 }
 
-async function connectCvcGes() {
-    logger.info("Connecting CVC courses to GE categories");
+export async function connectCvcGes() {
+    logger.info("Connecting CVC courses to GE fulfillments");
 
     const cvcCourses = await xprisma.cvcCourse.findMany({
         include: {
@@ -156,14 +156,36 @@ async function connectCvcGes() {
             continue;
         }
 
+        const fulfillsGEs = await Promise.all(
+            geCategories.map((geCategory) => {
+                return xprisma.cvcFulillsGe.upsert({
+                    where: {
+                        cvcCourseId_geCategoryId: {
+                            cvcCourseId: cvcCourse.id,
+                            geCategoryId: geCategory.id,
+                        },
+                    },
+                    create: {
+                        cvcCourseId: cvcCourse.id,
+                        geCategoryId: geCategory.id,
+                    },
+                    update: {
+                        count: {
+                            increment: 1,
+                        },
+                    },
+                });
+            }),
+        );
+
         await xprisma.cvcCourse.update({
             where: {
                 id: cvcCourse.id,
             },
             data: {
                 fulfillsGEs: {
-                    connect: geCategories.map((geCategory) => ({
-                        id: geCategory.id,
+                    connect: fulfillsGEs.map((fulfillsGE) => ({
+                        id: fulfillsGE.id,
                     })),
                 },
             },

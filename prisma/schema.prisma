@@ -21,16 +21,16 @@ model Institution {
 }
 
 model GeCategory {
-  id            Int          @id @default(autoincrement())
-  updatedAt     DateTime     @updatedAt
-  createdAt     DateTime     @default(now())
+  id            Int            @id @default(autoincrement())
+  updatedAt     DateTime       @updatedAt
+  createdAt     DateTime       @default(now())
   //
   category      String
   //
-  institution   Institution  @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+  institution   Institution    @relation(fields: [institutionId], references: [id], onDelete: Cascade)
   institutionId Int
   courses       Course[]
-  cvcCourses    fulfillsGE[]
+  cvcCourses    CvcFulillsGe[]
 
   @@unique([institutionId, category])
 }
@@ -72,22 +72,22 @@ model CvcCourse {
   instantEnrollment Boolean
   tuition           Int
   //
-  fulfillsGEs       fulfillsGE[]
+  fulfillsGEs       CvcFulillsGe[]
   articulatesTo     Articulation[]
 
   @@unique([cvcId, courseCode])
 }
 
-model fulfillsGE {
+model CvcFulillsGe {
   id           Int        @id @default(autoincrement())
   updatedAt    DateTime   @updatedAt
   createdAt    DateTime   @default(now())
   //
-  count        Int
+  count        Int        @default(1)
   //
-  cvcCourse    CvcCourse  @relation(fields: [cvcCourseId], references: [id])
+  cvcCourse    CvcCourse  @relation(fields: [cvcCourseId], references: [id], onDelete: Cascade)
   cvcCourseId  Int
-  geCategory   GeCategory @relation(fields: [geCategoryId], references: [id])
+  geCategory   GeCategory @relation(fields: [geCategoryId], references: [id], onDelete: Cascade)
   geCategoryId Int
 
   @@unique([cvcCourseId, geCategoryId])
@@ -104,7 +104,7 @@ model Articulation {
   fromCoursesStrings String[]
   toCoursesStrings   String[]
   //
-  toInstitution      Institution? @relation(fields: [toInstitutionId], references: [id])
+  toInstitution      Institution? @relation(fields: [toInstitutionId], references: [id], onDelete: SetNull)
   toInstitutionId    Int?
   from               CvcCourse[]
   to                 Course[]
