@@ -37,24 +37,22 @@ See the [frontend](https://github.com/laurelin60/GE-Z-Frontend).
 > Note: the parser does not guarantee 100% accuracy. If you run into issues please let us know :+1:
 
 ## Getting Started
-
-1. Make sure you have
-   [Node.js 20.10.0](https://nodejs.org/en/download) and
-   [pnpm](https://pnpm.io/installation) installed
-2. Clone the repo
-3. Copy `.env.example` to `.env`
-4. Run:
+Requirements: `node >= 20`, `npm`
+1. Clone the repo
+2. Copy `.env.example` to `.env`
+3. Run:
 
 ```bash
-pnpm i
+npm i
 ```
 
 ```bash
-pnpm run db:regenerate
+npm run scrape:all  
+npm run seed:all
 ```
 
 ```bash
-pnpm run dev
+npm run dev
 ```
 
 ---
