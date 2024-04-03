@@ -1,3 +1,6 @@
+import { PrismaClient } from "@prisma/client";
+import { ITXClientDenyList } from "@prisma/client/runtime/library";
+
 import { xprisma } from "../../../src/util/prisma-client";
 
 export type cvcCourse = {
@@ -19,13 +22,14 @@ export type cvcCourse = {
 export async function createManyCvcCourses(
     cvcCourses: cvcCourse[],
     updatedAt: Date,
+    prisma: Omit<PrismaClient, ITXClientDenyList> = xprisma,
 ) {
     const updatedCvcCourses = cvcCourses.map((course) => ({
         ...course,
         updatedAt,
     }));
 
-    await xprisma.cvcCourse.createMany({
+    await prisma.cvcCourse.createMany({
         data: updatedCvcCourses,
         skipDuplicates: true,
     });

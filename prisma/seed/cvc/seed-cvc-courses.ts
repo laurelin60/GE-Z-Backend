@@ -1,5 +1,7 @@
 import fs from "fs";
 
+import { PrismaClient } from "@prisma/client";
+import { ITXClientDenyList } from "@prisma/client/runtime/library";
 import z from "zod";
 
 import logger from "../../../src/util/logger";
@@ -75,7 +77,10 @@ function transformTermString(termString: string): Date[] {
     return [startDate, endDate];
 }
 
-export default async function seedCvc(filepath: string) {
+export default async function seedCvc(
+    filepath: string,
+    prisma: Omit<PrismaClient, ITXClientDenyList> = xprisma,
+) {
     logger.info("Seeding CVC courses from " + filepath);
 
     const cvcData = JSON.parse(fs.readFileSync(filepath, "utf8"));
@@ -88,8 +93,8 @@ export default async function seedCvc(filepath: string) {
 
     const updatedAt = new Date(cvcData.updatedAt);
 
-    await xprisma.cvcCourse.deleteMany();
-    await createManyCvcCourses(cvcCourses, updatedAt);
+    await prisma.cvcCourse.deleteMany();
+    await createManyCvcCourses(cvcCourses, updatedAt, prisma);
 
     logger.info(`Seeded ${cvcCourses.length} CVC courses`);
 }

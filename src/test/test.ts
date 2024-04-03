@@ -69,6 +69,11 @@ describe("Endpoints", () => {
                 done();
             });
 
+            it("should have non-empty data", (done) => {
+                response.body.data.should.not.be.empty;
+                done();
+            });
+
             it("should match response type of swagger docs", (done) => {
                 validateSwagger(
                     swaggerDefinition.paths["/institutions"].get.responses[
@@ -105,6 +110,11 @@ describe("Endpoints", () => {
                     response.should.have.status(200);
                     response.body.should.have.property("status").eql(200);
                     response.body.should.have.property("data");
+                    done();
+                });
+
+                it("should have non-empty data", (done) => {
+                    response.body.data.should.not.be.empty;
                     done();
                 });
 
@@ -171,6 +181,11 @@ describe("Endpoints", () => {
                     response.should.have.status(200);
                     response.body.should.have.property("status").eql(200);
                     response.body.should.have.property("data");
+                    done();
+                });
+
+                it("should have non-empty data", (done) => {
+                    response.body.data.should.not.be.empty;
                     done();
                 });
 
@@ -241,6 +256,11 @@ describe("Endpoints", () => {
                     response.should.have.status(200);
                     response.body.should.have.property("status").eql(200);
                     response.body.should.have.property("data");
+                    done();
+                });
+
+                it("should have non-empty data", (done) => {
+                    response.body.data.should.not.be.empty;
                     done();
                 });
 
@@ -318,6 +338,7 @@ describe("Endpoints", () => {
                     );
                     done();
                 });
+
                 it("should match response type in .model", (done) => {
                     cvcLastUpdatedResponseSchema.parse(response.body);
                     done();

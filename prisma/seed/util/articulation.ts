@@ -1,3 +1,6 @@
+import { PrismaClient } from "@prisma/client";
+import { ITXClientDenyList } from "@prisma/client/runtime/library";
+
 import logger from "../../../src/util/logger";
 import { xprisma } from "../../../src/util/prisma-client";
 
@@ -15,8 +18,11 @@ export type articulation = {
     toCourseCodes: string[];
 };
 
-export async function createManyArticulations(agreements: agreement[]) {
-    await xprisma.articulation.createMany({
+export async function createManyArticulations(
+    agreements: agreement[],
+    prisma: Omit<PrismaClient, ITXClientDenyList> = xprisma,
+) {
+    await prisma.articulation.createMany({
         data: agreements.flatMap((agreement) =>
             agreement.articulations.map((articulation) => ({
                 fromCollege: agreement.fromCollege,
@@ -30,17 +36,19 @@ export async function createManyArticulations(agreements: agreement[]) {
         skipDuplicates: true,
     });
 
-    await connectInstitutions();
-    await connectCvcCourses();
-    await connectCvcGes();
+    await connectInstitutions(prisma);
+    await connectCvcCourses(prisma);
+    await connectCvcGes(prisma);
 }
 
-async function connectInstitutions() {
-    const institutions = await xprisma.institution.findMany();
+async function connectInstitutions(
+    prisma: Omit<PrismaClient, ITXClientDenyList>,
+) {
+    const institutions = await prisma.institution.findMany();
 
     for (const [i, institution] of institutions.entries()) {
         logger.info(`Connecting articulations to ${institution.name}`);
-        await xprisma.articulation.updateMany({
+        await prisma.articulation.updateMany({
             where: {
                 toInstitutionName: institution.name,
             },
@@ -49,7 +57,7 @@ async function connectInstitutions() {
             },
         });
 
-        const articulations = await xprisma.articulation.findMany({
+        const articulations = await prisma.articulation.findMany({
             where: {
                 toInstitutionId: institution.id,
             },
@@ -61,7 +69,7 @@ async function connectInstitutions() {
                     `\r[${i + 1}/${institutions.length}] [${j + 1}/${articulations.length}]`,
                 );
             }
-            const courses = await xprisma.course.findMany({
+            const courses = await prisma.course.findMany({
                 where: {
                     institutionId: institution.id,
                     courseCode: {
@@ -70,7 +78,7 @@ async function connectInstitutions() {
                 },
             });
 
-            await xprisma.articulation.update({
+            await prisma.articulation.update({
                 where: {
                     id: articulation.id,
                 },
@@ -88,17 +96,19 @@ async function connectInstitutions() {
     }
 }
 
-export async function connectCvcCourses() {
+export async function connectCvcCourses(
+    prisma: Omit<PrismaClient, ITXClientDenyList>,
+) {
     logger.info("Connecting articulations to CVC courses");
 
-    const articulations = await xprisma.articulation.findMany();
+    const articulations = await prisma.articulation.findMany();
 
     for (const [i, articulation] of articulations.entries()) {
         if (i % 10 === 9) {
             process.stdout.write(`\r[${i + 1}/${articulations.length}]`);
         }
 
-        const fromCourses = await xprisma.cvcCourse.findMany({
+        const fromCourses = await prisma.cvcCourse.findMany({
             where: {
                 college: articulation.fromCollege,
                 courseCode: {
@@ -107,7 +117,11 @@ export async function connectCvcCourses() {
             },
         });
 
-        await xprisma.articulation.update({
+        if (fromCourses.length < 1) {
+            continue;
+        }
+
+        await prisma.articulation.update({
             where: {
                 id: articulation.id,
             },
@@ -124,10 +138,12 @@ export async function connectCvcCourses() {
     process.stdout.write(`\r`);
 }
 
-export async function connectCvcGes() {
+export async function connectCvcGes(
+    prisma: Omit<PrismaClient, ITXClientDenyList>,
+) {
     logger.info("Connecting CVC courses to GE fulfillments");
 
-    const cvcCourses = await xprisma.cvcCourse.findMany({
+    const cvcCourses = await prisma.cvcCourse.findMany({
         include: {
             articulatesTo: {
                 include: {
@@ -160,7 +176,7 @@ export async function connectCvcGes() {
 
         const fulfillsGEs = await Promise.all(
             geCategories.map((geCategory) => {
-                return xprisma.cvcFulillsGe.upsert({
+                return prisma.cvcFulillsGe.upsert({
                     where: {
                         cvcCourseId_geCategoryId: {
                             cvcCourseId: cvcCourse.id,
@@ -180,7 +196,7 @@ export async function connectCvcGes() {
             }),
         );
 
-        await xprisma.cvcCourse.update({
+        await prisma.cvcCourse.update({
             where: {
                 id: cvcCourse.id,
             },

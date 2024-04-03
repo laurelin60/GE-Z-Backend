@@ -6,7 +6,7 @@
     "scrape:assist": "node scrapers/assist-scraper.mjs",
     "seed:institutions": "ts-node prisma/seed/institutions/seed-institutions-script.ts",
     "seed:cvc": "ts-node prisma/seed/cvc/seed-cvc-courses-script.ts",
-    "seed:articulations": "ts-node prisma/seed/articulations/seed-articualtions-script.ts",
+    "seed:articulations": "ts-node prisma/seed/articulations/seed-articulations-script.ts",
     "seed:all": "npm run seed:institutions && npm run seed:cvc && npm run seed:articulations",
     "reformat": "npx prettier . --write && npx eslint --fix .",
     "test": "mocha --require ts-node/register src/test/*.ts --exit",
