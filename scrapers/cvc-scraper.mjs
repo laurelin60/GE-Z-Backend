@@ -195,8 +195,8 @@ const fetchCvcData = async () => {
     let aggregateCourseData = [];
     try {
         // Clear data in output file (this will only be seen if the script stops early)
-        fs.writeFile(
-            "cvc-courses.json",
+        await fs.writeFile(
+            "./scrapers/cvc-courses.json",
             "WARNING: BAD FORMAT, SCRIPT DID NOT FINISH EXECUTING PROPERLY\n",
             (_err) => {},
         );
@@ -297,10 +297,10 @@ const fetchCvcData = async () => {
             });
             aggregateCourseData = aggregateCourseData.concat(allWithAttributes);
             // failsafe data in case script crashes (or we just manually terminate it early) so the whole thing doesn't get discarded
-            fs.appendFile(
-                "cvc-courses.json",
+            await fs.appendFile(
+                "./scrapers/cvc-courses.json",
                 allWithAttributes.map((e) => JSON.stringify(e)).join("\n") +
-                    "\n",
+                "\n",
                 (err) => {
                     // (pls don't change newline to comma at least for now)
                     if (err) {
@@ -317,7 +317,7 @@ const fetchCvcData = async () => {
         updatedAt: Date.now(),
     };
     // Overwrite failsafe data with properly formatted data
-    fs.writeFile("cvc-courses.json", JSON.stringify(courseDataJSON), (err) => {
+    await fs.writeFile("./scrapers/cvc-courses.json", JSON.stringify(courseDataJSON), (err) => {
         if (err) {
             console.error(err);
         }

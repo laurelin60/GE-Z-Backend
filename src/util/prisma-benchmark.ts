@@ -60,8 +60,8 @@ async function getCvcLastUpdatedBenchmark() {
 async function runBenchmarks() {
     const ITERATIONS = 10;
 
-    await benchmark(getInstitutionsBenchmark, ITERATIONS);
     // await benchmark(getCoursesByInstitutionBenchmark, ITERATIONS);
+    await benchmark(getInstitutionsBenchmark, ITERATIONS);
     await benchmark(getCvcCoursesByGEBenchmark, ITERATIONS);
     await benchmark(getCvcCoursesByCourseBenchmark, ITERATIONS);
     await benchmark(getCvcLastUpdatedBenchmark, ITERATIONS);
