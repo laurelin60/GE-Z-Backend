@@ -24,6 +24,9 @@ export const swaggerDefinition = {
         {
             url: `http://localhost:${process.env.PORT}/api`,
         },
+        {
+            url: "https://ge-z.info/api",
+        },
     ],
     tags: [
         {
