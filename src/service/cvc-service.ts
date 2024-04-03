@@ -41,7 +41,9 @@ function cvcQueryToResponse(
             category: fulfillsGe.geCategory.category,
         })),
         articulatesTo: cvcCourse.articulatesTo.flatMap((articulation) =>
-            articulation.to.map((course) => course.courseCode),
+            articulation.to.map(
+                (course) => course.courseDepartment + " " + course.courseNumber,
+            ),
         ),
     } satisfies z.infer<typeof cvcCourseSchema>;
 }
