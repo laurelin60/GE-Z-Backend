@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api", routes);
 
-async function  main() {
+async function main() {
     if (process.argv.includes('-ssl')) {
         https.createServer({
             key: await fs.readFile('ssl/private.key'),
