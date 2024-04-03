@@ -38,7 +38,7 @@ const assistDataSchema = z.object({
     ),
 });
 
-async function seedArticulations(filepath: string) {
+export default async function seedArticulations(filepath: string) {
     const assistData = assistDataSchema.parse(
         JSON.parse(fs.readFileSync(filepath, "utf-8")),
     );
@@ -76,8 +76,3 @@ async function seedArticulations(filepath: string) {
         `Seeded ${agreements.flatMap((a) => a.articulations).length} articulations`,
     );
 }
-
-seedArticulations("./scrapers/assist-data.json").catch((error) => {
-    logger.error(error);
-    process.exit(1);
-});

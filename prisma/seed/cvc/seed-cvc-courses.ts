@@ -75,7 +75,7 @@ function transformTermString(termString: string): Date[] {
     return [startDate, endDate];
 }
 
-async function seedCvc(filepath: string) {
+export default async function seedCvc(filepath: string) {
     logger.info("Seeding CVC courses from " + filepath);
 
     const cvcData = JSON.parse(fs.readFileSync(filepath, "utf8"));
@@ -93,8 +93,3 @@ async function seedCvc(filepath: string) {
 
     logger.info(`Seeded ${cvcCourses.length} CVC courses`);
 }
-
-seedCvc("./scrapers/cvc-courses.json").catch((error) => {
-    logger.error(error);
-    process.exit(1);
-});

@@ -198,7 +198,7 @@ const fetchCvcData = async () => {
         fs.writeFile(
             "cvc-courses.json",
             "WARNING: BAD FORMAT, SCRIPT DID NOT FINISH EXECUTING PROPERLY\n",
-            (err) => {},
+            (_err) => {},
         );
 
         let response = await safeFetch(url, masterParams);

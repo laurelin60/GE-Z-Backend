@@ -6,7 +6,7 @@ import Uci from "./uci";
 import Ucla from "./ucla";
 import Ucsb from "./ucsb";
 
-async function seedInstitutions() {
+export default async function seedInstitutions() {
     logger.info("Fetching institution courses");
 
     const institutionClasses = [Uci, Ucla, Ucsb];
@@ -31,8 +31,3 @@ async function seedInstitutions() {
             institutions.map((institution) => institution.code).join(", "),
     );
 }
-
-seedInstitutions().catch((error) => {
-    logger.error(error);
-    process.exit(1);
-});
