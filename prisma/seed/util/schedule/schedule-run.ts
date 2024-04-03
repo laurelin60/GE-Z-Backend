@@ -58,6 +58,10 @@ async function runSchedule() {
  * If more than 12 hours have passed, return true
  */
 function isScheduled() {
+    if (!fs.existsSync("./prisma/seed/util/schedule/schedule.log")) {
+        fs.writeFileSync("./prisma/seed/util/schedule/schedule.log", "");
+    }
+
     const logContent = fs.readFileSync(
         "./prisma/seed/util/schedule/schedule.log",
         "utf8",
