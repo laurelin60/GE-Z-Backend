@@ -58,7 +58,7 @@ async function connectInstitutions() {
         for (const [j, articulation] of articulations.entries()) {
             if (j % 10 === 9) {
                 process.stdout.write(
-                    `\r[${i}/${institutions.length}] [ ${j + 1}/${articulations.length}]`,
+                    `\r[${i + 1}/${institutions.length}] [${j + 1}/${articulations.length}]`,
                 );
             }
             const courses = await xprisma.course.findMany({

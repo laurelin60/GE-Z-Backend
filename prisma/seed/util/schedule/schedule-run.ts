@@ -2,7 +2,7 @@ import fs from "fs";
 
 import fetchCvcData from "../../../../scrapers/cvc-scraper.mjs";
 import logger from "../../../../src/util/logger";
-import seedCvc from "../../institutions/seed-institutions";
+import seedCvc from "../../cvc/seed-cvc-courses";
 import { connectCvcCourses, connectCvcGes } from "../articulation";
 
 async function runSchedule() {
@@ -14,7 +14,7 @@ async function runSchedule() {
             logger.info("Scraping CVC courses");
             await fetchCvcData();
 
-            await seedCvc();
+            await seedCvc("./scrapers/cvc-courses.json");
             await connectCvcCourses();
             await connectCvcGes();
 

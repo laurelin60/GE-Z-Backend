@@ -300,7 +300,7 @@ const fetchCvcData = async () => {
             await fs.appendFile(
                 "./scrapers/cvc-courses.json",
                 allWithAttributes.map((e) => JSON.stringify(e)).join("\n") +
-                "\n",
+                    "\n",
                 (err) => {
                     // (pls don't change newline to comma at least for now)
                     if (err) {
@@ -317,11 +317,15 @@ const fetchCvcData = async () => {
         updatedAt: Date.now(),
     };
     // Overwrite failsafe data with properly formatted data
-    await fs.writeFile("./scrapers/cvc-courses.json", JSON.stringify(courseDataJSON), (err) => {
-        if (err) {
-            console.error(err);
-        }
-    });
+    await fs.writeFile(
+        "./scrapers/cvc-courses.json",
+        JSON.stringify(courseDataJSON),
+        (err) => {
+            if (err) {
+                console.error(err);
+            }
+        },
+    );
     console.log(
         `Finished scraping CVC, found ${aggregateCourseData.length} courses!`,
     );

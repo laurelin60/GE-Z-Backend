@@ -8,18 +8,10 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "outDir": "./dist",
-    "rootDirs": [
-      "./src",
-      "./prisma"
-    ],
+    "rootDirs": ["./src", "./prisma"],
     "noImplicitAny": false,
     "allowJs": true
   },
-  "include": [
-    "src/**/*.ts",
-    "prisma/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*.ts", "prisma/**/*.ts"],
+  "exclude": ["node_modules"]
 }
