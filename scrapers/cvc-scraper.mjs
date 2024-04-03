@@ -20,7 +20,7 @@ const masterParams = {
     "filter[prerequisites][]": ["", "has_prereqs", "no_prereqs"],
     "filter[session_names][]": ["Fall 2023", "Winter 2024", "Spring 2024"],
     "filter[zero_textbook_cost_filter]": false,
-    "filter[start_date]": "2024-03-07", // will replace this hardcoded thingy later
+    "filter[start_date]": "2024-03-07", // placeholder value, gets auto replaced to 30 days ago
     "filter[end_date]": "",
     "filter[target_school_ids][]": "",
     "filter[min_credits_range]": 0,
@@ -51,6 +51,7 @@ async function scrapeSingle(
     let currentScrapeSingleFoundCvcIds = new Set();
     // Set params
     let localParams = JSON.parse(JSON.stringify(masterParams));
+    localParams["filter[start_date]"] = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]; // 30 days ago
     localParams.page = 1;
     localParams["filter[subject_id]"] = subjectId;
     if (asyncOnly)
