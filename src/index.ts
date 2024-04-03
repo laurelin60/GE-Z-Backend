@@ -22,7 +22,7 @@ async function  main() {
             key: await fs.readFile('ssl/private.key'),
             cert: await fs.readFile('ssl/certificate.crt')
         }, app).listen(PORT);
-        logger.info(`Server is running on http://localhost:${PORT}/api/docs with SSL`);
+        logger.info(`Server is running on https://localhost:${PORT}/api/docs with SSL`);
     }
     else {
         app.listen(PORT, () => {
