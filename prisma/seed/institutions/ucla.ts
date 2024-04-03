@@ -50,7 +50,23 @@ async function getUclaCourses(): Promise<course[]> {
         const url: string = baseUrl + query;
 
         const response = await axios.get(url, {
-            headers: { Cookie: cookie },
+            headers: {
+                Accept: "*/*",
+                "Accept-Encoding": "gzip, deflate, br, zstd",
+                "Accept-Language": "en-US,en;q=0.9",
+                Connection: "keep-alive",
+                Host: "sa.ucla.edu",
+                Referer: "https://sa.ucla.edu/ro/Public/SOC/Search/GECoursesMasterList",
+                "Sec-Ch-Ua": `"Google Chrome";v="123", "Not:A-Brand";v="8", "Chromium";v="123"`,
+                "Sec-Ch-Ua-Mobile": "?0",
+                "Sec-Ch-Ua-Platform": `"Windows"`,
+                "Sec-Fetch-Dest": "empty",
+                "Sec-Fetch-Mode": "cors",
+                "Sec-Fetch-Site": "same-origin",
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+                "X-Requested-With": "XMLHttpRequest",
+                Cookie: cookie
+            }
         });
         const html = response.data;
         const geCourses = scrapeHtml(html, departmentMap);
