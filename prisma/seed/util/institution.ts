@@ -1,6 +1,6 @@
 import { xprisma } from "../../../src/util/prisma-client";
 
-export type course = {
+export type courseType = {
     courseCode: string;
     courseName: string;
     courseNumber: string;
@@ -8,14 +8,14 @@ export type course = {
     geCategories: string[];
 };
 
-export type institution = {
+export type institutionType = {
     name: string;
     code: string;
     geCategories: string[];
-    courses: course[];
+    courses: courseType[];
 };
 
-export async function createManyInstitutions(institutions: institution[]) {
+export async function createManyInstitutions(institutions: institutionType[]) {
     for (const [i, institution] of institutions.entries()) {
         process.stdout.write(`\r[${i + 1}/${institutions.length}]`);
         const createdInstitution = await xprisma.institution.create({

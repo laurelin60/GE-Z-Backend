@@ -3,35 +3,40 @@ import * as cheerio from "cheerio";
 
 import logger from "../../../src/util/logger";
 import formatCode from "../util/format-code";
-import { course, institution } from "../util/institution";
+import { courseType, institutionType } from "../util/institution";
 
-export default async function getUclaInstitution() {
-    logger.info("Fetching UCLA");
+import Institution from "./institution";
 
-    const name = "University of California, Los Angeles";
-    const code = "UCLA";
-    const geCategories = [
-        "Arts and Humanities: Literary and Cultural Analysis",
-        "Arts and Humanities: Philosophical and Linguistic Analysis",
-        "Arts and Humanities: Visual and Performance Arts Analysis and Practice",
-        "Scientific Inquiry: Life Sciences",
-        "Scientific Inquiry: Physical Sciences",
-        "Society and Culture: Historical Analysis",
-        "Society and Culture: Social Analysis",
-    ];
-    const courses = await getUclaCourses();
+export default class Ucla extends Institution {
+    constructor() {
+        const name = "University of California, Los Angeles";
+        const code = "UCLA";
+        const geCategories = [
+            "Arts and Humanities: Literary and Cultural Analysis",
+            "Arts and Humanities: Philosophical and Linguistic Analysis",
+            "Arts and Humanities: Visual and Performance Arts Analysis and Practice",
+            "Scientific Inquiry: Life Sciences",
+            "Scientific Inquiry: Physical Sciences",
+            "Society and Culture: Historical Analysis",
+            "Society and Culture: Social Analysis",
+        ];
 
-    logger.info(`Found ${courses.length} UCLA courses`);
+        super(name, code, geCategories);
+    }
 
-    return {
-        name,
-        code,
-        geCategories,
-        courses,
-    } satisfies institution;
+    public async getInstitution(): Promise<institutionType> {
+        const courses = await getUclaCourses();
+
+        return {
+            name: this.name,
+            code: this.code,
+            geCategories: this.geCategories,
+            courses,
+        };
+    }
 }
 
-async function getUclaCourses(): Promise<course[]> {
+async function getUclaCourses(): Promise<courseType[]> {
     const departmentMap = await getDepartmentMap();
     const cookie = await getCookie();
 
@@ -44,7 +49,7 @@ async function getUclaCourses(): Promise<course[]> {
         "?input=%7B%22FoundationCode%22%3A%22SC%22%2C%22SubjectArea%22%3A%22%25%22%2C%22LabDemoFilter%22%3Afalse%2C%22WritingTwoFilter%22%3Afalse%2C%22MultiCategoryFilter%22%3Afalse%2C%22DiversityFilter%22%3Afalse%7D&search_criteria=Foundations+of+Society+and+Culture",
     ];
 
-    let courses: course[] = [];
+    let courses: courseType[] = [];
 
     for (const query of queries) {
         const url: string = baseUrl + query;
@@ -56,17 +61,19 @@ async function getUclaCourses(): Promise<course[]> {
                 "Accept-Language": "en-US,en;q=0.9",
                 Connection: "keep-alive",
                 Host: "sa.ucla.edu",
-                Referer: "https://sa.ucla.edu/ro/Public/SOC/Search/GECoursesMasterList",
+                Referer:
+                    "https://sa.ucla.edu/ro/Public/SOC/Search/GECoursesMasterList",
                 "Sec-Ch-Ua": `"Google Chrome";v="123", "Not:A-Brand";v="8", "Chromium";v="123"`,
                 "Sec-Ch-Ua-Mobile": "?0",
                 "Sec-Ch-Ua-Platform": `"Windows"`,
                 "Sec-Fetch-Dest": "empty",
                 "Sec-Fetch-Mode": "cors",
                 "Sec-Fetch-Site": "same-origin",
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+                "User-Agent":
+                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
                 "X-Requested-With": "XMLHttpRequest",
-                Cookie: cookie
-            }
+                Cookie: cookie,
+            },
         });
         const html = response.data;
         const geCourses = scrapeHtml(html, departmentMap);
@@ -90,21 +97,23 @@ async function getDepartmentMap(): Promise<Record<string, string>> {
     }
 
     const departmentMap: Record<string, string> = {};
-    response.data.forEach((department) => {
-        departmentMap[department.display_value.trim()] =
-            department.subj_area_cd.trim();
-    });
+    response.data.forEach(
+        (department: { display_value: string; subj_area_cd: string }) => {
+            departmentMap[department.display_value.trim()] =
+                department.subj_area_cd.trim();
+        },
+    );
     return departmentMap;
 }
 
 function scrapeHtml(
     html: string,
     departmentMap: Record<string, string>,
-): course[] {
+): courseType[] {
     const $ = cheerio.load(html);
     const parentSet = new Set();
 
-    const courses: course[] = [];
+    const courses: courseType[] = [];
 
     $(".col-md-1").each((_index, element) => {
         const parent = $(element).parent();
@@ -135,7 +144,7 @@ function scrapeHtml(
             courseNumber,
             courseDepartment,
             geCategories,
-        } satisfies course);
+        } satisfies courseType);
     });
 
     return courses;

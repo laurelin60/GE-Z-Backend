@@ -38,7 +38,7 @@ export async function createManyArticulations(agreements: agreement[]) {
 async function connectInstitutions() {
     const institutions = await xprisma.institution.findMany();
 
-    for (const institution of institutions) {
+    for (const [i, institution] of institutions.entries()) {
         logger.info(`Connecting articulations to ${institution.name}`);
         await xprisma.articulation.updateMany({
             where: {
@@ -55,9 +55,11 @@ async function connectInstitutions() {
             },
         });
 
-        for (const [i, articulation] of articulations.entries()) {
-            if (i % 10 === 9) {
-                process.stdout.write(`\r[${i + 1}/${articulations.length}]`);
+        for (const [j, articulation] of articulations.entries()) {
+            if (j % 10 === 9) {
+                process.stdout.write(
+                    `\r[${i}/${institutions.length}] [ ${j + 1}/${articulations.length}]`,
+                );
             }
             const courses = await xprisma.course.findMany({
                 where: {

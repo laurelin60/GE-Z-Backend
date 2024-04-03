@@ -1,31 +1,34 @@
 import axios from "axios";
 import z from "zod";
 
-import logger from "../../../src/util/logger";
 import formatCode from "../util/format-code";
-import { course, institution } from "../util/institution";
+import { courseType, institutionType } from "../util/institution";
 
-export default async function getUciInstitution() {
-    logger.info("Fetching UCI");
+import Institution from "./institution";
 
-    const name = "University of California, Irvine";
-    const code = "UCI";
-    // prettier-ignore
-    const geCategories = ["Ia", "Ib", "II", "III", "IV", "Va", "Vb", "VI", "VII", "VIII"];
+export default class Uci extends Institution {
+    constructor() {
+        const name = "University of California, Irvine";
+        const code = "UCI";
+        // prettier-ignore
+        const geCategories = ["Ia", "Ib", "II", "III", "IV", "Va", "Vb", "VI", "VII", "VIII"];
 
-    const courses = await getUciCourses();
+        super(name, code, geCategories);
+    }
 
-    logger.info(`Found ${courses.length} UCI courses`);
+    public async getInstitution(): Promise<institutionType> {
+        const courses = await getUciCourses();
 
-    return {
-        name,
-        code,
-        geCategories,
-        courses,
-    } satisfies institution;
+        return {
+            name: this.name,
+            code: this.code,
+            geCategories: this.geCategories,
+            courses,
+        };
+    }
 }
 
-async function getUciCourses(): Promise<course[]> {
+async function getUciCourses(): Promise<courseType[]> {
     const url = "https://api-next.peterportal.org/v1/graphql";
     const headers = { "Content-Type": "application/json" };
     const data = {
@@ -37,7 +40,7 @@ async function getUciCourses(): Promise<course[]> {
     if (response.status == 200) {
         return response.data.data.allCourses.map(
             (course: z.infer<typeof responseCourseSchema>) => {
-                return transformSchema.parse(course) satisfies course;
+                return transformSchema.parse(course) satisfies courseType;
             },
         );
     } else {
@@ -73,5 +76,5 @@ const transformSchema = responseCourseSchema.transform((course) => {
         courseNumber: course.courseNumber,
         courseDepartment: course.department,
         geCategories: course.geList || [],
-    } satisfies course;
+    } satisfies courseType;
 });

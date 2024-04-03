@@ -1,29 +1,33 @@
 import axios from "axios";
 import z from "zod";
 
-import logger from "../../../src/util/logger";
 import formatCode from "../util/format-code";
-import { course, institution } from "../util/institution";
+import { courseType, institutionType } from "../util/institution";
 
-export default async function getUcsbInstitution() {
-    logger.info("Fetching UCSB");
+import Institution from "./institution";
 
-    const name = "University of California, Santa Barbara";
-    const code = "UCSB";
-    const geCategories = ["A1", "A2", "B", "C", "D", "E", "F", "G"];
-    const courses = await getUcsbCourses();
+export default class Ucsb extends Institution {
+    constructor() {
+        const name = "University of California, Santa Barbara";
+        const code = "UCSB";
+        const geCategories = ["A1", "A2", "B", "C", "D", "E", "F", "G"];
 
-    logger.info(`Found ${courses.length} UCSB courses`);
+        super(name, code, geCategories);
+    }
 
-    return {
-        name,
-        code,
-        geCategories,
-        courses,
-    } satisfies institution;
+    public async getInstitution(): Promise<institutionType> {
+        const courses = await getUcsbCourses();
+
+        return {
+            name: this.name,
+            code: this.code,
+            geCategories: this.geCategories,
+            courses,
+        };
+    }
 }
 
-async function getUcsbCourses(): Promise<course[]> {
+async function getUcsbCourses(): Promise<courseType[]> {
     const url =
         "https://app.coursedog.com/api/v1/cm/ucsb/courses/search/%24filters?skip=0&limit=1000000000&columns=customFields.generalSubjectAreas%2Ccode";
     const response = await axios.get(url);
@@ -32,7 +36,7 @@ async function getUcsbCourses(): Promise<course[]> {
         return response.data.data
             .map((course: z.infer<typeof responseCourseSchema>) => {
                 try {
-                    return transformSchema.parse(course) satisfies course;
+                    return transformSchema.parse(course) satisfies courseType;
                 } catch (e) {
                     if (e instanceof z.ZodError) {
                         return;
@@ -40,7 +44,7 @@ async function getUcsbCourses(): Promise<course[]> {
                     Error();
                 }
             })
-            .filter((course) => course !== undefined);
+            .filter((course: undefined) => course !== undefined);
     } else {
         throw new Error(
             `Failed to fetch UCSB courses. Status ${response.status}`,

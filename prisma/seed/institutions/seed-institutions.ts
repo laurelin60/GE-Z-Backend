@@ -1,19 +1,25 @@
 import logger from "../../../src/util/logger";
 import { xprisma } from "../../../src/util/prisma-client";
-import { createManyInstitutions, institution } from "../util/institution";
+import { createManyInstitutions, institutionType } from "../util/institution";
 
-import getUciInstitution from "./uci";
-import getUclaInstitution from "./ucla";
-import getUcsbInstitution from "./ucsb";
+import Uci from "./uci";
+import Ucla from "./ucla";
+import Ucsb from "./ucsb";
 
 async function seedInstitutions() {
-    logger.info("Fetching institutions");
+    logger.info("Fetching institution courses");
 
-    const uci: institution = await getUciInstitution();
-    const ucla: institution = await getUclaInstitution();
-    const ucsb: institution = await getUcsbInstitution();
+    const institutionClasses = [Uci, Ucla, Ucsb];
 
-    const institutions = [uci, ucla, ucsb] satisfies institution[];
+    const institutions: institutionType[] = await Promise.all(
+        institutionClasses.map(async (institutionClass) => {
+            const institution = await new institutionClass().getInstitution();
+            logger.info(
+                `Found ${institution.courses.length} courses for ${institution.code}`,
+            );
+            return institution;
+        }),
+    );
 
     logger.info("Seeding institutions");
 

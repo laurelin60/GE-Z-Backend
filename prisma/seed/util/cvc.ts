@@ -1,7 +1,5 @@
 import { xprisma } from "../../../src/util/prisma-client";
 
-import { connectCvcCourses, connectCvcGes } from "./articulation";
-
 export type cvcCourse = {
     college: string;
     courseCode: string;
@@ -31,7 +29,4 @@ export async function createManyCvcCourses(
         data: updatedCvcCourses,
         skipDuplicates: true,
     });
-
-    await connectCvcCourses();
-    await connectCvcGes();
 }
