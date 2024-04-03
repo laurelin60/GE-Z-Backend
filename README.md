@@ -37,7 +37,9 @@ See the [frontend](https://github.com/laurelin60/GE-Z-Frontend).
 > Note: the parser does not guarantee 100% accuracy. If you run into issues please let us know :+1:
 
 ## Getting Started
+
 Requirements: `node >= 20`, `npm`
+
 1. Clone the repo
 2. Copy `.env.example` to `.env`
 3. Run:
@@ -47,7 +49,7 @@ npm i
 ```
 
 ```bash
-npm run scrape:all  
+npm run scrape:all
 npm run seed:all
 ```
 
