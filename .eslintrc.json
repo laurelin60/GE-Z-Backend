@@ -24,7 +24,8 @@
         },
         "newlines-between": "always"
       }
-    ]
+    ],
+    "no-constant-condition": "off"
   },
   "root": true
 }

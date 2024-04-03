@@ -3,7 +3,6 @@
   "scripts": {
     "db:benchmark": "ts-node src/util/prisma-benchmark.ts",
     "schedule": "tsx prisma/seed/util/schedule/schedule-run.ts",
-    "scrape:cvc": "node scrapers/cvc-scraper.mjs",
     "scrape:assist": "node scrapers/assist-scraper.mjs",
     "scrape:all": "npm run scrape:cvc && npm run scrape:assist",
     "seed:institutions": "ts-node prisma/seed/institutions/seed-institutions.ts",

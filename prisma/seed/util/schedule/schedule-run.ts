@@ -6,7 +6,7 @@ import seedCvc from "../../institutions/seed-institutions";
 import { connectCvcCourses, connectCvcGes } from "../articulation";
 
 async function runSchedule() {
-    // eslint-disable-next-line no-constant-condition
+    // noinspection InfiniteLoopJS
     while (true) {
         if (isScheduled()) {
             logger.info("Running schedule");
