@@ -1,4 +1,3 @@
-import { getCoursesByInstitution } from "../service/course-service";
 import {
     getCvcCoursesByCourse,
     getCvcCoursesByGE,
@@ -8,19 +7,19 @@ import { getInstitutions } from "../service/institution-service";
 
 import logger from "./logger";
 
-async function benchmark(query: () => void, iterations: number) {
+async function benchmark(query: () => Promise<void>, iterations: number) {
     await new Promise((resolve) => setTimeout(resolve, 100));
 
     if (iterations <= 0) {
         return;
     }
     const startFirst = performance.now();
-    query();
+    await query();
     const firstTime = (performance.now() - startFirst).toFixed(3);
 
     const start = performance.now();
     for (let i = 0; i < iterations; i++) {
-        query();
+        await query();
     }
 
     const end = performance.now();
@@ -34,11 +33,11 @@ async function getInstitutionsBenchmark() {
     await getInstitutions();
 }
 
-async function getCoursesByInstitutionBenchmark() {
-    await getCoursesByInstitution({
-        institution: "University of California, Irvine",
-    });
-}
+// async function getCoursesByInstitutionBenchmark() {
+//     await getCoursesByInstitution({
+//         institution: "University of California, Irvine",
+//     });
+// }
 
 async function getCvcCoursesByGEBenchmark() {
     await getCvcCoursesByGE({
@@ -59,10 +58,10 @@ async function getCvcLastUpdatedBenchmark() {
 }
 
 async function runBenchmarks() {
-    const ITERATIONS = 100;
+    const ITERATIONS = 10;
 
     await benchmark(getInstitutionsBenchmark, ITERATIONS);
-    await benchmark(getCoursesByInstitutionBenchmark, ITERATIONS);
+    // await benchmark(getCoursesByInstitutionBenchmark, ITERATIONS);
     await benchmark(getCvcCoursesByGEBenchmark, ITERATIONS);
     await benchmark(getCvcCoursesByCourseBenchmark, ITERATIONS);
     await benchmark(getCvcLastUpdatedBenchmark, ITERATIONS);

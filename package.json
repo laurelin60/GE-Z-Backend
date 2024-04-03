@@ -2,7 +2,7 @@
   "version": "0.1.0",
   "scripts": {
     "db:benchmark": "ts-node src/util/prisma-benchmark.ts",
-    "run:schedule": "ts-node prisma/seed/util/schedule/schedule-run.ts",
+    "schedule": "tsx prisma/seed/util/schedule/schedule-run.ts",
     "scrape:cvc": "node scrapers/cvc-scraper.mjs",
     "scrape:assist": "node scrapers/assist-scraper.mjs",
     "scrape:all": "npm run scrape:cvc && npm run scrape:assist",
@@ -29,6 +29,7 @@
     "prisma-redis-middleware": "4.8.0",
     "swagger-jsdoc": "6.2.8",
     "swagger-ui-express": "5.0.0",
+    "tsx": "^4.7.1",
     "zod": "3.22.4"
   },
   "devDependencies": {

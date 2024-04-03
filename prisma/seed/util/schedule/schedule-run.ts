@@ -1,6 +1,6 @@
 import fs from "fs";
-import { execSync } from "node:child_process";
 
+import fetchCvcData from "../../../../scrapers/cvc-scraper.mjs";
 import logger from "../../../../src/util/logger";
 import seedCvc from "../../institutions/seed-institutions";
 import { connectCvcCourses, connectCvcGes } from "../articulation";
@@ -10,8 +10,9 @@ async function runSchedule() {
     while (true) {
         if (isScheduled()) {
             logger.info("Running schedule");
+
             logger.info("Scraping CVC courses");
-            execSync("npm run scrape:cvc");
+            await fetchCvcData();
 
             await seedCvc();
             await connectCvcCourses();
@@ -21,9 +22,14 @@ async function runSchedule() {
                 "./prisma/seed/util/schedule/schedule.log",
                 "\n" + new Date().toString(),
             );
+
+            logger.info("Schedule complete");
+        } else {
+            logger.info("Skipping schedule");
         }
-        // sleep 30 seconds
-        await new Promise((resolve) => setTimeout(resolve, 30000));
+
+        // sleep 1 minute
+        await new Promise((resolve) => setTimeout(resolve, 60000));
     }
 }
 
@@ -40,7 +46,7 @@ function isScheduled() {
 
     if (lines.length > 0) {
         const lastLine = lines[lines.length - 1];
-        const lastLineDateTime = new Date(lastLine.split(",")[0]); // Assuming DateTime is the first part of each line separated by comma
+        const lastLineDateTime = new Date(lastLine);
         const currentDateTime = new Date();
 
         const hoursDifference =
