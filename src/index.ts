@@ -21,9 +21,11 @@ app.use(cors());
 app.use(express.json());
 app.use("/api", routes);
 
+let server: any = null;
+
 async function main() {
     if (process.argv.includes("-ssl")) {
-        https
+        server = https
             .createServer(
                 {
                     key: await fs.readFile("ssl/private.key"),
@@ -36,7 +38,7 @@ async function main() {
             `Server is running on https://localhost:${PORT}/api/docs with SSL`,
         );
     } else {
-        app.listen(PORT, () => {
+        server = app.listen(PORT, () => {
             logger.info(
                 `Server is running on http://localhost:${PORT}/api/docs`,
             );
@@ -67,6 +69,14 @@ function startScheduledScraper() {
         startScheduledScraper();
     });
 }
+
+process.on('SIGINT', () => {
+    console.log('Received SIGINT. Shutting down gracefully.');
+    server.close(() => {
+        console.log('HTTP server closed.');
+        process.exit(0);
+    });
+});
 
 main();
 startScheduledScraper();

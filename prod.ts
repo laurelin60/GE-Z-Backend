@@ -50,18 +50,17 @@ async function repoUpdateLoop() {
         if (pullSummary.files.length > 0) {
             console.log('Changes detected, running build and restarting script');
 
-            if (childProcess) {
-                await new Promise<void>(resolve => {
-                    if (childProcess) { // ig I have to check again 
-                        childProcess.on('exit', () => {
-                            console.log('Child process exited, continuing...');
-                            resolve();
-                        });
-                        childProcess.kill("SIGINT");
-                        childProcess = null;
-                    }
-                });
-            }
+            await new Promise<void>(resolve => {
+                if (childProcess) { // ig I have to check again 
+                    childProcess.on('exit', () => {
+                        console.log('Child process exited, continuing...');
+                        resolve();
+                        // actually exit
+                    });
+                    childProcess.kill("SIGINT");
+                    childProcess = null;
+                }
+            });
 
             await runBuildCommand();
 
