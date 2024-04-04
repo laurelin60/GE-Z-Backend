@@ -69,4 +69,3 @@ function startScheduledScraper() {
 
 main();
 startScheduledScraper();
-console.log("TEST MESSAGE THINGY!");
