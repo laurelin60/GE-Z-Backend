@@ -52,14 +52,17 @@ async function repoUpdateLoop() {
 
             // Run the build command
             await runBuildCommand();
+            
             startScript();
         }
         await new Promise(resolve => setTimeout(resolve, 30000));
     }
 }
 
-// Start the child script
-startScript();
+async function main() {
+    await runBuildCommand();
+    startScript();
+    await repoUpdateLoop();
+}
 
-// Start the repo update loop
-repoUpdateLoop();
+main();
