@@ -2,7 +2,7 @@
   "version": "0.1.0",
   "scripts": {
     "db:benchmark": "ts-node src/util/prisma-benchmark.ts",
-    "schedule": "tsx prisma/seed/util/schedule/schedule-run.ts",
+    "scheduleDEPRECATEDDONTUSE": "tsx prisma/seed/util/schedule/schedule-run.ts",
     "scrape:assist": "node scrapers/assist-scraper.mjs",
     "seed:institutions": "ts-node prisma/seed/institutions/seed-institutions-script.ts",
     "seed:cvc": "ts-node prisma/seed/cvc/seed-cvc-courses-script.ts",
@@ -12,7 +12,8 @@
     "test": "mocha --require ts-node/register src/test/*.ts --exit",
     "dev": "nodemon src/index.ts",
     "build": "tsc",
-    "start": "node dist/src/index.js"
+    "start": "node dist/src/index.js",
+    "prod": "ts-node prod.ts"
   },
   "dependencies": {
     "axios": "1.6.8",
@@ -25,7 +26,9 @@
     "pdf2json": "3.0.5",
     "pino": "8.19.0",
     "pino-pretty": "11.0.0",
+    "pm2": "^5.3.1",
     "prisma-redis-middleware": "4.8.0",
+    "simple-git": "^3.24.0",
     "swagger-jsdoc": "6.2.8",
     "swagger-ui-express": "5.0.0",
     "tsx": "^4.7.1",

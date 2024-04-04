@@ -7,6 +7,8 @@ import express from "express";
 import routes from "./routes";
 import logger from "./util/logger";
 
+import { spawn, ChildProcess, exec } from 'child_process';
+
 require("dotenv").config();
 
 export const app = express();
@@ -41,5 +43,27 @@ async function main() {
 
     logger.info(`environment: ${process.env.NODE_ENV}`);
 }
+// start scheduled cvc scraper
+// tsx 
+let childProcess: ChildProcess | null = null;
+
+function startScheduledScraper() {
+    // Ensure only one instance of the script is running
+    if (childProcess) {
+        childProcess.kill();
+        childProcess = null;
+    }
+
+    // Start the script with 'ts-node', adjust command as necessary for your environment
+    childProcess = spawn('tsx', ['prisma/seed/util/schedule/schedule-run.ts'], { shell: true, stdio: 'inherit' });
+
+    // Listen for unexpected exit (crash)
+    childProcess.on('exit', (code, signal) => {
+        console.log(`Child scheduled scraper process exited with code ${code} and signal ${signal}, restarting`);
+        // Restart the script if it crashes
+        startScheduledScraper();
+    });
+}
 
 main();
+startScheduledScraper();
