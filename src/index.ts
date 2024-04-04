@@ -82,4 +82,4 @@ process.on('SIGINT', () => {
 
 main();
 startScheduledScraper();
-console.log("im trapped in a basement");
+console.log("if this msg works and nothing crashes then i will be happy");
