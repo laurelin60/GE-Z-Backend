@@ -81,7 +81,7 @@ process.on('exit', () => {
 
 // keep the process alive
 setInterval(() => {
-    console.log("alive 2");
+    console.log("alive");
 }, 1000);
 
 main();

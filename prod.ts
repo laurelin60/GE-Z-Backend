@@ -57,6 +57,7 @@ async function repoUpdateLoop() {
                     childProcess.on('exit', () => {
                         console.log('Child process exited, continuing...');
                         resolve();
+                        process.exit(0);
                     });
                     childProcess.kill("SIGINT");
                     childProcess = null;
