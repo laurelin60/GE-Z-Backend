@@ -81,9 +81,9 @@ process.on('exit', () => {
 
 // keep the process alive
 setInterval(() => {
-    console.log("alive");
+    console.log("alive 2");
 }, 1000);
 
 main();
 startScheduledScraper();
-console.log("if this msg works and nothing crashes then i will be super happy");
+console.log("PLEASE JUST WORK its ALIVE!!!!!");
