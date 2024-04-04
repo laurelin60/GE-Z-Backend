@@ -10,7 +10,7 @@ let childProcess: ChildProcess | null = null;
 function startScript() {
     // Ensure only one instance of the script is running
     if (childProcess) {
-        childProcess.kill();
+        childProcess.kill("SIGUNUSED");
         childProcess = null;
     }
 
@@ -18,8 +18,8 @@ function startScript() {
     childProcess = spawn('npm', ['run', 'start', '--', '-ssl'], { shell: true, stdio: 'inherit' });
 
     // Listen for unexpected exit (crash)
-    childProcess.on('exit', (code, signal: number) => {
-        if (signal != 999) {
+    childProcess.on('exit', (code, signal) => {
+        if (signal != "SIGUNUSED") {
             console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
             // Restart the script if it crashes
             startScript();
@@ -51,13 +51,13 @@ async function repoUpdateLoop() {
 
             // Kill the child process if it's running
             if (childProcess) {
-                childProcess.kill(999);
+                childProcess.kill("SIGUNUSED");
                 childProcess = null;
             }
 
             // Run the build command
             await runBuildCommand();
-            
+
             await new Promise(resolve => setTimeout(resolve, 1500)); 
             
             startScript();
