@@ -73,7 +73,6 @@ function startScheduledScraper() {
 }
 
 process.on('exit', () => {
-    console.log('Received SIGINT. Shutting down gracefully.');
     server.close(() => {
         console.log('HTTP server closed.');
         process.exit(0);
