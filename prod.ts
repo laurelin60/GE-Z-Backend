@@ -31,7 +31,8 @@ async function runBuildCommand() {
                 console.error(`exec error: ${error}`);
                 return reject(error);
             }
-            console.log(`stdout: ${stdout}`);
+            //console.log(`stdout: ${stdout}`);
+            console.log("Build complete");
             console.error(`stderr: ${stderr}`);
             resolve();
         });
