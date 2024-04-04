@@ -51,7 +51,7 @@ async function repoUpdateLoop() {
             // Kill the child process if it's running
             if (childProcess) {
                 childProcess.on('exit', (code, signal) => {});
-                childProcess.kill();
+                childProcess.kill("SIGINT");
                 childProcess = null;
             }
 
