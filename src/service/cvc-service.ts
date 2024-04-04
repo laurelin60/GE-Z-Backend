@@ -1,6 +1,8 @@
 import { Prisma } from "@prisma/client";
+import { uniqBy } from "lodash";
 import { z } from "zod";
 
+import QueryError from "../controller/util/query-error";
 import {
     cvcCourseByCourseRequestSchema,
     cvcCourseByGERequestSchema,
@@ -40,17 +42,41 @@ function cvcQueryToResponse(
             count: fulfillsGe.count,
             category: fulfillsGe.geCategory.category,
         })),
-        articulatesTo: cvcCourse.articulatesTo.flatMap((articulation) =>
-            articulation.to.map(
-                (course) => course.courseDepartment + " " + course.courseNumber,
-            ),
-        ),
+        articulatesTo: uniqBy(
+            cvcCourse.articulatesTo.flatMap((articulation) => articulation.to),
+            "id",
+        ).flatMap((to) => to.courseDepartment + " " + to.courseNumber),
     } satisfies z.infer<typeof cvcCourseSchema>;
 }
 
 export const getCvcCoursesByGE = async (
     request: z.infer<typeof cvcCourseByGERequestSchema>,
 ) => {
+    const institution = await xprisma.institution.findFirst({
+        where: {
+            OR: [{ name: request.institution }, { code: request.institution }],
+        },
+    });
+
+    if (!institution) {
+        throw new QueryError(`Institution '${request.institution}' not found`);
+    }
+
+    const geCategory = await xprisma.geCategory.findFirst({
+        where: {
+            institution: {
+                id: institution.id,
+            },
+            category: request.ge,
+        },
+    });
+
+    if (!geCategory) {
+        throw new QueryError(
+            `Category '${request.ge}' not found for institution '${request.institution}'`,
+        );
+    }
+
     const cvcCourses = await xprisma.cvcCourse.findMany({
         take: request.take,
         skip: request.skip,
@@ -58,13 +84,7 @@ export const getCvcCoursesByGE = async (
             fulfillsGEs: {
                 some: {
                     geCategory: {
-                        institution: {
-                            OR: [
-                                { name: request.institution },
-                                { code: request.institution },
-                            ],
-                        },
-                        category: request.ge,
+                        id: geCategory.id,
                     },
                 },
             },
@@ -77,10 +97,7 @@ export const getCvcCoursesByGE = async (
                 where: {
                     geCategory: {
                         institution: {
-                            OR: [
-                                { name: request.institution },
-                                { code: request.institution },
-                            ],
+                            id: institution.id,
                         },
                     },
                 },
@@ -88,10 +105,7 @@ export const getCvcCoursesByGE = async (
             articulatesTo: {
                 where: {
                     toInstitution: {
-                        OR: [
-                            { name: request.institution },
-                            { code: request.institution },
-                        ],
+                        id: institution.id,
                     },
                 },
                 include: {
@@ -107,6 +121,31 @@ export const getCvcCoursesByGE = async (
 export const getCvcCoursesByCourse = async (
     request: z.infer<typeof cvcCourseByCourseRequestSchema>,
 ) => {
+    const institution = await xprisma.institution.findFirst({
+        where: {
+            OR: [{ name: request.institution }, { code: request.institution }],
+        },
+    });
+
+    if (!institution) {
+        throw new QueryError(`Institution '${request.institution}' not found`);
+    }
+
+    const course = await xprisma.course.findFirst({
+        where: {
+            courseCode: request.courseCode,
+            institution: {
+                id: institution.id,
+            },
+        },
+    });
+
+    if (!course) {
+        throw new QueryError(
+            `Course '${request.courseCode}' not found for institution '${request.institution}'`,
+        );
+    }
+
     const cvcCourses = await xprisma.cvcCourse.findMany({
         take: request.take,
         skip: request.skip,
@@ -117,10 +156,7 @@ export const getCvcCoursesByCourse = async (
                         some: {
                             courseCode: request.courseCode,
                             institution: {
-                                OR: [
-                                    { name: request.institution },
-                                    { code: request.institution },
-                                ],
+                                id: institution.id,
                             },
                         },
                     },
@@ -135,10 +171,7 @@ export const getCvcCoursesByCourse = async (
                 where: {
                     geCategory: {
                         institution: {
-                            OR: [
-                                { name: request.institution },
-                                { code: request.institution },
-                            ],
+                            id: institution.id,
                         },
                     },
                 },
@@ -148,10 +181,7 @@ export const getCvcCoursesByCourse = async (
                     to: {
                         where: {
                             institution: {
-                                OR: [
-                                    { name: request.institution },
-                                    { code: request.institution },
-                                ],
+                                id: institution.id,
                             },
                         },
                     },
@@ -168,8 +198,7 @@ export const getCvcLastUpdated = async () => {
     const cvcCourse = await xprisma.cvcCourse.findFirst();
 
     if (!cvcCourse) {
-        logger.error("No CVC courses exist, unable to get last updated time");
-        return new Date(0).getTime();
+        throw new Error("No CVC courses found, cannot get last updated");
     }
     return cvcCourse.updatedAt.getTime();
 };

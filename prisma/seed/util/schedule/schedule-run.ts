@@ -12,8 +12,8 @@ async function runSchedule() {
         if (isScheduled()) {
             logger.info("Running schedule");
 
-            logger.info("Scraping CVC courses");
-            await fetchCvcData();
+            // logger.info("Scraping CVC courses");
+            // await fetchCvcData();
 
             try {
                 await xprisma.$transaction(

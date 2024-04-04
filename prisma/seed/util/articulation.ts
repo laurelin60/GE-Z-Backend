@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { ITXClientDenyList } from "@prisma/client/runtime/library";
+import { uniqBy } from "lodash";
 
 import logger from "../../../src/util/logger";
 import { xprisma } from "../../../src/util/prisma-client";
@@ -166,9 +167,10 @@ export async function connectCvcGes(
             continue;
         }
 
-        const geCategories = cvcCourse.articulatesTo.flatMap((articulation) =>
-            articulation.to.flatMap((course) => course.geCategories),
-        );
+        const geCategories = uniqBy(
+            cvcCourse.articulatesTo.flatMap((articulation) => articulation.to),
+            "id",
+        ).flatMap((course) => course.geCategories);
 
         if (geCategories.length < 1) {
             continue;
