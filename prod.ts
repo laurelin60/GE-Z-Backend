@@ -13,6 +13,7 @@ function startScript() {
         childProcess.on('exit', (code, signal) => {});
         childProcess.kill();
         childProcess = null;
+        return;
     }
 
     // Start the script with 'ts-node', adjust command as necessary for your environment
@@ -22,6 +23,7 @@ function startScript() {
     childProcess.on('exit', (code, signal) => {
         console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
         // Restart the script if it crashes
+        childProcess = null;
         startScript();
     });
 }
@@ -45,26 +47,32 @@ async function runBuildCommand() {
 async function repoUpdateLoop() {
     while (true) {
         const pullSummary = await git.pull('origin', 'main');
-        if (pullSummary.files.length > 0) { // Adjusted to check for file changes directly
+        if (pullSummary.files.length > 0) {
             console.log('Changes detected, running build and restarting script');
 
-            // Kill the child process if it's running
             if (childProcess) {
-                childProcess.on('exit', (code, signal) => {});
-                childProcess.kill("SIGINT");
-                childProcess = null;
+                await new Promise<void>(resolve => {
+                    if (childProcess) { // ig I have to check again 
+                        childProcess.on('exit', () => {
+                            console.log('Child process exited, continuing...');
+                            resolve();
+                        });
+                        childProcess.kill("SIGINT");
+                        childProcess = null;
+                    }
+                });
             }
 
-            // Run the build command
             await runBuildCommand();
 
-            await new Promise(resolve => setTimeout(resolve, 1500)); 
-            
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
             startScript();
         }
         await new Promise(resolve => setTimeout(resolve, 30000));
     }
 }
+
 
 async function main() {
     await runBuildCommand();
