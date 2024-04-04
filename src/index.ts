@@ -50,7 +50,7 @@ let childProcess: ChildProcess | null = null;
 function startScheduledScraper() {
     // Ensure only one instance of the script is running
     if (childProcess) {
-        childProcess.kill();
+        childProcess.kill(999);
         childProcess = null;
     }
 
@@ -58,12 +58,15 @@ function startScheduledScraper() {
     childProcess = spawn('tsx', ['prisma/seed/util/schedule/schedule-run.ts'], { shell: true, stdio: 'inherit' });
 
     // Listen for unexpected exit (crash)
-    childProcess.on('exit', (code, signal) => {
-        console.log(`Child scheduled scraper process exited with code ${code} and signal ${signal}, restarting`);
-        // Restart the script if it crashes
-        startScheduledScraper();
+    childProcess.on('exit', (code, signal: number) => {
+        if (signal != 999) {
+            console.log(`Child scheduled scraper process exited with code ${code} and signal ${signal}, restarting`);
+            // Restart the script if it crashes
+            startScheduledScraper();
+        }
     });
 }
 
 main();
 startScheduledScraper();
+console.log("TEST MESSAGE THINGY!");
