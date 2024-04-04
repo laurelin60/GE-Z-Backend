@@ -10,7 +10,7 @@ let childProcess: ChildProcess | null = null;
 function startScript() {
     // Ensure only one instance of the script is running
     if (childProcess) {
-        childProcess.kill("SIGUNUSED");
+        childProcess.kill("SIGUSR2");
         childProcess = null;
     }
 
@@ -19,7 +19,7 @@ function startScript() {
 
     // Listen for unexpected exit (crash)
     childProcess.on('exit', (code, signal) => {
-        if (signal != "SIGUNUSED") {
+        if (signal != "SIGUSR2") {
             console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
             // Restart the script if it crashes
             startScript();
@@ -51,7 +51,7 @@ async function repoUpdateLoop() {
 
             // Kill the child process if it's running
             if (childProcess) {
-                childProcess.kill("SIGUNUSED");
+                childProcess.kill("SIGUSR2");
                 childProcess = null;
             }
 

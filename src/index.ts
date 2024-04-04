@@ -50,7 +50,7 @@ let childProcess: ChildProcess | null = null;
 function startScheduledScraper() {
     // Ensure only one instance of the script is running
     if (childProcess) {
-        childProcess.kill("SIGUNUSED");
+        childProcess.kill("SIGUSR2");
         childProcess = null;
     }
 
@@ -59,7 +59,7 @@ function startScheduledScraper() {
 
     // Listen for unexpected exit (crash)
     childProcess.on('exit', (code, signal) => {
-        if (signal != "SIGUNUSED") {
+        if (signal != "SIGUSR2") {
             console.log(`Child scheduled scraper process exited with code ${code} and signal ${signal}, restarting`);
             // Restart the script if it crashes
             startScheduledScraper();
