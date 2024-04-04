@@ -10,7 +10,8 @@ let childProcess: ChildProcess | null = null;
 function startScript() {
     // Ensure only one instance of the script is running
     if (childProcess) {
-        childProcess.kill("SIGUSR2");
+        childProcess.on('exit', (code, signal) => {});
+        childProcess.kill();
         childProcess = null;
     }
 
@@ -21,6 +22,7 @@ function startScript() {
     childProcess.on('exit', (code, signal) => {
         console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
         // Restart the script if it crashes
+        startScript();
     });
 }
 
