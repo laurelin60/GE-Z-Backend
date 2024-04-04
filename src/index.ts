@@ -80,7 +80,9 @@ process.on('exit', () => {
 });
 
 // keep the process alive
-setInterval(() => {}, 1000);
+setInterval(() => {
+    console.log("alive");
+}, 1000);
 
 main();
 startScheduledScraper();
