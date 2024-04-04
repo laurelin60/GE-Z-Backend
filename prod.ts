@@ -1,3 +1,5 @@
+// NOTE: THIS FILE IS NOT AFFECTED BY COMMIT AUTO RUN THINGY, ONLY THE ACTUAL INDEX.TS STUFF IS
+
 import { simpleGit, SimpleGit } from 'simple-git';
 import { spawn, ChildProcess, exec } from 'child_process';
 
