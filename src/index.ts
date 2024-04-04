@@ -67,3 +67,4 @@ function startScheduledScraper() {
 
 main();
 startScheduledScraper();
+console.log("THIS IS A TEST MESSAGE TO TEST THE AUTO DEPLOYMENT THINGY!");
