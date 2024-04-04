@@ -80,4 +80,4 @@ process.on('SIGINT', () => {
 
 main();
 startScheduledScraper();
-console.log("LET ME GO DO SOMETHING ELSE PLEASE!!!!!");
+console.log("im trapped in a basement");
