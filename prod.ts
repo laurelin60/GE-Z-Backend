@@ -17,7 +17,7 @@ function startScript() {
     }
 
     // Start the script with 'ts-node', adjust command as necessary for your environment
-    childProcess = spawn('npm', ['run', 'start', '--', '-ssl'], { shell: true, stdio: 'inherit' });
+    childProcess = spawn('npm', ['run', 'start', '--', '-ssl'], { stdio: 'inherit' });
     childProcess.kill("SIGINT");
 }
 

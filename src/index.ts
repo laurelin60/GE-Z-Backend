@@ -60,7 +60,7 @@ function startScheduledScraper() {
     }
 
     // Start the script with 'ts-node', adjust command as necessary for your environment
-    childProcess = spawn('tsx', ['prisma/seed/util/schedule/schedule-run.ts'], { shell: true, stdio: 'inherit' });
+    childProcess = spawn('tsx', ['prisma/seed/util/schedule/schedule-run.ts'], { stdio: 'inherit' });
 
     // Listen for unexpected exit (crash)
     childProcess.on('exit', (code, signal) => {
@@ -73,6 +73,7 @@ function startScheduledScraper() {
 }
 
 process.on('exit', () => {
+    console.log("EXIT")
     server.close(() => {
         console.log('HTTP server closed.');
         process.exit(0);
@@ -80,6 +81,7 @@ process.on('exit', () => {
 });
 
 process.on('SIGINT', () => {
+    console.log("SIGINT")
     server.close(() => {
         console.log('HTTP server closed.');
         process.exit(0);
