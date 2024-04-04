@@ -70,3 +70,4 @@ function startScheduledScraper() {
 
 main();
 startScheduledScraper();
+console.log("cookie");
