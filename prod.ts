@@ -19,11 +19,8 @@ function startScript() {
 
     // Listen for unexpected exit (crash)
     childProcess.on('exit', (code, signal) => {
-        if (signal != "SIGUSR2") {
-            console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
-            // Restart the script if it crashes
-            startScript();
-        }
+        console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
+        // Restart the script if it crashes
     });
 }
 
@@ -51,7 +48,8 @@ async function repoUpdateLoop() {
 
             // Kill the child process if it's running
             if (childProcess) {
-                childProcess.kill("SIGUSR2");
+                childProcess.on('exit', (code, signal) => {});
+                childProcess.kill();
                 childProcess = null;
             }
 
@@ -73,3 +71,4 @@ async function main() {
 }
 
 main();
+console.log('test msg');

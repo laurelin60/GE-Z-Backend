@@ -7,6 +7,8 @@ import express from "express";
 import routes from "./routes";
 import logger from "./util/logger";
 
+import signal from "signal-exit";
+
 import { spawn, ChildProcess, exec } from 'child_process';
 
 require("dotenv").config();
@@ -50,7 +52,8 @@ let childProcess: ChildProcess | null = null;
 function startScheduledScraper() {
     // Ensure only one instance of the script is running
     if (childProcess) {
-        childProcess.kill("SIGUSR2");
+        childProcess.on('exit', (code, signal) => {});
+        childProcess.kill();
         childProcess = null;
     }
 
@@ -59,11 +62,9 @@ function startScheduledScraper() {
 
     // Listen for unexpected exit (crash)
     childProcess.on('exit', (code, signal) => {
-        if (signal != "SIGUSR2") {
-            console.log(`Child scheduled scraper process exited with code ${code} and signal ${signal}, restarting`);
-            // Restart the script if it crashes
-            startScheduledScraper();
-        }
+        console.log(`Child scheduled scraper process exited with code ${code} and signal ${signal}, restarting`);
+        // Restart the script if it crashes
+        startScheduledScraper();
     });
 }
 
