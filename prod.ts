@@ -21,10 +21,12 @@ function startScript() {
 
     // Listen for unexpected exit (crash)
     childProcess.on('exit', (code, signal) => {
-        console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
-        // Restart the script if it crashes
-        childProcess = null;
-        startScript();
+        if (signal != 'SIGINT') {
+            console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
+            // Restart the script if it crashes
+            childProcess = null;
+            startScript();
+        }
     });
 }
 
