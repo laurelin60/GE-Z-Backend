@@ -79,6 +79,13 @@ process.on('exit', () => {
     });
 });
 
+process.on('SIGINT', () => {
+    server.close(() => {
+        console.log('HTTP server closed.');
+        process.exit(0);
+    });
+});
+
 // keep the process alive
 setInterval(() => {
     console.log("alive");
