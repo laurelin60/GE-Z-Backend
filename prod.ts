@@ -18,10 +18,12 @@ function startScript() {
     childProcess = spawn('npm', ['run', 'start', '--', '-ssl'], { shell: true, stdio: 'inherit' });
 
     // Listen for unexpected exit (crash)
-    childProcess.on('exit', (code, signal) => {
-        console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
-        // Restart the script if it crashes
-        startScript();
+    childProcess.on('exit', (code, signal: number) => {
+        if (signal != 999) {
+            console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
+            // Restart the script if it crashes
+            startScript();
+        }
     });
 }
 
@@ -49,12 +51,14 @@ async function repoUpdateLoop() {
 
             // Kill the child process if it's running
             if (childProcess) {
-                childProcess.kill();
+                childProcess.kill(999);
                 childProcess = null;
             }
 
             // Run the build command
             await runBuildCommand();
+            
+            await new Promise(resolve => setTimeout(resolve, 1500)); 
             
             startScript();
         }
