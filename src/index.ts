@@ -70,4 +70,4 @@ function startScheduledScraper() {
 
 main();
 startScheduledScraper();
-//console.log("please work for the love of god");
+console.log("please work for the love of god");
