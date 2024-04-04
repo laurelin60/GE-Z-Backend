@@ -88,7 +88,7 @@ process.on('SIGINT', () => {
 
 // keep the process alive
 setInterval(() => {
-    console.log("alive");
+    console.log("alive 2");
 }, 1000);
 
 main();
