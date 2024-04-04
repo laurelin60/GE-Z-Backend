@@ -84,4 +84,4 @@ setInterval(() => {}, 1000);
 
 main();
 startScheduledScraper();
-console.log("if this msg works and nothing crashes then i will be happy");
+console.log("if this msg works and nothing crashes then i will be super happy");
