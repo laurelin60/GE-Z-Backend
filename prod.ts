@@ -18,16 +18,7 @@ function startScript() {
 
     // Start the script with 'ts-node', adjust command as necessary for your environment
     childProcess = spawn('npm', ['run', 'start', '--', '-ssl'], { shell: true, stdio: 'inherit' });
-
-    // Listen for unexpected exit (crash)
-    childProcess.on('exit', (code, signal) => {
-        if (signal != 'SIGINT') {
-            console.log(`Child process exited with code ${code} and signal ${signal}, restarting`);
-            // Restart the script if it crashes
-            childProcess = null;
-            startScript();
-        }
-    });
+    childProcess.kill("SIGINT");
 }
 
 async function runBuildCommand() {
