@@ -93,4 +93,4 @@ setInterval(() => {
 
 main();
 startScheduledScraper();
-console.log("PLEASE JUST WORK its ALIVEY!!!!!");
+console.log("PLEASE HALT THE ALIVE");
