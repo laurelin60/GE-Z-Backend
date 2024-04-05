@@ -76,7 +76,7 @@ async function repoUpdateLoop() {
 async function main() {
     await runBuildCommand();
     startScript();
-    //await repoUpdateLoop();
+    await repoUpdateLoop();
 }
 
 main();
