@@ -29,6 +29,22 @@ function startScript() {
     });
 }
 
+async function runInstallCommand() {
+    return new Promise<void>((resolve, reject) => {
+        console.log('Running npm install...');
+        const installProcess = exec('npm install', (error, stdout, stderr) => {
+            if (error) {
+                console.error(`exec error: ${error}`);
+                return reject(error);
+            }
+            //console.log(`stdout: ${stdout}`);
+            console.log("Install complete");
+            //console.error(`stderr: ${stderr}`);
+            resolve();
+        });
+    });
+}
+
 async function runBuildCommand() {
     return new Promise<void>((resolve, reject) => {
         console.log('Running npm run build...');
@@ -50,7 +66,7 @@ async function repoUpdateLoop() {
         const pullSummary = await git.pull('origin', 'main');
         if (pullSummary.files.length > 0) {
             console.log('Changes detected, running build and restarting script');
-
+            await runInstallCommand();
             await runBuildCommand();
             await new Promise<void>(resolve => {
                 if (childProcess) { // ig I have to check again 
@@ -73,6 +89,7 @@ async function repoUpdateLoop() {
 
 
 async function main() {
+    await runInstallCommand();
     await runBuildCommand();
     startScript();
     await repoUpdateLoop();

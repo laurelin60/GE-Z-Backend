@@ -72,25 +72,7 @@ function startScheduledScraper() {
     });
 }
 
-// a lot of stuff im too lazy to remove
-
-process.on('exit', () => {
-    console.log("EXIT")
-    server.close(() => {
-        console.log('HTTP server closed.');
-        process.exit(0);
-    });
-});
-
-process.on('SIGINT', () => {
-    console.log("SIGINT")
-    server.close(() => {
-        console.log('HTTP server closed.');
-        process.exit(0);
-    });
-});
-
-setInterval(() => {}, 1000);
+setInterval(() => {}, 1000); // I forgot why I put this here
 
 main();
 startScheduledScraper();
