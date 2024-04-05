@@ -72,6 +72,8 @@ function startScheduledScraper() {
     });
 }
 
+// a lot of stuff im too lazy to remove
+
 process.on('exit', () => {
     console.log("EXIT")
     server.close(() => {
@@ -88,11 +90,7 @@ process.on('SIGINT', () => {
     });
 });
 
-// keep the process alive
-setInterval(() => {
-    console.log("alive");
-}, 1000);
+setInterval(() => {}, 1000);
 
 main();
 startScheduledScraper();
-console.log("IT WORKY IF NO CRASH AND ALIVE 3 GONE!!!");
