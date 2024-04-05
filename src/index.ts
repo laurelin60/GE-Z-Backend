@@ -95,4 +95,4 @@ setInterval(() => {
 
 main();
 startScheduledScraper();
-console.log("PLEASE HALT THE ALIVE");
+console.log("ok new message");
