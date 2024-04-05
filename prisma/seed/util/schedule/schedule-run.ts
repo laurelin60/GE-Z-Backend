@@ -42,10 +42,6 @@ async function runSchedule() {
                 "./prisma/seed/util/schedule/schedule.log",
                 "\n" + new Date().toString(),
             );
-        } else {
-            logger.info(
-                `Skipping schedule, running next in ${timeTillNextSchedule().toFixed(2)} hours`,
-            );
         }
 
         // sleep 5 minutes
@@ -85,30 +81,6 @@ function isScheduled() {
     }
 
     return true;
-}
-
-function timeTillNextSchedule() {
-    const logContent = fs.readFileSync(
-        "./prisma/seed/util/schedule/schedule.log",
-        "utf8",
-    );
-    const lines = logContent.trim().split("\n");
-
-    if (lines.length > 0) {
-        const lastLine = lines[lines.length - 1];
-        const lastLineDateTime = new Date(lastLine);
-        const currentDateTime = new Date();
-
-        const hoursDifference =
-            (currentDateTime.getTime() - lastLineDateTime.getTime()) /
-            1000 /
-            60 /
-            60;
-
-        return 12 - hoursDifference;
-    }
-
-    return 0;
 }
 
 runSchedule().catch((error) => {
