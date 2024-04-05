@@ -16,8 +16,7 @@ function startScript() {
         return;
     }
 
-    // Start the script with 'ts-node', adjust command as necessary for your environment
-    childProcess = spawn('node', ['dist/src/index.js', '-ssl'], { shell: true, stdio: 'inherit' });
+    childProcess = spawn('node', ['dist/src/index.js', '-ssl'], { stdio: 'inherit' });
 
     // Listen for unexpected exit (crash)
     childProcess.on('exit', (code, signal) => {
@@ -77,7 +76,7 @@ async function repoUpdateLoop() {
 async function main() {
     await runBuildCommand();
     startScript();
-    await repoUpdateLoop();
+    //await repoUpdateLoop();
 }
 
 main();
