@@ -51,6 +51,7 @@ async function repoUpdateLoop() {
         if (pullSummary.files.length > 0) {
             console.log('Changes detected, running build and restarting script');
 
+            await runBuildCommand();
             await new Promise<void>(resolve => {
                 if (childProcess) { // ig I have to check again 
                     childProcess.on('exit', () => {
@@ -62,9 +63,7 @@ async function repoUpdateLoop() {
                 }
             });
 
-            await runBuildCommand();
-
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            await new Promise(resolve => setTimeout(resolve, 200));
 
             startScript();
         }
