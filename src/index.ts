@@ -90,9 +90,9 @@ process.on('SIGINT', () => {
 
 // keep the process alive
 setInterval(() => {
-    console.log("alive 3");
+    console.log("alive");
 }, 1000);
 
 main();
 startScheduledScraper();
-console.log("PLEASE WORKY");
+console.log("IT WORKY IF NO CRASH AND ALIVE 3 GONE!!!");
