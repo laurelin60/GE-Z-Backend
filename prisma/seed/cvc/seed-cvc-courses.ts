@@ -21,7 +21,7 @@ const cvcCourseSchema = z
         async: z.boolean(),
         hasOpenSeats: z.boolean(),
         hasPrereqs: z.boolean(),
-        instantEnrollment: z.boolean(),
+        instantEnrollment: z.boolean()
     })
     .strict()
     .transform((cvcCourse) => {
@@ -39,25 +39,25 @@ const cvcCourseSchema = z
             hasOpenSeats: cvcCourse.hasOpenSeats,
             hasPrereqs: cvcCourse.hasPrereqs,
             instantEnrollment: cvcCourse.instantEnrollment,
-            tuition: cvcCourse.tuition,
+            tuition: cvcCourse.tuition
         };
     });
 
 function transformTermString(termString: string): Date[] {
     function transformDate(
         dateString: string,
-        forceAfter: Date = new Date(0),
+        forceAfter: Date = new Date(0)
     ): Date {
         const date = new Date(dateString);
 
         if (
-            date.getMonth() > now.getMonth() ||
-            (date.getMonth() === now.getMonth() &&
-                date.getDate() >= now.getDate())
+            date.getMonth() > nowOffset.getMonth() ||
+            (date.getMonth() === nowOffset.getMonth() &&
+                date.getDate() >= nowOffset.getDate())
         ) {
-            date.setFullYear(now.getFullYear());
+            date.setFullYear(nowOffset.getFullYear());
         } else {
-            date.setFullYear(now.getFullYear() + 1);
+            date.setFullYear(nowOffset.getFullYear() + 1);
         }
 
         if (date < forceAfter) {
@@ -69,7 +69,9 @@ function transformTermString(termString: string): Date[] {
 
     const startTermString = termString.split(" - ")[0];
     const endTermString = termString.split(" - ")[1];
-    const now = new Date();
+
+    // current date minus 60 days
+    const nowOffset = new Date(new Date().getTime() - 60 * 24 * 60 * 60 * 1000);
 
     const startDate = transformDate(startTermString);
     const endDate = transformDate(endTermString, startDate);
@@ -79,7 +81,7 @@ function transformTermString(termString: string): Date[] {
 
 export default async function seedCvc(
     filepath: string,
-    prisma: Omit<PrismaClient, ITXClientDenyList> = xprisma,
+    prisma: Omit<PrismaClient, ITXClientDenyList> = xprisma
 ) {
     logger.info("Seeding CVC courses from " + filepath);
 
@@ -88,7 +90,7 @@ export default async function seedCvc(
     const cvcCourses = cvcData.data.map(
         (cvcCourse: z.infer<typeof cvcCourseSchema>) => {
             return cvcCourseSchema.parse(cvcCourse);
-        },
+        }
     ) satisfies cvcCourse[];
 
     const updatedAt = new Date(cvcData.updatedAt);
