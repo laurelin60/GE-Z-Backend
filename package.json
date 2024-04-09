@@ -4,6 +4,8 @@
     "db:benchmark": "ts-node src/util/prisma-benchmark.ts",
     "scheduleDEPRECATEDDONTUSE": "tsx prisma/seed/util/schedule/schedule-run.ts",
     "scrape:assist": "node scrapers/assist-scraper.mjs",
+    "scrape:cvc": "node scrapers/cvc-scraper-script.mjs",
+    "scrape:all": "npm run scrape:assist && npm run scrape:cvc",
     "seed:institutions": "ts-node prisma/seed/institutions/seed-institutions-script.ts",
     "seed:cvc": "ts-node prisma/seed/cvc/seed-cvc-courses-script.ts",
     "seed:articulations": "ts-node prisma/seed/articulations/seed-articulations-script.ts",

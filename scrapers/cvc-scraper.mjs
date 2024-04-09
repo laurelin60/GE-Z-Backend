@@ -51,7 +51,11 @@ async function scrapeSingle(
     let currentScrapeSingleFoundCvcIds = new Set();
     // Set params
     let localParams = JSON.parse(JSON.stringify(masterParams));
-    localParams["filter[start_date]"] = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]; // 30 days ago
+    localParams["filter[start_date]"] = new Date(
+        Date.now() - 30 * 24 * 60 * 60 * 1000,
+    )
+        .toISOString()
+        .split("T")[0]; // 30 days ago
     localParams.page = 1;
     localParams["filter[subject_id]"] = subjectId;
     if (asyncOnly)

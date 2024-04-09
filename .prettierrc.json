@@ -2,6 +2,7 @@
   "tabWidth": 4,
   "useTabs": false,
   "printWidth": 80,
+  "endOfLine": "crlf",
   "overrides": [
     {
       "files": "*.json",

@@ -21,7 +21,7 @@ const cvcCourseSchema = z
         async: z.boolean(),
         hasOpenSeats: z.boolean(),
         hasPrereqs: z.boolean(),
-        instantEnrollment: z.boolean()
+        instantEnrollment: z.boolean(),
     })
     .strict()
     .transform((cvcCourse) => {
@@ -39,14 +39,14 @@ const cvcCourseSchema = z
             hasOpenSeats: cvcCourse.hasOpenSeats,
             hasPrereqs: cvcCourse.hasPrereqs,
             instantEnrollment: cvcCourse.instantEnrollment,
-            tuition: cvcCourse.tuition
+            tuition: cvcCourse.tuition,
         };
     });
 
 function transformTermString(termString: string): Date[] {
     function transformDate(
         dateString: string,
-        forceAfter: Date = new Date(0)
+        forceAfter: Date = new Date(0),
     ): Date {
         const date = new Date(dateString);
 
@@ -81,7 +81,7 @@ function transformTermString(termString: string): Date[] {
 
 export default async function seedCvc(
     filepath: string,
-    prisma: Omit<PrismaClient, ITXClientDenyList> = xprisma
+    prisma: Omit<PrismaClient, ITXClientDenyList> = xprisma,
 ) {
     logger.info("Seeding CVC courses from " + filepath);
 
@@ -90,7 +90,7 @@ export default async function seedCvc(
     const cvcCourses = cvcData.data.map(
         (cvcCourse: z.infer<typeof cvcCourseSchema>) => {
             return cvcCourseSchema.parse(cvcCourse);
-        }
+        },
     ) satisfies cvcCourse[];
 
     const updatedAt = new Date(cvcData.updatedAt);

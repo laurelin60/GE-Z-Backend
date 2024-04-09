@@ -82,6 +82,7 @@ class UCLA extends University {
     }
 
     async getCookie(): Promise<string> {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const response: any = await axios.get(
             "https://sa.ucla.edu/ro/Public/SOC/Search/GECoursesMasterList",
         );

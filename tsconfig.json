@@ -12,6 +12,6 @@
     "noImplicitAny": false,
     "allowJs": true
   },
-  "include": ["src/**/*.ts", "prisma/**/*.ts"],
+  "include": ["src/**/*.ts", "prisma/**/*.ts", "prod.ts"],
   "exclude": ["node_modules"]
 }

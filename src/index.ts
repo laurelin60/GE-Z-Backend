@@ -1,3 +1,4 @@
+import { spawn, ChildProcess } from "child_process";
 import fs from "fs/promises";
 import https from "https";
 
@@ -6,10 +7,6 @@ import express from "express";
 
 import routes from "./routes";
 import logger from "./util/logger";
-
-import signal from "signal-exit";
-
-import { spawn, ChildProcess, exec } from 'child_process';
 
 require("dotenv").config();
 
@@ -21,6 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api", routes);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unused-vars
 let server: any = null;
 
 async function main() {
@@ -48,24 +46,30 @@ async function main() {
     logger.info(`environment: ${process.env.NODE_ENV}`);
 }
 // start scheduled cvc scraper
-// tsx 
+// tsx
 let childProcess: ChildProcess | null = null;
 
 function startScheduledScraper() {
     // Ensure only one instance of the script is running
     if (childProcess) {
-        childProcess.on('exit', (code, signal) => {});
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        childProcess.on("exit", (code, signal) => {});
         childProcess.kill();
         childProcess = null;
     }
 
     // Start the script with 'ts-node', adjust command as necessary for your environment
-    childProcess = spawn('tsx', ['prisma/seed/util/schedule/schedule-run.ts'], { shell: true, stdio: 'inherit' });
+    childProcess = spawn("tsx", ["prisma/seed/util/schedule/schedule-run.ts"], {
+        shell: true,
+        stdio: "inherit",
+    });
 
     // Listen for unexpected exit (crash)
-    childProcess.on('exit', (code, signal) => {
-        if (signal != 'SIGINT') {
-            console.log(`Child scheduled scraper process exited with code ${code} and signal ${signal}, restarting`);
+    childProcess.on("exit", (code, signal) => {
+        if (signal != "SIGINT") {
+            console.log(
+                `Child scheduled scraper process exited with code ${code} and signal ${signal}, restarting`,
+            );
             // Restart the script if it crashes
             startScheduledScraper();
         }

@@ -8,7 +8,6 @@ import {
     cvcCourseByGERequestSchema,
     cvcCourseSchema,
 } from "../model/cvc-model";
-import logger from "../util/logger";
 import { xprisma } from "../util/prisma-client";
 
 function cvcQueryToResponse(
