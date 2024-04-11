@@ -71,28 +71,31 @@ async function runBuildCommand() {
 
 async function repoUpdateLoop() {
     while (true) {
-        const pullSummary = await git.pull("origin", "main");
-        if (pullSummary.files.length > 0) {
-            console.log(
-                "Changes detected, running build and restarting script",
-            );
-            await runInstallCommand();
-            await runBuildCommand();
-            await new Promise<void>((resolve) => {
-                if (childProcess) {
-                    // ig I have to check again
-                    childProcess.on("exit", () => {
-                        console.log("Child process exited, continuing...");
-                        resolve();
-                    });
-                    childProcess.kill("SIGINT");
-                    childProcess = null;
-                }
-            });
+        try {
+            const pullSummary = await git.pull("origin", "main");
+            if (pullSummary.files.length > 0) {
+                console.log("Changes detected, running build and restarting script",);
+                await runInstallCommand();
+                await runBuildCommand();
+                await new Promise<void>((resolve) => {
+                    if (childProcess) {
+                        // ig I have to check again
+                        childProcess.on("exit", () => {
+                            console.log("Child process exited, continuing...");
+                            resolve();
+                        });
+                        childProcess.kill("SIGINT");
+                        childProcess = null;
+                    }
+                });
 
-            await new Promise((resolve) => setTimeout(resolve, 200));
+                await new Promise((resolve) => setTimeout(resolve, 200));
 
-            startScript();
+                startScript();
+            }
+        }
+        catch (e) {
+            console.error("Error in repoUpdateLoop", e);
         }
         await new Promise((resolve) => setTimeout(resolve, 30000));
     }
