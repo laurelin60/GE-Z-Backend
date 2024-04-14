@@ -18,7 +18,7 @@ const masterParams = {
     "filter[delivery_methods][]": "online",
     "filter[delivery_method_subtypes][]": ["online_sync", "online_async"],
     "filter[prerequisites][]": ["", "has_prereqs", "no_prereqs"],
-    "filter[session_names][]": ["Fall 2023", "Winter 2024", "Spring 2024"],
+    "filter[session_names][]": ["Spring 2024", "Summer 2024"],
     "filter[zero_textbook_cost_filter]": false,
     "filter[start_date]": "2024-03-07", // placeholder value, gets auto replaced to 30 days ago
     "filter[end_date]": "",
