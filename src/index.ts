@@ -68,7 +68,7 @@ function startScheduledScraper() {
     childProcess.on("exit", (code, signal) => {
         if (signal != "SIGINT") {
             console.log(
-                `Child scheduled scraper process exited with code ${code} and signal ${signal}, restarting`,
+                `Child server process exited with code ${code} and signal ${signal}, restarting`,
             );
             // Restart the script if it crashes
             startScheduledScraper();
