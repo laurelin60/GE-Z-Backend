@@ -78,5 +78,5 @@ function startScheduledScraper() {
 
 setInterval(() => {}, 1000); // I forgot why I put this here
 
-main();
+main().then();
 startScheduledScraper();

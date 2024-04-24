@@ -22,14 +22,16 @@ const cacheMiddleware: Prisma.Middleware = createPrismaRedisCache({
         // "CvcCourse", // <- CvcCourse queries are not excluded
         "Articulation",
     ],
+    excludeMethods: ["findFirst"],
     storage: {
         type: "memory",
         options: { size: 256, invalidation: true, log: logger },
     },
-    cacheTime: 86_400, // 24 hours
+    cacheTime: 3_600, // 1 hour
 });
 
 // noinspection JSDeprecatedSymbols
 xprisma.$use(cacheMiddleware);
 
 xprisma.$connect();
+
