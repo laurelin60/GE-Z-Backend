@@ -182,7 +182,8 @@ async function runScript() {
             "University of California, Los Angeles",
             "University of California, San Diego",
             "University of California, Berkeley",
-            /*"University of California, Davis", NOT UPDATED YET*/ "University of California, Riverside",
+            "University of California, Davis", 
+            "University of California, Riverside",
             "University of California, Santa Cruz",
             "University of California, Merced",
         ];
@@ -213,11 +214,11 @@ async function runScript() {
             // Remove duplicates because there are somehow duplicates
             let tempSet = new Set();
             agreeingInstitutions = agreeingInstitutions.filter((e) => {
-                if (tempSet.has(e.id)) return false;
-                tempSet.add(e.id);
+                if (tempSet.has(e.name)) return false;
+                tempSet.add(e.name);
                 return true;
             });
-            //console.log('Institutions:', institutions);
+            //console.log('Institutions:', agreeingInstitutions);
 
             const academicYears = await fetchAcademicYears();
             //console.log('Academic Years:', academicYears);
@@ -246,7 +247,7 @@ async function runScript() {
                         agreeingInstitutions.length
                     }] Fetching agreements for ${chalk.blueBright(
                         name,
-                    )} (ID: ${id})`,
+                    )} (ID: ${id})                    `,
                 );
                 const agreements = await fetchAgreements(
                     targetInstitutionId,
