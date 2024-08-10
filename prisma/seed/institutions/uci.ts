@@ -5,6 +5,7 @@ import formatCode from "../util/format-code";
 import { courseType, institutionType } from "../util/institution";
 
 import Institution from "./institution";
+import fs from "fs";
 
 export default class Uci extends Institution {
     constructor() {
@@ -29,25 +30,35 @@ export default class Uci extends Institution {
 }
 
 async function getUciCourses(): Promise<courseType[]> {
-    const url = "https://api-next.peterportal.org/v1/graphql";
-    const headers = { "Content-Type": "application/json" };
-    const data = {
-        query: `query ExampleQuery { allCourses {id, title, geList, courseNumber, department } }`,
-    };
+    const data = await fs.readFileSync("prisma/seed/institutions/peterportal-2024-06-29T105107.200.json", "utf8");
+    const response = JSON.parse(data);
+    return response.data.allCourses.map(
+        (course: z.infer<typeof responseCourseSchema>) => {
+            return transformSchema.parse(course) satisfies courseType;
+        },
+    );
 
-    const response = await axios.post(url, data, { headers });
+    // PETERPORTAL API IS CURRENTLY DOWN SO WE WILL USE A LOCAL JSON FILE
+    //
+    // const url = "https://api-next.peterportal.org/v1/graphql";
+    // const headers = { "Content-Type": "application/json" };
+    // const data = {
+    //     query: `query ExampleQuery { allCourses {id, title, geList, courseNumber, department } }`,
+    // };
 
-    if (response.status == 200) {
-        return response.data.data.allCourses.map(
-            (course: z.infer<typeof responseCourseSchema>) => {
-                return transformSchema.parse(course) satisfies courseType;
-            },
-        );
-    } else {
-        throw new Error(
-            `Failed to fetch UCI courses. Status ${response.status}`,
-        );
-    }
+    // const response = await axios.post(url, data, { headers });
+
+    // if (response.status == 200) {
+    //     return response.data.data.allCourses.map(
+    //         (course: z.infer<typeof responseCourseSchema>) => {
+    //             return transformSchema.parse(course) satisfies courseType;
+    //         },
+    //     );
+    // } else {
+    //     throw new Error(
+    //         `Failed to fetch UCI courses. Status ${response.status}`,
+    //     );
+    // }
 }
 
 const responseCourseSchema = z
