@@ -25,7 +25,7 @@ const masterParams = {
     "filter[target_school_ids][]": "",
     "filter[min_credits_range]": 0,
     "filter[max_credits_range]": 20,
-    "filter[sort]": "oei",
+    "filter[sort]": "startdate", // default "oei" sort is broken on cvc as of 9/30/2024 - I checked manually
 };
 
 async function safeFetch(url, params) {
