@@ -168,9 +168,9 @@ export async function connectCvcGes(
         }
 
         const geCategories = uniqBy(
-            cvcCourse.articulatesTo.flatMap((articulation) => articulation.to),
+            cvcCourse.articulatesTo.flatMap((articulation) => articulation.to).flatMap((course) => course.geCategories),
             "id",
-        ).flatMap((course) => course.geCategories);
+        );
 
         if (geCategories.length < 1) {
             continue;
