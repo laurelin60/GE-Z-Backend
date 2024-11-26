@@ -165,7 +165,7 @@ async function scrapeSingle(
                         return $(this).text().trim();
                     })
                     .get();
-                const tuition = parseFloat(
+                let tuition = parseFloat(
                     e
                         .children()
                         .eq(TUITION_INDEX)
@@ -174,8 +174,9 @@ async function scrapeSingle(
                         .text()
                         .trim()
                         .split("$")[1]
-                        .split(" ")[0],
+                        ?.split(" ")[0],
                 );
+                if (isNaN(tuition)) tuition = 0;
                 let jsonObject = {
                     college: college,
                     course: courseName,
