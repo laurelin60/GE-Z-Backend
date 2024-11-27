@@ -18,14 +18,18 @@ const masterParams = {
     "filter[delivery_methods][]": "online",
     "filter[delivery_method_subtypes][]": ["online_sync", "online_async"],
     "filter[prerequisites][]": ["", "has_prereqs", "no_prereqs"],
-    "filter[session_names][]": ["Fall 2024", "Winter 2025", "Spring 2025"],
+    "filter[session_names][]": ["Winter 2025", "Spring 2025"],
     "filter[zero_textbook_cost_filter]": false,
     "filter[start_date]": "2024-03-07", // placeholder value, gets auto replaced to 30 days ago
     "filter[end_date]": "",
     "filter[target_school_ids][]": "",
     "filter[min_credits_range]": 0,
     "filter[max_credits_range]": 20,
-    "filter[sort]": "startdate", // default "oei" sort is broken on cvc as of 9/30/2024 - I checked manually
+    "filter[sort]": "distance", // this seems to be the only one cvc didn't break (whew, if it was I would need to find a workaround that would likely make scraping way slower)
+    // default "oei" sort is broken on cvc as of 9/30/2024 (duplicate entries listed, with some courses excluded) - I checked manually
+    // chronological "startdate" sort is broken on cvc as of 11/26/2024 (duplicate entries listed, with some courses excluded) - I checked manually
+    // alphabetical "alpha_asc" sort is broken on cvc as of 11/26/2024 (duplicate entries listed, with some courses MAYBE excluded, didn't 100% check) - I checked manually
+    // not sure how cvc managed to break this and not notice but I'm still glad it's here as a resource
 };
 
 async function safeFetch(url, params) {
