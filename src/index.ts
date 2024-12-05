@@ -27,7 +27,8 @@ async function main() {
             .createServer(
                 {
                     key: await fs.readFile("ssl/private.key"),
-                    cert: await fs.readFile("ssl/certificate.crt"),
+                    cert: await fs.readFile("ssl/cert-chain.pem"), // [cat/type] certificate.crt ca_bundle.crt > cert-chain.pem
+                    //cert: await fs.readFile("ssl/certificate.crt"),
                 },
                 app,
             )
