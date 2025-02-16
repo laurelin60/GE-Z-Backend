@@ -8,8 +8,8 @@ const url = "https://search.cvc.edu/search";
 const masterParams = {
     "filter[display_home_school]": false,
     "filter[search_all_universities]": true,
-    "filter[search_type]": "subject_browsing",
-    "filter[subject_id]": 98,
+    "filter[search_type]": "open_search",
+    "filter[subject]": "*",
     commit: "Find Classes",
     page: 1,
     random_token: "",
@@ -20,11 +20,17 @@ const masterParams = {
     "filter[prerequisites][]": ["", "has_prereqs", "no_prereqs"],
     "filter[session_names][]": ["Winter 2025", "Spring 2025"],
     "filter[zero_textbook_cost_filter]": false,
-    "filter[start_date]": "2024-03-07", // placeholder value, gets auto replaced to 30 days ago
+    "filter[start_date]": new Date(
+        Date.now() - 2 * 24 * 60 * 60 * 1000,
+    )
+        .toISOString()
+        .split("T")[0], // 2 days ago (30 is a bit much - too many results and we hit the 10k limit. I might change this to just the current date)
     "filter[end_date]": "",
     "filter[target_school_ids][]": "",
-    "filter[min_credits_range]": 0,
+    "filter[min_credits_range]": 0.1, // used to be 0 but this shit would take way too long with all those extras and you probably don't want those anyway
     "filter[max_credits_range]": 20,
+
+    // IMPORTANT: sorting seems to not exist in the UI as of 2/15/2025 but I'm keeping it anyway
     "filter[sort]": "distance", // this seems to be the only one cvc didn't break (whew, if it was I would need to find a workaround that would likely make scraping way slower)
     // default "oei" sort is broken on cvc as of 9/30/2024 (duplicate entries listed, with some courses excluded) - I checked manually
     // chronological "startdate" sort is broken on cvc as of 11/26/2024 (duplicate entries listed, with some courses excluded) - I checked manually
@@ -44,8 +50,6 @@ async function safeFetch(url, params) {
 }
 
 async function scrapeSingle(
-    subject,
-    subjectId,
     asyncOnly,
     openSeatsOnly,
     noPrereqsOnly,
@@ -55,13 +59,7 @@ async function scrapeSingle(
     let currentScrapeSingleFoundCvcIds = new Set();
     // Set params
     let localParams = JSON.parse(JSON.stringify(masterParams));
-    localParams["filter[start_date]"] = new Date(
-        Date.now() - 30 * 24 * 60 * 60 * 1000,
-    )
-        .toISOString()
-        .split("T")[0]; // 30 days ago
     localParams.page = 1;
-    localParams["filter[subject_id]"] = subjectId;
     if (asyncOnly)
         localParams["filter[delivery_method_subtypes][]"] = "online_async";
     if (openSeatsOnly)
@@ -72,7 +70,7 @@ async function scrapeSingle(
     // Request
     let response = await safeFetch(url, localParams);
     let $ = cheerio.load(response.data);
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 1000; i++) { // cap at 1k pages (so 10k courses)
         //process.stdout.write(`Page ${i}/${subjectTotalPages}\r`)
         if (i > 1) {
             localParams.page = i;
@@ -211,114 +209,87 @@ const fetchCvcData = async () => {
             (_err) => {},
         );
 
-        let response = await safeFetch(url, masterParams);
+        let response = await safeFetch(url, masterParams); // redundant fetch but im too lazy to change it
         let $ = cheerio.load(response.data);
 
-        const subjectMap = $("#filter_subject_id option")
-            .toArray()
-            .reduce((acc, element) => {
-                const e = $(element);
-                if (e.text() !== "Select a subject") acc[e.text()] = e.val();
-                return acc;
-            }, {});
+        console.log(`Found ${$(".text-black").text().split(' ')[0]} total courses`);
 
-        const subjectCount = Object.entries(subjectMap).length;
-        console.log(`Found ${subjectCount} subjects`);
+        // No multithreading, don't spam cvc
+        let all = await scrapeSingle(
+            false,
+            false,
+            false,
+            false,
+        );
+        let asyncOnly = await scrapeSingle(
+            true,
+            false,
+            false,
+            false,
+        );
+        let openSeatsOnly = await scrapeSingle(
+            false,
+            true,
+            false,
+            false,
+        );
+        let noPrereqsOnly = await scrapeSingle(
+            false,
+            false,
+            true,
+            false,
+        );
+        let instantEnrollmentOnly = await scrapeSingle(
+            false,
+            false,
+            false,
+            true,
+        );
+        let allWithAttributes = all.map((e) => {
+            e.async = !!asyncOnly.find(
+                (t) =>
+                    t.college === e.college &&
+                    t.course === e.course &&
+                    t.term === e.term &&
+                    t.cvcId === e.cvcId,
+            );
+            e.hasOpenSeats = !!openSeatsOnly.find(
+                (t) =>
+                    t.college === e.college &&
+                    t.course === e.course &&
+                    t.term === e.term &&
+                    t.cvcId === e.cvcId,
+            );
+            e.hasPrereqs = !noPrereqsOnly.find(
+                (t) =>
+                    t.college === e.college &&
+                    t.course === e.course &&
+                    t.term === e.term &&
+                    t.cvcId === e.cvcId,
+            );
+            e.instantEnrollment = !!instantEnrollmentOnly.find(
+                (t) =>
+                    t.college === e.college &&
+                    t.course === e.course &&
+                    t.term === e.term &&
+                    t.cvcId === e.cvcId,
+            );
+            return e;
+        });
+        aggregateCourseData = aggregateCourseData.concat(allWithAttributes);
+        // failsafe data in case script crashes (or we just manually terminate it early) so the whole thing doesn't get discarded
+        await fs.appendFile(
+            "./scrapers/cvc-courses.json",
+            allWithAttributes.map((e) => JSON.stringify(e)).join("\n") +
+                "\n",
+            (err) => {
+                // (pls don't change newline to comma at least for now)
+                if (err) {
+                    console.error(err);
+                }
+            },
+        );
 
-        let subjectIndex = 0;
-
-        //Object.entries(subjectMap).forEach(async ([subject, subjectId]) => { // Don't use this it runs all of it at the same time
-        for (const [subject, subjectId] of Object.entries(subjectMap)) {
-            subjectIndex++;
-            console.log(
-                `[${subjectIndex}/${subjectCount}] Scraping courses for ${subject} (ID ${subjectId})`,
-            );
-            // No multithreading, don't spam cvc
-            let all = await scrapeSingle(
-                subject,
-                subjectId,
-                false,
-                false,
-                false,
-                false,
-            );
-            let asyncOnly = await scrapeSingle(
-                subject,
-                subjectId,
-                true,
-                false,
-                false,
-                false,
-            );
-            let openSeatsOnly = await scrapeSingle(
-                subject,
-                subjectId,
-                false,
-                true,
-                false,
-                false,
-            );
-            let noPrereqsOnly = await scrapeSingle(
-                subject,
-                subjectId,
-                false,
-                false,
-                true,
-                false,
-            );
-            let instantEnrollmentOnly = await scrapeSingle(
-                subject,
-                subjectId,
-                false,
-                false,
-                false,
-                true,
-            );
-            let allWithAttributes = all.map((e) => {
-                e.async = !!asyncOnly.find(
-                    (t) =>
-                        t.college === e.college &&
-                        t.course === e.course &&
-                        t.term === e.term &&
-                        t.cvcId === e.cvcId,
-                );
-                e.hasOpenSeats = !!openSeatsOnly.find(
-                    (t) =>
-                        t.college === e.college &&
-                        t.course === e.course &&
-                        t.term === e.term &&
-                        t.cvcId === e.cvcId,
-                );
-                e.hasPrereqs = !noPrereqsOnly.find(
-                    (t) =>
-                        t.college === e.college &&
-                        t.course === e.course &&
-                        t.term === e.term &&
-                        t.cvcId === e.cvcId,
-                );
-                e.instantEnrollment = !!instantEnrollmentOnly.find(
-                    (t) =>
-                        t.college === e.college &&
-                        t.course === e.course &&
-                        t.term === e.term &&
-                        t.cvcId === e.cvcId,
-                );
-                return e;
-            });
-            aggregateCourseData = aggregateCourseData.concat(allWithAttributes);
-            // failsafe data in case script crashes (or we just manually terminate it early) so the whole thing doesn't get discarded
-            await fs.appendFile(
-                "./scrapers/cvc-courses.json",
-                allWithAttributes.map((e) => JSON.stringify(e)).join("\n") +
-                    "\n",
-                (err) => {
-                    // (pls don't change newline to comma at least for now)
-                    if (err) {
-                        console.error(err);
-                    }
-                },
-            );
-        }
     } catch (error) {
         console.error("Error fetching data:", error);
     }
