@@ -70,8 +70,9 @@ async function scrapeSingle(
     // Request
     let response = await safeFetch(url, localParams);
     let $ = cheerio.load(response.data);
-    for (let i = 1; i <= 1000; i++) { // cap at 1k pages (so 10k courses)
-        //process.stdout.write(`Page ${i}/${subjectTotalPages}\r`)
+    let totalPages = $(".page:not(.next)").last().text();
+    for (let i = 1; i <= totalPages; i++) { // cap at 1k pages (so 10k courses)
+        process.stdout.write(`Page ${i}/${totalPages}\r`)
         if (i > 1) {
             localParams.page = i;
             response = await safeFetch(url, localParams);
@@ -215,30 +216,39 @@ const fetchCvcData = async () => {
         console.log(`Found ${$(".text-black").text().split(' ')[0]} total courses`);
 
         // No multithreading, don't spam cvc
+        console.log("Scraping all courses");
         let all = await scrapeSingle(
             false,
             false,
             false,
             false,
         );
+
+        console.log("Scraping async courses");
         let asyncOnly = await scrapeSingle(
             true,
             false,
             false,
             false,
         );
+
+        console.log("Scraping open seats only");
         let openSeatsOnly = await scrapeSingle(
             false,
             true,
             false,
             false,
         );
+
+        console.log("Scraping no prereqs only");
         let noPrereqsOnly = await scrapeSingle(
             false,
             false,
             true,
             false,
         );
+
+        console.log("Scraping instant enrollment only");
         let instantEnrollmentOnly = await scrapeSingle(
             false,
             false,
