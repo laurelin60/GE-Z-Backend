@@ -18,7 +18,7 @@ const masterParams = {
     "filter[delivery_methods][]": "online",
     "filter[delivery_method_subtypes][]": ["online_sync", "online_async"],
     "filter[prerequisites][]": ["", "has_prereqs", "no_prereqs"],
-    "filter[session_names][]": ["Summer 2025", "Fall 2025"],
+    "filter[session_names][]": ["Fall 2025", "Winter 2026"],
     "filter[zero_textbook_cost_filter]": false,
     "filter[start_date]": new Date(
         Date.now() - 2 * 24 * 60 * 60 * 1000,
