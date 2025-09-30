@@ -86,7 +86,7 @@ async function fetchAgreements(
         // If agreement format is new, use their new API to get the data directly
         const apiURL = `https://assist.org/api/articulation/Agreements?Key=${academicYearId}/${sendingInstitutionId}/to/${targetInstitutionId}/AllMajors`;
         const apiResponse = await safeFetch(apiURL);
-        if (apiResponse.result == null) return []; // empty, we are using the API mode (also there are no articulations)
+        if (apiResponse?.result == null) return []; // empty, we are using the API mode (also there are no articulations)
         let articulations = new Set();
         let rawArticulations = JSON.parse(apiResponse.result.articulations);
         rawArticulations.forEach((e) => {
@@ -100,7 +100,7 @@ async function fetchAgreements(
                 let items = e.articulation.sendingArticulation.items; // Array of courses (OR). Elements will always have conjunction type AND
                 items.forEach((e2) => {
                     // Since it's OR we just add a bunch of entries
-                    if (e2.items.length == 1) {
+                    if (e2.items?.length == 1) {
                         // Only add single courses, nobody is taking a more than one for a GE
                         articulations.add(
                             JSON.stringify({
@@ -122,7 +122,7 @@ async function fetchAgreements(
                 let items = e.articulation.sendingArticulation.items; // Array of courses (OR). Elements will always have conjunction type AND
                 items.forEach((e2) => {
                     // Since it's OR we just add a bunch of entries
-                    if (e2.items.length == 1) {
+                    if (e2.items?.length == 1) {
                         // Only add single courses, nobody is taking a more than one for a GE
                         articulations.add(
                             JSON.stringify({
