@@ -27,7 +27,7 @@ function cvcQueryToResponse(
         courseCode: cvcCourse.courseCode,
         courseName: cvcCourse.courseName,
         cvcId: cvcCourse.cvcId,
-        assistPath: cvcCourse.articulatesTo[0].assistPath,
+        assistPath: cvcCourse.articulatesTo[0]?.assistPath,
         niceToHaves: cvcCourse.niceToHaves,
         units: cvcCourse.units,
         tuition: cvcCourse.tuition,
