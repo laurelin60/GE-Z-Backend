@@ -30,7 +30,11 @@ export default class Ucsb extends Institution {
 async function getUcsbCourses(): Promise<courseType[]> {
     const url =
         "https://app.coursedog.com/api/v1/cm/ucsb/courses/search/%24filters?skip=0&limit=1000000000&columns=customFields.generalSubjectAreas%2Ccode";
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+        headers: {
+            Origin: "https://ucsbcatalog.coursedog.com"
+        }
+    });
 
     if (response.status == 200) {
         return response.data.data
@@ -52,8 +56,7 @@ async function getUcsbCourses(): Promise<courseType[]> {
     }
 }
 
-const responseCourseSchema = z
-    .object({
+const responseCourseSchema = z.object({
         _id: z.any(),
         courseGroupId: z.any(),
         effectiveEndDate: z.any(),
@@ -61,6 +64,7 @@ const responseCourseSchema = z
         id: z.any(),
         subjectCode: z.any(),
         requestStatus: z.any(),
+        orderByKeyForCode: z.any(),
 
         code: z.string(),
         courseNumber: z.string(),
