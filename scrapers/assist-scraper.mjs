@@ -175,7 +175,7 @@ async function runScript() {
     try {
         // Clear data in output file
         //fs.writeFile('assist-data.json', "", err => {});
-        const targetYear = 2024; // 2024-2025 academic year
+        const targetYear = 2025; // 2025-2026 academic year
         const targetInstitutions = [
             "University of California, Irvine",
             "University of California, Santa Barbara",
